@@ -84,20 +84,12 @@ class ActiveCampaign extends AC_Connector {
 		$class = "AC_" . $class;
 		// IE: new Contact();
 
-		$add_tracking = false;
-		if ($class == "AC_Tracking") $add_tracking = true;
 		if ($class == "AC_Tags") {
 			$class = "AC_Tag";
 		}
 
 		$class = new $class($this->version, $this->url_base, $this->url, $this->api_key);
 		// IE: $contact->view()
-
-		if ($add_tracking) {
-			$class->track_email = $this->track_email;
-			$class->track_actid = $this->track_actid;
-			$class->track_key = $this->track_key;
-		}
 
 		if ($method == "list") {
 			// reserved word
@@ -127,7 +119,6 @@ require_once("Segment.class.php");
 require_once("Settings.class.php");
 require_once("Subscriber.class.php");
 require_once("Tag.class.php");
-require_once("Tracking.class.php");
 require_once("User.class.php");
 require_once("Webhook.class.php");
 

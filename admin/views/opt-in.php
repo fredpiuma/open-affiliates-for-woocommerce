@@ -2,8 +2,9 @@
 			<form  method="post">
 
 				<div class="uap-stuffbox">
-					<h3 class="uap-h3"><?php esc_html_e('Opt-In Integrations Settings', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/how-to-activate-optin-subscriptions/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+					<h3 class="uap-h3"><?php esc_html_e('Opt-In Integrations Settings', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 					<div class="inside">
+<?php uap_external_service_notice( 'the name, e-mail address and IP address of each new affiliate', 'the e-mail marketing service you select below' );?>
 						<div class="uap-form-line">
 							<h2><?php esc_html_e('Enable Opt-In Integrations', 'uap');?></h2>
 							<label class="uap_label_shiwtch uap-switch-button-margin">
@@ -25,7 +26,6 @@
 			                                                                    'email_list' => esc_html__('E-mail List', 'uap'),
 			                                                                    'get_response' => 'GetResponse',
 			                                                                    'icontact' => 'IContact',
-			                                                                    'madmimi' => 'Mad Mimi',
 			                                                                    'mailchimp' => 'MailChimp',
 			                                                                    'mymail' => 'Mailster (MyMail)',
 			                                                                    'wysija' => 'Wysija',
@@ -376,33 +376,6 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="uap-stuffbox">
-				<h3 class="uap-h3">Mad Mimi</h3>
-				<div class="inside">
-					<div class="row">
-						<div class="col-xs-6">
-							<div class="input-group">
-									 <span class="input-group-addon"> <?php esc_html_e('Username Or Email:', 'uap');?></span>
-				            <input type="text" value="<?php echo esc_attr($data['metas']['uap_madmimi_username']);?>" name="uap_madmimi_username" class="form-control">
-				       </div>
-							 	<div class="uap-form-line"></div>
-							<div class="input-group">
-				             <span class="input-group-addon"><?php esc_html_e('Api Key:', 'uap');?></span>
-				            <input type="text" value="<?php echo esc_attr($data['metas']['uap_madmimi_apikey']);?>" name="uap_madmimi_apikey" class="form-control">
-								</div>
-								<div class="uap-form-line"></div>
-				       <div class="input-group">
-				             <span class="input-group-addon"><?php esc_html_e('List Name:', 'uap');?></span>
-				            <input type="text" value="<?php echo esc_attr($data['metas']['uap_madmimi_listname']);?>" name="uap_madmimi_listname" class="form-control">
-				     		</div>
-					<div id="uap_save_changes" class="uap-submit-form">
-						<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 			<div class="uap-stuffbox">
 				<h3 class="uap-h3"><?php esc_html_e('Saved E-mail List', 'uap');?></h3>

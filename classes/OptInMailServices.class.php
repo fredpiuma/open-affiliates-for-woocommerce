@@ -254,21 +254,6 @@ if (!class_exists('OptInMailServices')){
 			}
 		}
 
-		public function indeed_madMimi($username='', $api_key='', $listName='', $e_mail='', $first_name='', $last_name=''){
-			if (!class_exists('MadMimi')){
-				require_once $this->dir_path .'/services/email_services/madmimi/MadMimi.class.php';
-			}
-			$mailer = new MadMimi( $username, $api_key );
-			$user = array( 'email' => $e_mail,
-					'firstName' => $first_name,
-					'lastName' => $last_name,
-					'add_list' => $listName,
-			);
-			If($mailer){
-				$mailer->AddUser($user);
-				return 1;
-			}else return 0;
-		}
 
 
 		public function add_contanct_to_active_campaign($api_url='', $api_key='', $email='', $first_name='', $last_name=''){

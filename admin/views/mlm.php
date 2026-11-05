@@ -5,7 +5,7 @@
 
 			<form  method="post">
 				<div class="uap-stuffbox">
-					<h3 class="uap-h3"><?php esc_html_e('Multi-Level Marketing', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/mlm-workflow-example/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+					<h3 class="uap-h3"><?php esc_html_e('Multi-Level Marketing', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 					<div class="inside">
 						<div class="uap-form-line">
 					<div class="row">

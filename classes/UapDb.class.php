@@ -2535,10 +2535,6 @@ WHERE id=%d
 						'uap_wysija_list_id' => '',
 						//MyMail
 						'uap_mymail_list_id' => '',
-						//Mad Mimi
-						'uap_madmimi_username' => '',
-						'uap_madmimi_apikey' => '',
-						'uap_madmimi_listname' => '',
 						//indeed email list
 						'uap_email_list' => '',
 					);

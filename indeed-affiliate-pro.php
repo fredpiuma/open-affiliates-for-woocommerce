@@ -112,6 +112,14 @@ class UAP_Main{
 
 
 
+
+		if (!defined('UAP_REPO_URL')){
+			define('UAP_REPO_URL', 'https://github.com/fredericomdecastro/open-affiliates-for-woocommerce');
+		}
+
+		if (!defined('UAP_DOCS_URL')){
+			define('UAP_DOCS_URL', UAP_REPO_URL . '/tree/main/docs');
+		}
 		/// LANGUAGES
 
 		add_action('init', array('UAP_Main', 'uap_load_language'));

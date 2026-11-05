@@ -3,7 +3,7 @@
 
 		<div class="uap-wrapper">
 				<div class="uap-stuffbox">
-					<h3 class="uap-h3"><?php esc_html_e('Manage Rank', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/step-1-create-ranks/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+					<h3 class="uap-h3"><?php esc_html_e('Manage Rank', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 					<div class="inside">
 							<div class="uap-form-line">
 							<div class="row">

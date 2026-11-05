@@ -4,7 +4,7 @@
 				<input type="hidden" name="uap_admin_forms_nonce" value="<?php echo wp_create_nonce( 'uap_admin_forms_nonce' );?>" />
 
 				<div class="uap-stuffbox">
-					<h3 class="uap-h3"><?php esc_html_e('Add new Currency', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/custom-currencies/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+					<h3 class="uap-h3"><?php esc_html_e('Add new Currency', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 					<div class="inside">
 						<div class="uap-inside-item">
 							<div class="row">

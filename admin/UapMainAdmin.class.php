@@ -4598,8 +4598,8 @@ if (!class_exists('UapMainAdmin')){
 			}
 
 			$links = [
-				'<a href="https://ultimateaffiliate.pro/documentation/" target="_blank">' . esc_html__( 'Knowledge Base', 'uap' ) . '</a>',
-				'<a href="https://ultimateaffiliate.pro/changelog/" target="_blank">' . esc_html__( 'ChangeLog', 'uap' ) . '</a>'
+				'<a href="' . esc_url( UAP_DOCS_URL ) . '" target="_blank">' . esc_html__( 'Documentation', 'uap' ) . '</a>',
+				'<a href="' . esc_url( UAP_REPO_URL . '/blob/main/CHANGELOG.md' ) . '" target="_blank">' . esc_html__( 'ChangeLog', 'uap' ) . '</a>'
 			];
 
 			$input = array_merge( $input, $links );
@@ -4632,7 +4632,7 @@ if (!class_exists('UapMainAdmin')){
 			$submenu['ultimate_affiliates_pro'][311] = [ esc_html__( 'Reports', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=reports', esc_html__( 'Reports', 'uap' ), '' , '' ];
 			$submenu['ultimate_affiliates_pro'][312] = [ esc_html__( 'General Settings', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=settings', esc_html__( 'General Settings', 'uap' ), '' , '' ];
 			$submenu['ultimate_affiliates_pro'][314] = [ esc_html__( 'Shortcodes', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=shortcodes', esc_html__( 'Shortcodes', 'uap' ), '' , '' ];
-			$submenu['ultimate_affiliates_pro'][316] = [ esc_html__( 'Documentation', 'uap' ), $capability, 'https://ultimateaffiliate.pro/documentation/', 'uap-admin-menu-documentation-item', 'uap-admin-menu-documentation-item' ,'_blank' ];
+			$submenu['ultimate_affiliates_pro'][316] = [ esc_html__( 'Documentation', 'uap' ), $capability, UAP_DOCS_URL, 'uap-admin-menu-documentation-item', 'uap-admin-menu-documentation-item' ,'_blank' ];
 
 			if ( isset( $_GET['page'] ) && sanitize_text_field( $_GET['page'] ) === 'ultimate_affiliates_pro' && isset( $_GET['tab'] ) ){
 					switch ( sanitize_text_field( $_GET['tab'] ) ){

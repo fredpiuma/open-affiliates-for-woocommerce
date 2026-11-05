@@ -2054,14 +2054,6 @@ function uap_do_opt_in($email=''){
 					$indeed_mail->indeed_myMailSubscribe( $listID, $email, $firstName, $lastName );
 				}
 				break;
-			case 'madmimi':
-				$username = get_option('uap_madmimi_username');
-				$api_key =  get_option('uap_madmimi_apikey');
-				$listName = get_option('uap_madmimi_listname');
-				if ($username && $api_key && $listName){
-					$indeed_mail->indeed_madMimi( $username, $api_key, $listName, $email, $firstName, $lastName );
-				}
-				break;
 			case 'active_campaign':
 				$api_url = get_option('uap_active_campaign_apiurl');
 				$api_key =  get_option('uap_active_campaign_apikey');
@@ -3069,5 +3061,19 @@ function uap_is_ninjaformsdemo_active()
 			return true;
 	}
 	return false;
+}
+endif;
+
+if ( !function_exists( 'uap_external_service_notice' ) ):
+/**
+ * Prints a notice telling the admin which data a feature sends to which third-party service.
+ * @param string $sends What is sent.
+ * @param string $to Who receives it.
+ * @return void
+ */
+function uap_external_service_notice( $sends = '', $to = '' ){
+	echo '<div class="uap-external-service-notice"><strong>' . esc_html__( 'External service:', 'uap' ) . '</strong> '
+		. sprintf( esc_html__( 'when this feature is enabled and configured, the plugin sends %1$s to %2$s. Nothing is sent while it is turned off.', 'uap' ), esc_html( $sends ), esc_html( $to ) )
+		. '</div>';
 }
 endif;

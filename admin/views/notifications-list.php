@@ -6,7 +6,7 @@
 		<a href="javascript:void(0)" class="button button-primary button-large uap-check-email-button uap-special-button" onClick="uapCheckEmailServer();"><?php esc_html_e('Check Mail Server', 'uap');?></a>
 		<a href="<?php echo admin_url( 'admin.php?page=ultimate_affiliates_pro&tab=notification-logs' );?>" class="button button-primary button-large uap-first-button uap-notifications-logs"><?php esc_html_e('Notifications Logs', 'uap');?></a>
 
-        <span class="uap-admin-need-help uap-admin-need-help-notifications"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/how-to-send-notifications/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span>
+        <span class="uap-admin-need-help uap-admin-need-help-notifications"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span>
 		<div class="uap-clear"></div>
 		</div>
 		<div>

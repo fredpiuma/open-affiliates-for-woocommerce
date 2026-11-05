@@ -2,6 +2,7 @@
 	<div class="uap-stuffbox">
 		<h3 class="uap-h3"><?php esc_html_e('Stripe - Payouts', 'uap');?></h3>
 		<div class="inside">
+<?php uap_external_service_notice( 'payout amounts, currency and connected-account data', 'Stripe (api.stripe.com, connect.stripe.com)' );?>
 				<div class="row">
 						<div class="col-xs-7">
 							<h3><?php esc_html_e('Activate/Hold Stripe Gateway', 'uap');?></h3>

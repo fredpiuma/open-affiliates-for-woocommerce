@@ -6,6 +6,7 @@
 	<div class="uap-stuffbox">
 		<h3 class="uap-h3"><?php esc_html_e('ReCaptcha Setup', 'uap');?></h3>
 		<div class="inside">
+<?php uap_external_service_notice( "the reCAPTCHA response token and the visitor's IP address (the visitor's browser also loads Google's reCAPTCHA script)", 'Google reCAPTCHA (www.google.com/recaptcha)' );?>
 			<div class="uap-form-line">
 				<div class="row">
 					<div class="col-xs-8">

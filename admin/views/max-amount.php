@@ -1,7 +1,7 @@
 <div class="uap-wrapper">
 	<form  method="post">
 	<div class="uap-stuffbox">
-		<h3 class="uap-h3"><?php esc_html_e('Maximum Amount Rate', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/maximum-amount/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+		<h3 class="uap-h3"><?php esc_html_e('Maximum Amount Rate', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 		<div class="inside">
 		<div class="row">
 		  <div class="col-xs-5">

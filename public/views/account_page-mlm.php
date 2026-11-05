@@ -22,8 +22,8 @@ if ( !isset( $affiliate_full_name ) ){
 
 		<?php if (!empty($data['items'])):?>
 
-			<?php wp_enqueue_script( 'uap-gstatic-charts', 'https://www.gstatic.com/charts/loader.js', ['jquery'], '9.4' );?>
-			<?php wp_enqueue_script( 'uap-public-mlm', UAP_URL . 'assets/js/public-mlm.js', ['jquery'], '9.4' );?>
+			<?php wp_enqueue_style( 'uap-mlm-tree', UAP_URL . 'assets/css/mlm-tree.css', [], '9.4' );?>
+			<?php wp_enqueue_script( 'uap-mlm-tree', UAP_URL . 'assets/js/mlm-tree.js', [], '9.4', true );?>
 
 			<span class="uap-js-mlm-view-affiliate-children-parent-data"
 						data-parent_id='<?php echo esc_attr($data['parent_id']);?>'

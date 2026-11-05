@@ -26,7 +26,8 @@ if ( !isset( $affiliate_full_name ) ){
 				if ( !isset( $data['parent_full_name'] ) ){
 						$data['parent_full_name'] = '';
 				}
-				wp_enqueue_script( 'gstatic-loader', 'https://www.gstatic.com/charts/loader.js', ['jquery'], false );
+				wp_enqueue_style( 'uap-mlm-tree', UAP_URL . 'assets/css/mlm-tree.css', [], '9.4' );
+				wp_enqueue_script( 'uap-mlm-tree', UAP_URL . 'assets/js/mlm-tree.js', [], '9.4', true );
 		?>
 
 				<span class="uap-js-mlm-view-affiliate-children-parent-data"

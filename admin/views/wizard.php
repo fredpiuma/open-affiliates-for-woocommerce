@@ -422,7 +422,7 @@
           <h4><?php esc_html_e( "What to do Next?", 'uap' );?></h4>
           <div class="uap-wizard-complete-pages">
             <a href="<?php echo admin_url('admin.php?page=ultimate_affiliates_pro&tab=dashboard');?>" class="uap-wizard-complete-page-link"><i class="fa-uap fa-affiliates-uap" aria-hidden="true"></i><?php esc_html_e( 'Go to Dashboard', 'uap' );?></a>
-            <a href="https://ultimateaffiliate.pro/docs" target="_blank" class="uap-wizard-complete-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e( 'Check our Documentation', 'uap' );?></a>
+            <a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank" class="uap-wizard-complete-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e( 'Check our Documentation', 'uap' );?></a>
           </div>
         </div>
         <div class="uap-display-none">

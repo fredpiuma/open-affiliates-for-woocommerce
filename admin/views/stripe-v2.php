@@ -2,6 +2,7 @@
 	<div class="uap-stuffbox">
 		<h3 class="uap-h3"><?php esc_html_e('Stripe v2 - Payouts', 'uap');?></h3>
 		<div class="inside">
+<?php uap_external_service_notice( 'payout amounts, currency and connected-account data', 'Stripe (api.stripe.com, connect.stripe.com)' );?>
 			<div class="uap-form-line">
 				<div class="row">
 						<div class="col-xs-7">

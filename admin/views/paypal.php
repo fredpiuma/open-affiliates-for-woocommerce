@@ -1,8 +1,9 @@
 <div class="uap-wrapper">
 <form  method="post">
 	<div class="uap-stuffbox">
-		<h3 class="uap-h3"><?php  esc_html_e('PayPal - Payouts', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/paypal/" target="_blank"><?php  esc_html_e('Need Help?', 'uap');?></a></span></h3>
+		<h3 class="uap-h3"><?php  esc_html_e('PayPal - Payouts', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php  esc_html_e('Need Help?', 'uap');?></a></span></h3>
 		<div class="inside">
+<?php uap_external_service_notice( "payout amounts, currency and the beneficiaries' PayPal e-mail addresses", 'PayPal (api.paypal.com)' );?>
 			<div class="uap-form-line">
 			<?php if ((float)$phpversion>=5.4):?>
 				<div class="row">

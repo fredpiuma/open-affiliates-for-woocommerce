@@ -16,7 +16,7 @@
  <div class="uap-dashboard-links-section">
 	 <h2><?php esc_html_e('What to do', 'uap');?> <strong><?php esc_html_e('Next', 'uap');?></strong>?</h2>
             <a href="<?php echo esc_url($data['base_url'] . '&tab=affiliates');?>"  target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-affiliates-uap" aria-hidden="true"></i><?php esc_html_e('Manage Affiliates', 'uap');?></a>
-            <a href="https://ultimateaffiliate.pro/docs" target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e('Check our Documentation', 'uap');?></a>
+            <a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e('Check our Documentation', 'uap');?></a>
   </div>
 	<div class="uap-dashboard-features-section">
 		<h2><?php esc_html_e('At last, an effortless yet robust', 'uap');?> <strong><?php esc_html_e('WordPress Affiliate Plugin', 'uap');?></strong></h2>

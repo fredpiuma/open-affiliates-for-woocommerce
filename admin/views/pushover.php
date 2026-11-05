@@ -1,9 +1,10 @@
 <div class="uap-wrapper">
 	<form  method="post">
 	<div class="uap-stuffbox">
-		<h3 class="uap-h3"><?php esc_html_e('Pushover Notifications', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="https://ultimateaffiliate.pro/docs/pushover-notifications/" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+		<h3 class="uap-h3"><?php esc_html_e('Pushover Notifications', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
 		<div class="inside">
 
+<?php uap_external_service_notice( 'the text of each notification', 'Pushover (api.pushover.net)' );?>
 			<div class="uap-form-line">
 				<h2><?php esc_html_e('Activate/Hold Pushover Notifications', 'uap');?></h2>
 				<label class="uap_label_shiwtch uap-switch-button-margin">

@@ -1,5 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
-@import url(http://fonts.googleapis.com/css?family=Raleway);
+@font-face{font-family:'Raleway';font-style:normal;font-display:swap;font-weight:400;src:url('../../../../assets/fonts/raleway-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Raleway';font-style:normal;font-display:swap;font-weight:400;src:url('../../../../assets/fonts/raleway-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Noto Sans';font-style:normal;font-display:swap;font-weight:400;src:url('../../../../assets/fonts/noto-sans-latin-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Noto Sans';font-style:normal;font-display:swap;font-weight:400;src:url('../../../../assets/fonts/noto-sans-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Noto Sans';font-style:normal;font-display:swap;font-weight:700;src:url('../../../../assets/fonts/noto-sans-latin-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Noto Sans';font-style:normal;font-display:swap;font-weight:700;src:url('../../../../assets/fonts/noto-sans-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+
 @font-face {
   font-family: 'iGlyphicons';
   src: url("../../assets/fonts/glyphicons-regular.eot");
@@ -189,7 +195,7 @@ display: block;
 padding-bottom: 10px;
 margin-bottom: 0;
 margin-top: 0.4em;
-font: normal 11px/12px Droid Sans;
+font: normal 11px/12px Noto Sans;
 color: #768088;
 }
 .uap-theme_9 .member-desc{
@@ -199,7 +205,7 @@ line-height: 15px;
 }
 .uap-theme_9 .member-email, .uap-theme_9 .member-web, .uap-theme_9 .member-phone{
 	color: #898989;
-	font-family: 'Droid Sans';
+	font-family: 'Noto Sans';
 	font-size: 13px;
 	line-height: 20px;
 	font-weight:bold;
@@ -214,7 +220,7 @@ font-size:11px;
 .uap-theme_9 .member-location{
 	font-size:10px;
 	color: #898989;
-	font-family: 'Droid Sans';
+	font-family: 'Noto Sans';
 	font-style:italic;
 }
 
