@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 
 class NotificationLogs
 {
@@ -34,7 +34,7 @@ class NotificationLogs
     		$time = $date->format('Y-m-d H:i:s');
         $time = get_date_from_gmt( $time, 'Y-m-d H:i:s' );
         $currentDate = $time;
-        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}uap_notifications_logs VALUES(
+        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}af_notifications_logs VALUES(
           null,
           %s,
           %s,
@@ -67,11 +67,11 @@ class NotificationLogs
         global $wpdb;
         if ( $uid ){
             $query = $wpdb->prepare( "SELECT id, notification_type, email_address, subject, message, uid, affiliate_id, rank_id, create_date
-                                          FROM {$wpdb->prefix}uap_notifications_logs WHERE uid=%d ORDER BY id DESC LIMIT %d OFFSET %d;",
+                                          FROM {$wpdb->prefix}af_notifications_logs WHERE uid=%d ORDER BY id DESC LIMIT %d OFFSET %d;",
                                           $uid, $limit, $offset );
         } else {
             $query = $wpdb->prepare( "SELECT id, notification_type, email_address, subject, message, uid, affiliate_id, rank_id, create_date
-                                          FROM {$wpdb->prefix}uap_notifications_logs ORDER BY id DESC LIMIT %d OFFSET %d;", $limit, $offset );
+                                          FROM {$wpdb->prefix}af_notifications_logs ORDER BY id DESC LIMIT %d OFFSET %d;", $limit, $offset );
         }
 
         $data = $wpdb->get_results( $query );
@@ -86,11 +86,11 @@ class NotificationLogs
     {
         global $wpdb;
         if ( $uid ){
-          $query = $wpdb->prepare( "SELECT COUNT(*) as c FROM {$wpdb->prefix}uap_notifications_logs WHERE uid=%d;", $uid );
+          $query = $wpdb->prepare( "SELECT COUNT(*) as c FROM {$wpdb->prefix}af_notifications_logs WHERE uid=%d;", $uid );
           $data = $wpdb->get_var( $query );
         } else {
             //No query parameters required, Safe query. prepare() method without parameters can not be called
-            $query = "SELECT COUNT(*) as c FROM {$wpdb->prefix}uap_notifications_logs;";
+            $query = "SELECT COUNT(*) as c FROM {$wpdb->prefix}af_notifications_logs;";
             $data = $wpdb->get_var( $query );
         }
         return $data;
@@ -103,7 +103,7 @@ class NotificationLogs
      public static function countAll()
      {
          global $wpdb;
-         $query = "SELECT COUNT(id) as c FROM {$wpdb->prefix}uap_notifications_logs ";
+         $query = "SELECT COUNT(id) as c FROM {$wpdb->prefix}af_notifications_logs ";
          $count = $wpdb->get_var( $query );
          return (int)$count;
      }
@@ -123,7 +123,7 @@ class NotificationLogs
         if ( $olderThen === '' ){
             return false;
         }
-        $table = $wpdb->prefix . 'uap_notifications_logs';
+        $table = $wpdb->prefix . 'af_notifications_logs';
         $query = $wpdb->prepare("DELETE FROM $table WHERE unix_timestamp(create_date)<%d ", $olderThen );
         return $wpdb->query( $query );
     }

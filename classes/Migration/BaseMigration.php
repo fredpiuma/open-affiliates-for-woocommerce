@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Migration;
+namespace OpenAffiliates\Migration;
 
 class BaseMigration
 {
@@ -13,13 +13,13 @@ class BaseMigration
 
         switch ($params['serviceType']){
             case 'affiliate-wp':
-              $object = new \Indeed\Uap\Migration\AffiliateWp($params);
+              $object = new \OpenAffiliates\Migration\AffiliateWp($params);
               break;
             case 'wp-affiliate':
-              $object = new \Indeed\Uap\Migration\WpAffiliates($params);
+              $object = new \OpenAffiliates\Migration\WpAffiliates($params);
               break;
             case 'affiliates-pro':
-              $object = new \Indeed\Uap\Migration\AffiliatesPro($params);
+              $object = new \OpenAffiliates\Migration\AffiliatesPro($params);
               break;
         }
         if (empty($object)){

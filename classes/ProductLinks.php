@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class ProductLinks
 {
@@ -8,17 +8,17 @@ class ProductLinks
 
     public function __construct()
     {
-        global $indeed_db;
-        $this->moduleSettings = $indeed_db->return_settings_from_wp_option( 'product_links' );
-        if ( !$this->moduleSettings['uap_product_links_enabled'] ){
+        global $af_db;
+        $this->moduleSettings = $af_db->return_settings_from_wp_option( 'product_links' );
+        if ( !$this->moduleSettings['af_product_links_enabled'] ){
             $this->enableService = false;
         }
-        $uid = indeed_get_uid();
+        $uid = af_get_uid();
         if ( !$uid ){
             $this->enableService = false;
         }
-        $affiliateId = $indeed_db->get_affiliate_id_by_wpuid( $uid );
-        if ( !$affiliateId || !$indeed_db->is_affiliate_active( $affiliateId ) ){
+        $affiliateId = $af_db->get_affiliate_id_by_wpuid( $uid );
+        if ( !$affiliateId || !$af_db->is_affiliate_active( $affiliateId ) ){
             $this->enableService = false;
         }
         $this->registerScripts();
@@ -29,24 +29,24 @@ class ProductLinks
         if ( !$this->enableService ){
             return;
         }
-        wp_enqueue_script( 'uap-public-links-js', UAP_URL . 'assets/js/product_links.js', ['jquery'], '9.4', false );
-        wp_enqueue_script( 'indeed-sweet-alert-js', UAP_URL . 'assets/js/sweetalert.js', ['jquery'], '9.4', false );
-        wp_enqueue_style( 'indeed-sweet-alert-css', UAP_URL . 'assets/css/sweetalert.css', [], false, 'all' );
+        wp_enqueue_script( 'af-public-links-js', AF_URL . 'assets/js/product_links.js', ['jquery'], '9.4', false );
+        wp_enqueue_script( 'af-sweet-alert-js', AF_URL . 'assets/js/sweetalert.js', ['jquery'], '9.4', false );
+        wp_enqueue_style( 'af-sweet-alert-css', AF_URL . 'assets/css/sweetalert.css', [], false, 'all' );
     }
 
     public function getOutput()
     {
-        global $indeed_db;
+        global $af_db;
         if ( !$this->enableService ){
             return;
         }
-        $typeOfService = get_option( 'uap_product_links_source' );
+        $typeOfService = get_option( 'af_product_links_source' );
         $data = [
-            'categories'        => $indeed_db->getCategoriesForServiceType( $typeOfService )
+            'categories'        => $af_db->getCategoriesForServiceType( $typeOfService )
         ];
-		    $data['showReward'] = get_option( 'uap_product_links_reward_calculation' );
-        $viewObject = new \Indeed\Uap\IndeedView();
-        return $viewObject->setContentData( $data )->setTemplate( UAP_PATH . 'public/views/product_links/product_links.php' )->getOutput();
+		    $data['showReward'] = get_option( 'af_product_links_reward_calculation' );
+        $viewObject = new \OpenAffiliates\AfView();
+        return $viewObject->setContentData( $data )->setTemplate( AF_PATH . 'public/views/product_links/product_links.php' )->getOutput();
     }
 
 }

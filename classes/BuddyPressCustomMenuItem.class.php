@@ -19,63 +19,63 @@ if (!class_exists('BuddyPressCustomMenuItem')):
 			 * @param
 			 * @return
 			 */
-			global $indeed_db;
+			global $af_db;
 			global $current_user;
-			$this->metas = $indeed_db->return_settings_from_wp_option('bp_account_page');
+			$this->metas = $af_db->return_settings_from_wp_option('bp_account_page');
 			if (!empty($current_user) && !empty($current_user->ID)){
-				$this->is_affiliate = $indeed_db->is_user_affiliate_by_uid($current_user->ID);
+				$this->is_affiliate = $af_db->is_user_affiliate_by_uid($current_user->ID);
 			}
 
-			if (!$this->is_affiliate && !$this->metas['uap_bp_account_page_show_to_everyone']){
+			if (!$this->is_affiliate && !$this->metas['af_bp_account_page_show_to_everyone']){
 				return;/// OUT
 			}
 
 			global $bp;
 
 			bp_core_new_nav_item( array(
-					'name' => $this->metas['uap_bp_account_page_name'],
-					'slug' => 'uap',
-					'position' => $this->metas['uap_bp_account_page_position'],
+					'name' => $this->metas['af_bp_account_page_name'],
+					'slug' => 'af',
+					'position' => $this->metas['af_bp_account_page_position'],
 					'show_for_displayed_user' => false,
-					'screen_function' => 'uap_bp_content_action',
-					'item_css_id' => 'uap',
-					'default_subnav_slug' => 'uap'
+					'screen_function' => 'af_bp_content_action',
+					'item_css_id' => 'af',
+					'default_subnav_slug' => 'af'
 				)
 			);
 			bp_core_new_subnav_item( array(
-					'name' => esc_html__('Ultimate Affiliate Pro', 'uap'),
-					'slug' => 'uap',
+					'name' => esc_html__('Open Affiliates', 'openaffiliates'),
+					'slug' => 'af',
 					'show_for_displayed_user' => false,
-					'parent_url' => trailingslashit( bp_displayed_user_domain() . 'uap'),
-					'parent_slug' => 'uap',
-					'position' => $this->metas['uap_bp_account_page_position'],
-					'screen_function' => array($this, 'uap_bp_content_action'),
-					'item_css_id' => 'uap',
+					'parent_url' => trailingslashit( bp_displayed_user_domain() . 'af'),
+					'parent_slug' => 'af',
+					'position' => $this->metas['af_bp_account_page_position'],
+					'screen_function' => array($this, 'af_bp_content_action'),
+					'item_css_id' => 'af',
 					'user_has_access' => bp_is_my_profile()
 				)
 			);
 		}
 
 
-		public function uap_bp_content_action(){
+		public function af_bp_content_action(){
 			/*
 			 * @param none
 			 * @return none
 			 */
-			 add_action('bp_template_content', array($this, 'uap_bp_do_the_content'));
+			 add_action('bp_template_content', array($this, 'af_bp_do_the_content'));
 			 bp_core_load_template(apply_filters('bp_core_template_plugin', 'members/single/plugins'));
 		}
 
-		public function uap_bp_do_the_content(){
+		public function af_bp_do_the_content(){
 			/*
 			 * @param none
 			 * @return
 			 */
 			 if ($this->is_affiliate){
-			 	echo do_shortcode('[uap-account-page]');
+			 	echo do_shortcode('[af-account-page]');
 			 } else {
 		 		/// non affiliates
-		 		echo stripslashes($this->metas['uap_bp_account_page_non_affiliate_content']);
+		 		echo stripslashes($this->metas['af_bp_account_page_non_affiliate_content']);
 		 	}
 		}
 

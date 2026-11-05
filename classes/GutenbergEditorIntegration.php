@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 class GutenbergEditorIntegration
 {
   public function __construct(){
@@ -18,8 +18,8 @@
         return $categories;
       }
       $categories[] = array(
-        'slug' => 'uap-shortcodes',
-        'title' => esc_html__( 'Ultimate Affiliate Pro - Shortcodes', 'uap' ),
+        'slug' => 'af-shortcodes',
+        'title' => esc_html__( 'Open Affiliates - Shortcodes', 'openaffiliates' ),
         'icon'  => '',
       );
       return $categories;
@@ -36,6 +36,6 @@
     if ( !method_exists($current_screen, 'is_block_editor') || !$current_screen->is_block_editor() ) {
         return;
     }
-    wp_enqueue_script( 'uap-gutenberg-integration', UAP_URL . 'assets/js/gutenberg_integration.js', array('jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor'), '9.4' );
+    wp_enqueue_script( 'af-gutenberg-integration', AF_URL . 'assets/js/gutenberg_integration.js', array('jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor'), '9.4' );
   }
 }

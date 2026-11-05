@@ -1,7 +1,7 @@
 <?php
-namespace Indeed\Uap\Migration;
+namespace OpenAffiliates\Migration;
 
-class WpAffiliates extends \Indeed\Uap\Migration\AbstractMigrationService
+class WpAffiliates extends \OpenAffiliates\Migration\AbstractMigrationService
 {
     protected $entitiesList = array('affiliates');
 
@@ -13,7 +13,7 @@ class WpAffiliates extends \Indeed\Uap\Migration\AbstractMigrationService
 
     private function proceedAffiliates()
     {
-        global $wpdb, $indeed_db;
+        global $wpdb, $af_db;
         $query = $wpdb->prepare("
                   SELECT b.ID FROM {$wpdb->prefix}affiliates_tbl a
                         INNER JOIN {$wpdb->users} b
@@ -25,11 +25,11 @@ class WpAffiliates extends \Indeed\Uap\Migration\AbstractMigrationService
         if (!$data){
             return;
         }
-        $default_rank = empty($this->assignRank) ? get_option('uap_register_new_user_rank') : $this->assignRank;
+        $default_rank = empty($this->assignRank) ? get_option('af_register_new_user_rank') : $this->assignRank;
         foreach ($data as $object){
-            $inserted = $indeed_db->save_affiliate($object->ID);
+            $inserted = $af_db->save_affiliate($object->ID);
             if ($inserted){
-              $indeed_db->update_affiliate_rank_by_uid($object->ID, $default_rank);
+              $af_db->update_affiliate_rank_by_uid($object->ID, $default_rank);
             }
         }
     }

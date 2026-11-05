@@ -1,7 +1,7 @@
 <?php
-namespace Indeed\Uap\Migration;
+namespace OpenAffiliates\Migration;
 
-class AffiliateWp extends \Indeed\Uap\Migration\AbstractMigrationService
+class AffiliateWp extends \OpenAffiliates\Migration\AbstractMigrationService
 {
     protected $entitiesList = array('affiliates', 'referrals');
 
@@ -20,7 +20,7 @@ class AffiliateWp extends \Indeed\Uap\Migration\AbstractMigrationService
 
     private function proceedAffiliates()
     {
-        global $wpdb, $indeed_db;
+        global $wpdb, $af_db;
         $query = $wpdb->prepare("
                   SELECT user_id FROM {$wpdb->prefix}affiliate_wp_affiliates
                           LIMIT %d, %d
@@ -29,24 +29,24 @@ class AffiliateWp extends \Indeed\Uap\Migration\AbstractMigrationService
         if (!$data){
             return;
         }
-        $default_rank = empty($this->assignRank) ? get_option('uap_register_new_user_rank') : $this->assignRank;
+        $default_rank = empty($this->assignRank) ? get_option('af_register_new_user_rank') : $this->assignRank;
         foreach ($data as $object){
-            $inserted = $indeed_db->save_affiliate($object->user_id);
+            $inserted = $af_db->save_affiliate($object->user_id);
             if ($inserted){
-              $indeed_db->update_affiliate_rank_by_uid($object->user_id, $default_rank);
+              $af_db->update_affiliate_rank_by_uid($object->user_id, $default_rank);
             }
         }
     }
 
     protected function proceedReferrals()
     {
-        global $wpdb, $indeed_db;
+        global $wpdb, $af_db;
         $query = $wpdb->prepare("SELECT a.referral_id, a.affiliate_id, a.visit_id, a.customer_id, a.description, a.status, a.amount, a.currency,
                                     a.custom, a.context, a.campaign, a.type, a.reference, a.products, a.payout_id, a.date, c.id as new_affiliate_id
                                         FROM {$wpdb->prefix}affiliate_wp_referrals a
                                         INNER JOIN {$wpdb->prefix}affiliate_wp_affiliates b
                                         ON a.affiliate_id=b.affiliate_id
-                                        INNER JOIN {$wpdb->prefix}uap_affiliates  c
+                                        INNER JOIN {$wpdb->prefix}af_affiliates  c
                                         ON b.user_id=c.uid
                                         LIMIT %d, %d ;", $this->offset, $this->limit );
         $data = $wpdb->get_results($query);
@@ -71,7 +71,7 @@ class AffiliateWp extends \Indeed\Uap\Migration\AbstractMigrationService
               'status'              => $status,
               'payment'             => '',
           );
-          $indeed_db->save_referral($insertData);
+          $af_db->save_referral($insertData);
         }
     }
 

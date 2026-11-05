@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 
 class Products
 {
@@ -92,7 +92,7 @@ class Products
     public function searchIntoWoo()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT a.ID, a.post_title,
                           CAST(c.meta_value AS DECIMAL(10,2)) as price,
                           CAST(d.meta_value AS UNSIGNED) as total_sales,
@@ -143,10 +143,10 @@ class Products
         }
         $return = [];
 
-        require_once UAP_PATH . 'public/Affiliate_Referral_Amount.class.php';
+        require_once AF_PATH . 'public/Affiliate_Referral_Amount.class.php';
         $do_math = new \Affiliate_Referral_Amount( $this->affiliateId, 'woo');
 
-        $excludeTax = get_option( 'uap_exclude_tax' );
+        $excludeTax = get_option( 'af_exclude_tax' );
 
         foreach ( $data as $productData){
             $prices = [];
@@ -260,7 +260,7 @@ class Products
     private function countsForWoo()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT COUNT( a.ID ) FROM {$wpdb->posts} a ";
         if ( $this->category ){
             $query .= " INNER JOIN {$wpdb->term_relationships} b ON a.ID=b.object_id ";
@@ -279,7 +279,7 @@ class Products
     private function searchIntoEdd()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT a.ID, a.post_title, CAST(c.meta_value AS DECIMAL(10,2)) as price, CAST(d.meta_value AS UNSIGNED) as total_sales FROM {$wpdb->posts} a ";
         if ( $this->category ){
             $query .= " INNER JOIN {$wpdb->term_relationships} b ON a.ID=b.object_id  ";
@@ -322,7 +322,7 @@ class Products
 
         $currency = edd_get_currency();
 
-        require_once UAP_PATH . 'public/Affiliate_Referral_Amount.class.php';
+        require_once AF_PATH . 'public/Affiliate_Referral_Amount.class.php';
         $do_math = new \Affiliate_Referral_Amount( $this->affiliateId, 'edd');
 
         foreach ( $data as $productData){
@@ -346,7 +346,7 @@ class Products
     private function countsForEdd()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT COUNT(a.ID) FROM {$wpdb->posts} a ";
         if ( $this->category ){
             $query .= " INNER JOIN {$wpdb->term_relationships} b ON a.ID=b.object_id ";
@@ -365,7 +365,7 @@ class Products
     private function searchIntoUlp()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT a.ID, a.post_title, CAST(c.meta_value AS DECIMAL(10,2)) as price, COUNT(d.id) as total_sales FROM {$wpdb->posts} a ";
         if ( $this->category ){
             $query .= " INNER JOIN {$wpdb->term_relationships} b ON a.ID=b.object_id  ";
@@ -407,7 +407,7 @@ class Products
         $currency = get_option('ulp_currency');
         $return = [];
 
-        require_once UAP_PATH . 'public/Affiliate_Referral_Amount.class.php';
+        require_once AF_PATH . 'public/Affiliate_Referral_Amount.class.php';
         $do_math = new \Affiliate_Referral_Amount( $this->affiliateId, 'ulp');
 
         foreach ( $data as $productData){
@@ -443,7 +443,7 @@ class Products
     private function countsForUlp()
     {
         global $wpdb;
-        $search = uap_sanitize_array( $this->searchPhrase );
+        $search = af_sanitize_array( $this->searchPhrase );
         $query = "SELECT COUNT(a.ID) FROM {$wpdb->posts} a ";
         if ( $this->category ){
             $query .= " INNER JOIN {$wpdb->term_relationships} b ON a.ID=b.object_id ";

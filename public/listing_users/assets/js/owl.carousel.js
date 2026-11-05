@@ -237,9 +237,9 @@
 		stageElement: 'div',
 
 		// Classes and Names
-		themeClass: 'owl-uap-theme',
-		baseClass: 'owl-uap-carousel',
-		itemClass: 'owl-uap-item',
+		themeClass: 'owl-af-theme',
+		baseClass: 'owl-af-carousel',
+		itemClass: 'owl-af-item',
 		centerClass: 'center',
 		activeClass: 'active'
 	};
@@ -391,7 +391,7 @@
 		this.$element
 			.addClass(this.settings.baseClass)
 			.addClass(this.settings.themeClass)
-			.toggleClass('owl-uap-rtl', this.settings.rtl);
+			.toggleClass('owl-af-rtl', this.settings.rtl);
 
 		// check support
 		this.browserSupport();
@@ -408,11 +408,11 @@
 			}
 		}
 
-		this.$element.addClass('owl-uap-loading');
+		this.$element.addClass('owl-af-loading');
 
 		// create stage
-		this.$stage = $('<' + this.settings.stageElement + ' class="owl-uap-stage"/>')
-			.wrap('<div class="owl-uap-stage-outer">');
+		this.$stage = $('<' + this.settings.stageElement + ' class="owl-af-stage"/>')
+			.wrap('<div class="owl-af-stage-outer">');
 
 		// append stage
 		this.$element.append(this.$stage.parent());
@@ -426,7 +426,7 @@
 		// update view
 		this.refresh();
 
-		this.$element.removeClass('owl-uap-loading').addClass('owl-uap-loaded');
+		this.$element.removeClass('owl-af-loading').addClass('owl-af-loaded');
 
 		// attach generic events
 		this.eventsCall();
@@ -467,8 +467,8 @@
 			// responsive class
 			if (settings.responsiveClass) {
 				this.$element.attr('class', function(i, c) {
-					return c.replace(/\b owl-uap-responsive-\S+/g, '');
-				}).addClass('owl-uap-responsive-' + match);
+					return c.replace(/\b owl-af-responsive-\S+/g, '');
+				}).addClass('owl-af-responsive-' + match);
 			}
 		}
 
@@ -487,7 +487,7 @@
 	 */
 	Owl.prototype.optionsLogic = function() {
 		// Toggle Center class
-		this.$element.toggleClass('owl-uap-center', this.settings.center);
+		this.$element.toggleClass('owl-af-center', this.settings.center);
 
 		// if items number is less than in body
 		if (this.settings.loop && this._items.length < this.settings.items) {
@@ -575,11 +575,11 @@
 
 		// hide and show methods helps here to set a proper widths,
 		// this prevents scrollbar to be calculated in stage width
-		this.$stage.addClass('owl-uap-refresh');
+		this.$stage.addClass('owl-af-refresh');
 
 		this.update();
 
-		this.$stage.removeClass('owl-uap-refresh');
+		this.$stage.removeClass('owl-af-refresh');
 
 		this.state.orientation = window.orientation;
 
@@ -680,7 +680,7 @@
 			this.$stage.on('dragstart', function() { return false });
 			this.$stage.get(0).onselectstart = function() { return false };
 		} else {
-			this.$element.addClass('owl-uap-text-select-on');
+			this.$element.addClass('owl-af-text-select-on');
 		}
 
 		if (this.settings.touchDrag && !isTouchIE){
@@ -714,7 +714,7 @@
 		}
 
 		if (ev.type === 'mousedown') {
-			this.$stage.addClass('owl-uap-grab');
+			this.$stage.addClass('owl-af-grab');
 		}
 
 		this.trigger('drag');
@@ -846,7 +846,7 @@
 		}
 
 		if (event.type === 'mouseup') {
-			this.$stage.removeClass('owl-uap-grab');
+			this.$stage.removeClass('owl-af-grab');
 		}
 
 		this.trigger('dragged');
@@ -1326,7 +1326,7 @@
 		if (event !== undefined) {
 			event.stopPropagation();
 
-			// Catch only owl-uap-stage transitionEnd event
+			// Catch only owl-af-stage transitionEnd event
 			if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
 				return false;
 			}
@@ -1475,7 +1475,7 @@
 
 		// test on zepto
 		if (!isElVisible(this.$element.get(0))) {
-			this.$element.addClass('owl-uap-hidden');
+			this.$element.addClass('owl-af-hidden');
 			window.clearInterval(this.e._checkVisibile);
 			this.e._checkVisibile = window.setInterval($.proxy(checkVisible, this), 500);
 		}
@@ -1486,7 +1486,7 @@
 
 		function checkVisible() {
 			if (isElVisible(this.$element.get(0))) {
-				this.$element.removeClass('owl-uap-hidden');
+				this.$element.removeClass('owl-af-hidden');
 				this.refresh();
 				window.clearInterval(this.e._checkVisibile);
 			}
@@ -1555,7 +1555,7 @@
 
 		this.$stage.children('.cloned').remove();
 		this.e = null;
-		this.$element.removeData('owluapCarousel');
+		this.$element.removeData('owlafCarousel');
 
 		this.$stage.children().contents().unwrap();
 		this.$stage.children().unwrap();
@@ -1797,10 +1797,10 @@
 	 * The jQuery Plugin for the Owl Carousel
 	 * @public
 	 */
-	$.fn.owluapCarousel = function(options) {
+	$.fn.owlafCarousel = function(options) {
 		return this.each(function() {
-			if (!$(this).data('owluapCarousel')) {
-				$(this).data('owluapCarousel', new Owl(this, options));
+			if (!$(this).data('owlafCarousel')) {
+				$(this).data('owlafCarousel', new Owl(this, options));
 			}
 		});
 	};
@@ -1809,7 +1809,7 @@
 	 * The constructor for the jQuery Plugin
 	 * @public
 	 */
-	$.fn.owluapCarousel.Constructor = Owl;
+	$.fn.owlafCarousel.Constructor = Owl;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -1895,7 +1895,7 @@
 	 */
 	Lazy.prototype.load = function(position) {
 		var $item = this._core.$stage.children().eq(position),
-			$elements = $item && $item.find('.owl-uap-lazy');
+			$elements = $item && $item.find('.owl-af-lazy');
 
 		if (!$elements || $.inArray($item.get(0), this._loaded) > -1) {
 			return;
@@ -1943,7 +1943,7 @@
 		}
 	}
 
-	$.fn.owluapCarousel.Constructor.Plugins.Lazy = Lazy;
+	$.fn.owlafCarousel.Constructor.Plugins.Lazy = Lazy;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2006,7 +2006,7 @@
 	 */
 	AutoHeight.Defaults = {
 		autoHeight: false,
-		autoHeightClass: 'owl-uap-height'
+		autoHeightClass: 'owl-af-height'
 	};
 
 	/**
@@ -2030,7 +2030,7 @@
 		}
 	};
 
-	$.fn.owluapCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
+	$.fn.owlafCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2110,13 +2110,13 @@
 		if (outgoing) {
 			left = this.core.coordinates(this.previous) - this.core.coordinates(this.next);
 			previous.css( { 'left': left + 'px' } )
-				.addClass('animated owl-uap-animated-out')
+				.addClass('animated owl-af-animated-out')
 				.addClass(outgoing)
 				.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', clear);
 		}
 
 		if (incoming) {
-			next.addClass('animated owl-uap-animated-in')
+			next.addClass('animated owl-af-animated-in')
 				.addClass(incoming)
 				.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', clear);
 		}
@@ -2124,7 +2124,7 @@
 
 	Animate.prototype.clear = function(e) {
 		$(e.target).css( { 'left': '' } )
-			.removeClass('animated owl-uap-animated-out owl-uap-animated-in')
+			.removeClass('animated owl-af-animated-out owl-af-animated-in')
 			.removeClass(this.core.settings.animateIn)
 			.removeClass(this.core.settings.animateOut);
 		this.core.transitionEnd();
@@ -2145,7 +2145,7 @@
 		}
 	};
 
-	$.fn.owluapCarousel.Constructor.Plugins.Animate = Animate;
+	$.fn.owlafCarousel.Constructor.Plugins.Animate = Animate;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2277,7 +2277,7 @@
 		}
 	};
 
-	$.fn.owluapCarousel.Constructor.Plugins.autoplay = Autoplay;
+	$.fn.owlafCarousel.Constructor.Plugins.autoplay = Autoplay;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2417,17 +2417,17 @@
 		navSpeed: false,
 		navElement: 'div',
 		navContainer: false,
-		navContainerClass: 'owl-uap-nav',
-		navClass: [ 'owl-uap-prev', 'owl-uap-next' ],
+		navContainerClass: 'owl-af-nav',
+		navClass: [ 'owl-af-prev', 'owl-af-next' ],
 		slideBy: 1,
-		dotClass: 'owl-uap-dot',
-		dotsClass: 'owl-uap-dots',
+		dotClass: 'owl-af-dot',
+		dotsClass: 'owl-af-dots',
 		dots: true,
 		dotsEach: false,
 		dotData: false,
 		dotsSpeed: false,
 		dotsContainer: false,
-		controlsClass: 'owl-uap-controls'
+		controlsClass: 'owl-af-controls'
 	}
 
 	/**
@@ -2676,7 +2676,7 @@
 		}
 	}
 
-	$.fn.owluapCarousel.Constructor.Plugins.Navigation = Navigation;
+	$.fn.owlafCarousel.Constructor.Plugins.Navigation = Navigation;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2777,6 +2777,6 @@
 		}
 	}
 
-	$.fn.owluapCarousel.Constructor.Plugins.Hash = Hash;
+	$.fn.owlafCarousel.Constructor.Plugins.Hash = Hash;
 
 })(window.Zepto || window.jQuery, window, document);

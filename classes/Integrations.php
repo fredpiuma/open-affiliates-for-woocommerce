@@ -2,15 +2,15 @@
 // Since version8.9
 /*
 How to use:
-\Indeed\Uap\Integrations::isWooActive()
-\Indeed\Uap\Integrations::isUmpActive()
-\Indeed\Uap\Integrations::isEddActive()
-\Indeed\Uap\Integrations::isUlpActive()
-\Indeed\Uap\Integrations::isWpFormsActive()
-\Indeed\Uap\Integrations::isNinjaActive()
-\Indeed\Uap\Integrations::isCf7Active()
+\OpenAffiliates\Integrations::isWooActive()
+\OpenAffiliates\Integrations::isUmpActive()
+\OpenAffiliates\Integrations::isEddActive()
+\OpenAffiliates\Integrations::isUlpActive()
+\OpenAffiliates\Integrations::isWpFormsActive()
+\OpenAffiliates\Integrations::isNinjaActive()
+\OpenAffiliates\Integrations::isCf7Active()
 */
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 class Integrations
 {
     /**
@@ -27,77 +27,77 @@ class Integrations
     {
         $systems = array(
              			 	'woo' => array(
-             			 			'label' => esc_html__('WooCommerce', 'uap'),
+             			 			'label' => esc_html__('WooCommerce', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('This integration ensures accurate tracking and seamless commission management for all your WooCommerce transactions', 'uap'),
-             			 			'status' => self::isWooActive() && uap_is_woo_active() ? 1 : 0,
-             			 			'extra-details-link' => UAP_DOCS_URL,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('This integration ensures accurate tracking and seamless commission management for all your WooCommerce transactions', 'openaffiliates'),
+             			 			'status' => self::isWooActive() && af_is_woo_active() ? 1 : 0,
+             			 			'extra-details-link' => AF_DOCS_URL,
              			 			'extra-settings-link' => '',
-             						'installed' => uap_is_woo_active() ? 1 : 0,
+             						'installed' => af_is_woo_active() ? 1 : 0,
              			 	),
              			 	'ump' => array(
-             			 			'label' => esc_html__('Ultimate Membership Pro', 'uap'),
+             			 			'label' => esc_html__('Ultimate Membership Pro', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Reward affiliates for referring new members and selling memberships via your membership site', 'uap'),
-             			 			'status' => self::isUmpActive() && uap_is_ump_active() ? 1 : 0,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Reward affiliates for referring new members and selling memberships via your membership site', 'openaffiliates'),
+             			 			'status' => self::isUmpActive() && af_is_ump_active() ? 1 : 0,
              			 			'extra-details-link' => '',
              			 			'extra-settings-link' => '',
-             						'installed' => uap_is_ump_active() ? 1 : 0,
+             						'installed' => af_is_ump_active() ? 1 : 0,
              			 	),
              			 	'edd' => array(
-             			 			'label' => esc_html__('Easy Digital Downloads', 'uap'),
+             			 			'label' => esc_html__('Easy Digital Downloads', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Enhance your affiliate program with precise tracking and efficient commission management for your EDD store', 'uap'),
-             			 			'status' => self::isEddActive() && uap_is_edd_active() ? 1 : 0,
-             			 			'extra-details-link' => UAP_DOCS_URL,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Enhance your affiliate program with precise tracking and efficient commission management for your EDD store', 'openaffiliates'),
+             			 			'status' => self::isEddActive() && af_is_edd_active() ? 1 : 0,
+             			 			'extra-details-link' => AF_DOCS_URL,
              			 			'extra-settings-link' => '',
-             						'installed' => uap_is_edd_active() ? 1 : 0,
+             						'installed' => af_is_edd_active() ? 1 : 0,
              			 	),
              			 	'ulp' => array(
-             			 			'label' => esc_html__('Ultimate Learning Pro', 'uap'),
+             			 			'label' => esc_html__('Ultimate Learning Pro', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Easily integrate Ultimate Learning Pro to seamlessly track and reward your affiliates for promoting and selling your online courses', 'uap'),
-             			 			'status' => self::isUlpActive() && uap_is_ulp_active() ? 1 : 0,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Easily integrate Ultimate Learning Pro to seamlessly track and reward your affiliates for promoting and selling your online courses', 'openaffiliates'),
+             			 			'status' => self::isUlpActive() && af_is_ulp_active() ? 1 : 0,
              			 			'extra-details-link' => '',
              			 			'extra-settings-link' => '',
-             						'installed' => uap_is_ulp_active() ? 1 : 0,
+             						'installed' => af_is_ulp_active() ? 1 : 0,
              			 	),
              				'cf7' => array(
-             			 			'label' => esc_html__('Contact Form 7', 'uap'),
+             			 			'label' => esc_html__('Contact Form 7', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Effectively reward your affiliates for every Contact Form 7 submitted by referred users', 'uap'),
-             			 			'status' => self::isCf7Active() && (uap_is_cf7_active() && self::cf7AddonActive() ) ? 1 : 0,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Effectively reward your affiliates for every Contact Form 7 submitted by referred users', 'openaffiliates'),
+             			 			'status' => self::isCf7Active() && (af_is_cf7_active() && self::cf7AddonActive() ) ? 1 : 0,
              			 			'extra-details-link' => '',
-             			 			'extra-settings-link' => admin_url('admin.php?page=ultimate_affiliates_pro&tab=uap_cf7t'),
-             						'installed' => (uap_is_cf7_active() && self::cf7AddonActive() ) ? 1 : 0,
+             			 			'extra-settings-link' => admin_url('admin.php?page=openaffiliates&tab=af_cf7t'),
+             						'installed' => (af_is_cf7_active() && self::cf7AddonActive() ) ? 1 : 0,
              			 	),
              				'wpforms' => array(
-             			 			'label' => esc_html__('WPForms', 'uap'),
+             			 			'label' => esc_html__('WPForms', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Allocate commissions to your affiliates for each WPForms submission', 'uap'),
-             			 			'status' => self::isWpFormsActive() && (uap_is_wpforms_active() && self::wpformsAddonActive()) ? 1 : 0,
-             			 			'extra-details-link' => UAP_DOCS_URL,
-             			 			'extra-settings-link' => admin_url('admin.php?page=ultimate_affiliates_pro&tab=uap_wp_forms'),
-             						'installed' => (uap_is_wpforms_active() && self::wpformsAddonActive()) ? 1 : 0,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Allocate commissions to your affiliates for each WPForms submission', 'openaffiliates'),
+             			 			'status' => self::isWpFormsActive() && (af_is_wpforms_active() && self::wpformsAddonActive()) ? 1 : 0,
+             			 			'extra-details-link' => AF_DOCS_URL,
+             			 			'extra-settings-link' => admin_url('admin.php?page=openaffiliates&tab=af_wp_forms'),
+             						'installed' => (af_is_wpforms_active() && self::wpformsAddonActive()) ? 1 : 0,
              			 	),
              				'ninjaforms' => array(
-             			 			'label' => esc_html__('Ninja Forms', 'uap'),
+             			 			'label' => esc_html__('Ninja Forms', 'openaffiliates'),
              			 			'author' => 'Open Affiliates',
-             			 			'author-link' => UAP_REPO_URL,
-             			 			'description' => esc_html__('Pay off affiliates for every Ninja Form submission', 'uap'),
-             			 			'status' => self::isNinjaActive() && ( ( uap_is_ninjaforms_active() || uap_is_ninjaformsdemo_active() ) && self::ninjaAddonActive()) ? 1 : 0,
-             			 			'extra-details-link' => UAP_DOCS_URL,
-             			 			'extra-settings-link' => admin_url('admin.php?page=ultimate_affiliates_pro&tab=uap_nft'),
-             						'installed' => ( ( uap_is_ninjaforms_active() || uap_is_ninjaformsdemo_active() ) && self::ninjaAddonActive()) ? 1 : 0,
+             			 			'author-link' => AF_REPO_URL,
+             			 			'description' => esc_html__('Pay off affiliates for every Ninja Form submission', 'openaffiliates'),
+             			 			'status' => self::isNinjaActive() && ( ( af_is_ninjaforms_active() || af_is_ninjaformsdemo_active() ) && self::ninjaAddonActive()) ? 1 : 0,
+             			 			'extra-details-link' => AF_DOCS_URL,
+             			 			'extra-settings-link' => admin_url('admin.php?page=openaffiliates&tab=af_nft'),
+             						'installed' => ( ( af_is_ninjaforms_active() || af_is_ninjaformsdemo_active() ) && self::ninjaAddonActive()) ? 1 : 0,
              			 	),
  			 );
-       $systems = apply_filters( 'uap_filter_integrations_systems', $systems );
+       $systems = apply_filters( 'af_filter_integrations_systems', $systems );
        return $systems;
     }
 
@@ -107,7 +107,7 @@ class Integrations
       */
     public static function isWooActive()
     {
-        $option = get_option( 'uap-integrations-woo', 1 );
+        $option = get_option( 'af-integrations-woo', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -120,7 +120,7 @@ class Integrations
       */
     public static function isUmpActive()
     {
-        $option = get_option( 'uap-integrations-ump', 1 );
+        $option = get_option( 'af-integrations-ump', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -133,7 +133,7 @@ class Integrations
       */
     public static function isUlpActive()
     {
-        $option = get_option( 'uap-integrations-ulp', 1 );
+        $option = get_option( 'af-integrations-ulp', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -146,7 +146,7 @@ class Integrations
       */
     public static function isEddActive()
     {
-        $option = get_option( 'uap-integrations-edd', 1 );
+        $option = get_option( 'af-integrations-edd', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -159,7 +159,7 @@ class Integrations
       */
     public static function isNinjaActive()
     {
-        $option = get_option( 'uap-integrations-ninjaforms', 1 );
+        $option = get_option( 'af-integrations-ninjaforms', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -172,7 +172,7 @@ class Integrations
       */
     public static function isCf7Active()
     {
-        $option = get_option( 'uap-integrations-cf7', 1 );
+        $option = get_option( 'af-integrations-cf7', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -185,7 +185,7 @@ class Integrations
       */
     public static function isWpFormsActive()
     {
-        $option = get_option( 'uap-integrations-wpforms', 1 );
+        $option = get_option( 'af-integrations-wpforms', 1 );
         if ( $option === null || $option === '' || $option === false ){
             return 1;
         }
@@ -201,7 +201,7 @@ class Integrations
         if ( !function_exists( 'is_plugin_active' ) ){
       			include_once ABSPATH . 'wp-admin/includes/plugin.php';
       	}
-      	if ( is_plugin_active( 'uap-ninja-forms-tracking/uap-ninja-forms-tracking.php' ) ){
+      	if ( is_plugin_active( 'af-ninja-forms-tracking/af-ninja-forms-tracking.php' ) ){
       			return true;
       	}
       	return false;
@@ -216,7 +216,7 @@ class Integrations
         if ( !function_exists( 'is_plugin_active' ) ){
             include_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        if ( is_plugin_active( 'uap-cf7-tracking/uap-cf7-tracking.php' ) ){
+        if ( is_plugin_active( 'af-cf7-tracking/af-cf7-tracking.php' ) ){
             return true;
         }
         return false;
@@ -231,7 +231,7 @@ class Integrations
         if ( !function_exists( 'is_plugin_active' ) ){
             include_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        if ( is_plugin_active( 'uap-wp-forms/uap-wp-forms.php' ) ){
+        if ( is_plugin_active( 'af-wp-forms/af-wp-forms.php' ) ){
             return true;
         }
         return false;
@@ -239,7 +239,7 @@ class Integrations
 
     public static function update( $type='', $value='' )
     {
-        update_option( 'uap-integrations-' . $type, $value );
+        update_option( 'af-integrations-' . $type, $value );
     }
 
 }

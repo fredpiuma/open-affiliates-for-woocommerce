@@ -1,5 +1,5 @@
 <?php
-function uap_reorder_arr($arr){
+function af_reorder_arr($arr){
 	/*
 	 * @param array
 	 * @return array
@@ -21,7 +21,7 @@ function uap_reorder_arr($arr){
 	return $arr;
 }
 
-function uap_reorder_ranks($ranks_arr=array()){
+function af_reorder_ranks($ranks_arr=array()){
 	/*
 	 * reorder ranks by order attr
 	 * @param array
@@ -51,9 +51,9 @@ function uap_reorder_ranks($ranks_arr=array()){
  * @param int
  * @return array
  */
-function uap_custom_reorder_rank( $ranks_arr, $id, $new_order )
+function af_custom_reorder_rank( $ranks_arr, $id, $new_order )
 {
-		$ranks_arr = uap_reorder_ranks( $ranks_arr );
+		$ranks_arr = af_reorder_ranks( $ranks_arr );
 		foreach ( $ranks_arr as $key => $rankArray ){
 				if ( (int)$ranks_arr[$key]->id === (int)$id ){
 						$ranks_arr[$key]->rank_order = $new_order;
@@ -94,27 +94,27 @@ function uap_custom_reorder_rank( $ranks_arr, $id, $new_order )
 		*/
 }
 
-if ( !function_exists( 'uap_correct_text' ) ):
+if ( !function_exists( 'af_correct_text' ) ):
 /**
  * @param string
  * @param bool
  * @param bool
  * @return string
  */
-function uap_correct_text($str = '', $wp_editor_content=false, $escAttr=false )
+function af_correct_text($str = '', $wp_editor_content=false, $escAttr=false )
 {
 	$str = stripcslashes(htmlspecialchars_decode($str));
 	if ( $escAttr ){
 			$str = esc_attr( $str );
 	}
 	if ($wp_editor_content){
-		return uap_format_str_like_wp($str);
+		return af_format_str_like_wp($str);
 	}
 	return $str;
 }
 endif;
 
-function uap_format_str_like_wp( $str ){
+function af_format_str_like_wp( $str ){
 	/*
 	 * @param string
 	 * @return string
@@ -123,7 +123,7 @@ function uap_format_str_like_wp( $str ){
 	return $str;
 }
 
-function uap_get_wp_roles_list(){
+function af_get_wp_roles_list(){
 	/*
 	 * @param none
 	 * @return array with all wp roles available without administrator
@@ -137,7 +137,7 @@ function uap_get_wp_roles_list(){
 	return FALSE;
 }
 
-function uap_create_form_element($attr=array()){
+function af_create_form_element($attr=array()){
 	/*
 	 * @param string
 	 * @return string
@@ -148,7 +148,7 @@ function uap_create_form_element($attr=array()){
 		}
 	}
 	if (empty($attr['id'])){
-			$attr['id'] = 'uap_' . $attr['name'] . '_field';
+			$attr['id'] = 'af_' . $attr['name'] . '_field';
 	}
 
 	$str = '';
@@ -156,82 +156,82 @@ function uap_create_form_element($attr=array()){
 		switch ($attr['type']){
 			case 'text':
 			case 'conditional_text':
-				$str = '<input type="text" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-text '.$attr['class'].'" value="' . uap_correct_text( $attr['value'], false, true ) . '" placeholder="'.$attr['placeholder'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
+				$str = '<input type="text" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-text '.$attr['class'].'" value="' . af_correct_text( $attr['value'], false, true ) . '" placeholder="'.$attr['placeholder'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'number':
-				$str = '<input type="number" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-number '.$attr['class'].'" value="'.$attr['value'].'"  '.$attr['other_args'].' '.$attr['disabled'].' />';
+				$str = '<input type="number" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-number '.$attr['class'].'" value="'.$attr['value'].'"  '.$attr['other_args'].' '.$attr['disabled'].' />';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'textarea':
-				$str = '<textarea name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-textarea uap-form-textarea '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' >' . uap_correct_text( $attr['value'], false, true ) . '</textarea>';
+				$str = '<textarea name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-textarea af-form-textarea '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' >' . af_correct_text( $attr['value'], false, true ) . '</textarea>';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'password':
 				global $wp_version;
-				wp_register_script('uap_passwordStrength', UAP_URL . 'assets/js/passwordStrength.js', ['jquery'], '9.4'  );
+				wp_register_script('af_passwordStrength', AF_URL . 'assets/js/passwordStrength.js', ['jquery'], '9.4'  );
 				if ( version_compare ( $wp_version , '5.7', '>=' ) ){
-						wp_localize_script( 'uap_passwordStrength', 'uapPasswordStrengthLabels', array(__('Very Weak', 'uap'), esc_html__('Weak', 'uap'), esc_html__('Good', 'uap'), esc_html__('Strong', 'uap')) );
+						wp_localize_script( 'af_passwordStrength', 'afPasswordStrengthLabels', array(__('Very Weak', 'openaffiliates'), esc_html__('Weak', 'openaffiliates'), esc_html__('Good', 'openaffiliates'), esc_html__('Strong', 'openaffiliates')) );
 				} else {
-						wp_localize_script( 'uap_passwordStrength', 'uapPasswordStrengthLabels', json_encode( array(__('Very Weak', 'uap'), esc_html__('Weak', 'uap'), esc_html__('Good', 'uap'), esc_html__('Strong', 'uap')) ) );
+						wp_localize_script( 'af_passwordStrength', 'afPasswordStrengthLabels', json_encode( array(__('Very Weak', 'openaffiliates'), esc_html__('Weak', 'openaffiliates'), esc_html__('Good', 'openaffiliates'), esc_html__('Strong', 'openaffiliates')) ) );
 				}
-				wp_enqueue_script('uap_passwordStrength');
+				wp_enqueue_script('af_passwordStrength');
 
-				$ruleOne = (int)get_option('uap_register_pass_min_length');
-				$ruleTwo = (int)get_option('uap_register_pass_options');
+				$ruleOne = (int)get_option('af_register_pass_min_length');
+				$ruleTwo = (int)get_option('af_register_pass_options');
 
-				$str = '<input type="password" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-password '.$attr['class'].'" value="'.$attr['value'].'" placeholder="'.$attr['placeholder'].'" '.$attr['other_args'].' data-rules="' . $ruleOne . ',' . $ruleTwo . '"  autocomplete="new-password" />';
-				$str .= '<div class="uap-strength-wrapper">';
-				$str .= '<ul class="uap-strength"><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li></ul>';
-				$str .= '<div class="uap-strength-label"></div>';
+				$str = '<input type="password" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-password '.$attr['class'].'" value="'.$attr['value'].'" placeholder="'.$attr['placeholder'].'" '.$attr['other_args'].' data-rules="' . $ruleOne . ',' . $ruleTwo . '"  autocomplete="new-password" />';
+				$str .= '<div class="af-strength-wrapper">';
+				$str .= '<ul class="af-strength"><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li></ul>';
+				$str .= '<div class="af-strength-label"></div>';
 				$str .= '</div>';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'hidden':
-				$str = '<input type="hidden" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-hidden '.$attr['class'].'" value="'.$attr['value'].'" '.$attr['other_args'].' />';
+				$str = '<input type="hidden" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-hidden '.$attr['class'].'" value="'.$attr['value'].'" '.$attr['other_args'].' />';
 				break;
 
 			case 'checkbox':
 				$str = '';
 				if ($attr['multiple_values']){
-					$id = 'uap_checkbox_parent_' . rand(1,1000);
-					$str .= '<div class="uap-form-checkbox-wrapper" id="' . $id . '">';
+					$id = 'af_checkbox_parent_' . rand(1,1000);
+					$str .= '<div class="af-form-checkbox-wrapper" id="' . $id . '">';
 					foreach ($attr['multiple_values'] as $v){
 						if (is_array($attr['value'])){
 							$checked = (in_array($v, $attr['value'])) ? 'checked' : '';
 						} else {
 							$checked = ($v==$attr['value']) ? 'checked' : '';
 						}
-						$str .= '<div class="uap-form-checkbox">';
-						$str .= '<input type="checkbox" name="'.$attr['name'].'[]" id="'.$attr['id'].'" class="uap-form-element uap-form-element-checkbox '.$attr['class'].'" value="' . uap_correct_text( $v, false, true ) . '" '.$checked.' '.$attr['other_args'].' '.$attr['disabled'].'  />';
-						$str .= uap_correct_text($v);
+						$str .= '<div class="af-form-checkbox">';
+						$str .= '<input type="checkbox" name="'.$attr['name'].'[]" id="'.$attr['id'].'" class="af-form-element af-form-element-checkbox '.$attr['class'].'" value="' . af_correct_text( $v, false, true ) . '" '.$checked.' '.$attr['other_args'].' '.$attr['disabled'].'  />';
+						$str .= af_correct_text($v);
 						$str .= '</div>';
 					}
 					$str .= '</div>';
 				}
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'single_checkbox':
 				$str = "";
-				$str .= '<div class="uap-single-checkbox-wrap" id="' . $attr['id'] . '">'
-								. '<input type="checkbox" value="1" name="' . $attr['name'] . '" class="uap-form-element uap-form-element-checkbox ' . $attr['class'] . '" />';
+				$str .= '<div class="af-single-checkbox-wrap" id="' . $attr['id'] . '">'
+								. '<input type="checkbox" value="1" name="' . $attr['name'] . '" class="af-form-element af-form-element-checkbox ' . $attr['class'] . '" />';
 				if (!empty($attr['sublabel'])){
-						$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+						$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				$str .= '</div>';
 				break;
@@ -239,111 +239,111 @@ function uap_create_form_element($attr=array()){
 			case 'radio':
 				$str = '';
 				if ($attr['multiple_values']){
-					$id = 'uap_radio_parent_' . rand(1,1000);
-					$str .= '<div class="uap-form-radiobox-wrapper" id="' . $id . '">';
+					$id = 'af_radio_parent_' . rand(1,1000);
+					$str .= '<div class="af-form-radiobox-wrapper" id="' . $id . '">';
 					foreach ($attr['multiple_values'] as $v){
 						$checked = ($v==$attr['value']) ? 'checked' : '';
-						$str .= '<div class="uap-form-radiobox">';
-						$str .= '<input type="radio" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-radio '.$attr['class'].'" value="' . uap_correct_text( $v, false, true ) . '" '.$checked.' '.$attr['other_args'].' '.$attr['disabled'].'  />';
-						$str .= uap_correct_text($v);
+						$str .= '<div class="af-form-radiobox">';
+						$str .= '<input type="radio" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-radio '.$attr['class'].'" value="' . af_correct_text( $v, false, true ) . '" '.$checked.' '.$attr['other_args'].' '.$attr['disabled'].'  />';
+						$str .= af_correct_text($v);
 						$str .= '</div>';
 					}
 					$str .= '</div>';
 				}
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'select':
 				$str = '';
 				if ($attr['multiple_values']){
-					$str .= '<select name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-select uap-form-select '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' >';
+					$str .= '<select name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-select af-form-select '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' >';
 					if ($attr['multiple_values']){
 						foreach ($attr['multiple_values'] as $k=>$v){
 							$selected = ($k==$attr['value']) ? 'selected' : '';
-							$str .= '<option value="'.$k.'" '.$selected.'>' . uap_correct_text( $v, false, true ) . '</option>';
+							$str .= '<option value="'.$k.'" '.$selected.'>' . af_correct_text( $v, false, true ) . '</option>';
 						}
 					}
 					$str .= '</select>';
 				}
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'multi_select':
 				$str = '';
 				if ($attr['multiple_values']){
-					$str .= '<select name="'.$attr['name'].'[]" id="'.$attr['id'].'" class="uap-form-element uap-form-element-multiselect uap-form-multiselect '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' multiple>';
+					$str .= '<select name="'.$attr['name'].'[]" id="'.$attr['id'].'" class="af-form-element af-form-element-multiselect af-form-multiselect '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' multiple>';
 					foreach ($attr['multiple_values'] as $k=>$v){
 						if (is_array($attr['value'])){
 							$selected = (in_array($v, $attr['value'])) ? 'selected' : '';
 						} else {
 							$selected = ($v==$attr['value']) ? 'selected' : '';
 						}
-						$str .= '<option value="'.$k.'" '.$selected.'>' . uap_correct_text( $v, false, true ) . '</option>';
+						$str .= '<option value="'.$k.'" '.$selected.'>' . af_correct_text( $v, false, true ) . '</option>';
 					}
 					$str .= '</select>';
 				}
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'submit':
-				$str = '<input type="submit" value="' . uap_correct_text( $attr['value'], false, true ) . '" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-submit '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
+				$str = '<input type="submit" value="' . af_correct_text( $attr['value'], false, true ) . '" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-submit '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'date':
 				wp_enqueue_script('jquery-ui-datepicker');
 				if (empty($attr['class'])){
-					$attr['class'] = 'uap-date-field';
+					$attr['class'] = 'af-date-field';
 				}
 				$str = '';
 
-				global $uap_jquery_ui_min_css;
-				if (empty($uap_jquery_ui_min_css)){
-					$uap_jquery_ui_min_css = TRUE;
-					$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . '/assets/css/jquery-ui.min.css"/>' ;
+				global $af_jquery_ui_min_css;
+				if (empty($af_jquery_ui_min_css)){
+					$af_jquery_ui_min_css = TRUE;
+					$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . '/assets/css/jquery-ui.min.css"/>' ;
 				}
 
 				$str .= '
-								<span class="uap-js-date-picker-data" data-selector=".'.$attr['class'].'"></span>
+								<span class="af-js-date-picker-data" data-selector=".'.$attr['class'].'"></span>
 								';
-				$str .= '<input type="text" value="'.$attr['value'].'" name="'.$attr['name'].'" id="'.$attr['id'].'" class="uap-form-element uap-form-element-date uap-form-datepicker '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
+				$str .= '<input type="text" value="'.$attr['value'].'" name="'.$attr['name'].'" id="'.$attr['id'].'" class="af-form-element af-form-element-date af-form-datepicker '.$attr['class'].'" '.$attr['other_args'].' '.$attr['disabled'].' />';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 			case 'file':
-				wp_enqueue_script( 'uap-jquery_form_module' );
-				wp_enqueue_script( 'uap-jquery.uploadfile' );
+				wp_enqueue_script( 'af-jquery_form_module' );
+				wp_enqueue_script( 'af-jquery.uploadfile' );
 
-				global $indeed_db;
+				global $af_db;
 
-				//$ajaxURL = UAP_URL . 'public/ajax-upload.php?publicn=' . wp_create_nonce( 'publicn' );
-				$ajaxURL = get_site_url() . '/wp-admin/admin-ajax.php?action=uap_ajax_public_upload&publicn=' . wp_create_nonce( 'publicn' );
+				//$ajaxURL = AF_URL . 'public/ajax-upload.php?publicn=' . wp_create_nonce( 'publicn' );
+				$ajaxURL = get_site_url() . '/wp-admin/admin-ajax.php?action=af_ajax_public_upload&publicn=' . wp_create_nonce( 'publicn' );
 
-				$upload_settings = $indeed_db->return_settings_from_wp_option('general-uploads');
-				$max_size = $upload_settings['uap_upload_max_size'] * 1000000;
+				$upload_settings = $af_db->return_settings_from_wp_option('general-uploads');
+				$max_size = $upload_settings['af_upload_max_size'] * 1000000;
 				$rand = rand(1,10000);
-				$str .= '<div id="uap_fileuploader_wrapp_' . $rand . '" class="uap-wrapp-file-upload uap-wrapp-file-upload-align">';
-				$str .= '<div class="uap-file-upload uap-file-upload-button">' . esc_html__( 'Upload', 'uap') . '</div>
-				<span class="uap-js-upload-file-data"
+				$str .= '<div id="af_fileuploader_wrapp_' . $rand . '" class="af-wrapp-file-upload af-wrapp-file-upload-align">';
+				$str .= '<div class="af-file-upload af-file-upload-button">' . esc_html__( 'Upload', 'openaffiliates') . '</div>
+				<span class="af-js-upload-file-data"
 				data-rand="' . $rand . '"
 				data-url="' . $ajaxURL . '"
 				data-max_size="' . $max_size . '"
-				data-alowed_types="' . $upload_settings['uap_upload_extensions'] . '"
+				data-alowed_types="' . $upload_settings['af_upload_extensions'] . '"
 				data-name="' . $attr['name'] . '"
-				data-alert_text="' . esc_html__( 'To add a new file please remove the previous one!', 'uap' ) . '"></span>
+				data-alert_text="' . esc_html__( 'To add a new file please remove the previous one!', 'openaffiliates' ) . '"></span>
 ';
 				if ($attr['value']){
-					$attachment_type = uap_get_attachment_details($attr['value'], 'extension');
+					$attachment_type = af_get_attachment_details($attr['value'], 'extension');
 					$url = wp_get_attachment_url($attr['value']);
 					switch ($attachment_type){
 						case 'jpg':
@@ -351,30 +351,30 @@ function uap_create_form_element($attr=array()){
 						case 'png':
 						case 'gif':
 							//print the picture
-							$str .= '<img src="' . $url . '" class="uap-member-photo" /><div class="uap-clear"></div>';
+							$str .= '<img src="' . $url . '" class="af-member-photo" /><div class="af-clear"></div>';
 							break;
 						default:
 							//default file type
-							$str .= '<div class="uap-icon-file-type"></div>';
+							$str .= '<div class="af-icon-file-type"></div>';
 							break;
 					}
-					$attachment_name = uap_get_attachment_details($attr['value']);
-					$str .= '<div class="uap-file-name-uploaded"><a href="' . $url . '" target="_blank">' . $attachment_name . '</a></div>';
-					$str .= '<div onClick="uapDeleteFileViaAjax(\'' . $attr['value'] . '\', ' . $attr['user_id'] . ', \'#uap_fileuploader_wrapp_' . $rand . '\', \'' . $attr['name'] . '\', \'#uap_upload_hidden_' . $rand . '\' );" class="uap-delete-attachment-bttn">Remove</div>';
+					$attachment_name = af_get_attachment_details($attr['value']);
+					$str .= '<div class="af-file-name-uploaded"><a href="' . $url . '" target="_blank">' . $attachment_name . '</a></div>';
+					$str .= '<div onClick="afDeleteFileViaAjax(\'' . $attr['value'] . '\', ' . $attr['user_id'] . ', \'#af_fileuploader_wrapp_' . $rand . '\', \'' . $attr['name'] . '\', \'#af_upload_hidden_' . $rand . '\' );" class="af-delete-attachment-bttn">Remove</div>';
 				}
-				$str .= '<input type="hidden" value="'.$attr['value'].'" name="' . $attr['name'] . '" id="uap_upload_hidden_'.$rand.'" />';
+				$str .= '<input type="hidden" value="'.$attr['value'].'" name="' . $attr['name'] . '" id="af_upload_hidden_'.$rand.'" />';
 				$str .= "</div>";
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
 
 			case 'upload_image':
-				global $indeed_db;
+				global $af_db;
 				$data = $attr;
 				$data['rand'] = rand(1, 10000);
-				$data['imageClass'] = 'uap-member-photo';
+				$data['imageClass'] = 'af-member-photo';
 				if (empty($data['user_id'])){
 						$data['user_id'] = -1;
 				}
@@ -384,39 +384,39 @@ function uap_create_form_element($attr=array()){
 						if (strpos($data['value'], "http")===0){
 								$data['imageUrl'] = $data['value'];
 						} else {
-								$tempData = $indeed_db->getMediaBaseImage($data['value']);
+								$tempData = $af_db->getMediaBaseImage($data['value']);
 								if (!empty($tempData)){
 									$data['imageUrl'] = $tempData;
 								}
 						}
 				}
-				$viewObject = new \Indeed\Uap\IndeedView();
-				$str = $viewObject->setTemplate( UAP_PATH . 'public/views/upload_image.php')->setContentData( $data )->getOutput();
+				$viewObject = new \OpenAffiliates\AfView();
+				$str = $viewObject->setTemplate( AF_PATH . 'public/views/upload_image.php')->setContentData( $data )->getOutput();
 
 				break;
 
 			case 'plain_text':
-				$str = uap_correct_text($attr['value'], false, false );
+				$str = af_correct_text($attr['value'], false, false );
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
 				break;
 
-			case 'uap_country':
-				wp_enqueue_style( 'uap_select2_style' );
-				wp_enqueue_script( 'uap-select2' );
+			case 'af_country':
+				wp_enqueue_style( 'af_select2_style' );
+				wp_enqueue_script( 'af-select2' );
 
 				if (empty($attr['id'])){
 					$attr['id'] = $attr['name'] . '_field';
 				}
-				$countries = uap_get_countries();
+				$countries = af_get_countries();
 
 				$default_country = getDefaultCountry();
 				if(empty($attr['value'])){
 					 $attr['value'] = $default_country;
 				}
 
-				$str .= '<select name="' . $attr['name'] . '" id="' . $attr['id'] . '" class="uap-form-element uap-form-element-select">';
+				$str .= '<select name="' . $attr['name'] . '" id="' . $attr['id'] . '" class="af-form-element af-form-element-select">';
 				foreach ($countries as $k=>$v):
 					$k = strtolower($k);
 					$selected = ($attr['value']==$k) ? 'selected' : '';
@@ -424,17 +424,17 @@ function uap_create_form_element($attr=array()){
 				endforeach;
 				$str .= '</select>';
 				if (!empty($attr['sublabel'])){
-					$str .= '<label class="uap-form-sublabel">' . uap_correct_text($attr['sublabel']) . '</label>';
+					$str .= '<label class="af-form-sublabel">' . af_correct_text($attr['sublabel']) . '</label>';
 				}
-				$str .= '<ul id="uap_countries_list_ul" class="uap-display-none">';
+				$str .= '<ul id="af_countries_list_ul" class="af-display-none">';
 
 				$str .= '</ul>';
 
-				$str .= '<span class="uap-js-select2-data" data-label="' . esc_html__( 'Select Your Country', 'uap' ) . '" data-selector="#' . $attr['id'] . '" ></span>';
+				$str .= '<span class="af-js-select2-data" data-label="' . esc_html__( 'Select Your Country', 'openaffiliates' ) . '" data-selector="#' . $attr['id'] . '" ></span>';
 				break;
-			case 'uap_affiliate_autocomplete_field':
+			case 'af_affiliate_autocomplete_field':
 				ob_start();
-				include UAP_PATH . 'admin/views/search-user_field_autocomplete.php';
+				include AF_PATH . 'admin/views/search-user_field_autocomplete.php';
 				$str = ob_get_contents();
 				ob_end_clean();
 				break;
@@ -444,7 +444,7 @@ function uap_create_form_element($attr=array()){
 
 }
 
-function uap_array_value_exists($haystack, $needle, $key){
+function af_array_value_exists($haystack, $needle, $key){
 	/*
 	 * @param array, string, string
 	 * @return string|int, bool
@@ -459,7 +459,7 @@ function uap_array_value_exists($haystack, $needle, $key){
 	return FALSE;
 }
 
-function uap_value_exists_in_another_subarray($haystack=array(), $needle='', $key='', $id=0){
+function af_value_exists_in_another_subarray($haystack=array(), $needle='', $key='', $id=0){
 	/*
 	 * @param array, string, string, int
 	 * @return boolean
@@ -473,7 +473,7 @@ function uap_value_exists_in_another_subarray($haystack=array(), $needle='', $ke
 }
 
 
-function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $dynamic_data=array() ){
+function af_send_user_notifications($u_id=0, $notification_type='', $rank=0, $dynamic_data=array() ){
 	/*
 	 * main function for notification module
 	 * send e-mail to user
@@ -483,15 +483,15 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 	$sent = FALSE;
 
 	if ($u_id && $notification_type){
-		global $indeed_db;
+		global $af_db;
 		$send_to_admin = FALSE;
 		if (empty($rank)){
-			$rank = $indeed_db->get_affiliate_rank(0, $u_id);
+			$rank = $af_db->get_affiliate_rank(0, $u_id);
 		}
-		$domain = 'uap';
-		$languageCode = get_user_meta( $u_id, 'uap_locale_code', true );
+		$domain = 'openaffiliates';
+		$languageCode = get_user_meta( $u_id, 'af_locale_code', true );
 		if ($rank && $rank>-1){
-			$data = $indeed_db->get_notification_for_rank($rank, $notification_type);
+			$data = $af_db->get_notification_for_rank($rank, $notification_type);
 			if ($data){
 					$subject = (empty($data['subject'])) ? '' : $data['subject'];
 					$message = (empty($data['message'])) ? '' : $data['message'];
@@ -507,7 +507,7 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 			}
 		}
 		if (empty($data) || $rank==-1 || !$rank){
-			$data = $indeed_db->get_notification_for_rank(-1, $notification_type);
+			$data = $af_db->get_notification_for_rank(-1, $notification_type);
 			if ($data){
 					$subject = (empty($data['subject'])) ? '' : $data['subject'];
 					$message = (empty($data['message'])) ? '' : $data['message'];
@@ -530,7 +530,7 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 		// end of since version 9.3.1
 
 		if (!empty($data)){
-			$from_name = get_option('uap_notification_name');
+			$from_name = get_option('af_notification_name');
 			if (empty($from_name)){
 				$from_name = get_option("blogname");
 			}
@@ -539,20 +539,20 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 			$user_email = isset( $u_data->data->user_email ) ? $u_data->data->user_email : '';
 			//from email
 
-			$from_email = get_option('uap_notification_email_from');
+			$from_email = get_option('af_notification_email_from');
 			if (empty($from_email)){
 				$from_email = get_option('admin_email');
 			}
-			$message = uap_replace_constants($message, $u_id, $dynamic_data);
-			$subject = uap_replace_constants($subject, $u_id, $dynamic_data);
+			$message = af_replace_constants($message, $u_id, $dynamic_data);
+			$subject = af_replace_constants($subject, $u_id, $dynamic_data);
 
-			$message = stripslashes(htmlspecialchars_decode(uap_format_str_like_wp($message)));
-			$message = apply_filters('uap_notification_filter', $message, $u_id, $notification_type);
+			$message = stripslashes(htmlspecialchars_decode(af_format_str_like_wp($message)));
+			$message = apply_filters('af_notification_filter', $message, $u_id, $notification_type);
 			$message = "<html><head></head><body>" . $message . "</body></html>";
 			if ($subject && $message && $user_email){
 				if ($notification_type=='admin_user_register' || $notification_type=='admin_on_aff_change_rank' || $notification_type=='admin_affiliate_update_profile'){
 					/////// ADMIN NOTIFICATION
-					$user_email = get_option( 'uap_admin_notification_address', false );// >= 8.5
+					$user_email = get_option( 'af_admin_notification_address', false );// >= 8.5
 					if (empty($user_email)){
 						$user_email = get_option('admin_email');//we change the destination
 					}
@@ -579,10 +579,10 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 							'subject'									=> $subject,
 						  'message'                 => $message,
 						  'uid'                     => $u_id,
-						  'affiliate_id'            => $indeed_db->get_affiliate_id_by_wpuid($u_id),
+						  'affiliate_id'            => $af_db->get_affiliate_id_by_wpuid($u_id),
 						  'rank_id'                 => $rank,
 						];
-						\Indeed\Uap\Db\NotificationLogs::save( $log );
+						\OpenAffiliates\Db\NotificationLogs::save( $log );
 						// notification log ( v. >= 8.5 )
 				}
 
@@ -590,8 +590,8 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 		}
 
 		/// PUSHOVER
-		if ($indeed_db->is_magic_feat_enable('pushover')){
-			require_once UAP_PATH . 'classes/PushoverNotifications.class.php';
+		if ($af_db->is_magic_feat_enable('pushover')){
+			require_once AF_PATH . 'classes/PushoverNotifications.class.php';
 			$pushover_object = new PushoverNotifications();
 			$pushover_object->send_notification($u_id, $rank, $notification_type, $send_to_admin);
 		}
@@ -600,14 +600,14 @@ function uap_send_user_notifications($u_id=0, $notification_type='', $rank=0, $d
 	return $sent;
 }
 
-if ( !function_exists( 'uapSendTestNotification' ) ):
-function uapSendTestNotification( $notificationId=0, $email="" )
+if ( !function_exists( 'afSendTestNotification' ) ):
+function afSendTestNotification( $notificationId=0, $email="" )
 {
 		global $wpdb;
 		if ( $notificationId === 0 || $email === '' ){
 				return;
 		}
-		$query = $wpdb->prepare( "SELECT id,type,rank_id,subject,message,pushover_message,pushover_status,status FROM {$wpdb->prefix}uap_notifications
+		$query = $wpdb->prepare( "SELECT id,type,rank_id,subject,message,pushover_message,pushover_status,status FROM {$wpdb->prefix}af_notifications
 								WHERE 1=1
 								AND id=%s;", $notificationId );
 		$data = $wpdb->get_row( $query );
@@ -616,18 +616,18 @@ function uapSendTestNotification( $notificationId=0, $email="" )
 			$subject = (isset($data->subject)) ? $data->subject : '';
 			$message = (isset($data->message)) ? $data->message : '';
 		}
-		$message = stripslashes( htmlspecialchars_decode( uap_format_str_like_wp( $message ) ) );
+		$message = stripslashes( htmlspecialchars_decode( af_format_str_like_wp( $message ) ) );
 
 		$message = "<html><head></head><body>" . $message . "</body></html>";
 		if ( $subject == '' && $message == '' ){
 				return false;
 		}
 
-		$fromName = get_option( 'uap_notification_name' );
+		$fromName = get_option( 'af_notification_name' );
 		if ( $fromName == '' ){
 				$fromName = get_option( 'blogname' );
 		}
-		$fromEmail = get_option( 'uap_notification_email_from' );
+		$fromEmail = get_option( 'af_notification_email_from' );
 		if ( $fromEmail == '' ){
 				$fromEmail = get_option( 'admin_email' );
 		}
@@ -649,7 +649,7 @@ function uapSendTestNotification( $notificationId=0, $email="" )
 					'affiliate_id'            => 0,
 					'rank_id'                 => 0,
 				];
-				\Indeed\Uap\Db\NotificationLogs::save( $log );
+				\OpenAffiliates\Db\NotificationLogs::save( $log );
 				// notification log ( v. >= 8.5 )
 		}
 
@@ -657,7 +657,7 @@ function uapSendTestNotification( $notificationId=0, $email="" )
 }
 endif;
 
-function uap_general_options_print_page_links($id=FALSE){
+function af_general_options_print_page_links($id=FALSE){
 	/*
 	 * used in admin section
 	 * @param int
@@ -666,29 +666,29 @@ function uap_general_options_print_page_links($id=FALSE){
 	if ($id!=-1 && $id!==FALSE){
 		$target_page_link = get_permalink($id);
 		if ($target_page_link) {
-			echo esc_uap_content('<div class="uap-general-options-link-pages">' . esc_html__('Link:', 'uap') . ' <a href="' . $target_page_link . '" target="_blank">' . $target_page_link . '</a></div>');
+			echo esc_af_content('<div class="af-general-options-link-pages">' . esc_html__('Link:', 'openaffiliates') . ' <a href="' . $target_page_link . '" target="_blank">' . $target_page_link . '</a></div>');
 		}
 	}
 	return '';
 }
 
-function uap_get_redirect_links_as_arr_for_select(){
+function af_get_redirect_links_as_arr_for_select(){
 	/*
 	 * used in admin section
 	 * @param none
 	 * @return array
 	 */
 	$return = array();
-	$redirect_links = get_option("uap_custom_redirect_links_array");
+	$redirect_links = get_option("af_custom_redirect_links_array");
 	if (is_array($redirect_links) && count($redirect_links)){
 		foreach ($redirect_links as $k=>$v){
-			$return[$k] = esc_html__("Custom Link: ", 'uap') . $k;
+			$return[$k] = esc_html__("Custom Link: ", 'openaffiliates') . $k;
 		}
 	}
 	return $return;
 }
 
-function uap_get_all_pages(){
+function af_get_all_pages(){
 	/*
 	 * @param none
 	 * @return array
@@ -723,7 +723,7 @@ function get_device_type(){
 	 * @return string
 	 */
 	if(!class_exists('MobileDetect'))
-		require UAP_PATH . 'classes/MobileDetect.php';
+		require AF_PATH . 'classes/MobileDetect.php';
 	$detect = new MobileDetect();
 	if( ($detect->isMobile()) || ($detect->isTablet()) ){
 		 return 'mobile';
@@ -731,66 +731,66 @@ function get_device_type(){
 	return 'web';
 }
 
-function uap_check_value_field($type='', $value='', $val2='', $register_msg=array()){
+function af_check_value_field($type='', $value='', $val2='', $register_msg=array()){
 	/*
 	 * @param string, string, string, array
 	 * @return
 	 */
-	global $indeed_db, $current_user;
+	global $af_db, $current_user;
 	if (isset($value) && $value!=''){
 		switch ($type){
 			case 'user_login':
 				if (!validate_username($value)){
-					$return = $register_msg['uap_register_error_username_msg'];
+					$return = $register_msg['af_register_error_username_msg'];
 				}
 
 				if ( (username_exists($value) && empty( $current_user->ID) ) || ( !empty( $current_user->ID ) && username_exists($value) && username_exists($value) !== $current_user->ID ) ) {
 					//8.6 - extra check if a user its already registered but want to become affiliate.
-					$return = $register_msg['uap_register_username_taken_msg'];
+					$return = $register_msg['af_register_username_taken_msg'];
 				}
 				break;
 			case 'user_email':
 				if (!is_email($value)) {
-					$return = $register_msg['uap_register_invalid_email_msg'];
+					$return = $register_msg['af_register_invalid_email_msg'];
 				}
 				if ( ( email_exists($value) && empty( $current_user->ID ) ) || ( !empty( $current_user->ID ) && email_exists($value) && email_exists($value) !== $current_user->ID ) ){
 					//8.6 - extra check if a user its already registered but want to become affiliate.
-					$return = $register_msg['uap_register_email_is_taken_msg'];
+					$return = $register_msg['af_register_email_is_taken_msg'];
 				}
 				break;
 			case 'confirm_email':
 				if ($value==$val2){
 					$return = 1;
 				} else {
-					$return = $register_msg['uap_register_emails_not_match_msg'];
+					$return = $register_msg['af_register_emails_not_match_msg'];
 				}
 				break;
 			case 'pass1':
-				$register_metas = $indeed_db->return_settings_from_wp_option('register');
-				if ($register_metas['uap_register_pass_options']==2){
+				$register_metas = $af_db->return_settings_from_wp_option('register');
+				if ($register_metas['af_register_pass_options']==2){
 					//characters and digits
 					if (!preg_match('/[a-z]/', $value)){
-						$return = $register_msg['uap_register_pass_letter_digits_msg'];
+						$return = $register_msg['af_register_pass_letter_digits_msg'];
 					}
 					if (!preg_match('/[0-9]/', $value)){
-						$return = $register_msg['uap_register_pass_letter_digits_msg'];
+						$return = $register_msg['af_register_pass_letter_digits_msg'];
 					}
-				} else if ($register_metas['uap_register_pass_options']==3){
+				} else if ($register_metas['af_register_pass_options']==3){
 					//characters, digits and one Uppercase letter
 					if (!preg_match('/[a-z]/', $value)){
-						$return = $register_msg['uap_register_pass_let_dig_up_let_msg'];
+						$return = $register_msg['af_register_pass_let_dig_up_let_msg'];
 					}
 					if (!preg_match('/[0-9]/', $value)){
-						$return = $register_msg['uap_register_pass_let_dig_up_let_msg'];
+						$return = $register_msg['af_register_pass_let_dig_up_let_msg'];
 					}
 					if (!preg_match('/[A-Z]/', $value)){
-						$return = $register_msg['uap_register_pass_let_dig_up_let_msg'];
+						$return = $register_msg['af_register_pass_let_dig_up_let_msg'];
 					}
 				}
 				//check the length of password
-				if($register_metas['uap_register_pass_min_length']!=0){
-					if (strlen($value)<$register_metas['uap_register_pass_min_length']){
-						$return = str_replace( '{X}', $register_metas['uap_register_pass_min_length'], $register_msg['uap_register_pass_min_char_msg'] );
+				if($register_metas['af_register_pass_min_length']!=0){
+					if (strlen($value)<$register_metas['af_register_pass_min_length']){
+						$return = str_replace( '{X}', $register_metas['af_register_pass_min_length'], $register_msg['af_register_pass_min_char_msg'] );
 					}
 				}
 				break;
@@ -798,20 +798,20 @@ function uap_check_value_field($type='', $value='', $val2='', $register_msg=arra
 				if ($value==$val2){
 					$return = 1;
 				} else {
-					$return = $register_msg['uap_register_pass_not_match_msg'];
+					$return = $register_msg['af_register_pass_not_match_msg'];
 				}
 				break;
 			case 'tos':
 				if ($value==1){
 					$return = 1;
 				} else {
-					$return = $register_msg['uap_register_err_tos'];
+					$return = $register_msg['af_register_err_tos'];
 				}
 				break;
 
 			default:
 				//required conditional field
-				$check = uap_required_conditional_field_test($type, $value);
+				$check = af_required_conditional_field_test($type, $value);
 				if ($check){
 					$return = $check;
 				} else {
@@ -824,39 +824,39 @@ function uap_check_value_field($type='', $value='', $val2='', $register_msg=arra
 		}
 		return $return;
 	} else {
-		$check = uap_required_conditional_field_test($type, $value);//Check for required conditional field
+		$check = af_required_conditional_field_test($type, $value);//Check for required conditional field
 		if ($check){
 			return $check;
 		} else {
-			return $register_msg['uap_register_err_req_fields'];
+			return $register_msg['af_register_err_req_fields'];
 		}
 	}
 }
 
-function uap_required_conditional_field_test($name='', $match_string=''){
+function af_required_conditional_field_test($name='', $match_string=''){
 	/*
 	 * @param string, string
 	 * @return string with error if it's case, empty string if it's ok
 	 */
-	global $indeed_db;
-	$fields_meta = $indeed_db->register_get_custom_fields();
-	$key = uap_array_value_exists($fields_meta, $name, 'name');
+	global $af_db;
+	$fields_meta = $af_db->register_get_custom_fields();
+	$key = af_array_value_exists($fields_meta, $name, 'name');
 	if ($key!==FALSE && isset($fields_meta[$key]) && $fields_meta[$key]['type']=='conditional_text' && !empty($fields_meta[$key]['conditional_text'])){
 		if ($fields_meta[$key]['conditional_text']!=$match_string){
-			return uap_correct_text($fields_meta[$key]['error_message']);
+			return af_correct_text($fields_meta[$key]['error_message']);
 		}
 	}
 	return '';
 }
 
 
-function uap_get_currencies_list($type='all'){
+function af_get_currencies_list($type='all'){
 	/*
 	 * @param [string - all | custom ]
 	 * @return array
 	 */
 
-	$custom = get_option('uap_currencies_list');
+	$custom = get_option('af_currencies_list');
 	if (empty($custom)){
 		$custom = array();
 	}
@@ -926,7 +926,7 @@ function uap_get_currencies_list($type='all'){
 	return array_merge($basic, $custom);
 }
 
-function uap_get_image_size($image=''){
+function af_get_image_size($image=''){
 	/*
 	 * @param string
 	 * @return array
@@ -946,9 +946,9 @@ function uap_get_image_size($image=''){
  * @param array
  * @return string
  */
-function uap_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()){
+function af_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()){
 	if ($u_id){
-		global $indeed_db;
+		global $af_db;
 		$username = '';
 		$first_name = '';
 		$last_name = '';
@@ -973,49 +973,49 @@ function uap_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()
 		$blogname = get_option("blogname");
 		$blogurl = get_option("siteurl");
 		$site_url = get_option('siteurl');
-		$affiliate_id = $indeed_db->get_affiliate_id_by_wpuid($u_id);
+		$affiliate_id = $af_db->get_affiliate_id_by_wpuid($u_id);
 
-		$start_data = $indeed_db->get_affiliate_start_data($affiliate_id);
+		$start_data = $af_db->get_affiliate_start_data($affiliate_id);
 		$user_registered = isset( $start_data ) ? $start_data : '';
-		$user_registered = uap_convert_date_to_us_format( $user_registered );
+		$user_registered = af_convert_date_to_us_format( $user_registered );
 
 		///CURRENT RANK
-		$rank = $indeed_db->get_affiliate_rank(0, $u_id);
+		$rank = $af_db->get_affiliate_rank(0, $u_id);
 		if ($rank){
-			$rank_data = $indeed_db->get_rank($rank);
+			$rank_data = $af_db->get_rank($rank);
 			$rank_name = (empty($rank_data['label'])) ? '' : $rank_data['label'];
 		}
 
 		//account page
-		$account_page = get_option("uap_general_user_page");
+		$account_page = get_option("af_general_user_page");
 		if ($account_page){
 			$account_page = get_permalink($account_page);
 		}
 		//login page
-		$login_page = get_option("uap_general_login_default_page");
+		$login_page = get_option("af_general_login_default_page");
 		if ($login_page){
 			$login_page = get_permalink($login_page);
 		}
 
 		/// AVATAR
-		$avatar = get_user_meta($u_id, 'uap_avatar', true);
+		$avatar = get_user_meta($u_id, 'af_avatar', true);
 		if (strpos($avatar, "http")===0){
 			$avatar_url = $avatar;
 		} else {
 			$avatar_url = wp_get_attachment_url($avatar);
 		}
-		$avatar = ($avatar_url) ? $avatar_url : UAP_URL . 'assets/images/no-avatar.png';
-		$avatar = '<img src="' . $avatar . '" class="uap-public-shortcode-avatar"/>';
+		$avatar = ($avatar_url) ? $avatar_url : AF_URL . 'assets/images/no-avatar.png';
+		$avatar = '<img src="' . $avatar . '" class="af-public-shortcode-avatar"/>';
 
-		$flag = get_user_meta($u_id, 'uap_country', true);
+		$flag = get_user_meta($u_id, 'af_country', true);
 		if (empty($flag)){
 			$flag = '';
 		} else {
-			$countries = uap_get_countries();
+			$countries = af_get_countries();
 			$key = $flag;
 			$country = $countries[strtoupper($key)];
 			$title = (empty($country)) ? '' : $country;
-			$flag = '<img src="' . UAP_URL . 'assets/flags/' . $flag . '.svg" class="uap-public-flag" title="' . $title . '" />';
+			$flag = '<img src="' . AF_URL . 'assets/flags/' . $flag . '.svg" class="af-public-flag" title="' . $title . '" />';
 		}
 
 		$replace = array(
@@ -1033,13 +1033,13 @@ function uap_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()
 				'{rank_id}' => $rank,
 				'{rank_name}' => $rank_name,
 				'{user_url}' => $user_url,
-				'{uap_avatar}' => $avatar,
+				'{af_avatar}' => $avatar,
 				'{user_registered}' => $user_registered,
 				'{flag}' => $flag,
 				'{affiliate_id}' => $affiliate_id,
 		);
 
-		$custom_constant_fields = uap_get_custom_constant_fields();
+		$custom_constant_fields = af_get_custom_constant_fields();
 
 		foreach ($custom_constant_fields as $k=>$v){
 				if ( !$v ){
@@ -1066,19 +1066,19 @@ function uap_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()
 	return $str;
 }
 
-function uap_get_custom_constant_fields(){
+function af_get_custom_constant_fields(){
 	/*
 	 * @param none
 	 * @return array
 	 */
-	global $indeed_db;
-	$data = $indeed_db->register_get_custom_fields();
+	global $af_db;
+	$data = $af_db->register_get_custom_fields();
 
 	if ($data && is_array($data)){
 		foreach ($data as $arr){
 			$fields["{CUSTOM_FIELD_" . $arr['name'] ."}"] = $arr['name'];
 		}
-		$diff = array('uap_social_media', 'recaptcha', 'tos', 'pass2', 'pass1', 'user_login', 'user_email', 'confirm_email', 'first_name', 'last_name', 'uap_avatar');
+		$diff = array('af_social_media', 'recaptcha', 'tos', 'pass2', 'pass1', 'user_login', 'user_email', 'confirm_email', 'first_name', 'last_name', 'af_avatar');
 		$fields = array_diff($fields, $diff);
 
 		return $fields;
@@ -1086,7 +1086,7 @@ function uap_get_custom_constant_fields(){
 	return array();
 }
 
-function uap_create_affiliate_link($url='', $ref_param='', $ref_value='', $campaign_name='', $campaign_value='', $prettify=FALSE){
+function af_create_affiliate_link($url='', $ref_param='', $ref_value='', $campaign_name='', $campaign_value='', $prettify=FALSE){
 	/*
 	 * @param string
 	 * @return string
@@ -1120,13 +1120,13 @@ function uap_create_affiliate_link($url='', $ref_param='', $ref_value='', $campa
 	return $url;
 }
 
-function uap_return_cc_list($user, $pass){
+function af_return_cc_list($user, $pass){
 	/*
 	 * @param string, string
 	 * @return array
 	 */
 	if (!class_exists('cc')){
-		include_once UAP_PATH . 'classes/services/email_services/constantcontact/class.cc.php';
+		include_once AF_PATH . 'classes/services/email_services/constantcontact/class.cc.php';
 	}
 	$list = array();
 	$cc = new cc($user, $pass);
@@ -1139,7 +1139,7 @@ function uap_return_cc_list($user, $pass){
 	return $list;
 }
 
-function uap_return_date_filter($url='', $status_arr=array(), $source_arr=array(), $search_affiliate=FALSE){
+function af_return_date_filter($url='', $status_arr=array(), $source_arr=array(), $search_affiliate=FALSE){
 	/*
 	 * @param string
 	 * @return string
@@ -1157,14 +1157,14 @@ function uap_return_date_filter($url='', $status_arr=array(), $source_arr=array(
 	$end = preg_replace( "([^0-9-])", '', $end );
 	?>
 	<form action="<?php echo esc_url($url);?>" method="post">
-		<div class="uap-general-date-filter-wrap">
+		<div class="af-general-date-filter-wrap">
 			<?php if ($search_affiliate):?>
-			<input type="text" name="aff_u" value="<?php echo (isset($_REQUEST['aff_u'])) ? $_REQUEST['aff_u'] : '';?>" class="uap-data-filter-input" placeholder="<?php esc_html_e('Affiliate Username or Email Address', 'uap');?>"/>
+			<input type="text" name="aff_u" value="<?php echo (isset($_REQUEST['aff_u'])) ? $_REQUEST['aff_u'] : '';?>" class="af-data-filter-input" placeholder="<?php esc_html_e('Affiliate Username or Email Address', 'openaffiliates');?>"/>
 			<?php endif;?>
-			<!--label class="uap-label"><?php esc_html_e('Start:', 'uap');?></label-->
-			<input type="text" name="udf" value="<?php echo esc_attr($start);?>" class="uap-general-date-filter" placeholder="From - yyyy-mm-dd"/>
-			<!--label class="uap-label"><?php esc_html_e('Until:', 'uap');?></label--><span class="uap-date-line">-</span>
-			<input type="text" name="udu" value="<?php echo esc_attr($end);?>" class="uap-general-date-filter" placeholder="To - yyyy-mm-dd"/>
+			<!--label class="af-label"><?php esc_html_e('Start:', 'openaffiliates');?></label-->
+			<input type="text" name="udf" value="<?php echo esc_attr($start);?>" class="af-general-date-filter" placeholder="From - yyyy-mm-dd"/>
+			<!--label class="af-label"><?php esc_html_e('Until:', 'openaffiliates');?></label--><span class="af-date-line">-</span>
+			<input type="text" name="udu" value="<?php echo esc_attr($end);?>" class="af-general-date-filter" placeholder="To - yyyy-mm-dd"/>
 
 			<?php if (!empty($status_arr)):
 					$status_arr[-1] = '...';
@@ -1193,7 +1193,7 @@ function uap_return_date_filter($url='', $status_arr=array(), $source_arr=array(
 				?></select>
 			<?php endif;?>
 
-			<input type="submit" value="<?php esc_html_e("Apply Filter", 'uap');?>" name="apply" class="button button-primary button-large" />
+			<input type="submit" value="<?php esc_html_e("Apply Filter", 'openaffiliates');?>" name="apply" class="button button-primary button-large" />
 		</div>
 
 	</form>
@@ -1204,7 +1204,7 @@ function uap_return_date_filter($url='', $status_arr=array(), $source_arr=array(
 }
 
 
-function uap_is_social_share_intalled_and_active(){
+function af_is_social_share_intalled_and_active(){
 	/*
 	 * @param none
 	 * @return boolean
@@ -1217,7 +1217,7 @@ function uap_is_social_share_intalled_and_active(){
 	return FALSE;
 }
 
-function uap_return_default_notification_content($type=''){
+function af_return_default_notification_content($type=''){
 	/*
 	 * @param string
 	 * @return array
@@ -1534,7 +1534,7 @@ function uap_return_default_notification_content($type=''){
 	return $template;
 }
 
-function uap_convert_date_to_us_format($date=''){
+function af_convert_date_to_us_format($date=''){
 	/*
 	 * @param string
 	 * @return string
@@ -1557,7 +1557,7 @@ function uap_convert_date_to_us_format($date=''){
 	return $date;
 }
 
-function uap_service_type_code_to_title($type=''){
+function af_service_type_code_to_title($type=''){
 	/*
 	 * @param string
 	 * @return string
@@ -1565,62 +1565,62 @@ function uap_service_type_code_to_title($type=''){
 	if ($type){
 		switch ($type){
 			case 'ump':
-				$label = get_option('uap_custom_source_name_ump');
+				$label = get_option('af_custom_source_name_ump');
 				if ($label){
 						return $label;
 				}
 				return 'Ultimate Membership Pro';
 				break;
-			case 'uap':
-				return 'Ultimate Affiliate Pro';
+			case 'af':
+				return 'Open Affiliates';
 				break;
 			case 'ppc':
 				return 'PayPerClick';
 				break;
 			case 'woo':
-				$label = get_option('uap_custom_source_name_woo');
+				$label = get_option('af_custom_source_name_woo');
 				if ($label){
 						return $label;
 				}
 			 	return 'WooCommerce';
 				break;
 			case 'ulp':
-				$label = get_option('uap_custom_source_name_ulp');
+				$label = get_option('af_custom_source_name_ulp');
 				if ($label){
 						return $label;
 				}
 				return 'Ultimate Learning Pro';
 				break;
 			case 'edd':
-				$label = get_option('uap_custom_source_name_edd');
+				$label = get_option('af_custom_source_name_edd');
 				if ($label){
 						return $label;
 				}
 				return 'Easy Digital Downloads';
 				break;
 			case 'bonus':
-				$label = get_option('uap_custom_source_name_bonus');
+				$label = get_option('af_custom_source_name_bonus');
 				if ($label){
 						return $label;
 				}
 				return 'Bonus';
 				break;
 			case 'mlm':
-				$label = get_option('uap_custom_source_name_mlm');
+				$label = get_option('af_custom_source_name_mlm');
 				if ($label){
 						return $label;
 				}
 				return 'MLM';
 				break;
 			case 'User SignUp':
-				$label = get_option('uap_custom_source_name_user_signup');
+				$label = get_option('af_custom_source_name_user_signup');
 				if ($label){
 						return $label;
 				}
 				return 'User SignUp';
 				break;
 			case 'from landing commissions':
-				$label = get_option('uap_custom_source_name_landing_commissions');
+				$label = get_option('af_custom_source_name_landing_commissions');
 				if ($label){
 						return $label;
 				}
@@ -1634,12 +1634,12 @@ function uap_service_type_code_to_title($type=''){
 	return '';
 }
 
-if ( !function_exists( 'uap_service_label_to_service_code' ) ):
+if ( !function_exists( 'af_service_label_to_service_code' ) ):
 	/*
 	 * @param string
 	 * @return string
 	 */
-function uap_service_label_to_service_code($label=''){
+function af_service_label_to_service_code($label=''){
 		if ($label===''){
 				return '';
 		}
@@ -1647,8 +1647,8 @@ function uap_service_label_to_service_code($label=''){
 			case 'Ultimate Membership Pro':
 				return 'ump';
 				break;
-			case 'Ultimate Affiliate Pro':
-				return 'uap';
+			case 'Open Affiliates':
+				return 'af';
 				break;
 			case 'PayPerClick':
 				return 'ppc';
@@ -1675,35 +1675,35 @@ function uap_service_label_to_service_code($label=''){
 				return 'from landing commissions';
 				break;
 			default:
-				$customLabel = get_option('uap_custom_source_name_ump');
+				$customLabel = get_option('af_custom_source_name_ump');
 				if ( $customLabel === $label ){
 						return 'ump';
 				}
-				$customLabel = get_option('uap_custom_source_name_woo');
+				$customLabel = get_option('af_custom_source_name_woo');
 				if ( $customLabel === $label ){
 						return 'woo';
 				}
-				$customLabel = get_option('uap_custom_source_name_edd');
+				$customLabel = get_option('af_custom_source_name_edd');
 				if ( $customLabel === $label ){
 						return 'edd';
 				}
-				$customLabel = get_option('uap_custom_source_name_ulp');
+				$customLabel = get_option('af_custom_source_name_ulp');
 				if ( $customLabel === $label ){
 						return 'ulp';
 				}
-				$customLabel = get_option('uap_custom_source_name_bonus');
+				$customLabel = get_option('af_custom_source_name_bonus');
 				if ( $customLabel === $label ){
 						return 'bonus';
 				}
-				$customLabel = get_option('uap_custom_source_name_mlm');
+				$customLabel = get_option('af_custom_source_name_mlm');
 				if ( $customLabel === $label ){
 						return 'mlm';
 				}
-				$label = get_option('uap_custom_source_name_user_signup');
+				$label = get_option('af_custom_source_name_user_signup');
 				if ( $customLabel === $label ){
 						return 'User SignUp';
 				}
-				$label = get_option('uap_custom_source_name_landing_commissions');
+				$label = get_option('af_custom_source_name_landing_commissions');
 				if ( $customLabel === $label ){
 						return 'from landing commissions';
 				}
@@ -1714,7 +1714,7 @@ function uap_service_label_to_service_code($label=''){
 }
 endif;
 
-function uap_from_simple_array_to_k_v($arr){
+function af_from_simple_array_to_k_v($arr){
 	/*
 	 * @param array
 	 * @return array
@@ -1726,7 +1726,7 @@ function uap_from_simple_array_to_k_v($arr){
 	return $return_arr;
 }
 
-function uap_make_string_simple($str=''){
+function af_make_string_simple($str=''){
 	/*
 	 * @param string
 	 * @return string
@@ -1739,7 +1739,7 @@ function uap_make_string_simple($str=''){
 	return $str;
 }
 
-function uap_random_string($length=4, $keyspace='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
+function af_random_string($length=4, $keyspace='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
 	/*
 	 * @param length - int, keyspace - string
 	 * @return string
@@ -1752,7 +1752,7 @@ function uap_random_string($length=4, $keyspace='0123456789abcdefghijklmnopqrstu
 	return $str;
 }
 
-function uap_get_active_services(){
+function af_get_active_services(){
 	/*
 	 * @param none
 	 * @return array
@@ -1761,22 +1761,22 @@ function uap_get_active_services(){
 	 if (!function_exists('is_plugin_active')){
 	 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
 	 }
-	 if ( is_plugin_active('indeed-membership-pro/indeed-membership-pro.php') && \Indeed\Uap\Integrations::isUmpActive() ){
+	 if ( is_plugin_active('indeed-membership-pro/indeed-membership-pro.php') && \OpenAffiliates\Integrations::isUmpActive() ){
 	 	$array['ump'] = 'Ultimate Membership Pro';
 	 }
-	 if ( is_plugin_active('woocommerce/woocommerce.php') && \Indeed\Uap\Integrations::isWooActive() ){
+	 if ( is_plugin_active('woocommerce/woocommerce.php') && \OpenAffiliates\Integrations::isWooActive() ){
 	 	$array['woo'] = 'WooCommerce';
 	 }
-	 if ( is_plugin_active('indeed-learning-pro/indeed-learning-pro.php') && \Indeed\Uap\Integrations::isUlpActive() ){
+	 if ( is_plugin_active('indeed-learning-pro/indeed-learning-pro.php') && \OpenAffiliates\Integrations::isUlpActive() ){
 	 	$array['ulp'] = 'Ultimate Learning Pro';
 	 }
-	 if ( ( is_plugin_active('easy-digital-downloads/easy-digital-downloads.php') || is_plugin_active( 'easy-digital-downloads-pro/easy-digital-downloads.php') ) && \Indeed\Uap\Integrations::isEddActive() ){
+	 if ( ( is_plugin_active('easy-digital-downloads/easy-digital-downloads.php') || is_plugin_active( 'easy-digital-downloads-pro/easy-digital-downloads.php') ) && \OpenAffiliates\Integrations::isEddActive() ){
 	 	$array['edd'] = 'Easy Digital Downloads';
 	 }
 	 return $array;
 }
 
-function uap_is_ump_active(){
+function af_is_ump_active(){
 	/*
 	 * @param none
 	 * @return bool
@@ -1789,7 +1789,7 @@ function uap_is_ump_active(){
 	 }
 	 return FALSE;
 }
-function uap_is_woo_active(){
+function af_is_woo_active(){
 	/*
 	 * @param none
 	 * @return bool
@@ -1803,20 +1803,20 @@ function uap_is_woo_active(){
 	 return FALSE;
 }
 
-function uap_get_avatar_for_uid($uid){
+function af_get_avatar_for_uid($uid){
 	/*
 	 * @param int
 	 * @return string
 	 */
-	global $indeed_db;
-	$avatar_url = UAP_URL . 'assets/images/no-avatar.png';
+	global $af_db;
+	$avatar_url = AF_URL . 'assets/images/no-avatar.png';
 	if (!empty($uid)){
-		$avatar = get_user_meta($uid, 'uap_avatar', TRUE);
+		$avatar = get_user_meta($uid, 'af_avatar', TRUE);
 		if (!empty($avatar)){
 			if (strpos($avatar, "http")===0){
 				$avatar_url = $avatar;
 			} else {
-				$avatar_url = $indeed_db->getMediaBaseImage( $avatar );
+				$avatar_url = $af_db->getMediaBaseImage( $avatar );
 				if ( $avatar_url && strpos($avatar_url, "http")===0 ){
 						return $avatar_url;
 				}
@@ -1830,46 +1830,46 @@ function uap_get_avatar_for_uid($uid){
 	return $avatar_url;
 }
 
-function uap_get_possible_referral_types(){
+function af_get_possible_referral_types(){
 	/*
 	 * @param none
 	 * @return array
 	 */
-	 $array = uap_get_active_services();
-	 global $indeed_db;
-	 if ($indeed_db->is_magic_feat_enable('mlm')){
-	 	$array['mlm'] = esc_html__('Multi Level Marketing', 'uap');
+	 $array = af_get_active_services();
+	 global $af_db;
+	 if ($af_db->is_magic_feat_enable('mlm')){
+	 	$array['mlm'] = esc_html__('Multi Level Marketing', 'openaffiliates');
 	 }
-	 if ($indeed_db->is_magic_feat_enable('bonus_on_rank')){
-	 	$array['bonus'] = esc_html__('Bonus Rank', 'uap');
+	 if ($af_db->is_magic_feat_enable('bonus_on_rank')){
+	 	$array['bonus'] = esc_html__('Bonus Rank', 'openaffiliates');
 	 }
-	 if ($indeed_db->is_magic_feat_enable('sign_up_referrals')){
-	 	$array['User SignUp'] = esc_html__('SignUp', 'uap');
+	 if ($af_db->is_magic_feat_enable('sign_up_referrals')){
+	 	$array['User SignUp'] = esc_html__('SignUp', 'openaffiliates');
 	 }
 	 $referral_types = array();
 	 foreach ($array as $k=>$v){
 	 	$referral_types[$k]['label'] = $v;
 		switch($k){
 			case 'ump':
-						$referral_types[$k]['sub_label'] = esc_html__('Based on Subscription purchases from Ultimate Membership system', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Based on Subscription purchases from Ultimate Membership system', 'openaffiliates');
 						break;
 			case 'woo':
-						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from WooCommerce system', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from WooCommerce system', 'openaffiliates');
 						break;
 			case 'ulp':
-						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from Ultimate Learning Pro system', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from Ultimate Learning Pro system', 'openaffiliates');
 						break;
 			case 'edd':
-						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from Easy Digital Downloads system', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Based on Product purchases from Easy Digital Downloads system', 'openaffiliates');
 						break;
 			case 'mlm':
-						$referral_types[$k]['sub_label'] = esc_html__('Related on Rewarads provided to Affiliate from your MLM System', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Related on Rewarads provided to Affiliate from your MLM System', 'openaffiliates');
 						break;
 			case 'bonus':
-						$referral_types[$k]['sub_label'] = esc_html__('Bonus when a new Rank is achieved', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Bonus when a new Rank is achieved', 'openaffiliates');
 						break;
 			case 'User SignUp':
-						$referral_types[$k]['sub_label'] = esc_html__('Referrals from based on new user SignUp Rewards system', 'uap');
+						$referral_types[$k]['sub_label'] = esc_html__('Referrals from based on new user SignUp Rewards system', 'openaffiliates');
 						break;
 			default:
 					$referral_types[$k]['sub_label'] = '';
@@ -1878,30 +1878,30 @@ function uap_get_possible_referral_types(){
 	return $referral_types;
 }
 
-function uap_generate_qr_code($link='', $file_unique_name=''){
+function af_generate_qr_code($link='', $file_unique_name=''){
 	/*
 	 * @param string, string
 	 * @return string
 	 */
 	 if ($link){
 	 	if (!class_exists('QRcode')){
-	 		require_once UAP_PATH . 'classes/services/qrcode/qrlib.php';
+	 		require_once AF_PATH . 'classes/services/qrcode/qrlib.php';
 	 	}
-		uap_empty_qr_images();/// delete old files
+		af_empty_qr_images();/// delete old files
 		if (strpos($file_unique_name, 'home')!==FALSE){
 				$file_name = 'qrcode_' . $file_unique_name . '.png';
 		} else {
 				$file_name = 'qrcode_' . $file_unique_name . time() . '.png';
 		}
 
-		$file_location = UAP_PATH . 'classes/services/qrcode/images/' . $file_name;
-		$file_link = UAP_URL . 'classes/services/qrcode/images/' . $file_name;
-		$size = get_option('uap_qr_code_size');
+		$file_location = AF_PATH . 'classes/services/qrcode/images/' . $file_name;
+		$file_link = AF_URL . 'classes/services/qrcode/images/' . $file_name;
+		$size = get_option('af_qr_code_size');
 		if (!$size){
 			$size = 5;
 		}
 
-		$ecc_level = get_option('uap_qr_code_size');
+		$ecc_level = get_option('af_qr_code_size');
 		switch ($ecc_level){
 			case 'l':
 				$ecc_level = QR_ECLEVEL_L;
@@ -1926,22 +1926,22 @@ function uap_generate_qr_code($link='', $file_unique_name=''){
 	 return '';
 }
 
-function uap_do_opt_in($email=''){
+function af_do_opt_in($email=''){
 	/*
 	 * @param string
 	 * @return none
 	 */
-	global $indeed_db;
-	if (!get_option('uap_register_opt-in')){
+	global $af_db;
+	if (!get_option('af_register_opt-in')){
 		return;
 	}
-	$target_opt_in = get_option('uap_register_opt-in-type');
+	$target_opt_in = get_option('af_register_opt-in-type');
 	if ($target_opt_in && $email){
 		if (!class_exists('OptInMailServices')){
-			require_once UAP_PATH . 'classes/OptInMailServices.class.php';
+			require_once AF_PATH . 'classes/OptInMailServices.class.php';
 		}
 
-		$uid = $indeed_db->getUidByEmail( $email );
+		$uid = $af_db->getUidByEmail( $email );
 		if ( isset( $_POST['first_name'] ) ){
 				$firstName = sanitize_text_field( $_POST['first_name'] );
 		} else {
@@ -1959,37 +1959,37 @@ function uap_do_opt_in($email=''){
 				$lastName = '';
 		}
 
-		$indeed_mail = new OptInMailServices();
-		$indeed_mail->dir_path = UAP_PATH . 'classes';
+		$af_mail = new OptInMailServices();
+		$af_mail->dir_path = AF_PATH . 'classes';
 		switch ($target_opt_in){
 			case 'aweber':
-				$awListOption = get_option('uap_aweber_list');
+				$awListOption = get_option('af_aweber_list');
 				if ($awListOption){
 					$aw_list = str_replace('awlist', '', $awListOption);
-					$consumer_key = get_option( 'uap_aweber_consumer_key' );
-					$consumer_secret = get_option( 'uap_aweber_consumer_secret' );
-					$access_key = get_option( 'uap_aweber_acces_key' );
-					$access_secret = get_option( 'uap_aweber_acces_secret' );
+					$consumer_key = get_option( 'af_aweber_consumer_key' );
+					$consumer_secret = get_option( 'af_aweber_consumer_secret' );
+					$access_key = get_option( 'af_aweber_acces_key' );
+					$access_secret = get_option( 'af_aweber_acces_secret' );
 					if ($consumer_key && $consumer_secret && $access_key && $access_secret){
-						$return = $indeed_mail->indeed_aWebberSubscribe( $consumer_key, $consumer_secret, $access_key, $access_secret, $aw_list, $email, $firstName . ' ' . $lastName );
+						$return = $af_mail->af_aWebberSubscribe( $consumer_key, $consumer_secret, $access_key, $access_secret, $aw_list, $email, $firstName . ' ' . $lastName );
 					}
 				}
 				break;
 			case 'email_list':
-				$email_list = get_option('uap_email_list');
+				$email_list = get_option('af_email_list');
 				$email_list .= $email . ',';
-				update_option('uap_email_list', $email_list);
+				update_option('af_email_list', $email_list);
 				break;
 			case 'mailchimp':
-				$mailchimp_api = get_option( 'uap_mailchimp_api' );
-				$mailchimp_id_list = get_option( 'uap_mailchimp_id_list' );
+				$mailchimp_api = get_option( 'af_mailchimp_api' );
+				$mailchimp_id_list = get_option( 'af_mailchimp_id_list' );
 				if ($mailchimp_api && $mailchimp_id_list){
-					$indeed_mail->indeed_mailChimp( $mailchimp_api, $mailchimp_id_list, $email, $firstName, $lastName );
+					$af_mail->af_mailChimp( $mailchimp_api, $mailchimp_id_list, $email, $firstName, $lastName );
 				}
 				break;
 			case 'get_response':
-				$api_key = get_option('uap_getResponse_api_key');
-				$token = get_option('uap_getResponse_token');
+				$api_key = get_option('af_getResponse_api_key');
+				$token = get_option('af_getResponse_token');
 				if ( $api_key === '' || $token === '' ){
 						return false;
 				}
@@ -2019,53 +2019,53 @@ function uap_do_opt_in($email=''){
 				$result = curl_exec($ch);
 				break;
 			case 'campaign_monitor':
-				$listId = get_option('uap_cm_list_id');
-				$apiID = get_option('uap_cm_api_key');
+				$listId = get_option('af_cm_list_id');
+				$apiID = get_option('af_cm_api_key');
 				if ($listId && $apiID){
-					$indeed_mail->indeed_campaignMonitor( $listId, $apiID, $email, $firstName . ' ' . $lastName );
+					$af_mail->af_campaignMonitor( $listId, $apiID, $email, $firstName . ' ' . $lastName );
 				}
 				break;
 			case 'icontact':
-				$appId = get_option('uap_icontact_appid');
-				$apiPass = get_option('uap_icontact_pass');
-				$apiUser = get_option('uap_icontact_user');
-				$listId = get_option('uap_icontact_list_id');
+				$appId = get_option('af_icontact_appid');
+				$apiPass = get_option('af_icontact_pass');
+				$apiUser = get_option('af_icontact_user');
+				$listId = get_option('af_icontact_list_id');
 				if ($appId && $apiPass && $apiUser && $listId){
-					$indeed_mail->indeed_iContact( $apiUser, $appId, $apiPass, $listId, $email, $firstName, $lastName );
+					$af_mail->af_iContact( $apiUser, $appId, $apiPass, $listId, $email, $firstName, $lastName );
 				}
 				break;
 			case 'constant_contact':
-				$apiUser = get_option('uap_cc_user');
-				$apiPass = get_option('uap_cc_pass');
-				$listId = get_option('uap_cc_list');
+				$apiUser = get_option('af_cc_user');
+				$apiPass = get_option('af_cc_pass');
+				$listId = get_option('af_cc_list');
 				if ($apiUser && $apiPass && $listId){
-					$indeed_mail->indeed_constantContact( $apiUser, $apiPass, $listId, $email, $firstName, $lastName );
+					$af_mail->af_constantContact( $apiUser, $apiPass, $listId, $email, $firstName, $lastName );
 				}
 			break;
 			case 'wysija':
-				$listID = get_option('uap_wysija_list_id');
+				$listID = get_option('af_wysija_list_id');
 				if ($listID){
-					$indeed_mail->indeed_wysija_subscribe( $listID, $email, $firstName, $lastName );
+					$af_mail->af_wysija_subscribe( $listID, $email, $firstName, $lastName );
 				}
 				break;
 			case 'mymail':
-				$listID = get_option('uap_mymail_list_id');
+				$listID = get_option('af_mymail_list_id');
 				if ($listID){
-					$indeed_mail->indeed_myMailSubscribe( $listID, $email, $firstName, $lastName );
+					$af_mail->af_myMailSubscribe( $listID, $email, $firstName, $lastName );
 				}
 				break;
 			case 'active_campaign':
-				$api_url = get_option('uap_active_campaign_apiurl');
-				$api_key =  get_option('uap_active_campaign_apikey');
+				$api_url = get_option('af_active_campaign_apiurl');
+				$api_key =  get_option('af_active_campaign_apikey');
 				if ($api_url && $api_key){
-					$indeed_mail->add_contanct_to_active_campaign( $api_url, $api_key, $email, $firstName, $lastName );
+					$af_mail->add_contanct_to_active_campaign( $api_url, $api_key, $email, $firstName, $lastName );
 				}
 				break;
 		}
 	}
 }
 
-function uap_get_attachment_details($id = 0, $return_type='name'){
+function af_get_attachment_details($id = 0, $return_type='name'){
 	/*
 	 * @param attachment id, what to return: name or extension
 	 * @return string :
@@ -2091,280 +2091,280 @@ function uap_get_attachment_details($id = 0, $return_type='name'){
 	return 'Unknown';
 }
 
-if (!function_exists('uap_get_countries')):
+if (!function_exists('af_get_countries')):
 
-	function uap_get_countries(){
+	function af_get_countries(){
 		/*
 		 * @param none
 		 * @return array
 		 */
 		 return array(
-						'AF' => esc_html__( 'Afghanistan', 'uap' ),
-						'AX' => esc_html__( '&#197;land Islands', 'uap' ),
-						'AL' => esc_html__( 'Albania', 'uap' ),
-						'DZ' => esc_html__( 'Algeria', 'uap' ),
-						'AS' => esc_html__( 'American Samoa', 'uap' ),
-						'AD' => esc_html__( 'Andorra', 'uap' ),
-						'AO' => esc_html__( 'Angola', 'uap' ),
-						'AI' => esc_html__( 'Anguilla', 'uap' ),
-						'AQ' => esc_html__( 'Antarctica', 'uap' ),
-						'AG' => esc_html__( 'Antigua and Barbuda', 'uap' ),
-						'AR' => esc_html__( 'Argentina', 'uap' ),
-						'AM' => esc_html__( 'Armenia', 'uap' ),
-						'AW' => esc_html__( 'Aruba', 'uap' ),
-						'AU' => esc_html__( 'Australia', 'uap' ),
-						'AT' => esc_html__( 'Austria', 'uap' ),
-						'AZ' => esc_html__( 'Azerbaijan', 'uap' ),
-						'BS' => esc_html__( 'Bahamas', 'uap' ),
-						'BH' => esc_html__( 'Bahrain', 'uap' ),
-						'BD' => esc_html__( 'Bangladesh', 'uap' ),
-						'BB' => esc_html__( 'Barbados', 'uap' ),
-						'BY' => esc_html__( 'Belarus', 'uap' ),
-						'BE' => esc_html__( 'Belgium', 'uap' ),
-						'PW' => esc_html__( 'Belau', 'uap' ),
-						'BZ' => esc_html__( 'Belize', 'uap' ),
-						'BJ' => esc_html__( 'Benin', 'uap' ),
-						'BM' => esc_html__( 'Bermuda', 'uap' ),
-						'BT' => esc_html__( 'Bhutan', 'uap' ),
-						'BO' => esc_html__( 'Bolivia', 'uap' ),
-						'BQ' => esc_html__( 'Bonaire, Saint Eustatius and Saba', 'uap' ),
-						'BA' => esc_html__( 'Bosnia and Herzegovina', 'uap' ),
-						'BW' => esc_html__( 'Botswana', 'uap' ),
-						'BV' => esc_html__( 'Bouvet Island', 'uap' ),
-						'BR' => esc_html__( 'Brazil', 'uap' ),
-						'IO' => esc_html__( 'British Indian Ocean Territory', 'uap' ),
-						'VG' => esc_html__( 'British Virgin Islands', 'uap' ),
-						'BN' => esc_html__( 'Brunei', 'uap' ),
-						'BG' => esc_html__( 'Bulgaria', 'uap' ),
-						'BF' => esc_html__( 'Burkina Faso', 'uap' ),
-						'BI' => esc_html__( 'Burundi', 'uap' ),
-						'KH' => esc_html__( 'Cambodia', 'uap' ),
-						'CM' => esc_html__( 'Cameroon', 'uap' ),
-						'CA' => esc_html__( 'Canada', 'uap' ),
-						'CV' => esc_html__( 'Cape Verde', 'uap' ),
-						'KY' => esc_html__( 'Cayman Islands', 'uap' ),
-						'CF' => esc_html__( 'Central African Republic', 'uap' ),
-						'TD' => esc_html__( 'Chad', 'uap' ),
-						'CL' => esc_html__( 'Chile', 'uap' ),
-						'CN' => esc_html__( 'China', 'uap' ),
-						'CX' => esc_html__( 'Christmas Island', 'uap' ),
-						'CC' => esc_html__( 'Cocos (Keeling) Islands', 'uap' ),
-						'CO' => esc_html__( 'Colombia', 'uap' ),
-						'KM' => esc_html__( 'Comoros', 'uap' ),
-						'CG' => esc_html__( 'Congo (Brazzaville)', 'uap' ),
-						'CD' => esc_html__( 'Congo (Kinshasa)', 'uap' ),
-						'CK' => esc_html__( 'Cook Islands', 'uap' ),
-						'CR' => esc_html__( 'Costa Rica', 'uap' ),
-						'HR' => esc_html__( 'Croatia', 'uap' ),
-						'CU' => esc_html__( 'Cuba', 'uap' ),
-						'CW' => esc_html__( 'Cura&ccedil;ao', 'uap' ),
-						'CY' => esc_html__( 'Cyprus', 'uap' ),
-						'CZ' => esc_html__( 'Czech Republic', 'uap' ),
-						'DK' => esc_html__( 'Denmark', 'uap' ),
-						'DJ' => esc_html__( 'Djibouti', 'uap' ),
-						'DM' => esc_html__( 'Dominica', 'uap' ),
-						'DO' => esc_html__( 'Dominican Republic', 'uap' ),
-						'EC' => esc_html__( 'Ecuador', 'uap' ),
-						'EG' => esc_html__( 'Egypt', 'uap' ),
-						'SV' => esc_html__( 'El Salvador', 'uap' ),
-						'GQ' => esc_html__( 'Equatorial Guinea', 'uap' ),
-						'ER' => esc_html__( 'Eritrea', 'uap' ),
-						'EE' => esc_html__( 'Estonia', 'uap' ),
-						'ET' => esc_html__( 'Ethiopia', 'uap' ),
-						'FK' => esc_html__( 'Falkland Islands', 'uap' ),
-						'FO' => esc_html__( 'Faroe Islands', 'uap' ),
-						'FJ' => esc_html__( 'Fiji', 'uap' ),
-						'FI' => esc_html__( 'Finland', 'uap' ),
-						'FR' => esc_html__( 'France', 'uap' ),
-						'GF' => esc_html__( 'French Guiana', 'uap' ),
-						'PF' => esc_html__( 'French Polynesia', 'uap' ),
-						'TF' => esc_html__( 'French Southern Territories', 'uap' ),
-						'GA' => esc_html__( 'Gabon', 'uap' ),
-						'GM' => esc_html__( 'Gambia', 'uap' ),
-						'GE' => esc_html__( 'Georgia', 'uap' ),
-						'DE' => esc_html__( 'Germany', 'uap' ),
-						'GH' => esc_html__( 'Ghana', 'uap' ),
-						'GI' => esc_html__( 'Gibraltar', 'uap' ),
-						'GR' => esc_html__( 'Greece', 'uap' ),
-						'GL' => esc_html__( 'Greenland', 'uap' ),
-						'GD' => esc_html__( 'Grenada', 'uap' ),
-						'GP' => esc_html__( 'Guadeloupe', 'uap' ),
-						'GU' => esc_html__( 'Guam', 'uap' ),
-						'GT' => esc_html__( 'Guatemala', 'uap' ),
-						'GG' => esc_html__( 'Guernsey', 'uap' ),
-						'GN' => esc_html__( 'Guinea', 'uap' ),
-						'GW' => esc_html__( 'Guinea-Bissau', 'uap' ),
-						'GY' => esc_html__( 'Guyana', 'uap' ),
-						'HT' => esc_html__( 'Haiti', 'uap' ),
-						'HM' => esc_html__( 'Heard Island and McDonald Islands', 'uap' ),
-						'HN' => esc_html__( 'Honduras', 'uap' ),
-						'HK' => esc_html__( 'Hong Kong', 'uap' ),
-						'HU' => esc_html__( 'Hungary', 'uap' ),
-						'IS' => esc_html__( 'Iceland', 'uap' ),
-						'IN' => esc_html__( 'India', 'uap' ),
-						'ID' => esc_html__( 'Indonesia', 'uap' ),
-						'IR' => esc_html__( 'Iran', 'uap' ),
-						'IQ' => esc_html__( 'Iraq', 'uap' ),
-						'IE' => esc_html__( 'Republic of Ireland', 'uap' ),
-						'IM' => esc_html__( 'Isle of Man', 'uap' ),
-						'IL' => esc_html__( 'Israel', 'uap' ),
-						'IT' => esc_html__( 'Italy', 'uap' ),
-						'CI' => esc_html__( 'Ivory Coast', 'uap' ),
-						'JM' => esc_html__( 'Jamaica', 'uap' ),
-						'JP' => esc_html__( 'Japan', 'uap' ),
-						'JE' => esc_html__( 'Jersey', 'uap' ),
-						'JO' => esc_html__( 'Jordan', 'uap' ),
-						'KZ' => esc_html__( 'Kazakhstan', 'uap' ),
-						'KE' => esc_html__( 'Kenya', 'uap' ),
-						'KI' => esc_html__( 'Kiribati', 'uap' ),
-						'KW' => esc_html__( 'Kuwait', 'uap' ),
-						'KG' => esc_html__( 'Kyrgyzstan', 'uap' ),
-						'LA' => esc_html__( 'Laos', 'uap' ),
-						'LV' => esc_html__( 'Latvia', 'uap' ),
-						'LB' => esc_html__( 'Lebanon', 'uap' ),
-						'LS' => esc_html__( 'Lesotho', 'uap' ),
-						'LR' => esc_html__( 'Liberia', 'uap' ),
-						'LY' => esc_html__( 'Libya', 'uap' ),
-						'LI' => esc_html__( 'Liechtenstein', 'uap' ),
-						'LT' => esc_html__( 'Lithuania', 'uap' ),
-						'LU' => esc_html__( 'Luxembourg', 'uap' ),
-						'MO' => esc_html__( 'Macao S.A.R., China', 'uap' ),
-						'MK' => esc_html__( 'Macedonia', 'uap' ),
-						'MG' => esc_html__( 'Madagascar', 'uap' ),
-						'MW' => esc_html__( 'Malawi', 'uap' ),
-						'MY' => esc_html__( 'Malaysia', 'uap' ),
-						'MV' => esc_html__( 'Maldives', 'uap' ),
-						'ML' => esc_html__( 'Mali', 'uap' ),
-						'MT' => esc_html__( 'Malta', 'uap' ),
-						'MH' => esc_html__( 'Marshall Islands', 'uap' ),
-						'MQ' => esc_html__( 'Martinique', 'uap' ),
-						'MR' => esc_html__( 'Mauritania', 'uap' ),
-						'MU' => esc_html__( 'Mauritius', 'uap' ),
-						'YT' => esc_html__( 'Mayotte', 'uap' ),
-						'MX' => esc_html__( 'Mexico', 'uap' ),
-						'FM' => esc_html__( 'Micronesia', 'uap' ),
-						'MD' => esc_html__( 'Moldova', 'uap' ),
-						'MC' => esc_html__( 'Monaco', 'uap' ),
-						'MN' => esc_html__( 'Mongolia', 'uap' ),
-						'ME' => esc_html__( 'Montenegro', 'uap' ),
-						'MS' => esc_html__( 'Montserrat', 'uap' ),
-						'MA' => esc_html__( 'Morocco', 'uap' ),
-						'MZ' => esc_html__( 'Mozambique', 'uap' ),
-						'MM' => esc_html__( 'Myanmar', 'uap' ),
-						'NA' => esc_html__( 'Namibia', 'uap' ),
-						'NR' => esc_html__( 'Nauru', 'uap' ),
-						'NP' => esc_html__( 'Nepal', 'uap' ),
-						'NL' => esc_html__( 'Netherlands', 'uap' ),
-						'AN' => esc_html__( 'Netherlands Antilles', 'uap' ),
-						'NC' => esc_html__( 'New Caledonia', 'uap' ),
-						'NZ' => esc_html__( 'New Zealand', 'uap' ),
-						'NI' => esc_html__( 'Nicaragua', 'uap' ),
-						'NE' => esc_html__( 'Niger', 'uap' ),
-						'NG' => esc_html__( 'Nigeria', 'uap' ),
-						'NU' => esc_html__( 'Niue', 'uap' ),
-						'NF' => esc_html__( 'Norfolk Island', 'uap' ),
-						'MP' => esc_html__( 'Northern Mariana Islands', 'uap' ),
-						'KP' => esc_html__( 'North Korea', 'uap' ),
-						'NO' => esc_html__( 'Norway', 'uap' ),
-						'OM' => esc_html__( 'Oman', 'uap' ),
-						'PK' => esc_html__( 'Pakistan', 'uap' ),
-						'PS' => esc_html__( 'Palestinian Territory', 'uap' ),
-						'PA' => esc_html__( 'Panama', 'uap' ),
-						'PG' => esc_html__( 'Papua New Guinea', 'uap' ),
-						'PY' => esc_html__( 'Paraguay', 'uap' ),
-						'PE' => esc_html__( 'Peru', 'uap' ),
-						'PH' => esc_html__( 'Philippines', 'uap' ),
-						'PN' => esc_html__( 'Pitcairn', 'uap' ),
-						'PL' => esc_html__( 'Poland', 'uap' ),
-						'PT' => esc_html__( 'Portugal', 'uap' ),
-						'PR' => esc_html__( 'Puerto Rico', 'uap' ),
-						'QA' => esc_html__( 'Qatar', 'uap' ),
-						'RE' => esc_html__( 'Reunion', 'uap' ),
-						'RO' => esc_html__( 'Romania', 'uap' ),
-						'RU' => esc_html__( 'Russia', 'uap' ),
-						'RW' => esc_html__( 'Rwanda', 'uap' ),
-						'BL' => esc_html__( 'Saint Barth&eacute;lemy', 'uap' ),
-						'SH' => esc_html__( 'Saint Helena', 'uap' ),
-						'KN' => esc_html__( 'Saint Kitts and Nevis', 'uap' ),
-						'LC' => esc_html__( 'Saint Lucia', 'uap' ),
-						'MF' => esc_html__( 'Saint Martin (French part)', 'uap' ),
-						'SX' => esc_html__( 'Saint Martin (Dutch part)', 'uap' ),
-						'PM' => esc_html__( 'Saint Pierre and Miquelon', 'uap' ),
-						'VC' => esc_html__( 'Saint Vincent and the Grenadines', 'uap' ),
-						'SM' => esc_html__( 'San Marino', 'uap' ),
-						'ST' => esc_html__( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe', 'uap' ),
-						'SA' => esc_html__( 'Saudi Arabia', 'uap' ),
-						'SN' => esc_html__( 'Senegal', 'uap' ),
-						'RS' => esc_html__( 'Serbia', 'uap' ),
-						'SC' => esc_html__( 'Seychelles', 'uap' ),
-						'SL' => esc_html__( 'Sierra Leone', 'uap' ),
-						'SG' => esc_html__( 'Singapore', 'uap' ),
-						'SK' => esc_html__( 'Slovakia', 'uap' ),
-						'SI' => esc_html__( 'Slovenia', 'uap' ),
-						'SB' => esc_html__( 'Solomon Islands', 'uap' ),
-						'SO' => esc_html__( 'Somalia', 'uap' ),
-						'ZA' => esc_html__( 'South Africa', 'uap' ),
-						'GS' => esc_html__( 'South Georgia/Sandwich Islands', 'uap' ),
-						'KR' => esc_html__( 'South Korea', 'uap' ),
-						'SS' => esc_html__( 'South Sudan', 'uap' ),
-						'ES' => esc_html__( 'Spain', 'uap' ),
-						'LK' => esc_html__( 'Sri Lanka', 'uap' ),
-						'SD' => esc_html__( 'Sudan', 'uap' ),
-						'SR' => esc_html__( 'Suriname', 'uap' ),
-						'SJ' => esc_html__( 'Svalbard and Jan Mayen', 'uap' ),
-						'SZ' => esc_html__( 'Swaziland', 'uap' ),
-						'SE' => esc_html__( 'Sweden', 'uap' ),
-						'CH' => esc_html__( 'Switzerland', 'uap' ),
-						'SY' => esc_html__( 'Syria', 'uap' ),
-						'TW' => esc_html__( 'Taiwan', 'uap' ),
-						'TJ' => esc_html__( 'Tajikistan', 'uap' ),
-						'TZ' => esc_html__( 'Tanzania', 'uap' ),
-						'TH' => esc_html__( 'Thailand', 'uap' ),
-						'TL' => esc_html__( 'Timor-Leste', 'uap' ),
-						'TG' => esc_html__( 'Togo', 'uap' ),
-						'TK' => esc_html__( 'Tokelau', 'uap' ),
-						'TO' => esc_html__( 'Tonga', 'uap' ),
-						'TT' => esc_html__( 'Trinidad and Tobago', 'uap' ),
-						'TN' => esc_html__( 'Tunisia', 'uap' ),
-						'TR' => esc_html__( 'Turkey', 'uap' ),
-						'TM' => esc_html__( 'Turkmenistan', 'uap' ),
-						'TC' => esc_html__( 'Turks and Caicos Islands', 'uap' ),
-						'TV' => esc_html__( 'Tuvalu', 'uap' ),
-						'UG' => esc_html__( 'Uganda', 'uap' ),
-						'UA' => esc_html__( 'Ukraine', 'uap' ),
-						'AE' => esc_html__( 'United Arab Emirates', 'uap' ),
-						'GB' => esc_html__( 'United Kingdom (UK)', 'uap' ),
-						'US' => esc_html__( 'United States (US)', 'uap' ),
-						'UM' => esc_html__( 'United States (US) Minor Outlying Islands', 'uap' ),
-						'VI' => esc_html__( 'United States (US) Virgin Islands', 'uap' ),
-						'UY' => esc_html__( 'Uruguay', 'uap' ),
-						'UZ' => esc_html__( 'Uzbekistan', 'uap' ),
-						'VU' => esc_html__( 'Vanuatu', 'uap' ),
-						'VA' => esc_html__( 'Vatican', 'uap' ),
-						'VE' => esc_html__( 'Venezuela', 'uap' ),
-						'VN' => esc_html__( 'Vietnam', 'uap' ),
-						'WF' => esc_html__( 'Wallis and Futuna', 'uap' ),
-						'EH' => esc_html__( 'Western Sahara', 'uap' ),
-						'WS' => esc_html__( 'Samoa', 'uap' ),
-						'YE' => esc_html__( 'Yemen', 'uap' ),
-						'ZM' => esc_html__( 'Zambia', 'uap' ),
-						'ZW' => esc_html__( 'Zimbabwe', 'uap' )
+						'AF' => esc_html__( 'Afghanistan', 'openaffiliates' ),
+						'AX' => esc_html__( '&#197;land Islands', 'openaffiliates' ),
+						'AL' => esc_html__( 'Albania', 'openaffiliates' ),
+						'DZ' => esc_html__( 'Algeria', 'openaffiliates' ),
+						'AS' => esc_html__( 'American Samoa', 'openaffiliates' ),
+						'AD' => esc_html__( 'Andorra', 'openaffiliates' ),
+						'AO' => esc_html__( 'Angola', 'openaffiliates' ),
+						'AI' => esc_html__( 'Anguilla', 'openaffiliates' ),
+						'AQ' => esc_html__( 'Antarctica', 'openaffiliates' ),
+						'AG' => esc_html__( 'Antigua and Barbuda', 'openaffiliates' ),
+						'AR' => esc_html__( 'Argentina', 'openaffiliates' ),
+						'AM' => esc_html__( 'Armenia', 'openaffiliates' ),
+						'AW' => esc_html__( 'Aruba', 'openaffiliates' ),
+						'AU' => esc_html__( 'Australia', 'openaffiliates' ),
+						'AT' => esc_html__( 'Austria', 'openaffiliates' ),
+						'AZ' => esc_html__( 'Azerbaijan', 'openaffiliates' ),
+						'BS' => esc_html__( 'Bahamas', 'openaffiliates' ),
+						'BH' => esc_html__( 'Bahrain', 'openaffiliates' ),
+						'BD' => esc_html__( 'Bangladesh', 'openaffiliates' ),
+						'BB' => esc_html__( 'Barbados', 'openaffiliates' ),
+						'BY' => esc_html__( 'Belarus', 'openaffiliates' ),
+						'BE' => esc_html__( 'Belgium', 'openaffiliates' ),
+						'PW' => esc_html__( 'Belau', 'openaffiliates' ),
+						'BZ' => esc_html__( 'Belize', 'openaffiliates' ),
+						'BJ' => esc_html__( 'Benin', 'openaffiliates' ),
+						'BM' => esc_html__( 'Bermuda', 'openaffiliates' ),
+						'BT' => esc_html__( 'Bhutan', 'openaffiliates' ),
+						'BO' => esc_html__( 'Bolivia', 'openaffiliates' ),
+						'BQ' => esc_html__( 'Bonaire, Saint Eustatius and Saba', 'openaffiliates' ),
+						'BA' => esc_html__( 'Bosnia and Herzegovina', 'openaffiliates' ),
+						'BW' => esc_html__( 'Botswana', 'openaffiliates' ),
+						'BV' => esc_html__( 'Bouvet Island', 'openaffiliates' ),
+						'BR' => esc_html__( 'Brazil', 'openaffiliates' ),
+						'IO' => esc_html__( 'British Indian Ocean Territory', 'openaffiliates' ),
+						'VG' => esc_html__( 'British Virgin Islands', 'openaffiliates' ),
+						'BN' => esc_html__( 'Brunei', 'openaffiliates' ),
+						'BG' => esc_html__( 'Bulgaria', 'openaffiliates' ),
+						'BF' => esc_html__( 'Burkina Faso', 'openaffiliates' ),
+						'BI' => esc_html__( 'Burundi', 'openaffiliates' ),
+						'KH' => esc_html__( 'Cambodia', 'openaffiliates' ),
+						'CM' => esc_html__( 'Cameroon', 'openaffiliates' ),
+						'CA' => esc_html__( 'Canada', 'openaffiliates' ),
+						'CV' => esc_html__( 'Cape Verde', 'openaffiliates' ),
+						'KY' => esc_html__( 'Cayman Islands', 'openaffiliates' ),
+						'CF' => esc_html__( 'Central African Republic', 'openaffiliates' ),
+						'TD' => esc_html__( 'Chad', 'openaffiliates' ),
+						'CL' => esc_html__( 'Chile', 'openaffiliates' ),
+						'CN' => esc_html__( 'China', 'openaffiliates' ),
+						'CX' => esc_html__( 'Christmas Island', 'openaffiliates' ),
+						'CC' => esc_html__( 'Cocos (Keeling) Islands', 'openaffiliates' ),
+						'CO' => esc_html__( 'Colombia', 'openaffiliates' ),
+						'KM' => esc_html__( 'Comoros', 'openaffiliates' ),
+						'CG' => esc_html__( 'Congo (Brazzaville)', 'openaffiliates' ),
+						'CD' => esc_html__( 'Congo (Kinshasa)', 'openaffiliates' ),
+						'CK' => esc_html__( 'Cook Islands', 'openaffiliates' ),
+						'CR' => esc_html__( 'Costa Rica', 'openaffiliates' ),
+						'HR' => esc_html__( 'Croatia', 'openaffiliates' ),
+						'CU' => esc_html__( 'Cuba', 'openaffiliates' ),
+						'CW' => esc_html__( 'Cura&ccedil;ao', 'openaffiliates' ),
+						'CY' => esc_html__( 'Cyprus', 'openaffiliates' ),
+						'CZ' => esc_html__( 'Czech Republic', 'openaffiliates' ),
+						'DK' => esc_html__( 'Denmark', 'openaffiliates' ),
+						'DJ' => esc_html__( 'Djibouti', 'openaffiliates' ),
+						'DM' => esc_html__( 'Dominica', 'openaffiliates' ),
+						'DO' => esc_html__( 'Dominican Republic', 'openaffiliates' ),
+						'EC' => esc_html__( 'Ecuador', 'openaffiliates' ),
+						'EG' => esc_html__( 'Egypt', 'openaffiliates' ),
+						'SV' => esc_html__( 'El Salvador', 'openaffiliates' ),
+						'GQ' => esc_html__( 'Equatorial Guinea', 'openaffiliates' ),
+						'ER' => esc_html__( 'Eritrea', 'openaffiliates' ),
+						'EE' => esc_html__( 'Estonia', 'openaffiliates' ),
+						'ET' => esc_html__( 'Ethiopia', 'openaffiliates' ),
+						'FK' => esc_html__( 'Falkland Islands', 'openaffiliates' ),
+						'FO' => esc_html__( 'Faroe Islands', 'openaffiliates' ),
+						'FJ' => esc_html__( 'Fiji', 'openaffiliates' ),
+						'FI' => esc_html__( 'Finland', 'openaffiliates' ),
+						'FR' => esc_html__( 'France', 'openaffiliates' ),
+						'GF' => esc_html__( 'French Guiana', 'openaffiliates' ),
+						'PF' => esc_html__( 'French Polynesia', 'openaffiliates' ),
+						'TF' => esc_html__( 'French Southern Territories', 'openaffiliates' ),
+						'GA' => esc_html__( 'Gabon', 'openaffiliates' ),
+						'GM' => esc_html__( 'Gambia', 'openaffiliates' ),
+						'GE' => esc_html__( 'Georgia', 'openaffiliates' ),
+						'DE' => esc_html__( 'Germany', 'openaffiliates' ),
+						'GH' => esc_html__( 'Ghana', 'openaffiliates' ),
+						'GI' => esc_html__( 'Gibraltar', 'openaffiliates' ),
+						'GR' => esc_html__( 'Greece', 'openaffiliates' ),
+						'GL' => esc_html__( 'Greenland', 'openaffiliates' ),
+						'GD' => esc_html__( 'Grenada', 'openaffiliates' ),
+						'GP' => esc_html__( 'Guadeloupe', 'openaffiliates' ),
+						'GU' => esc_html__( 'Guam', 'openaffiliates' ),
+						'GT' => esc_html__( 'Guatemala', 'openaffiliates' ),
+						'GG' => esc_html__( 'Guernsey', 'openaffiliates' ),
+						'GN' => esc_html__( 'Guinea', 'openaffiliates' ),
+						'GW' => esc_html__( 'Guinea-Bissau', 'openaffiliates' ),
+						'GY' => esc_html__( 'Guyana', 'openaffiliates' ),
+						'HT' => esc_html__( 'Haiti', 'openaffiliates' ),
+						'HM' => esc_html__( 'Heard Island and McDonald Islands', 'openaffiliates' ),
+						'HN' => esc_html__( 'Honduras', 'openaffiliates' ),
+						'HK' => esc_html__( 'Hong Kong', 'openaffiliates' ),
+						'HU' => esc_html__( 'Hungary', 'openaffiliates' ),
+						'IS' => esc_html__( 'Iceland', 'openaffiliates' ),
+						'IN' => esc_html__( 'India', 'openaffiliates' ),
+						'ID' => esc_html__( 'Indonesia', 'openaffiliates' ),
+						'IR' => esc_html__( 'Iran', 'openaffiliates' ),
+						'IQ' => esc_html__( 'Iraq', 'openaffiliates' ),
+						'IE' => esc_html__( 'Republic of Ireland', 'openaffiliates' ),
+						'IM' => esc_html__( 'Isle of Man', 'openaffiliates' ),
+						'IL' => esc_html__( 'Israel', 'openaffiliates' ),
+						'IT' => esc_html__( 'Italy', 'openaffiliates' ),
+						'CI' => esc_html__( 'Ivory Coast', 'openaffiliates' ),
+						'JM' => esc_html__( 'Jamaica', 'openaffiliates' ),
+						'JP' => esc_html__( 'Japan', 'openaffiliates' ),
+						'JE' => esc_html__( 'Jersey', 'openaffiliates' ),
+						'JO' => esc_html__( 'Jordan', 'openaffiliates' ),
+						'KZ' => esc_html__( 'Kazakhstan', 'openaffiliates' ),
+						'KE' => esc_html__( 'Kenya', 'openaffiliates' ),
+						'KI' => esc_html__( 'Kiribati', 'openaffiliates' ),
+						'KW' => esc_html__( 'Kuwait', 'openaffiliates' ),
+						'KG' => esc_html__( 'Kyrgyzstan', 'openaffiliates' ),
+						'LA' => esc_html__( 'Laos', 'openaffiliates' ),
+						'LV' => esc_html__( 'Latvia', 'openaffiliates' ),
+						'LB' => esc_html__( 'Lebanon', 'openaffiliates' ),
+						'LS' => esc_html__( 'Lesotho', 'openaffiliates' ),
+						'LR' => esc_html__( 'Liberia', 'openaffiliates' ),
+						'LY' => esc_html__( 'Libya', 'openaffiliates' ),
+						'LI' => esc_html__( 'Liechtenstein', 'openaffiliates' ),
+						'LT' => esc_html__( 'Lithuania', 'openaffiliates' ),
+						'LU' => esc_html__( 'Luxembourg', 'openaffiliates' ),
+						'MO' => esc_html__( 'Macao S.A.R., China', 'openaffiliates' ),
+						'MK' => esc_html__( 'Macedonia', 'openaffiliates' ),
+						'MG' => esc_html__( 'Madagascar', 'openaffiliates' ),
+						'MW' => esc_html__( 'Malawi', 'openaffiliates' ),
+						'MY' => esc_html__( 'Malaysia', 'openaffiliates' ),
+						'MV' => esc_html__( 'Maldives', 'openaffiliates' ),
+						'ML' => esc_html__( 'Mali', 'openaffiliates' ),
+						'MT' => esc_html__( 'Malta', 'openaffiliates' ),
+						'MH' => esc_html__( 'Marshall Islands', 'openaffiliates' ),
+						'MQ' => esc_html__( 'Martinique', 'openaffiliates' ),
+						'MR' => esc_html__( 'Mauritania', 'openaffiliates' ),
+						'MU' => esc_html__( 'Mauritius', 'openaffiliates' ),
+						'YT' => esc_html__( 'Mayotte', 'openaffiliates' ),
+						'MX' => esc_html__( 'Mexico', 'openaffiliates' ),
+						'FM' => esc_html__( 'Micronesia', 'openaffiliates' ),
+						'MD' => esc_html__( 'Moldova', 'openaffiliates' ),
+						'MC' => esc_html__( 'Monaco', 'openaffiliates' ),
+						'MN' => esc_html__( 'Mongolia', 'openaffiliates' ),
+						'ME' => esc_html__( 'Montenegro', 'openaffiliates' ),
+						'MS' => esc_html__( 'Montserrat', 'openaffiliates' ),
+						'MA' => esc_html__( 'Morocco', 'openaffiliates' ),
+						'MZ' => esc_html__( 'Mozambique', 'openaffiliates' ),
+						'MM' => esc_html__( 'Myanmar', 'openaffiliates' ),
+						'NA' => esc_html__( 'Namibia', 'openaffiliates' ),
+						'NR' => esc_html__( 'Nauru', 'openaffiliates' ),
+						'NP' => esc_html__( 'Nepal', 'openaffiliates' ),
+						'NL' => esc_html__( 'Netherlands', 'openaffiliates' ),
+						'AN' => esc_html__( 'Netherlands Antilles', 'openaffiliates' ),
+						'NC' => esc_html__( 'New Caledonia', 'openaffiliates' ),
+						'NZ' => esc_html__( 'New Zealand', 'openaffiliates' ),
+						'NI' => esc_html__( 'Nicaragua', 'openaffiliates' ),
+						'NE' => esc_html__( 'Niger', 'openaffiliates' ),
+						'NG' => esc_html__( 'Nigeria', 'openaffiliates' ),
+						'NU' => esc_html__( 'Niue', 'openaffiliates' ),
+						'NF' => esc_html__( 'Norfolk Island', 'openaffiliates' ),
+						'MP' => esc_html__( 'Northern Mariana Islands', 'openaffiliates' ),
+						'KP' => esc_html__( 'North Korea', 'openaffiliates' ),
+						'NO' => esc_html__( 'Norway', 'openaffiliates' ),
+						'OM' => esc_html__( 'Oman', 'openaffiliates' ),
+						'PK' => esc_html__( 'Pakistan', 'openaffiliates' ),
+						'PS' => esc_html__( 'Palestinian Territory', 'openaffiliates' ),
+						'PA' => esc_html__( 'Panama', 'openaffiliates' ),
+						'PG' => esc_html__( 'Papua New Guinea', 'openaffiliates' ),
+						'PY' => esc_html__( 'Paraguay', 'openaffiliates' ),
+						'PE' => esc_html__( 'Peru', 'openaffiliates' ),
+						'PH' => esc_html__( 'Philippines', 'openaffiliates' ),
+						'PN' => esc_html__( 'Pitcairn', 'openaffiliates' ),
+						'PL' => esc_html__( 'Poland', 'openaffiliates' ),
+						'PT' => esc_html__( 'Portugal', 'openaffiliates' ),
+						'PR' => esc_html__( 'Puerto Rico', 'openaffiliates' ),
+						'QA' => esc_html__( 'Qatar', 'openaffiliates' ),
+						'RE' => esc_html__( 'Reunion', 'openaffiliates' ),
+						'RO' => esc_html__( 'Romania', 'openaffiliates' ),
+						'RU' => esc_html__( 'Russia', 'openaffiliates' ),
+						'RW' => esc_html__( 'Rwanda', 'openaffiliates' ),
+						'BL' => esc_html__( 'Saint Barth&eacute;lemy', 'openaffiliates' ),
+						'SH' => esc_html__( 'Saint Helena', 'openaffiliates' ),
+						'KN' => esc_html__( 'Saint Kitts and Nevis', 'openaffiliates' ),
+						'LC' => esc_html__( 'Saint Lucia', 'openaffiliates' ),
+						'MF' => esc_html__( 'Saint Martin (French part)', 'openaffiliates' ),
+						'SX' => esc_html__( 'Saint Martin (Dutch part)', 'openaffiliates' ),
+						'PM' => esc_html__( 'Saint Pierre and Miquelon', 'openaffiliates' ),
+						'VC' => esc_html__( 'Saint Vincent and the Grenadines', 'openaffiliates' ),
+						'SM' => esc_html__( 'San Marino', 'openaffiliates' ),
+						'ST' => esc_html__( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe', 'openaffiliates' ),
+						'SA' => esc_html__( 'Saudi Arabia', 'openaffiliates' ),
+						'SN' => esc_html__( 'Senegal', 'openaffiliates' ),
+						'RS' => esc_html__( 'Serbia', 'openaffiliates' ),
+						'SC' => esc_html__( 'Seychelles', 'openaffiliates' ),
+						'SL' => esc_html__( 'Sierra Leone', 'openaffiliates' ),
+						'SG' => esc_html__( 'Singapore', 'openaffiliates' ),
+						'SK' => esc_html__( 'Slovakia', 'openaffiliates' ),
+						'SI' => esc_html__( 'Slovenia', 'openaffiliates' ),
+						'SB' => esc_html__( 'Solomon Islands', 'openaffiliates' ),
+						'SO' => esc_html__( 'Somalia', 'openaffiliates' ),
+						'ZA' => esc_html__( 'South Africa', 'openaffiliates' ),
+						'GS' => esc_html__( 'South Georgia/Sandwich Islands', 'openaffiliates' ),
+						'KR' => esc_html__( 'South Korea', 'openaffiliates' ),
+						'SS' => esc_html__( 'South Sudan', 'openaffiliates' ),
+						'ES' => esc_html__( 'Spain', 'openaffiliates' ),
+						'LK' => esc_html__( 'Sri Lanka', 'openaffiliates' ),
+						'SD' => esc_html__( 'Sudan', 'openaffiliates' ),
+						'SR' => esc_html__( 'Suriname', 'openaffiliates' ),
+						'SJ' => esc_html__( 'Svalbard and Jan Mayen', 'openaffiliates' ),
+						'SZ' => esc_html__( 'Swaziland', 'openaffiliates' ),
+						'SE' => esc_html__( 'Sweden', 'openaffiliates' ),
+						'CH' => esc_html__( 'Switzerland', 'openaffiliates' ),
+						'SY' => esc_html__( 'Syria', 'openaffiliates' ),
+						'TW' => esc_html__( 'Taiwan', 'openaffiliates' ),
+						'TJ' => esc_html__( 'Tajikistan', 'openaffiliates' ),
+						'TZ' => esc_html__( 'Tanzania', 'openaffiliates' ),
+						'TH' => esc_html__( 'Thailand', 'openaffiliates' ),
+						'TL' => esc_html__( 'Timor-Leste', 'openaffiliates' ),
+						'TG' => esc_html__( 'Togo', 'openaffiliates' ),
+						'TK' => esc_html__( 'Tokelau', 'openaffiliates' ),
+						'TO' => esc_html__( 'Tonga', 'openaffiliates' ),
+						'TT' => esc_html__( 'Trinidad and Tobago', 'openaffiliates' ),
+						'TN' => esc_html__( 'Tunisia', 'openaffiliates' ),
+						'TR' => esc_html__( 'Turkey', 'openaffiliates' ),
+						'TM' => esc_html__( 'Turkmenistan', 'openaffiliates' ),
+						'TC' => esc_html__( 'Turks and Caicos Islands', 'openaffiliates' ),
+						'TV' => esc_html__( 'Tuvalu', 'openaffiliates' ),
+						'UG' => esc_html__( 'Uganda', 'openaffiliates' ),
+						'UA' => esc_html__( 'Ukraine', 'openaffiliates' ),
+						'AE' => esc_html__( 'United Arab Emirates', 'openaffiliates' ),
+						'GB' => esc_html__( 'United Kingdom (UK)', 'openaffiliates' ),
+						'US' => esc_html__( 'United States (US)', 'openaffiliates' ),
+						'UM' => esc_html__( 'United States (US) Minor Outlying Islands', 'openaffiliates' ),
+						'VI' => esc_html__( 'United States (US) Virgin Islands', 'openaffiliates' ),
+						'UY' => esc_html__( 'Uruguay', 'openaffiliates' ),
+						'UZ' => esc_html__( 'Uzbekistan', 'openaffiliates' ),
+						'VU' => esc_html__( 'Vanuatu', 'openaffiliates' ),
+						'VA' => esc_html__( 'Vatican', 'openaffiliates' ),
+						'VE' => esc_html__( 'Venezuela', 'openaffiliates' ),
+						'VN' => esc_html__( 'Vietnam', 'openaffiliates' ),
+						'WF' => esc_html__( 'Wallis and Futuna', 'openaffiliates' ),
+						'EH' => esc_html__( 'Western Sahara', 'openaffiliates' ),
+						'WS' => esc_html__( 'Samoa', 'openaffiliates' ),
+						'YE' => esc_html__( 'Yemen', 'openaffiliates' ),
+						'ZM' => esc_html__( 'Zambia', 'openaffiliates' ),
+						'ZW' => esc_html__( 'Zimbabwe', 'openaffiliates' )
 		);
 	}
 
 endif;
 
-if (!function_exists('indeed_debug_var')):
-function indeed_debug_var($variable){
+if (!function_exists('af_debug_var')):
+function af_debug_var($variable){
 	/*
 	 * print the array into '<pre>' tags
 	 * @param array, string, int ... anything
 	 * @return none (echo)
 	 */
 	 if (is_array($variable) || is_object($variable)){
-		 echo esc_uap_content('<pre>');
+		 echo esc_af_content('<pre>');
 		 print_r($variable);
-		 echo esc_uap_content('</pre>');
+		 echo esc_af_content('</pre>');
 	 } else {
 	 	var_dump($variable);
 	 }
@@ -2372,8 +2372,8 @@ function indeed_debug_var($variable){
 endif;
 
 
-if (!function_exists('uap_reorder_menu_items')):
-function uap_reorder_menu_items($order=array(), $array=array()){
+if (!function_exists('af_reorder_menu_items')):
+function af_reorder_menu_items($order=array(), $array=array()){
 	/*
 	 * @param array, array
 	 * @return array
@@ -2395,8 +2395,8 @@ function uap_reorder_menu_items($order=array(), $array=array()){
 }
 endif;
 
-if (!function_exists('uap_format_price_and_currency')):
-function uap_format_price_and_currency($currency='', $price_value=''){
+if (!function_exists('af_format_price_and_currency')):
+function af_format_price_and_currency($currency='', $price_value=''){
 	/*
 	 * @param string, string
 	 * @return string
@@ -2405,26 +2405,26 @@ function uap_format_price_and_currency($currency='', $price_value=''){
 		 	return $price_value;
 	 }
 	 $output = '';
-	 $possition = get_option( 'uap_currency_position' , 'left' );
+	 $possition = get_option( 'af_currency_position' , 'left' );
 	 if ( empty( $possition ) ){
 	 		$possition = 'left';
 	 }
 
 	 $settings = [
-		 							'uap_num_of_decimals'			=> get_option( 'uap_num_of_decimals', 2 ),
-							 		'uap_thousands_separator'	=> get_option( 'uap_thousands_separator', ',' ),
-									'uap_decimals_separator'	=> get_option( 'uap_decimals_separator', '.' ),
+		 							'af_num_of_decimals'			=> get_option( 'af_num_of_decimals', 2 ),
+							 		'af_thousands_separator'	=> get_option( 'af_thousands_separator', ',' ),
+									'af_decimals_separator'	=> get_option( 'af_decimals_separator', '.' ),
 	 ];
-	 $settings['uap_num_of_decimals'] = (int)$settings['uap_num_of_decimals'];
+	 $settings['af_num_of_decimals'] = (int)$settings['af_num_of_decimals'];
 	 // force separator if its case
-	 if ( $settings['uap_thousands_separator'] === '' ){
-		  $settings['uap_thousands_separator'] = ',';
+	 if ( $settings['af_thousands_separator'] === '' ){
+		  $settings['af_thousands_separator'] = ',';
 	 }
-	 if ( $settings['uap_decimals_separator'] === '' ){
-		  $settings['uap_decimals_separator'] = '.';
+	 if ( $settings['af_decimals_separator'] === '' ){
+		  $settings['af_decimals_separator'] = '.';
 	 }
 
-   $price_value = number_format( $price_value, $settings['uap_num_of_decimals'], $settings['uap_decimals_separator'], $settings['uap_thousands_separator'] );
+   $price_value = number_format( $price_value, $settings['af_num_of_decimals'], $settings['af_decimals_separator'], $settings['af_thousands_separator'] );
 
 
 
@@ -2446,11 +2446,11 @@ function uap_format_price_and_currency($currency='', $price_value=''){
 }
 endif;
 
-if ( !function_exists( 'uapCurrency' ) ):
-function uapCurrency( $currency='' )
+if ( !function_exists( 'afCurrency' ) ):
+function afCurrency( $currency='' )
 {
 		if ( $currency === '' ){
-				$currency = get_option( 'uap_currency' );
+				$currency = get_option( 'af_currency' );
 		}
 		switch ( $currency ){
 			 case 'USD':
@@ -2467,8 +2467,8 @@ function uapCurrency( $currency='' )
 }
 endif;
 
-if (!function_exists('uap_get_array_key_for_subarray_element')):
-function uap_get_array_key_for_subarray_element($haystack=array(), $needle='', $value=''){
+if (!function_exists('af_get_array_key_for_subarray_element')):
+function af_get_array_key_for_subarray_element($haystack=array(), $needle='', $value=''){
 	/*
 	 * @param array (where to search)
 	 * @param string (search key)
@@ -2489,8 +2489,8 @@ endif;
  * @param mixed (array or object)
  * @return array
  */
-if (!function_exists('indeed_convert_to_array')):
-function indeed_convert_to_array($input=null){
+if (!function_exists('af_convert_to_array')):
+function af_convert_to_array($input=null){
 	if ($input){
 		foreach ($input as $object){
 			$array[] = (array)$object;
@@ -2501,9 +2501,9 @@ function indeed_convert_to_array($input=null){
 }
 endif;
 
-if (!function_exists('uap_empty_qr_images')):
-function uap_empty_qr_images(){
-		$path = UAP_PATH . 'classes/services/qrcode/images/';
+if (!function_exists('af_empty_qr_images')):
+function af_empty_qr_images(){
+		$path = AF_PATH . 'classes/services/qrcode/images/';
 		if ($handle = opendir($path)) {
 				while (false !== ($file = readdir($handle))){
 						$filetime = filectime($path.'/'.$file)+3600;
@@ -2518,30 +2518,13 @@ function uap_empty_qr_images(){
 }
 endif;
 
-if (!function_exists('indeed_get_uid')):
-function indeed_get_uid(){
+if (!function_exists('af_get_uid')):
+function af_get_uid(){
 		global $current_user;
 		// 8.6
 		if ( current_user_can('administrator') && isset( $_GET['aid'] ) ){
-				global $indeed_db;
-				$uid = $indeed_db->get_uid_by_affiliate_id( sanitize_text_field( $_GET['aid'] ) );
-				return (int)$uid;
-		}
-		// end of 8.6
-		if (isset($current_user->ID)){
-				return $current_user->ID;
-		}
-		return 0;
-}
-endif;
-
-if (!function_exists('uap_get_uid')):
-function uap_get_uid(){
-		global $current_user;
-		// 8.6
-		if ( current_user_can('administrator') && isset( $_GET['aid'] ) ){
-				global $indeed_db;
-				$uid = $indeed_db->get_uid_by_affiliate_id( sanitize_text_field( $_GET['aid'] ) );
+				global $af_db;
+				$uid = $af_db->get_uid_by_affiliate_id( sanitize_text_field( $_GET['aid'] ) );
 				return (int)$uid;
 		}
 		// end of 8.6
@@ -2555,13 +2538,13 @@ endif;
 if (!function_exists('dd')):
 function dd($variable)
 {
-		indeed_debug_var($variable);
+		af_debug_var($variable);
 		die;
 }
 endif;
 
-if ( !function_exists('indeed_get_current_language_code') ):
-function indeed_get_current_language_code()
+if ( !function_exists('af_get_current_language_code') ):
+function af_get_current_language_code()
 {
 		$languageCode = get_locale();
 		if ( !$languageCode ){
@@ -2575,10 +2558,10 @@ function indeed_get_current_language_code()
 }
 endif;
 
-if ( !function_exists( 'uapIsRegisterPage' ) ):
-function uapIsRegisterPage( $url )
+if ( !function_exists( 'afIsRegisterPage' ) ):
+function afIsRegisterPage( $url )
 {
-		$registerPage = get_option('uap_general_register_default_page');
+		$registerPage = get_option('af_general_register_default_page');
 		if ( !$registerPage || $registerPage==-1 ){
 				return false;
 		}
@@ -2593,12 +2576,12 @@ function uapIsRegisterPage( $url )
 }
 endif;
 
-if ( !function_exists( 'uap_generate_color_hex' ) ):
+if ( !function_exists( 'af_generate_color_hex' ) ):
 /**
  * @param none
  * @return string
  */
-function uap_generate_color_hex()
+function af_generate_color_hex()
 {
 	$colors = [
 			'#0a9fd8',
@@ -2616,8 +2599,8 @@ function uap_generate_color_hex()
 }
 endif;
 
-if ( !function_exists( 'indeedIsAdmin' ) ):
-function indeedIsAdmin()
+if ( !function_exists( 'afIsAdmin' ) ):
+function afIsAdmin()
 {
 		global $current_user;
 		if ( empty( $current_user->ID ) ){
@@ -2637,32 +2620,32 @@ function indeedIsAdmin()
 }
 endif;
 
-if ( !function_exists( 'uapAdminVerifyNonce' ) ):
-function uapAdminVerifyNonce()
+if ( !function_exists( 'afAdminVerifyNonce' ) ):
+function afAdminVerifyNonce()
 {
-		$nonce = isset( $_SERVER['HTTP_X_CSRF_UAP_ADMIN_TOKEN'] ) ? $_SERVER['HTTP_X_CSRF_UAP_ADMIN_TOKEN']	: '';
-		if ( wp_verify_nonce( $nonce, 'uapAdminNonce' ) ) {
+		$nonce = isset( $_SERVER['HTTP_X_CSRF_AF_ADMIN_TOKEN'] ) ? $_SERVER['HTTP_X_CSRF_AF_ADMIN_TOKEN']	: '';
+		if ( wp_verify_nonce( $nonce, 'afAdminNonce' ) ) {
 				return true;
 		}
 		return false;
 }
 endif;
 
-if ( !function_exists( 'uapPublicVerifyNonce' ) ):
-function uapPublicVerifyNonce()
+if ( !function_exists( 'afPublicVerifyNonce' ) ):
+function afPublicVerifyNonce()
 {
-		$nonce = isset( $_SERVER['HTTP_X_CSRF_UAP_TOKEN'] ) ? $_SERVER['HTTP_X_CSRF_UAP_TOKEN']	: '';
-		if ( wp_verify_nonce( $nonce, 'uapPublicNonce' ) ) {
+		$nonce = isset( $_SERVER['HTTP_X_CSRF_AF_TOKEN'] ) ? $_SERVER['HTTP_X_CSRF_AF_TOKEN']	: '';
+		if ( wp_verify_nonce( $nonce, 'afPublicNonce' ) ) {
 				return true;
 		}
 		return false;
 }
 endif;
 
-if ( !function_exists('uapInputNumerStep') ):
-function uapInputNumerStep()
+if ( !function_exists('afInputNumerStep') ):
+function afInputNumerStep()
 {
-		$number = get_option( 'uap_num_of_decimals' );
+		$number = get_option( 'af_num_of_decimals' );
 		if ( $number === FALSE ){
 				return 0.01;
 		}
@@ -2682,7 +2665,7 @@ function getDefaultCountry()
 {
 		$locale = 'US';
 
-		$defaultcountry = get_option( 'uap_defaultcountry' );
+		$defaultcountry = get_option( 'af_defaultcountry' );
 		if(empty($defaultcountry)){
 				$locale = get_locale();
 				$locale_arr = explode( '_' , $locale);
@@ -2702,15 +2685,15 @@ endif;
  * @param array
  * @return array
  */
-if ( !function_exists( 'indeedFilterVarArrayElements' ) ):
-function indeedFilterVarArrayElements( $data=[] )
+if ( !function_exists( 'afFilterVarArrayElements' ) ):
+function afFilterVarArrayElements( $data=[] )
 {
 		if ( !is_array( $data ) || count( $data ) == 0 ){
 				return $data;
 		}
 		foreach ( $data as $key => $value ){
 				if ( is_array( $value ) ){
-						$data[$key] = indeedFilterVarArrayElements( $value );
+						$data[$key] = afFilterVarArrayElements( $value );
 				} else {
 						$data[$key] = ( isset( $data[$key] ) ) ? sanitize_text_field( $data[$key] ) : false;
 				}
@@ -2720,13 +2703,13 @@ function indeedFilterVarArrayElements( $data=[] )
 }
 endif;
 
-if ( !function_exists('indeed_get_unixtimestamp_with_timezone') ):
+if ( !function_exists('af_get_unixtimestamp_with_timezone') ):
 /**
  * Return unixtimestamp with the timezone set in Wp Admin dashboard.
  * @param int ( timestamp )
  * @return int
  */
-function indeed_get_unixtimestamp_with_timezone( $time='' )
+function af_get_unixtimestamp_with_timezone( $time='' )
 {
 		if ( '' == $time ){
 				$time = time();
@@ -2740,8 +2723,8 @@ function indeed_get_unixtimestamp_with_timezone( $time='' )
 }
 endif;
 
-if ( !function_exists('uap_is_ihc_active') ):
-function uap_is_ihc_active(){
+if ( !function_exists('af_is_ihc_active') ):
+function af_is_ihc_active(){
 	/*
 	 * @param none
 	 * @return boolean
@@ -2758,26 +2741,26 @@ function uap_is_ihc_active(){
 }
 endif;
 
-if (!function_exists('indeed_get_plugin_version')):
-function indeed_get_plugin_version( $base_file_path='' ){
+if (!function_exists('af_get_plugin_version')):
+function af_get_plugin_version( $base_file_path='' ){
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		$plugin_data = get_plugin_data( $base_file_path, false, false);
 		return $plugin_data['Version'];
 }
 endif;
 
-if ( !function_exists('esc_uap_content') ):
+if ( !function_exists('esc_af_content') ):
 /*
  * This function is used to filter the html output.
  */
-function esc_uap_content( $string='' )
+function esc_af_content( $string='' )
 {
 		return $string;
 }
 endif;
 
-if ( !function_exists( 'uap_sanitize_array' ) ):
-function uap_sanitize_array( $input=[] )
+if ( !function_exists( 'af_sanitize_array' ) ):
+function af_sanitize_array( $input=[] )
 {
 		$output = [];
 		if ( !is_array( $input ) ){
@@ -2785,7 +2768,7 @@ function uap_sanitize_array( $input=[] )
 		}
 		foreach ( $input as $key => $val ) {
 				if ( is_array( $val ) ){
-						$output[ $key ] = uap_sanitize_array( $val );
+						$output[ $key ] = af_sanitize_array( $val );
 				} else {
 						$output[ $key ] = ( isset( $input[ $key ] ) ) ? sanitize_text_field( $val ) : false;
 				}
@@ -2794,8 +2777,8 @@ function uap_sanitize_array( $input=[] )
 }
 endif;
 
-if ( !function_exists( 'uap_sanitize_textarea_array' ) ):
-function uap_sanitize_textarea_array( $input=[] )
+if ( !function_exists( 'af_sanitize_textarea_array' ) ):
+function af_sanitize_textarea_array( $input=[] )
 {
 		$output = [];
 		if ( !is_array( $input ) ){
@@ -2803,7 +2786,7 @@ function uap_sanitize_textarea_array( $input=[] )
 		}
 		foreach ( $input as $key => $val ) {
 				if ( is_array( $val ) ){
-						$output[ $key ] = uap_sanitize_textarea_array( $val );
+						$output[ $key ] = af_sanitize_textarea_array( $val );
 				} else {
 						$output[ $key ] = ( isset( $input[ $key ] ) ) ? wp_kses_post( $val ) : false;
 				}
@@ -2812,26 +2795,8 @@ function uap_sanitize_textarea_array( $input=[] )
 }
 endif;
 
-if ( !function_exists( 'indeed_sanitize_array' ) ):
-function indeed_sanitize_array( $input=[] )
-{
-    $output = [];
-    if ( !is_array( $input ) ){
-        return sanitize_text_field($input);
-    }
-    foreach ( $input as $key => $val ) {
-        if ( is_array( $val ) ){
-            $output[ $key ] = indeed_sanitize_array( $val );
-        } else {
-            $output[ $key ] = ( isset( $input[ $key ] ) ) ? sanitize_text_field( $val ) : false;
-        }
-    }
-    return $output;
-}
-endif;
-
-if ( !function_exists( 'indeedEscapeArrayForQuery' ) ):
-function indeedEscapeArrayForQuery( $array=[] ){
+if ( !function_exists( 'afEscapeArrayForQuery' ) ):
+function afEscapeArrayForQuery( $array=[] ){
     global $wpdb;
     $prepered = [];
     foreach ( $array as $key => $value ){
@@ -2849,18 +2814,18 @@ endif;
  * @param int
  * @return string
  */
-if ( !function_exists( 'uap_flag_for_affiliate' ) ):
-function uap_flag_for_affiliate($user_id=0)
+if ( !function_exists( 'af_flag_for_affiliate' ) ):
+function af_flag_for_affiliate($user_id=0)
 {
 	 if ($user_id){
 		 	return '';
 	 }
-	 $flag_src = get_user_meta( $user_id, 'uap_country', true );
+	 $flag_src = get_user_meta( $user_id, 'af_country', true );
 	 if ($flag_src){
-		$countries = uap_get_countries();
+		$countries = af_get_countries();
 		$country = $countries[strtoupper($flag_src)];
 		$title = (empty($country)) ? '' : $country;
-		return '<span class="uap-affiliate-flag-wrapp"><img src="' . UAP_URL . 'assets/flags/' . $flag_src . '.svg" title="' . $title . '" class="uap-affiliate-admin-flag" /></span>';
+		return '<span class="af-affiliate-flag-wrapp"><img src="' . AF_URL . 'assets/flags/' . $flag_src . '.svg" title="' . $title . '" class="af-affiliate-admin-flag" /></span>';
 	 }
 	 return '';
 }
@@ -2869,25 +2834,25 @@ endif;
 /*
 $dayname = date('w', time() ); // will return 0-6
 */
-if ( !function_exists( 'uapDaysOfWeek' ) ):
-function uapDaysOfWeek()
+if ( !function_exists( 'afDaysOfWeek' ) ):
+function afDaysOfWeek()
 {
     return [
-              1 => esc_html__( 'Monday', 'uap' ),
-              2 => esc_html__( 'Tuesday', 'uap' ),
-              3 => esc_html__( 'Wednesday', 'uap' ),
-              4 => esc_html__( 'Thursday', 'uap' ),
-              5 => esc_html__( 'Friday', 'uap' ),
-              6 => esc_html__( 'Saturday', 'uap' ),
-              0 => esc_html__( 'Sunday', 'uap' ),
+              1 => esc_html__( 'Monday', 'openaffiliates' ),
+              2 => esc_html__( 'Tuesday', 'openaffiliates' ),
+              3 => esc_html__( 'Wednesday', 'openaffiliates' ),
+              4 => esc_html__( 'Thursday', 'openaffiliates' ),
+              5 => esc_html__( 'Friday', 'openaffiliates' ),
+              6 => esc_html__( 'Saturday', 'openaffiliates' ),
+              0 => esc_html__( 'Sunday', 'openaffiliates' ),
     ];
 }
 endif;
 
-if ( !function_exists( 'uapUnixtimestampForNextDayNumber' ) ):
-function uapUnixtimestampForNextDayNumber( $dayNumber=0 )
+if ( !function_exists( 'afUnixtimestampForNextDayNumber' ) ):
+function afUnixtimestampForNextDayNumber( $dayNumber=0 )
 {
-    $currentTime = indeed_get_unixtimestamp_with_timezone();
+    $currentTime = af_get_unixtimestamp_with_timezone();
     $days = [
               1 => 'Monday',
               2 => 'Tuesday',
@@ -2904,13 +2869,13 @@ function uapUnixtimestampForNextDayNumber( $dayNumber=0 )
     } else {
 
       $target = strtotime("next ". $days[$dayNumber] );
-      return indeed_get_unixtimestamp_with_timezone( $target );
+      return af_get_unixtimestamp_with_timezone( $target );
     }
 }
 endif;
 
-if ( !function_exists( 'uapGetArrayDate' ) ):
-function uapGetArrayDate( $start, $end, $step )
+if ( !function_exists( 'afGetArrayDate' ) ):
+function afGetArrayDate( $start, $end, $step )
 {
     $dates = [];
     $current = $start;
@@ -2952,8 +2917,8 @@ function uapGetArrayDate( $start, $end, $step )
 }
 endif;
 
-if ( !function_exists('uapArrayIntersectKeepKeys' ) ):
-function uapArrayIntersectKeepKeys( $arrayA, $arrayB )
+if ( !function_exists('afArrayIntersectKeepKeys' ) ):
+function afArrayIntersectKeepKeys( $arrayA, $arrayB )
 {
 	foreach ( $arrayA as $dataKey => $dataValue ){
 			if (isset( $arrayB[$dataKey])){
@@ -2964,8 +2929,8 @@ function uapArrayIntersectKeepKeys( $arrayA, $arrayB )
 }
 endif;
 
-if ( !function_exists( 'uapSiteDomain' ) ):
-function uapSiteDomain()
+if ( !function_exists( 'afSiteDomain' ) ):
+function afSiteDomain()
 {
 		$domain = get_option( 'siteurl' );
 		$domain = str_replace('http://', '', $domain);
@@ -2975,8 +2940,8 @@ function uapSiteDomain()
 }
 endif;
 
-if ( !function_exists( 'indeedImplodeKeys') ):
-function indeedImplodeKeys( $input=[], $delimiter=',' )
+if ( !function_exists( 'afImplodeKeys') ):
+function afImplodeKeys( $input=[], $delimiter=',' )
 {
 		if ( !is_array( $input ) || count( $input ) < 1 ){
 				return '';
@@ -2986,8 +2951,8 @@ function indeedImplodeKeys( $input=[], $delimiter=',' )
 }
 endif;
 
-if ( !function_exists( 'uap_is_ulp_active' ) ):
-function uap_is_ulp_active()
+if ( !function_exists( 'af_is_ulp_active' ) ):
+function af_is_ulp_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -2999,8 +2964,8 @@ function uap_is_ulp_active()
 }
 endif;
 
-if ( !function_exists( 'uap_is_edd_active' ) ):
-function uap_is_edd_active()
+if ( !function_exists( 'af_is_edd_active' ) ):
+function af_is_edd_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -3012,8 +2977,8 @@ function uap_is_edd_active()
 }
 endif;
 
-if ( !function_exists( 'uap_is_cf7_active' ) ):
-function uap_is_cf7_active()
+if ( !function_exists( 'af_is_cf7_active' ) ):
+function af_is_cf7_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -3025,8 +2990,8 @@ function uap_is_cf7_active()
 }
 endif;
 
-if ( !function_exists( 'uap_is_wpforms_active' ) ):
-function uap_is_wpforms_active()
+if ( !function_exists( 'af_is_wpforms_active' ) ):
+function af_is_wpforms_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -3038,8 +3003,8 @@ function uap_is_wpforms_active()
 }
 endif;
 
-if ( !function_exists( 'uap_is_ninjaforms_active' ) ):
-function uap_is_ninjaforms_active()
+if ( !function_exists( 'af_is_ninjaforms_active' ) ):
+function af_is_ninjaforms_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -3051,8 +3016,8 @@ function uap_is_ninjaforms_active()
 }
 endif;
 
-if ( !function_exists( 'uap_is_ninjaformsdemo_active' ) ):
-function uap_is_ninjaformsdemo_active()
+if ( !function_exists( 'af_is_ninjaformsdemo_active' ) ):
+function af_is_ninjaformsdemo_active()
 {
 	if ( !function_exists( 'is_plugin_active' ) ){
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -3064,16 +3029,16 @@ function uap_is_ninjaformsdemo_active()
 }
 endif;
 
-if ( !function_exists( 'uap_external_service_notice' ) ):
+if ( !function_exists( 'af_external_service_notice' ) ):
 /**
  * Prints a notice telling the admin which data a feature sends to which third-party service.
  * @param string $sends What is sent.
  * @param string $to Who receives it.
  * @return void
  */
-function uap_external_service_notice( $sends = '', $to = '' ){
-	echo '<div class="uap-external-service-notice"><strong>' . esc_html__( 'External service:', 'uap' ) . '</strong> '
-		. sprintf( esc_html__( 'when this feature is enabled and configured, the plugin sends %1$s to %2$s. Nothing is sent while it is turned off.', 'uap' ), esc_html( $sends ), esc_html( $to ) )
+function af_external_service_notice( $sends = '', $to = '' ){
+	echo '<div class="af-external-service-notice"><strong>' . esc_html__( 'External service:', 'openaffiliates' ) . '</strong> '
+		. sprintf( esc_html__( 'when this feature is enabled and configured, the plugin sends %1$s to %2$s. Nothing is sent while it is turned off.', 'openaffiliates' ), esc_html( $sends ), esc_html( $to ) )
 		. '</div>';
 }
 endif;

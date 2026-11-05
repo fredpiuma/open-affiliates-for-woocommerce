@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 /**
 columns:
 id
@@ -47,7 +47,7 @@ class Payouts
     public function insert( $params=[] )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}uap_payouts VALUES( NULL, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW(), %s);",
+        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}af_payouts VALUES( NULL, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW(), %s);",
               $params['method'],
               $params['amount'],
               $params['currency'],
@@ -68,7 +68,7 @@ class Payouts
     public function update( $params=[] )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}uap_payouts
+        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}af_payouts
                                       SET
                                       method=%s,
                                       amount=%s,
@@ -109,7 +109,7 @@ class Payouts
         if ( $this->getOne( $id ) ){
             return false;
         }
-        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}uap_payouts
+        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}af_payouts
                                       SET
                                       status=%s,
                                       updated_time=NOW()
@@ -140,7 +140,7 @@ class Payouts
                                         updated_time,
                                         status
                                         FROM
-                                        {$wpdb->prefix}uap_payouts
+                                        {$wpdb->prefix}af_payouts
                                         WHERE
                                         id=%d
         ", $id );
@@ -160,7 +160,7 @@ class Payouts
         global $wpdb;
         $query = $wpdb->prepare("SELECT status
                                         FROM
-                                        {$wpdb->prefix}uap_payouts
+                                        {$wpdb->prefix}af_payouts
                                         WHERE
                                         id=%d
         ", $id );
@@ -186,13 +186,13 @@ class Payouts
             $select = " COUNT(p.id) as num ";
         }
         $query = "SELECT $select FROM
-                                {$wpdb->prefix}uap_payouts p
+                                {$wpdb->prefix}af_payouts p
                                 WHERE
                                 1=1 ";
 
 
         if ( isset( $params['status_in'] ) && is_array( $params['status_in'] ) && count( $params['status_in'] ) > 0 ){
-              $query .= " AND p.status IN (" . indeedEscapeArrayForQuery( $params['status_in'] ) . ") ";
+              $query .= " AND p.status IN (" . afEscapeArrayForQuery( $params['status_in'] ) . ") ";
         }
 
         // start time
@@ -205,7 +205,7 @@ class Payouts
         }
 
         if ( isset( $params['search_phrase'] ) && $params['search_phrase'] !== '' ){
-            $directDeposit = esc_html__( 'Direct Deposit', 'uap' );
+            $directDeposit = esc_html__( 'Direct Deposit', 'openaffiliates' );
             switch ( $params['search_phrase'] ){
                 case 'bank':
                 case 'direct':
@@ -242,7 +242,7 @@ class Payouts
         if ( empty( $params['count'] ) ){
             $data = $wpdb->get_results( $query, ARRAY_A );
 
-            $paymentMetaModel = new \Indeed\Uap\Db\PaymentMeta();
+            $paymentMetaModel = new \OpenAffiliates\Db\PaymentMeta();
             foreach ( $data as $key => $array ){
                 $data[$key]['number_of_payments'] = false;
                 $payments = $paymentMetaModel->getAllPaymentIdsForMetaNameMetaValue( 'payout_id', $array['id'] );
@@ -267,7 +267,7 @@ class Payouts
         if ( $this->getOne( $id ) === false ){
             return false;
         }
-        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}uap_payouts WHERE id=%d;", $id );
+        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}af_payouts WHERE id=%d;", $id );
         return $wpdb->query( $query );
     }
 
@@ -278,8 +278,8 @@ class Payouts
     public function getCompletedPercentage( $id=0 )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "SELECT up.status as status FROM {$wpdb->prefix}uap_payments up
-                                        INNER JOIN {$wpdb->prefix}uap_payments_meta upm on upm.payment_id=up.id
+        $query = $wpdb->prepare( "SELECT up.status as status FROM {$wpdb->prefix}af_payments up
+                                        INNER JOIN {$wpdb->prefix}af_payments_meta upm on upm.payment_id=up.id
                                         WHERE upm.meta_name='payout_id' AND upm.meta_value=%d ", $id );
         $data = $wpdb->get_results( $query, ARRAY_A );
         if ( $data === null || $data === false || $data === '' ){
@@ -306,7 +306,7 @@ class Payouts
     public function haveEntries()
     {
         global $wpdb;
-        $results = $wpdb->get_var( "SELECT id from {$wpdb->prefix}uap_payouts ORDER BY id ASC LIMIT 1;" );
+        $results = $wpdb->get_var( "SELECT id from {$wpdb->prefix}af_payouts ORDER BY id ASC LIMIT 1;" );
         if ( $results === null || $results === false ){
             return false;
         }

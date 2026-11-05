@@ -2,12 +2,12 @@
 * 	Owl Carousel Owl Demo Theme 
 *	v1.3.2
 */
-.owl-uap-theme .owl-uap-controls{
+.owl-af-theme .owl-af-controls{
 	margin-top: 10px;
 	text-align: center;
 }
 /* Styling Next and Prev buttons */
-.owl-uap-theme .owl-uap-controls .owl-uap-buttons div{
+.owl-af-theme .owl-af-controls .owl-af-buttons div{
 	color: #FFF;
 	display: inline-block;
 	zoom: 1;
@@ -24,18 +24,18 @@
 }
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
-.owl-uap-theme .owl-uap-controls.clickable .owl-uap-buttons div:hover{
+.owl-af-theme .owl-af-controls.clickable .owl-af-buttons div:hover{
 	filter: Alpha(Opacity=100);/*IE7 fix*/
 	opacity: 1;
 	text-decoration: none;
 }
 /* Styling Pagination*/
-.owl-uap-theme .owl-uap-controls .owl-uap-page{
+.owl-af-theme .owl-af-controls .owl-af-page{
 	display: inline-block;
 	zoom: 1;
 	*display: inline;/*IE7 life-saver */
 }
-.owl-uap-theme .owl-uap-controls .owl-uap-page span{
+.owl-af-theme .owl-af-controls .owl-af-page span{
 	display: block;
 	width: 12px;
 	height: 12px;
@@ -47,13 +47,13 @@
 	border-radius: 20px;
 	background: #869791;
 }
-.owl-uap-theme .owl-uap-controls .owl-uap-page.active span,
-.owl-uap-theme .owl-uap-controls.clickable .owl-uap-page:hover span{
+.owl-af-theme .owl-af-controls .owl-af-page.active span,
+.owl-af-theme .owl-af-controls.clickable .owl-af-page:hover span{
 	filter: Alpha(Opacity=100);/*IE7 fix*/
 	opacity: 1;
 }
 /* If PaginationNumbers is true */
-.owl-uap-theme .owl-uap-controls .owl-uap-page span.owl-uap-numbers{
+.owl-af-theme .owl-af-controls .owl-af-page span.owl-af-numbers{
 	height: auto;
 	width: auto;
 	color: #FFF;
@@ -64,7 +64,7 @@
 	border-radius: 30px;
 }
 /* preloading images */
-.owl-uap-item.loading{
+.owl-af-item.loading{
 	min-height: 150px;
 	background: url(AjaxLoader.gif) no-repeat center center
 }

@@ -1,12 +1,12 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class RestAPI extends \WP_REST_Controller
 {
 
     public function __construct()
     {
-        $isOn = get_option('uap_rest_api_enabled');
+        $isOn = get_option('af_rest_api_enabled');
         if ( !$isOn ){
             return;
         }
@@ -15,98 +15,98 @@ class RestAPI extends \WP_REST_Controller
 
     public function register_routes()
     {
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'affiliates', [
+        register_rest_route( 'openaffiliates/v1', 'affiliates', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getAffiliates'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'approve-affiliate/(?P<affiliateId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'approve-affiliate/(?P<affiliateId>\d+)', [
                 'methods'               => 'POST',
                 'callback'              => [$this, 'approveAffiliate'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'update-affiliate-rank/(?P<affiliateId>\d+)/(?P<rankId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'update-affiliate-rank/(?P<affiliateId>\d+)/(?P<rankId>\d+)', [
                 'methods'               => 'POST',
                 'callback'              => [$this, 'updateAffiliateRank'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'get-user-data/(?P<affiliateId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'get-user-data/(?P<affiliateId>\d+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getAllUserData'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'get-user-field-value/(?P<affiliateId>\d+)/(?P<fieldName>[a-z0-9_.\-]+)', [
+        register_rest_route( 'openaffiliates/v1', 'get-user-field-value/(?P<affiliateId>\d+)/(?P<fieldName>[a-z0-9_.\-]+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getUserFieldValue'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'get-affiliate-rank/(?P<affiliateId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'get-affiliate-rank/(?P<affiliateId>\d+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getAffiliateRank'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'get-affiliate-rank-details/(?P<affiliateId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'get-affiliate-rank-details/(?P<affiliateId>\d+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getAffiliateRankDetails'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'search-affiliate/(?P<search>[a-z0-9 .\-]+)', [
+        register_rest_route( 'openaffiliates/v1', 'search-affiliate/(?P<search>[a-z0-9 .\-]+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'searchAffiliate'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'list-ranks', [
+        register_rest_route( 'openaffiliates/v1', 'list-ranks', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'listRanks'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'list-affiliates-by-rank/(?P<rankId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'list-affiliates-by-rank/(?P<rankId>\d+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'getAffiliatesByRank'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'make-user-affiliate/(?P<userId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'make-user-affiliate/(?P<userId>\d+)', [
                 'methods'               => 'PUT',
                 'callback'              => [$this, 'makeUserAffiliate'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'add-referral', [
+        register_rest_route( 'openaffiliates/v1', 'add-referral', [
                 'methods'               => 'PUT',
                 'callback'              => [$this, 'createReferral'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'list-referrals', [
+        register_rest_route( 'openaffiliates/v1', 'list-referrals', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'listReferrals'],
                 'permission_callback'   => [$this, 'permissions'],
                 'args'                  => $this->get_collection_params(),
         ]);
 
-        register_rest_route( 'ultimate-affiliates-pro/v1', 'list-referrals/(?P<affiliateId>\d+)', [
+        register_rest_route( 'openaffiliates/v1', 'list-referrals/(?P<affiliateId>\d+)', [
                 'methods'               => 'GET',
                 'callback'              => [$this, 'listReferrals'],
                 'permission_callback'   => [$this, 'permissions'],
@@ -119,8 +119,8 @@ class RestAPI extends \WP_REST_Controller
 
     public function permissions($request)
     {
-        $username = isset($_SERVER['PHP_AUTH_USER']) ? uap_sanitize_array($_SERVER['PHP_AUTH_USER']) : '';
-        $password = isset($_SERVER['PHP_AUTH_PW']) ? uap_sanitize_array($_SERVER['PHP_AUTH_PW']) : '';
+        $username = isset($_SERVER['PHP_AUTH_USER']) ? af_sanitize_array($_SERVER['PHP_AUTH_USER']) : '';
+        $password = isset($_SERVER['PHP_AUTH_PW']) ? af_sanitize_array($_SERVER['PHP_AUTH_PW']) : '';
         if ( !$username || !$password ){
             return false;
         }
@@ -136,19 +136,19 @@ class RestAPI extends \WP_REST_Controller
 
     public function getAffiliates(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $page = isset($request['page']) ? $request['page'] : 1;
         $limit = isset($request['limit']) ? $request['limit'] : 30;
         $offset = ($page - 1) * $limit;
-        $data = $indeed_db->get_affiliates($limit, $offset);
+        $data = $af_db->get_affiliates($limit, $offset);
         return json_encode( $data );
     }
 
     public function approveAffiliate(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         if (isset($request['affiliateId'])){
-            $indeed_db->doApproveAffiliate($request['affiliateId']);
+            $af_db->doApproveAffiliate($request['affiliateId']);
             $success = true;
         }
         return json_encode( [
@@ -158,10 +158,10 @@ class RestAPI extends \WP_REST_Controller
 
     public function updateAffiliateRank(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $success = false;
         if (isset($request['affiliateId']) && isset($request['rankId'])){
-            $indeed_db->update_affiliate_rank($request['affiliateId'], $request['rankId']);
+            $af_db->update_affiliate_rank($request['affiliateId'], $request['rankId']);
             $success = true;
         }
         return json_encode( [
@@ -171,22 +171,22 @@ class RestAPI extends \WP_REST_Controller
 
     public function getAllUserData(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $userData = '';
         if (isset($request['affiliateId'])){
-            $uid = $indeed_db->get_uid_by_affiliate_id($request['affiliateId']);
-            $userData = $indeed_db->getAllUserData($uid);
+            $uid = $af_db->get_uid_by_affiliate_id($request['affiliateId']);
+            $userData = $af_db->getAllUserData($uid);
         }
         return json_encode( $userData );
     }
 
     public function getUserFieldValue(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $metaValue = '';
         if (isset($request['affiliateId']) && isset($request['fieldName'])){
-            $uid = $indeed_db->get_uid_by_affiliate_id($request['affiliateId']);
-            $metaValue = $indeed_db->getUserMetaValue($uid, $request['fieldName']);
+            $uid = $af_db->get_uid_by_affiliate_id($request['affiliateId']);
+            $metaValue = $af_db->getUserMetaValue($uid, $request['fieldName']);
         }
         return json_encode( [
             'response' => $metaValue
@@ -196,10 +196,10 @@ class RestAPI extends \WP_REST_Controller
 
     public function getAffiliateRank(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $rankId = 0;
         if (isset($request['affiliateId'])){
-            $rankId = $indeed_db->get_affiliate_rank($request['affiliateId']);
+            $rankId = $af_db->get_affiliate_rank($request['affiliateId']);
         }
         return json_encode( [
             'rank_id' => $rankId
@@ -209,29 +209,29 @@ class RestAPI extends \WP_REST_Controller
 
     public function getAffiliateRankDetails(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $rankData = [];
         if (isset($request['affiliateId'])){
-            $rankId = $indeed_db->get_affiliate_rank($request['affiliateId']);
-            $rankData = $indeed_db->get_rank($rankId);
+            $rankId = $af_db->get_affiliate_rank($request['affiliateId']);
+            $rankData = $af_db->get_rank($rankId);
         }
         return json_encode($rankData);
     }
 
     public function searchAffiliate(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $affiliates = [];
         if (isset($request['search'])){
-            $affiliates = $indeed_db->search_affiliates_by_char($request['search']);
+            $affiliates = $af_db->search_affiliates_by_char($request['search']);
         }
         return json_encode( $affiliates );
     }
 
     public function listRanks(\WP_REST_Request $request)
     {
-        global $indeed_db;
-        $ranksObject = $indeed_db->get_ranks();
+        global $af_db;
+        $ranksObject = $af_db->get_ranks();
         if (empty($ranksObject)){
             return json_encode([]);
         }
@@ -244,24 +244,24 @@ class RestAPI extends \WP_REST_Controller
 
     public function getAffiliatesByRank(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $affiliates = [];
         if (isset($request['rankId'])){
-            $affiliates = $indeed_db->get_affiliates(-1, -1, FALSE, '', '', [], $request['rankId']);
+            $affiliates = $af_db->get_affiliates(-1, -1, FALSE, '', '', [], $request['rankId']);
         }
         return json_encode( $affiliates );
     }
 
     public function makeUserAffiliate(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $success = false;
         if (isset($request['userId'])){
-          $inserted = $indeed_db->save_affiliate($request['userId']);
+          $inserted = $af_db->save_affiliate($request['userId']);
           if ($inserted){
             /// put default rank on this new affiliate
-            $default_rank = get_option('uap_register_new_user_rank');
-            $indeed_db->update_affiliate_rank_by_uid($request['userId'], $default_rank);
+            $default_rank = get_option('af_register_new_user_rank');
+            $af_db->update_affiliate_rank_by_uid($request['userId'], $default_rank);
             $success = true;
           }
         }
@@ -273,22 +273,22 @@ class RestAPI extends \WP_REST_Controller
 
     public function listReferrals(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $condition = '';
         if (!empty($request['affiliateId'])){
-            $condition = "r.affiliate_id=" . uap_sanitize_array($request['affiliateId']);
+            $condition = "r.affiliate_id=" . af_sanitize_array($request['affiliateId']);
         }
         $page = isset($request['page']) ? $request['page'] : 1;
         $limit = isset($request['limit']) ? $request['limit'] : 30;
         $offset = ($page - 1) * $limit;
 
-        $data = $indeed_db->get_referrals($limit, $offset, FALSE, '', '', $condition);
+        $data = $af_db->get_referrals($limit, $offset, FALSE, '', '', $condition);
         return json_encode( $data );
     }
 
     public function createReferral(\WP_REST_Request $request)
     {
-        global $indeed_db;
+        global $af_db;
         $success = false;
         $data = $request->get_body();
         $data = stripslashes($data);
@@ -303,7 +303,7 @@ class RestAPI extends \WP_REST_Controller
               'success' => $success
           ] );
         }
-        $response = $indeed_db->save_referral($referralData);
+        $response = $af_db->save_referral($referralData);
         if ($response){
             $success = true;
         }

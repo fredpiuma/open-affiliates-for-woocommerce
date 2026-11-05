@@ -1,5 +1,5 @@
 <?php
-require_once UAP_PATH . 'classes/services/paypal/vendor/autoload.php';
+require_once AF_PATH . 'classes/services/paypal/vendor/autoload.php';
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
@@ -24,13 +24,13 @@ class PayoutPayPal
 	public function __construct()
 	{
 		date_default_timezone_set(@date_default_timezone_get());
-		$this->is_sandbox = get_option('uap_paypal_sandbox');
+		$this->is_sandbox = get_option('af_paypal_sandbox');
 		if ($this->is_sandbox){
-			$this->client_id = get_option('uap_paypal_sandbox_client_id');
-			$this->client_secret = get_option('uap_paypal_sandbox_client_secret');
+			$this->client_id = get_option('af_paypal_sandbox_client_id');
+			$this->client_secret = get_option('af_paypal_sandbox_client_secret');
 		} else {
-			$this->client_id = get_option('uap_paypal_client_id');
-			$this->client_secret = get_option('uap_paypal_client_secret');
+			$this->client_id = get_option('af_paypal_client_id');
+			$this->client_secret = get_option('af_paypal_client_secret');
 		}
 		$this->client_id = trim($this->client_id);
 		$this->client_secret = trim($this->client_secret);
@@ -45,17 +45,17 @@ class PayoutPayPal
 	{
 		 if ( !$this->client_id ){
 			 	if ( $this->is_sandbox ){
-			 			$this->errorDetails = esc_html__( 'Sandbox Client ID is not set.', 'uap' );
+			 			$this->errorDetails = esc_html__( 'Sandbox Client ID is not set.', 'openaffiliates' );
 				} else {
-						$this->errorDetails = esc_html__( 'Client ID is not set.', 'uap' );
+						$this->errorDetails = esc_html__( 'Client ID is not set.', 'openaffiliates' );
 				}
 		 	  return false;
 		 }
 		 if ( !$this->client_secret ){
 			 if ( $this->is_sandbox ){
-					 $this->errorDetails = esc_html__( 'Sandbox Client Secret is not set.', 'uap' );
+					 $this->errorDetails = esc_html__( 'Sandbox Client Secret is not set.', 'openaffiliates' );
 			 } else {
-					 $this->errorDetails = esc_html__( 'Client Secret is not set.', 'uap' );
+					 $this->errorDetails = esc_html__( 'Client Secret is not set.', 'openaffiliates' );
 			 }
 			 return false;
 		 }
@@ -67,7 +67,7 @@ class PayoutPayPal
 		);
 		$config = array(
 				'log.LogEnabled' => false,
-				'log.FileName' => UAP_PATH . 'paypal.log',
+				'log.FileName' => AF_PATH . 'paypal.log',
 				'log.LogLevel' => 'INFO',
 				'cache.enabled' => false,
 		);
@@ -321,7 +321,7 @@ class PayoutPayPal
 							break;
 					default:
 					case 'invalid_client':
-							$this->errorDetails = esc_html__('The Payment cannot be proceed for affiliate ', 'uap') . $this->targetEmail . '. PayPal error: ' . $description . " ($errorCode). " ;
+							$this->errorDetails = esc_html__('The Payment cannot be proceed for affiliate ', 'openaffiliates') . $this->targetEmail . '. PayPal error: ' . $description . " ($errorCode). " ;
 							break;
 			}
 	}

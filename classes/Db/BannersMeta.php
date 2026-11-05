@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 
 /*
 columns:
@@ -38,7 +38,7 @@ class BannersMeta
           }
           if ( $this->getOne( $bannerId, $metaName ) === false ){
               // insert
-              $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}uap_banners_meta VALUES(
+              $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}af_banners_meta VALUES(
                 null,
                 %s,
                 %s,
@@ -49,7 +49,7 @@ class BannersMeta
                   $metaValue
               );
           } else {
-              $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}uap_banners_meta SET meta_value=%s WHERE meta_name=%s AND banner_id=%d;",
+              $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}af_banners_meta SET meta_value=%s WHERE meta_name=%s AND banner_id=%d;",
                   $metaValue,
                   $metaName,
                   $bannerId
@@ -69,12 +69,12 @@ class BannersMeta
         {
             global $wpdb;
             if ( $id ){
-                $query = $wpdb->prepare( "SELECT id, banner_id, meta_name, meta_value FROM {$wpdb->prefix}uap_banners_meta
+                $query = $wpdb->prepare( "SELECT id, banner_id, meta_name, meta_value FROM {$wpdb->prefix}af_banners_meta
                                               WHERE id=%d
                 ", $id );
                 return $wpdb->get_results( $query, ARRAY_A );
             } else if ( $slug ){
-                $query = $wpdb->prepare( "SELECT id, banner_id, meta_name, meta_value FROM {$wpdb->prefix}uap_banners_meta
+                $query = $wpdb->prepare( "SELECT id, banner_id, meta_name, meta_value FROM {$wpdb->prefix}af_banners_meta
                                               WHERE slug=%s
                 ", $slug );
                 return $wpdb->get_results( $query, ARRAY_A );
@@ -90,7 +90,7 @@ class BannersMeta
         {
             global $wpdb;
             $query = $wpdb->prepare( "SELECT id, banner_id, meta_name, meta_value
-                                          FROM {$wpdb->prefix}uap_banners_meta
+                                          FROM {$wpdb->prefix}af_banners_meta
                                           ORDER BY id DESC LIMIT %d OFFSET 0;", $limit );
             return $wpdb->get_results( $query, ARRAY_A );
         }
@@ -103,7 +103,7 @@ class BannersMeta
     public function getOne( $bannerId=0, $metaName='' )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "SELECT meta_value FROM {$wpdb->prefix}uap_banners_meta
+        $query = $wpdb->prepare( "SELECT meta_value FROM {$wpdb->prefix}af_banners_meta
                                       WHERE
                                       banner_id=%d
                                       AND
@@ -136,7 +136,7 @@ class BannersMeta
                       'message'   => 'Meta Name its not provided.',
             ];
         }
-        $result = $wpdb->query( "DELETE FROM {$wpdb->prefix}uap_banners_meta WHERE banner_id=%d AND meta_name=%s;", $bannerId, $metaName );
+        $result = $wpdb->query( "DELETE FROM {$wpdb->prefix}af_banners_meta WHERE banner_id=%d AND meta_name=%s;", $bannerId, $metaName );
 
         if ( $result ){
             return [
@@ -163,7 +163,7 @@ class BannersMeta
                       'message'   => 'Banner Id its not provided.',
             ];
         }
-        $result = $wpdb->query( "DELETE FROM {$wpdb->prefix}uap_banners_meta WHERE banner_id=%d;", $bannerId );
+        $result = $wpdb->query( "DELETE FROM {$wpdb->prefix}af_banners_meta WHERE banner_id=%d;", $bannerId );
 
         if ( $result ){
             return [

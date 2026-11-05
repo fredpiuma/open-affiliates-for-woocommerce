@@ -1,5 +1,5 @@
 /*
- *Ultimate Affiliate Pro - Sweet Alert
+ *Open Affiliates - Sweet Alert
  */
 ;(function(window, document, undefined) {
 "use strict";
@@ -1177,7 +1177,7 @@ sweetAlert.enableButtons = _swal.enableButtons = function (event) {
 if (typeof window !== 'undefined') {
   // The 'handle-click' module requires
   // that 'sweetAlert' was set as global.
-  window.sweetAlert = window.uapSwal = sweetAlert;
+  window.sweetAlert = window.afSwal = sweetAlert;
 } else {
   (0, _utils.logStr)('SweetAlert is a frontend module!');
 }

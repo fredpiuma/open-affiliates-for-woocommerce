@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 
 class GeneratedAffiliateLinks
 {
@@ -18,7 +18,7 @@ class GeneratedAffiliateLinks
     {
         global $wpdb;
         $query = $wpdb->prepare( "SELECT id,aid,base_url,affiliate_url,campaign,create_date
-                                    FROM {$wpdb->prefix}uap_generated_affiliate_links WHERE id=%d;", $id );
+                                    FROM {$wpdb->prefix}af_generated_affiliate_links WHERE id=%d;", $id );
         $data = $wpdb->get_row( $query, ARRAY_A );
         if ( $data === null ){
             return false;
@@ -34,7 +34,7 @@ class GeneratedAffiliateLinks
     {
         global $wpdb;
         $query = $wpdb->prepare( "SELECT id,aid,base_url,affiliate_url,campaign,create_date
-                                    FROM {$wpdb->prefix}uap_generated_affiliate_links WHERE aid=%d;", $aid );
+                                    FROM {$wpdb->prefix}af_generated_affiliate_links WHERE aid=%d;", $aid );
         $data = $wpdb->get_results( $query, ARRAY_A );
         if ( $data === null ){
             return false;
@@ -49,9 +49,9 @@ class GeneratedAffiliateLinks
     public static function save( $params=[] )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}uap_generated_affiliate_links
+        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}af_generated_affiliate_links
                                     VALUES ( NULL, %d, %s, %s, %s, %s );",
-                                    $params['aid'], $params['base_url'], $params['affiliate_url'], $params['campaign'], indeed_get_unixtimestamp_with_timezone() );
+                                    $params['aid'], $params['base_url'], $params['affiliate_url'], $params['campaign'], af_get_unixtimestamp_with_timezone() );
         return $wpdb->query( $query, ARRAY_A );
     }
 
@@ -62,7 +62,7 @@ class GeneratedAffiliateLinks
     public static function delete( $id=0 )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}uap_generated_affiliate_links WHERE id=%d;", $id );
+        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}af_generated_affiliate_links WHERE id=%d;", $id );
         return $wpdb->query( $query );
     }
 

@@ -1,8 +1,8 @@
 /*
- *Ultimate Affiliate Pro - Front-end Product Links
+ *Open Affiliates - Front-end Product Links
  */
 "use strict";
-var uapProductLinks = {
+var afProductLinks = {
     searchFieldSelector              : '',
     listProductsSelector             : '',
     offset                           : 0,
@@ -25,8 +25,8 @@ var uapProductLinks = {
         obj.setAttributes(obj, args);
 
         window.addEventListener( 'DOMContentLoaded', function(){
-            if ( jQuery('.uap-js-product-links-include-label').length ){
-                obj.productLinksLabelsOn = jQuery('.uap-js-product-links-include-label').attr('data-enabled');
+            if ( jQuery('.af-js-product-links-include-label').length ){
+                obj.productLinksLabelsOn = jQuery('.af-js-product-links-include-label').attr('data-enabled');
             } else {
                 obj.productLinksLabelsOn = true;
             }
@@ -87,7 +87,7 @@ var uapProductLinks = {
             type    : "post",
             url     : decodeURI(ajax_url),
             data    : {
-                       action       : "uap_search_product_for_product_links",
+                       action       : "af_search_product_for_product_links",
                        search       : searchValue,
                        offset       : obj.offset,
                        category     : category,
@@ -139,7 +139,7 @@ var uapProductLinks = {
             type    : "post",
             url     : decodeURI(ajax_url),
             data    : {
-                       action       : "uap_product_link_popup",
+                       action       : "af_product_link_popup",
                        postId       : jQuery( e.target ).attr( 'data-post_id' ),
                        labelsOn     : obj.productLinksLabelsOn
             },
@@ -155,7 +155,7 @@ var uapProductLinks = {
                 return;
             }
             var loadMore = jQuery( obj.listProductsSelector ).attr( 'data-load_more_label' );
-            var loadMoreHtml = '<div class="uap-show-more-products-bttn" id="uap_show_more_products_bttn" >' + loadMore + '</div>';
+            var loadMoreHtml = '<div class="af-show-more-products-bttn" id="af_show_more_products_bttn" >' + loadMore + '</div>';
             jQuery( obj.listProductsSelector ).after( loadMoreHtml );
         } else {
             jQuery( obj.showMoreSelector ).remove();
@@ -171,13 +171,13 @@ var uapProductLinks = {
     	      type 	: "post",
     	      url 	: decodeURI(ajax_url),
     	      data 	: {
-    	                   action							: "uap_ia_ajax_return_url_for_aff",
-    	                   aff_id							: jQuery( '#uap_show_link_affiliate_id' ).attr( 'data-affiliate_id' ),
-                         post_id            : jQuery( '#uap_show_link_affiliate_id' ).attr( 'data-post_id' ),
+    	                   action							: "af_ia_ajax_return_url_for_aff",
+    	                   aff_id							: jQuery( '#af_show_link_affiliate_id' ).attr( 'data-affiliate_id' ),
+                         post_id            : jQuery( '#af_show_link_affiliate_id' ).attr( 'data-post_id' ),
     	                   url								: window.location.href,
     	                   campaign						: '',
-    	                   slug								: jQuery( '#uap_show_link_ref_type' ).val(),
-    	                   friendly_links			: jQuery( '#uap_show_link_friendly_link' ).val(),
+    	                   slug								: jQuery( '#af_show_link_ref_type' ).val(),
+    	                   friendly_links			: jQuery( '#af_show_link_friendly_link' ).val(),
                          labelsOn           : obj.productLinksLabelsOn
     	      },
     	      success		: function ( response ) {
@@ -185,7 +185,7 @@ var uapProductLinks = {
       	        		var obj = JSON.parse( response );
       	        		var theUrl = obj.url;
       	        		if ( theUrl != 0 ){
-      	                	jQuery('.uap-js-show-links-the-link').val( theUrl );
+      	                	jQuery('.af-js-show-links-the-link').val( theUrl );
       	        		}
     	        	}
     	      }
@@ -194,19 +194,19 @@ var uapProductLinks = {
 
 }
 
-uapProductLinks.init({
-    searchFieldSelector               : '#uap_product_links_search_bar',
-    listProductsSelector              : '.uap-product-links-items-wrapper',
+afProductLinks.init({
+    searchFieldSelector               : '#af_product_links_search_bar',
+    listProductsSelector              : '.af-product-links-items-wrapper',
     offset                            : 0,
     ajaxResponse                      : '',
-    affiliateLinkTrigger              : '.js-uap-affiliate-product-affiliate-link',
-    showMoreSelector                  : '#uap_show_more_products_bttn',
-    closePopupSelector                : '.uap-js-close-product-link-popup',
-    popupSelector                     : '.uap-show-link-popup-wrapp',
-    popupSelectorWindow               : '.uap-the-popup',
-    refTypeSelector                   : '#uap_show_link_ref_type',
-    friendlyLinksSelector             : '#uap_show_link_friendly_link',
-    searchCategorySelector            : '.uap-js-product-links-category',
-    orderSelector                     : '.uap-js-product-links-order-type',
-    countSelector                     : '.uap-js-product-links-count',
+    affiliateLinkTrigger              : '.js-af-affiliate-product-affiliate-link',
+    showMoreSelector                  : '#af_show_more_products_bttn',
+    closePopupSelector                : '.af-js-close-product-link-popup',
+    popupSelector                     : '.af-show-link-popup-wrapp',
+    popupSelectorWindow               : '.af-the-popup',
+    refTypeSelector                   : '#af_show_link_ref_type',
+    friendlyLinksSelector             : '#af_show_link_friendly_link',
+    searchCategorySelector            : '.af-js-product-links-category',
+    orderSelector                     : '.af-js-product-links-order-type',
+    countSelector                     : '.af-js-product-links-count',
 });

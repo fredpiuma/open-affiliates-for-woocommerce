@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Db;
+namespace OpenAffiliates\Db;
 
 class PaymentMeta
 {
@@ -42,7 +42,7 @@ class PaymentMeta
     public function insert( $paymentId=0, $metaKey='', $metaValue='' )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}uap_payments_meta VALUES( NULL, %d, %s, %s );", $paymentId, $metaKey, $metaValue );
+        $query = $wpdb->prepare( "INSERT INTO {$wpdb->prefix}af_payments_meta VALUES( NULL, %d, %s, %s );", $paymentId, $metaKey, $metaValue );
         return $wpdb->query( $query );
     }
 
@@ -55,7 +55,7 @@ class PaymentMeta
     public function update( $paymentId=0, $metaKey='', $metaValue='' )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}uap_payments_meta SET meta_value=%s WHERE meta_name=%s AND payment_id=%d;", $metaValue, $metaKey, $paymentId );
+        $query = $wpdb->prepare( "UPDATE {$wpdb->prefix}af_payments_meta SET meta_value=%s WHERE meta_name=%s AND payment_id=%d;", $metaValue, $metaKey, $paymentId );
         return $wpdb->query( $query );
     }
 
@@ -67,7 +67,7 @@ class PaymentMeta
     public function getOne( $paymentId=0, $metaKey='' )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "SELECT meta_value FROM {$wpdb->prefix}uap_payments_meta WHERE meta_name=%s AND payment_id=%d;", $metaKey, $paymentId );
+        $query = $wpdb->prepare( "SELECT meta_value FROM {$wpdb->prefix}af_payments_meta WHERE meta_name=%s AND payment_id=%d;", $metaKey, $paymentId );
         $value = $wpdb->get_var( $query );
         if ( $value === null || $value === false ){
             return false;
@@ -82,7 +82,7 @@ class PaymentMeta
     public function getAllForPayment( $paymentId=0 )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->prefix}uap_payments_meta WHERE payment_id=%d;", $paymentId );
+        $query = $wpdb->prepare( "SELECT meta_key, meta_value FROM {$wpdb->prefix}af_payments_meta WHERE payment_id=%d;", $paymentId );
         $data = $wpdb->get_var( $query );
         if ( $data === null || $data === false ){
             return false;
@@ -101,7 +101,7 @@ class PaymentMeta
         if ( $metaName === null || $metaName === '' || $metaValue === null ){
             return false;
         }
-        $query = $wpdb->prepare( "SELECT payment_id FROM {$wpdb->prefix}uap_payments_meta WHERE meta_name=%s AND meta_value=%s;", $metaName, $metaValue );
+        $query = $wpdb->prepare( "SELECT payment_id FROM {$wpdb->prefix}af_payments_meta WHERE meta_name=%s AND meta_value=%s;", $metaName, $metaValue );
         $data = $wpdb->get_results( $query, ARRAY_A );
         if ( $data === null || $data === false ){
             return false;
@@ -125,7 +125,7 @@ class PaymentMeta
             // option doesnt exists
             return false;
         }
-        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}uap_payments_meta WHERE payment_id=%d AND meta_name=%s;", $paymentId, $metaKey );
+        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}af_payments_meta WHERE payment_id=%d AND meta_name=%s;", $paymentId, $metaKey );
         return $wpdb->query( $query );
     }
 
@@ -136,7 +136,7 @@ class PaymentMeta
     public function deleteAllForPaymentId( $id=0 )
     {
         global $wpdb;
-        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}uap_payments_meta WHERE payment_id=%d;", $id );
+        $query = $wpdb->prepare( "DELETE FROM {$wpdb->prefix}af_payments_meta WHERE payment_id=%d;", $id );
         return $wpdb->query( $query );
     }
 }

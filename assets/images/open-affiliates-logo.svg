@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100" role="img" aria-label="Open Affiliates">
+  <title>Open Affiliates</title>
+  <!-- Open Affiliates logo - GPL-2.0-or-later -->
+  <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round">
+    <path d="M84 40a16 16 0 1 1 6 12.5"/>
+    <path d="M116 40a16 16 0 1 0-6 12.5"/>
+  </g>
+  <g fill="#fff"><circle cx="100" cy="40" r="7"/></g>
+  <text x="100" y="75" text-anchor="middle" font-family="Oswald, Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#fff" letter-spacing="1">OPEN AFFILIATES</text>
+</svg>

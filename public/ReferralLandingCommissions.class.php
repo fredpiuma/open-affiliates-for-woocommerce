@@ -9,16 +9,16 @@ class ReferralLandingCommissions extends Referral_Main{
 		 * @return none
 		 */
 		 if ($slug){
-		 	global $indeed_db;
+		 	global $af_db;
 			self::$user_id = $uid;
 			$this->set_affiliate_id();
-			$data = $indeed_db->get_landing_commission($slug);
+			$data = $af_db->get_landing_commission($slug);
 			if (empty($data['id']) || empty($data['status']) || empty(self::$affiliate_id)){
 				return;
 			}
 
 			/// <<< check cookie >>>
-			$cookie_key = 'uaplandingcommission_' . $data['id'];
+			$cookie_key = 'aflandingcommission_' . $data['id'];
 		 	if (!empty($_COOKIE[$cookie_key])){
 				return;
 		 	}
@@ -30,12 +30,12 @@ class ReferralLandingCommissions extends Referral_Main{
 
 			$referrence = 'ref_' . $data['id'] . '_' . self::$user_id . '_' . self::$affiliate_id . '_' . time();
 			$source = (empty($data['source'])) ? 'from landing commissions' : $data['source'];
-			require_once UAP_PATH . 'public/Affiliate_Referral_Amount.class.php';
+			require_once AF_PATH . 'public/Affiliate_Referral_Amount.class.php';
 			$do_math = new Affiliate_Referral_Amount(self::$affiliate_id, $source, self::$special_payment_type);
 
 			$amount_to_calculate = $data['amount_value'];
-			if (isset($_REQUEST['lc_amount']) && is_numeric(uap_sanitize_textarea_array($_REQUEST['lc_amount']))){
-				$amount_to_calculate = uap_sanitize_textarea_array($_REQUEST['lc_amount']);
+			if (isset($_REQUEST['lc_amount']) && is_numeric(af_sanitize_textarea_array($_REQUEST['lc_amount']))){
+				$amount_to_calculate = af_sanitize_textarea_array($_REQUEST['lc_amount']);
 			}
 
 			$sum = $do_math->get_result($amount_to_calculate, '');// input price, product id
@@ -72,9 +72,9 @@ class ReferralLandingCommissions extends Referral_Main{
 		 */
 		 if ($expire && $shortcode_id){
 		 	?>
-			<span class="uap-js-referral-landing-commisions-data" data-expire="<?php echo esc_attr($expire);?>" data-shortcode_id="<?php echo esc_attr($shortcode_id);?>"></span>
+			<span class="af-js-referral-landing-commisions-data" data-expire="<?php echo esc_attr($expire);?>" data-shortcode_id="<?php echo esc_attr($shortcode_id);?>"></span>
 		 	<?php
-			wp_enqueue_script( 'uap-referral-landing-commissions', UAP_URL . 'assets/js/referral-landing-commissions.js', ['jquery'], '9.4' );
+			wp_enqueue_script( 'af-referral-landing-commissions', AF_URL . 'assets/js/referral-landing-commissions.js', ['jquery'], '9.4' );
 		 }
 	}
 

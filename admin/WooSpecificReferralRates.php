@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Admin;
+namespace OpenAffiliates\Admin;
 
 class WooSpecificReferralRates
 {

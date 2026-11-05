@@ -1,9 +1,9 @@
 <?php
-namespace UAP{
+namespace OpenAffiliates{
 	class ResetPassword{
 		private $expire_interval = 3600;//one hour
-		private $plugin_prefix = 'uap';
-		private $base_url = UAP_URL;
+		private $plugin_prefix = 'af';
+		private $base_url = AF_URL;
 		private $notification_function = '';
 
 		public function __construct(){
@@ -19,7 +19,7 @@ namespace UAP{
 			 * @param string
 			 * @return boolean
 			 */
-			global $indeed_db;
+			global $af_db;
 			$sent = FALSE;
 			$user = get_user_by('email', $username_or_email);
 			if ($user){
@@ -43,22 +43,22 @@ namespace UAP{
 
 				$link = site_url();
 				$link = trailingslashit($link);
-				$link = add_query_arg('uap_act', 'password_reset', $link);
+				$link = add_query_arg('af_act', 'password_reset', $link);
 				$link = add_query_arg('do_reset_pass', 'true', $link);
 				$link = add_query_arg('c', $hash, $link);
 				$link = add_query_arg('uid', $uid, $link);
-				$link = apply_filters( 'uap_public_filter_reset_password_link', $link, $uid, $hash );
+				$link = apply_filters( 'af_public_filter_reset_password_link', $link, $uid, $hash );
 
 				$notification_function = $this->notification_function;
 				$sent = $notification_function($uid, 'reset_password_process', FALSE, array('{password_reset_link}' => $link));
 				if (!$sent){
 					$subject = esc_html__('Password reset on ', $this->plugin_prefix) . get_option('blogname');
 					$msg = esc_html__('<p>You or someone else has requested to change password for your account.</p></br><p>To change Your Password click on this URL: </p>', $this->plugin_prefix) . $link;
-					$from_name = get_option('uap_notification_name');
+					$from_name = get_option('af_notification_name');
 					if (empty($from_name)){
 						$from_name = get_option("blogname");
 					}
-					$from_email = get_option('uap_notification_email_from');
+					$from_email = get_option('af_notification_email_from');
 					if (empty($from_email)){
 						$from_email = get_option('admin_email');
 					}
@@ -76,10 +76,10 @@ namespace UAP{
 								'message'                 => 'Reset Password - Step 1: Confirmation Request. The rest of message its hidden from notification log because its contain information only for user',
 								'subject'									=> $subject,
 								'uid'                     => $uid,
-								'affiliate_id'            => $indeed_db->get_affiliate_id_by_wpuid($uid),
-								'rank_id'                 => $indeed_db->get_affiliate_rank( 0, $uid ),
+								'affiliate_id'            => $af_db->get_affiliate_id_by_wpuid($uid),
+								'rank_id'                 => $af_db->get_affiliate_rank( 0, $uid ),
 							];
-							\Indeed\Uap\Db\NotificationLogs::save( $log );
+							\OpenAffiliates\Db\NotificationLogs::save( $log );
 					}
 					// notification log ( v. >= 8.5 )
 
@@ -112,7 +112,7 @@ namespace UAP{
 			 * @param int
 			 * @return boolean
 			 */
-			 global $indeed_db;
+			 global $af_db;
 			 if ( $uid === 0 ){
 					 return;
 			 }
@@ -138,10 +138,10 @@ namespace UAP{
 										'message'                 => 'Reset Password - Step 2: Send Generated Password. The rest of message its hidden from notification log because its contain information only for user',
 										'subject'									=> $subject,
 										'uid'                     => $uid,
-										'affiliate_id'            => $indeed_db->get_affiliate_id_by_wpuid($uid),
-										'rank_id'                 => $indeed_db->get_affiliate_rank( 0, $uid ),
+										'affiliate_id'            => $af_db->get_affiliate_id_by_wpuid($uid),
+										'rank_id'                 => $af_db->get_affiliate_rank( 0, $uid ),
 									];
-									\Indeed\Uap\Db\NotificationLogs::save( $log );
+									\OpenAffiliates\Db\NotificationLogs::save( $log );
 									// notification log ( v. >= 8.5 )
 							}
 

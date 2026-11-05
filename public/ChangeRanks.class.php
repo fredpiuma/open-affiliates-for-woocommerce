@@ -12,28 +12,28 @@ class ChangeRanks{
 		 * @param [array - selected affiliates]
 		 * @return none
 		 */
-		global $indeed_db;
-		$this->ranks_data = $indeed_db->get_ranks(TRUE);
-		$this->bonus_enabled = $indeed_db->is_magic_feat_enable('bonus_on_rank');
+		global $af_db;
+		$this->ranks_data = $af_db->get_ranks(TRUE);
+		$this->bonus_enabled = $af_db->is_magic_feat_enable('bonus_on_rank');
 		if ($this->ranks_data){
-			$this->ranks_data = uap_reorder_ranks($this->ranks_data);/// sort array by order attr
+			$this->ranks_data = af_reorder_ranks($this->ranks_data);/// sort array by order attr
 
 			/// RanksPro
 			$minimumDate = '';
-			$this->ranksPro = get_option('uap_ranks_pro_enabled');
+			$this->ranksPro = get_option('af_ranks_pro_enabled');
 			if ($this->ranksPro){
-					$this->ranksPro = (get_option('uap_default_achieve_calculation')=='limited') ? true : false;
+					$this->ranksPro = (get_option('af_default_achieve_calculation')=='limited') ? true : false;
 			}
 			if ($this->ranksPro){
-					$minimumDate = get_option('uap_achieve_period');
+					$minimumDate = get_option('af_achieve_period');
 					$minimumDate = strtotime("-$minimumDate day", time());
 			}
 
 			$affiliates = [];
 			if ( $this->ranksPro ){
-				  $allAffiliates = $indeed_db->getAffiliatesForCheckRanks($affiliates_ids_in);
+				  $allAffiliates = $af_db->getAffiliatesForCheckRanks($affiliates_ids_in);
 			}
-			$affiliatesWithValues = $indeed_db->get_affiliates_from_referrals($affiliates_ids_in, $minimumDate);/// get affiliates with at least one referral verified
+			$affiliatesWithValues = $af_db->get_affiliates_from_referrals($affiliates_ids_in, $minimumDate);/// get affiliates with at least one referral verified
 
 			if ( !empty( $allAffiliates ) ){
 					foreach ( $allAffiliates as $key => $array ){
@@ -50,7 +50,7 @@ class ChangeRanks{
 
 			if ($allAffiliates){
 				foreach ($allAffiliates as $id=>$array){
-					$current_rank = $indeed_db->get_affiliate_rank($id);
+					$current_rank = $af_db->get_affiliate_rank($id);
 					$this->check($id, $array, $current_rank);
 				}
 			}
@@ -65,7 +65,7 @@ class ChangeRanks{
 	 */
 	private function check($affiliate_id = 0, $affiliate_data=array(), $current_rank=0)
 	{
-			global $indeed_db;
+			global $af_db;
 			if (empty($affiliate_data['total_amount'])){
 					$affiliate_data['total_amount'] = 0;
 			}
@@ -74,7 +74,7 @@ class ChangeRanks{
 			}
 
 			$this->do_break = FALSE;
-			$current_rank_detalis = $indeed_db->get_rank($current_rank);
+			$current_rank_detalis = $af_db->get_rank($current_rank);
 			$ranks = $this->ranks_data;
 			$ranks_num = count($ranks);
 			$affiliateRankBeforeUpdate = $current_rank;
@@ -140,16 +140,16 @@ class ChangeRanks{
 			}
 
 			// send notification if its case
-			$currentRank = $indeed_db->get_affiliate_rank( $affiliate_id );
+			$currentRank = $af_db->get_affiliate_rank( $affiliate_id );
 			$currentRank = (int)$currentRank;
 			$affiliateRankBeforeUpdate = (int)$affiliateRankBeforeUpdate;
 
 			if ( $affiliateRankBeforeUpdate !== $currentRank ){
-					$uid = $indeed_db->get_uid_by_affiliate_id( $affiliate_id );
-					uap_send_user_notifications( $uid, 'rank_change', $currentRank );//send notification to user
-					uap_send_user_notifications( $uid, 'admin_on_aff_change_rank', $currentRank );//send notification to admin
+					$uid = $af_db->get_uid_by_affiliate_id( $affiliate_id );
+					af_send_user_notifications( $uid, 'rank_change', $currentRank );//send notification to user
+					af_send_user_notifications( $uid, 'admin_on_aff_change_rank', $currentRank );//send notification to admin
 					// pay the bonus
-					$indeed_db->pay_bonus_for_rank( $uid, $currentRank );
+					$af_db->pay_bonus_for_rank( $uid, $currentRank );
 			}
 	}
 
@@ -175,8 +175,8 @@ class ChangeRanks{
 		 * @param int, int
 		 * @return none
 		 */
-		global $indeed_db;
-		$currentRank = $indeed_db->get_affiliate_rank($affiliate_id);
+		global $af_db;
+		$currentRank = $af_db->get_affiliate_rank($affiliate_id);
 
 		$currentRank = (int)$currentRank;
 		$rank_id = (int)$rank_id;
@@ -188,17 +188,17 @@ class ChangeRanks{
 		}
 
 		/// CHANGE RANK
-		$indeed_db->update_affiliate_rank($affiliate_id, $rank_id);
+		$af_db->update_affiliate_rank($affiliate_id, $rank_id);
 
 		if ( $affiliateRankBeforeUpdate === $rank_id ){
 				return;
 		}
 		/// PAY THE BONUS
-		//$uid = $indeed_db->get_uid_by_affiliate_id($affiliate_id);
-		//$indeed_db->pay_bonus_for_rank($uid, $rank_id);
+		//$uid = $af_db->get_uid_by_affiliate_id($affiliate_id);
+		//$af_db->pay_bonus_for_rank($uid, $rank_id);
 		/// SEND NOTIFICATIONS
-		//uap_send_user_notifications($uid, 'rank_change', $rank_id);//send notification to user
-		//uap_send_user_notifications($uid, 'admin_on_aff_change_rank', $rank_id);//send notification to admin
+		//af_send_user_notifications($uid, 'rank_change', $rank_id);//send notification to user
+		//af_send_user_notifications($uid, 'admin_on_aff_change_rank', $rank_id);//send notification to admin
 
 	}
 

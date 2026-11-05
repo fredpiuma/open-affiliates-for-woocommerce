@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 /*
 in order to view all hooks and filters you can go to : http://{yourdomain}/wp-admin/admin.php?page=ihc_manage&tab=hooks
 */

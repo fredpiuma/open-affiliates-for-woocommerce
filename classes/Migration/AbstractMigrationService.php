@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap\Migration;
+namespace OpenAffiliates\Migration;
 
 abstract class AbstractMigrationService
 {
@@ -8,7 +8,7 @@ abstract class AbstractMigrationService
     protected $offset = 0;
     protected $limit = 100;
     protected $assignRank = false;
-    protected $wpOptionName = 'uap_do_migrate_log';
+    protected $wpOptionName = 'af_do_migrate_log';
     protected $entitiesList = array('affiliates');
     protected $logData = array();
     protected $stop = false;
@@ -100,7 +100,7 @@ abstract class AbstractMigrationService
           'assignRank'    => $this->assignRank
         ];
 
-        $curl = curl_init( admin_url('admin.php?uap_act=migrate') );
+        $curl = curl_init( admin_url('admin.php?af_act=migrate') );
         curl_setopt( $curl, CURLOPT_POSTFIELDS, $postRequest );
         curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
 

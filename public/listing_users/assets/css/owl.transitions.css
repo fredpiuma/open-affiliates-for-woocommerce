@@ -2,7 +2,7 @@
  *  Owl Carousel CSS3 Transitions 
  *  v1.3.2
  */
-.owl-uap-origin {
+.owl-af-origin {
 	-webkit-perspective: 1200px;
 	-webkit-perspective-origin-x : 50%;
 	-webkit-perspective-origin-y : 50%;
@@ -12,46 +12,46 @@
 	perspective : 1200px;
 }
 /* fade */
-.owl-uap-fade-out {
+.owl-af-fade-out {
   z-index: 10;
   -webkit-animation: fadeOut .7s both ease;
   -moz-animation: fadeOut .7s both ease;
   animation: fadeOut .7s both ease;
 }
-.owl-uap-fade-in {
+.owl-af-fade-in {
   -webkit-animation: fadeIn .7s both ease;
   -moz-animation: fadeIn .7s both ease;
   animation: fadeIn .7s both ease;
 }
 /* backSlide */
-.owl-uap-backSlide-out {
+.owl-af-backSlide-out {
   -webkit-animation: backSlideOut 1s both ease;
   -moz-animation: backSlideOut 1s both ease;
   animation: backSlideOut 1s both ease;
 }
-.owl-uap-backSlide-in {
+.owl-af-backSlide-in {
   -webkit-animation: backSlideIn 1s both ease;
   -moz-animation: backSlideIn 1s both ease;
   animation: backSlideIn 1s both ease;
 }
 /* goDown */
-.owl-uap-goDown-out {
+.owl-af-goDown-out {
   -webkit-animation: scaleToFade .7s ease both;
   -moz-animation: scaleToFade .7s ease both;
   animation: scaleToFade .7s ease both;
 }
-.owl-uap-goDown-in {
+.owl-af-goDown-in {
   -webkit-animation: goDown .6s ease both;
   -moz-animation: goDown .6s ease both;
   animation: goDown .6s ease both;
 }
 /* scaleUp */
-.owl-uap-fadeUp-in {
+.owl-af-fadeUp-in {
   -webkit-animation: scaleUpFrom .5s ease both;
   -moz-animation: scaleUpFrom .5s ease both;
   animation: scaleUpFrom .5s ease both;
 }
-.owl-uap-fadeUp-out {
+.owl-af-fadeUp-out {
   -webkit-animation: scaleUpTo .5s ease both;
   -moz-animation: scaleUpTo .5s ease both;
   animation: scaleUpTo .5s ease both;

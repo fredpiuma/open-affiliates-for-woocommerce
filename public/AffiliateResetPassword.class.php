@@ -12,8 +12,8 @@ class AffiliateResetPassword{
 		 */
 		$output = '';
 		if (!is_user_logged_in()){
-			global $indeed_db;
-			$meta_arr = $indeed_db->return_settings_from_wp_option('login');
+			global $af_db;
+			$meta_arr = $af_db->return_settings_from_wp_option('login');
 			foreach ($meta_arr as $key=>$value){
 				if (isset($args[$key])){
 					$meta_arr[$key] = $args[$key];
@@ -21,13 +21,13 @@ class AffiliateResetPassword{
 			}
 			if (!empty(self::$reset_success)){
 				if (self::$reset_success==2){
-					$data['success_message'] = get_option('uap_reset_msg_pass_ok');
+					$data['success_message'] = get_option('af_reset_msg_pass_ok');
 				} else if (self::$reset_success==1) {
-					$data['error_message'] = get_option('uap_reset_msg_pass_err');
+					$data['error_message'] = get_option('af_reset_msg_pass_err');
 				}
 			}
 			ob_start();
-			require UAP_PATH . 'public/views/reset_password.php';
+			require AF_PATH . 'public/views/reset_password.php';
 			$output = ob_get_contents();
 			ob_end_clean();
 		}
@@ -40,8 +40,8 @@ class AffiliateResetPassword{
 		 * @return none
 		 */
 		self::$reset_success = 1;
-		require_once UAP_PATH . 'classes/ResetPassword.class.php';
-		$reset_password = new UAP\ResetPassword();
+		require_once AF_PATH . 'classes/ResetPassword.class.php';
+		$reset_password = new \OpenAffiliates\ResetPassword();
 		if ($reset_password->send_mail_with_link($_REQUEST['email_or_userlogin'])){
 			self::$reset_success = 2;
 		}

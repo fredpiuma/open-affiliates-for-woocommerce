@@ -1,9 +1,9 @@
-<form action="<?php echo admin_url( 'admin.php?page=ultimate_affiliates_pro&tab=magic_features&subtab=lifetime_commissions' );?>" method="post">
-	<div class="uap-stuffbox">
-		<h3 class="uap-h3"><?php esc_html_e('LifeTime Commissions - Add New Relation', 'uap');?></h3>
+<form action="<?php echo admin_url( 'admin.php?page=openaffiliates&tab=magic_features&subtab=lifetime_commissions' );?>" method="post">
+	<div class="af-stuffbox">
+		<h3 class="af-h3"><?php esc_html_e('LifeTime Commissions - Add New Relation', 'openaffiliates');?></h3>
 		<div class="inside">
-			<div class="uap-form-line">
-				<label class="uap-label"><?php esc_html_e('Referral Username:', 'uap');?></label>
+			<div class="af-form-line">
+				<label class="af-label"><?php esc_html_e('Referral Username:', 'openaffiliates');?></label>
         <select name="referral_uid"><?php
 					foreach ($data['users'] as $userObject ){
 						?>
@@ -12,8 +12,8 @@
 					}
 				?></select>
 			</div>
-			<div class="uap-form-line">
-				<label class="uap-label"><?php esc_html_e('Affiliate Username:', 'uap');?></label>
+			<div class="af-form-line">
+				<label class="af-label"><?php esc_html_e('Affiliate Username:', 'openaffiliates');?></label>
 				<select name="affiliate"><?php
 					foreach ($data['affiliates'] as $id=>$username){
 						$selected = ( isset( $data['edit_data']['affiliate_id']) ) && $id==$data['edit_data']['affiliate_id'] ? 'selected' : '';
@@ -23,8 +23,8 @@
 					}
 				?></select>
 			</div>
-			<div id="uap_save_changes" class="uap-submit-form">
-				<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save-new-relation" class="button button-primary button-large" />
+			<div id="af_save_changes" class="af-submit-form">
+				<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save-new-relation" class="button button-primary button-large" />
 			</div>
 		</div>
 	</div>

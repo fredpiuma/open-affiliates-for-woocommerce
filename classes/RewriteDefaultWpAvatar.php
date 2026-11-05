@@ -1,9 +1,9 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class RewriteDefaultWpAvatar
 {
-    private $metaKey = 'uap_avatar';
+    private $metaKey = 'af_avatar';
 
     public function __construct()
     {

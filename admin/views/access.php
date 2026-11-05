@@ -1,21 +1,21 @@
 <form  method="post">
 
-	<input type="hidden" name="uap_admin_forms_nonce" value="<?php echo wp_create_nonce( 'uap_admin_forms_nonce' );?>" />
+	<input type="hidden" name="af_admin_forms_nonce" value="<?php echo wp_create_nonce( 'af_admin_forms_nonce' );?>" />
 
- 	<div class="uap-stuffbox">
-		<h3 class="uap-h3"><?php esc_html_e('WordPress Roles Management', 'uap');?></h3>
+ 	<div class="af-stuffbox">
+		<h3 class="af-h3"><?php esc_html_e('WordPress Roles Management', 'openaffiliates');?></h3>
 		<div class="inside">
-			<div class="uap-form-line uap-no-border">
-						<h2><?php esc_html_e('Enable access for specific WordPress Roles', 'uap');?></h2>
-						<p><?php esc_html_e('By Default Only Administrator WP Role will have access into WordPress Dashboard. All other logged users will be kept on FrontEnd Side. You can enable access to certain Users by on their WP Role using below On/Off buttons', 'uap');?></p>
-						<p><?php esc_html_e('Warning: This option will manage access to WordPress Dashboard only. Ultimate Affiliate Pro Dashboard will continue to be accessible ONLY by users with Administrator WP Role', 'uap');?></p>
+			<div class="af-form-line af-no-border">
+						<h2><?php esc_html_e('Enable access for specific WordPress Roles', 'openaffiliates');?></h2>
+						<p><?php esc_html_e('By Default Only Administrator WP Role will have access into WordPress Dashboard. All other logged users will be kept on FrontEnd Side. You can enable access to certain Users by on their WP Role using below On/Off buttons', 'openaffiliates');?></p>
+						<p><?php esc_html_e('Warning: This option will manage access to WordPress Dashboard only. Open Affiliates Dashboard will continue to be accessible ONLY by users with Administrator WP Role', 'openaffiliates');?></p>
 					</div>
-			<div class="uap-half-block">
-				<div class="uap-form-line uap-access-opacity">
-					<span class="uap-access-label"><?php esc_html_e('Administrator', 'uap');?></span>
-					<label class="uap_label_shiwtch uap-access-switch">
-						<input type="checkbox" class="uap-switch" checked disabled/>
-						<div class="switch uap-inline-block"></div>
+			<div class="af-half-block">
+				<div class="af-form-line af-access-opacity">
+					<span class="af-access-label"><?php esc_html_e('Administrator', 'openaffiliates');?></span>
+					<label class="af_label_shiwtch af-access-switch">
+						<input type="checkbox" class="af-switch" checked disabled/>
+						<div class="switch af-inline-block"></div>
 					</label>
 				</div>
 				<?php
@@ -31,12 +31,12 @@
 					$i = 1;
 					foreach ($roles as $role=>$arr){
 					?>
-						<div class="uap-form-line">
-							<span class="uap-access-label"><?php echo esc_html($arr['name']);?></span>
-							<label class="uap_label_shiwtch uap-access-switch">
+						<div class="af-form-line">
+							<span class="af-access-label"><?php echo esc_html($arr['name']);?></span>
+							<label class="af_label_shiwtch af-access-switch">
 								<?php $checked = (in_array($role, $meta_values)) ? 'checked' : '';?>
-								<input type="checkbox" class="uap-switch" onClick="uapMakeInputhString(this, '<?php echo esc_attr($role);?>', '#uap_dashboard_allowed_roles');" <?php echo esc_attr($checked);?>/>
-								<div class="switch uap-inline-block"></div>
+								<input type="checkbox" class="af-switch" onClick="afMakeInputhString(this, '<?php echo esc_attr($role);?>', '#af_dashboard_allowed_roles');" <?php echo esc_attr($checked);?>/>
+								<div class="switch af-inline-block"></div>
 							</label>
 						</div>
 					<?php
@@ -44,15 +44,15 @@
 						if ($count>7 && $i==$break){
 						?>
 						</div>
-						<div class="uap-half-block">
+						<div class="af-half-block">
 						<?php
 						}
 					}///end of foreach
 				?>
 			</div>
-			<input type="hidden" name="uap_dashboard_allowed_roles" id="uap_dashboard_allowed_roles" value="<?php echo esc_attr($meta_value);?>" />
-			<div id="uap_save_changes" class="uap-wrapp-submit-bttn iump-submit-form">
-				<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+			<input type="hidden" name="af_dashboard_allowed_roles" id="af_dashboard_allowed_roles" value="<?php echo esc_attr($meta_value);?>" />
+			<div id="af_save_changes" class="af-wrapp-submit-bttn iump-submit-form">
+				<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 			</div>
 		</div>
 	</div>

@@ -1,3 +1,3 @@
   </div>
-  <div class="uap-clear"></div>
+  <div class="af-clear"></div>
 </div>

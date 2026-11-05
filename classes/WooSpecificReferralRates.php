@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class WooSpecificReferralRates
 {
@@ -21,7 +21,7 @@ class WooSpecificReferralRates
         add_action( 'woocommerce_ajax_save_product_variations', [ $this, 'saveVariationProductSettings' ] );
 
         // Public
-        add_filter( 'uap_filter_referral_amount', [ $this, 'filterAmount'], 1, 4 );
+        add_filter( 'af_filter_referral_amount', [ $this, 'filterAmount'], 1, 4 );
     }
 
     /**
@@ -35,13 +35,13 @@ class WooSpecificReferralRates
     {
         if ( !empty( $attr['variableProductId'] ) ){
             // variable product
-            $type = get_post_meta( $attr['variableProductId'], 'uap-woo-wsr-type', true );
-            $value = get_post_meta( $attr['variableProductId'], 'uap-woo-wsr-value', true );
+            $type = get_post_meta( $attr['variableProductId'], 'af-woo-wsr-type', true );
+            $value = get_post_meta( $attr['variableProductId'], 'af-woo-wsr-value', true );
         }
         if ( !isset($type) || $type == false ){
             // base product
-            $type = get_post_meta( $productId, 'uap-woo-wsr-type', true );
-            $value = get_post_meta( $productId, 'uap-woo-wsr-value', true );
+            $type = get_post_meta( $productId, 'af-woo-wsr-type', true );
+            $value = get_post_meta( $productId, 'af-woo-wsr-value', true );
         }
 
         if ( $type == false ){
@@ -68,9 +68,9 @@ class WooSpecificReferralRates
      */
     public function addTab( $tabs=[] )
     {
-        $tabs['uap_woo_wsr'] = array(
-                      'label'  => esc_html__( 'Ultimate Affiliate Pro - Custom Referral Rate', 'uap' ),
-                      'target' => 'uap_woo_wsr',
+        $tabs['af_woo_wsr'] = array(
+                      'label'  => esc_html__( 'Open Affiliates - Custom Referral Rate', 'openaffiliates' ),
+                      'target' => 'af_woo_wsr',
                       'class'  => [], // 'hide_if_grouped'
         );
         return $tabs;
@@ -83,56 +83,56 @@ class WooSpecificReferralRates
     public function tab()
     {
         global $post;
-        $currency = get_option('uap_currency');
+        $currency = get_option('af_currency');
         $types = [
-                          'flat' 					=> esc_html__( 'Flat ', 'uap') . '(' . $currency .')',
-                          'percentage'		=> esc_html__( 'Percentage ', 'uap') . '(%)',
-                          'default'       => esc_html__( 'Default Affiliate system Settings', 'uap' ),
+                          'flat' 					=> esc_html__( 'Flat ', 'openaffiliates') . '(' . $currency .')',
+                          'percentage'		=> esc_html__( 'Percentage ', 'openaffiliates') . '(%)',
+                          'default'       => esc_html__( 'Default Affiliate system Settings', 'openaffiliates' ),
         ];
         $data = [
-                  'uap-woo-wsr-type'		    => get_post_meta( $post->ID, 'uap-woo-wsr-type', true ),
-                  'uap-woo-wsr-value'		    => get_post_meta( $post->ID, 'uap-woo-wsr-value', true ),
-                  'uap-woo-excluded-prod'   => get_post_meta( $post->ID, 'uap-woo-excluded-prod', true ),
+                  'af-woo-wsr-type'		    => get_post_meta( $post->ID, 'af-woo-wsr-type', true ),
+                  'af-woo-wsr-value'		    => get_post_meta( $post->ID, 'af-woo-wsr-value', true ),
+                  'af-woo-excluded-prod'   => get_post_meta( $post->ID, 'af-woo-excluded-prod', true ),
                   'types'                    => $types
         ];
-        if ( $data['uap-woo-wsr-type'] == '' ){
-            $data['uap-woo-wsr-type'] = 'default';
+        if ( $data['af-woo-wsr-type'] == '' ){
+            $data['af-woo-wsr-type'] = 'default';
         }
-        if ( $data['uap-woo-excluded-prod'] === '' || $data['uap-woo-excluded-prod'] === false || $data['uap-woo-excluded-prod'] === null ){
-            $data['uap-woo-excluded-prod'] = 0;
+        if ( $data['af-woo-excluded-prod'] === '' || $data['af-woo-excluded-prod'] === false || $data['af-woo-excluded-prod'] === null ){
+            $data['af-woo-excluded-prod'] = 0;
         }
-        $view = new \Indeed\Uap\IndeedView();
-        $output = $view->setTemplate( UAP_PATH . 'admin/views/uap-woo-specific-referral-rate.php' )
+        $view = new \OpenAffiliates\AfView();
+        $output = $view->setTemplate( AF_PATH . 'admin/views/af-woo-specific-referral-rate.php' )
                   ->setContentData( $data )
                   ->getOutput();
-        echo esc_uap_content( $output );
+        echo esc_af_content( $output );
     }
 
 
 
     public function variableProductSettings( $loop=null, $variationData=null, $variation=null )
     {
-        $currency = get_option('uap_currency');
+        $currency = get_option('af_currency');
         $types = [
                           'flat' 					=> $currency,
                           'percentage'		=> '%',
-                          'default'       => esc_html__( 'Default', 'uap' ),
+                          'default'       => esc_html__( 'Default', 'openaffiliates' ),
         ];
         $data = [
-                  'uap-woo-wsr-type'		    => get_post_meta( $variation->ID, 'uap-woo-wsr-type', true ),
-                  'uap-woo-wsr-value'		    => get_post_meta( $variation->ID, 'uap-woo-wsr-value', true ),
-                  'uap-woo-excluded-variable_prod'   => get_post_meta( $variation->ID, 'uap-woo-excluded-variable_prod', true ),
+                  'af-woo-wsr-type'		    => get_post_meta( $variation->ID, 'af-woo-wsr-type', true ),
+                  'af-woo-wsr-value'		    => get_post_meta( $variation->ID, 'af-woo-wsr-value', true ),
+                  'af-woo-excluded-variable_prod'   => get_post_meta( $variation->ID, 'af-woo-excluded-variable_prod', true ),
                   'types'                   => $types,
                   'variantion_id'           => $variation->ID,
         ];
-        if ( $data['uap-woo-excluded-variable_prod'] === '' || $data['uap-woo-excluded-variable_prod'] === false || $data['uap-woo-excluded-variable_prod'] === null ){
-            $data['uap-woo-excluded-variable_prod'] = 0;
+        if ( $data['af-woo-excluded-variable_prod'] === '' || $data['af-woo-excluded-variable_prod'] === false || $data['af-woo-excluded-variable_prod'] === null ){
+            $data['af-woo-excluded-variable_prod'] = 0;
         }
-        $view = new \Indeed\Uap\IndeedView();
-        $output = $view->setTemplate( UAP_PATH . 'admin/views/uap-woo-specific-referral-rate-variable-products.php' )
+        $view = new \OpenAffiliates\AfView();
+        $output = $view->setTemplate( AF_PATH . 'admin/views/af-woo-specific-referral-rate-variable-products.php' )
                   ->setContentData( $data )
                   ->getOutput();
-        echo esc_uap_content( $output );
+        echo esc_af_content( $output );
     }
 
 
@@ -142,13 +142,13 @@ class WooSpecificReferralRates
      */
     public function adminWpSaveCustomSettings( $postId=0 )
     {
-        if ( !$postId || !isset($_POST['uap-woo-wsr-type']) ){
+        if ( !$postId || !isset($_POST['af-woo-wsr-type']) ){
             return false;
         }
-        update_post_meta( $postId, 'uap-woo-wsr-type', uap_sanitize_array($_POST['uap-woo-wsr-type']) );
-        update_post_meta( $postId, 'uap-woo-wsr-value', uap_sanitize_array($_POST['uap-woo-wsr-value']) );
-        if ( isset( $_POST['uap-woo-excluded-prod'] ) ){
-            update_post_meta( $postId, 'uap-woo-excluded-prod', sanitize_text_field( $_POST['uap-woo-excluded-prod'] ) );
+        update_post_meta( $postId, 'af-woo-wsr-type', af_sanitize_array($_POST['af-woo-wsr-type']) );
+        update_post_meta( $postId, 'af-woo-wsr-value', af_sanitize_array($_POST['af-woo-wsr-value']) );
+        if ( isset( $_POST['af-woo-excluded-prod'] ) ){
+            update_post_meta( $postId, 'af-woo-excluded-prod', sanitize_text_field( $_POST['af-woo-excluded-prod'] ) );
         }
         $this->saveVariationProductSettings(); //if it's case let's save the values for variable product
     }
@@ -162,14 +162,14 @@ class WooSpecificReferralRates
             return;
         }
         foreach ( $_POST['variable_post_id'] as $variableProductId ) {
-            if ( isset( $_POST['uap-woo-wsr-variable-product-type'][$variableProductId] ) ){
-                update_post_meta( $variableProductId, 'uap-woo-wsr-type', uap_sanitize_array($_POST['uap-woo-wsr-variable-product-type'][$variableProductId]) );
+            if ( isset( $_POST['af-woo-wsr-variable-product-type'][$variableProductId] ) ){
+                update_post_meta( $variableProductId, 'af-woo-wsr-type', af_sanitize_array($_POST['af-woo-wsr-variable-product-type'][$variableProductId]) );
             }
-            if ( isset( $_POST['uap-woo-wsr-variable-product-value'][$variableProductId] ) ){
-                update_post_meta( $variableProductId, 'uap-woo-wsr-value', uap_sanitize_array($_POST['uap-woo-wsr-variable-product-value'][$variableProductId]) );
+            if ( isset( $_POST['af-woo-wsr-variable-product-value'][$variableProductId] ) ){
+                update_post_meta( $variableProductId, 'af-woo-wsr-value', af_sanitize_array($_POST['af-woo-wsr-variable-product-value'][$variableProductId]) );
             }
-            if ( isset( $_POST['uap-woo-excluded-variable_prod'] ) ){
-                update_post_meta( $variableProductId, 'uap-woo-excluded-variable_prod', sanitize_text_field( $_POST['uap-woo-excluded-variable_prod'] ) );
+            if ( isset( $_POST['af-woo-excluded-variable_prod'] ) ){
+                update_post_meta( $variableProductId, 'af-woo-excluded-variable_prod', sanitize_text_field( $_POST['af-woo-excluded-variable_prod'] ) );
             }
         }
     }

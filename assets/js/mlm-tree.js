@@ -1,7 +1,7 @@
 /*
  * Open Affiliates - MLM tree (local renderer, no external libraries).
- * Reads the .uap-js-mlm-* data spans printed by the MLM views and draws a
- * collapsible organisation tree inside #uap_mlm_chart.
+ * Reads the .af-js-mlm-* data spans printed by the MLM views and draws a
+ * collapsible organisation tree inside #af_mlm_chart.
  */
 "use strict";
 (function () {
@@ -14,13 +14,13 @@
 	function buildNode(node) {
 		var li = document.createElement('li');
 		var box = document.createElement('div');
-		box.className = 'uap-mlm-tree-node' + (node.cls ? ' ' + node.cls : '');
+		box.className = 'af-mlm-tree-node' + (node.cls ? ' ' + node.cls : '');
 		if (node.tooltip) {
 			box.setAttribute('title', node.tooltip);
 		}
 
 		var avatar = document.createElement('div');
-		avatar.className = 'uap-mlm-tree-avatar-child';
+		avatar.className = 'af-mlm-tree-avatar-child';
 		var img = document.createElement('img');
 		img.setAttribute('src', node.avatar);
 		img.setAttribute('alt', '');
@@ -28,15 +28,15 @@
 		box.appendChild(avatar);
 
 		var name = document.createElement('div');
-		name.className = 'uap-mlm-tree-name-child';
+		name.className = 'af-mlm-tree-name-child';
 		name.textContent = node.name;
 		box.appendChild(name);
 		li.appendChild(box);
 
 		if (node.children.length) {
-			li.className = 'uap-mlm-tree-has-children';
+			li.className = 'af-mlm-tree-has-children';
 			box.addEventListener('click', function () {
-				li.classList.toggle('uap-mlm-tree-collapsed');
+				li.classList.toggle('af-mlm-tree-collapsed');
 			});
 			var ul = document.createElement('ul');
 			node.children.forEach(function (child) {
@@ -48,33 +48,33 @@
 	}
 
 	function render() {
-		var target = document.getElementById('uap_mlm_chart');
+		var target = document.getElementById('af_mlm_chart');
 		if (!target) {
 			return;
 		}
 		var nodes = {};
 		var order = [];
 
-		var parentId = attr('.uap-js-mlm-view-affiliate-children-parent-data', 'data-parent_id');
-		var hasParent = attr('.uap-js-mlm-view-affiliate-children-parent-data', 'data-parent');
+		var parentId = attr('.af-js-mlm-view-affiliate-children-parent-data', 'data-parent_id');
+		var hasParent = attr('.af-js-mlm-view-affiliate-children-parent-data', 'data-parent');
 		if (hasParent) {
 			nodes[parentId] = {
-				id: parentId, parentId: '', children: [], cls: 'uap-mlm-tree-avatar-parent',
-				avatar: attr('.uap-js-mlm-view-affiliate-children-parent-data', 'data-parent_avatar'),
-				name: attr('.uap-js-mlm-view-affiliate-children-parent-data', 'data-parent_full_name'), tooltip: ''
+				id: parentId, parentId: '', children: [], cls: 'af-mlm-tree-avatar-parent',
+				avatar: attr('.af-js-mlm-view-affiliate-children-parent-data', 'data-parent_avatar'),
+				name: attr('.af-js-mlm-view-affiliate-children-parent-data', 'data-parent_full_name'), tooltip: ''
 			};
 			order.push(parentId);
 		}
 
-		var mainId = attr('.uap-js-mlm-view-affiliate-data', 'data-affiliate_id');
+		var mainId = attr('.af-js-mlm-view-affiliate-data', 'data-affiliate_id');
 		nodes[mainId] = {
-			id: mainId, parentId: parentId, children: [], cls: 'uap-mlm-tree-avatar-main',
-			avatar: attr('.uap-js-mlm-view-affiliate-data', 'data-affiliate_avatar'),
-			name: attr('.uap-js-mlm-view-affiliate-data', 'data-parent_full_name'), tooltip: 'Main Affiliate'
+			id: mainId, parentId: parentId, children: [], cls: 'af-mlm-tree-avatar-main',
+			avatar: attr('.af-js-mlm-view-affiliate-data', 'data-affiliate_avatar'),
+			name: attr('.af-js-mlm-view-affiliate-data', 'data-parent_full_name'), tooltip: 'Main Affiliate'
 		};
 		order.push(mainId);
 
-		document.querySelectorAll('.uap-js-mlm-view-affiliate-children-data').forEach(function (el) {
+		document.querySelectorAll('.af-js-mlm-view-affiliate-children-data').forEach(function (el) {
 			var id = el.getAttribute('data-id');
 			nodes[id] = {
 				id: id, parentId: el.getAttribute('data-parent_id') || '', children: [], cls: '',
@@ -99,7 +99,7 @@
 			ul.appendChild(buildNode(root));
 		});
 		var wrapper = document.createElement('div');
-		wrapper.className = 'uap-mlm-tree';
+		wrapper.className = 'af-mlm-tree';
 		wrapper.appendChild(ul);
 		target.innerHTML = '';
 		target.appendChild(wrapper);

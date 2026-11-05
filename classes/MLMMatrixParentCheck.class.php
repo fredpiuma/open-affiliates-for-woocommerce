@@ -71,8 +71,8 @@ class MLMMatrixParentCheck{
 		 * @return none
 		 */
 		if ($affiliate_id){
-			global $indeed_db;
-			$children = $indeed_db->mlm_get_children($affiliate_id);
+			global $af_db;
+			$children = $af_db->mlm_get_children($affiliate_id);
 			if ($children){
 				foreach ($children as $child){
 					$this->parents_arr[] = $child;
@@ -87,8 +87,8 @@ class MLMMatrixParentCheck{
 		 * @return boolean
 		 */
 		if ($affiliate_id){
-			global $indeed_db;
-			$current_affiliate_children = $indeed_db->mlm_get_count_children_for_parent($affiliate_id);
+			global $af_db;
+			$current_affiliate_children = $af_db->mlm_get_count_children_for_parent($affiliate_id);
 			if ($this->limit_of_children>$current_affiliate_children){
 				return TRUE;
 			}

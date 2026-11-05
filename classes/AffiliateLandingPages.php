@@ -1,28 +1,28 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class AffiliateLandingPages
 {
-    private $postMetaKey = 'uap_landing_page_affiliate_id';
+    private $postMetaKey = 'af_landing_page_affiliate_id';
 
     public function __construct()
     {
-        if ( !get_option('uap_landing_pages_enabled') ){
+        if ( !get_option('af_landing_pages_enabled') ){
             return;
         }
-        add_filter('uap_init_affiliate_id_value', array($this, 'setAffiliateId'), 99, 2);
+        add_filter('af_init_affiliate_id_value', array($this, 'setAffiliateId'), 99, 2);
     }
 
     public function setAffiliateId($affiliateId=0, $currentUrl='')
     {
-        global $indeed_db;
-        if ( !empty($_COOKIE['uap_referral']) && $this->canRewrite() ){
+        global $af_db;
+        if ( !empty($_COOKIE['af_referral']) && $this->canRewrite() ){
             return '';
         }
         if (empty($currentUrl)){
             return $affiliateId;
         }
-        $postId = $indeed_db->getPostIdByUrl($currentUrl);
+        $postId = $af_db->getPostIdByUrl($currentUrl);
         if (empty($postId)){
             return $affiliateId;
         }
@@ -39,7 +39,7 @@ class AffiliateLandingPages
      */
     private function canRewrite()
     {
-        $rewrite_referrals_enable = get_option('uap_rewrite_referrals_enable');
+        $rewrite_referrals_enable = get_option('af_rewrite_referrals_enable');
         if ( empty($rewrite_referrals_enable) ){
             return true;
         }

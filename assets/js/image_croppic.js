@@ -1,8 +1,8 @@
 /*
- *Ultimate Affiliate Pro - Crop Avatar Image
+ *Open Affiliates - Crop Avatar Image
  */
 "use strict";
-var UapAvatarCroppic = {
+var AfAvatarCroppic = {
     triggerId                   : '',
     saveImageTarget             : '',
     cropImageTarget             : '',
@@ -63,7 +63,7 @@ var UapAvatarCroppic = {
             jQuery( obj.hiddenInputSelector ).val( response.uploadId );
             jQuery( obj.imageSelectorWrapper ).append( '<img src="' + response.url + '" class="' + obj.imageClass + '" />' );
 			      jQuery( obj.removeImageSelector ).css('visibility', 'visible');
-            jQuery( obj.removeImageSelector ).removeClass('uap-visibility-hidden');
+            jQuery( obj.removeImageSelector ).removeClass('af-visibility-hidden');
         }
     },
 
@@ -75,7 +75,7 @@ var UapAvatarCroppic = {
                 type      : "post",
                 url       : decodeURI(ajax_url),
                 data      : {
-                     action			 : 'uap_remove_media_post',
+                     action			 : 'af_remove_media_post',
                      postId			 : jQuery( obj.hiddenInputSelector ).val()
                 },
                 success   : function (response) {
@@ -84,11 +84,11 @@ var UapAvatarCroppic = {
             });
         }
         jQuery( obj.imageSelectorWrapper ).html( '' );
-		    jQuery( obj.imageSelectorWrapper ).append( '<div class="uap-no-avatar uap-member-photo"></div>' );
+		    jQuery( obj.imageSelectorWrapper ).append( '<div class="af-no-avatar af-member-photo"></div>' );
 		    jQuery( obj.removeImageSelector ).css('visibility', 'hidden');
         jQuery( obj.hiddenInputSelector ).val( '' );
         if (isReset)
-		        jQuery( '#' + obj.triggerId ).append( '<div id="uap-avatar-button" class="uap-upload-avatar">'+obj.buttonLabel+'</div>' );
+		        jQuery( '#' + obj.triggerId ).append( '<div id="af-avatar-button" class="af-upload-avatar">'+obj.buttonLabel+'</div>' );
 
         if ( obj.standardImage ){
             jQuery( obj.imageSelectorWrapper ).append( '<img src="' + obj.standardImage + '" class="' + obj.imageClass + '" />' );
@@ -102,7 +102,7 @@ var UapAvatarCroppic = {
         }
 		    jQuery( obj.removeImageSelector ).css('visibility', 'visible');
 
-        jQuery( obj.removeImageSelector ).removeClass('uap-visibility-hidden');
+        jQuery( obj.removeImageSelector ).removeClass('af-visibility-hidden');
     },
 
 }

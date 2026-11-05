@@ -1,36 +1,36 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class PayToBecomeAffiliate
 {
     private static $showBttn      = false;
     public function __construct()
     {
-        global $indeed_db;
-        if ( !get_option('uap_pay_to_become_affiliate_enabled') ){
+        global $af_db;
+        if ( !get_option('af_pay_to_become_affiliate_enabled') ){
             return;
         }
 
-        if ( \Indeed\Uap\Integrations::isUmpActive() === 1 ){
+        if ( \OpenAffiliates\Integrations::isUmpActive() === 1 ){
             add_action('ump_payment_check', array($this, 'checkUmpOrder'), 1, 2);
         }
-        if ( \Indeed\Uap\Integrations::isWooActive() === 1 ){
+        if ( \OpenAffiliates\Integrations::isWooActive() === 1 ){
             add_action('woocommerce_order_status_completed', array($this, 'checkWooOrder'), 1, 1);
         }
 
-        add_filter( 'uap_become_affiliate_bttn', array( $this, 'displayBecomeAffiliateBttn'), 10, 1 );
-        add_filter( 'uap_become_affiliate_warning_message', array( $this, 'returnWarningMessage' ), 10, 1 );
-        add_filter( 'uap_save_as_affiliate_filter', array( $this, 'saveAsAffiliateFilter'), 1, 1 );
+        add_filter( 'af_become_affiliate_bttn', array( $this, 'displayBecomeAffiliateBttn'), 10, 1 );
+        add_filter( 'af_become_affiliate_warning_message', array( $this, 'returnWarningMessage' ), 10, 1 );
+        add_filter( 'af_save_as_affiliate_filter', array( $this, 'saveAsAffiliateFilter'), 1, 1 );
     }
 
 
     public function checkUmpOrder($orderId=0, $type='')
     {
-        global $indeed_db;
+        global $af_db;
         if ( !$orderId ){
             return;
         }
-        $type = get_option( 'uap_pay_to_become_affiliate_target_product_group' );
+        $type = get_option( 'af_pay_to_become_affiliate_target_product_group' );
         if ( $type != 'ump' ){
             return;
         }
@@ -44,7 +44,7 @@ class PayToBecomeAffiliate
             return;
         }
         /// check lid
-        if ( !$indeed_db->doesProductPayForAffiliate( $data['lid'] ) ){
+        if ( !$af_db->doesProductPayForAffiliate( $data['lid'] ) ){
             return;
         }
 
@@ -56,11 +56,11 @@ class PayToBecomeAffiliate
 
     public function checkWooOrder( $orderId=0 )
     {
-        global $indeed_db;
+        global $af_db;
         if ( !$orderId ){
             return;
         }
-        $type = get_option( 'uap_pay_to_become_affiliate_target_product_group' );
+        $type = get_option( 'af_pay_to_become_affiliate_target_product_group' );
         if ( $type != 'woo' ){
             return;
         }
@@ -73,7 +73,7 @@ class PayToBecomeAffiliate
             return;
         }
         foreach ($items as $item){ /// foreach in lines
-            if ( $indeed_db->doesProductPayForAffiliate( $item['product_id'] ) ){
+            if ( $af_db->doesProductPayForAffiliate( $item['product_id'] ) ){
                 return $this->doApproveAffiliate( (int)$order->user_id );
             }
         }
@@ -81,35 +81,35 @@ class PayToBecomeAffiliate
 
     private function doApproveAffiliate( $uid=0 )
     {
-        global $indeed_db;
-        $affiliateId = $indeed_db->get_affiliate_id_by_wpuid( $uid );
+        global $af_db;
+        $affiliateId = $af_db->get_affiliate_id_by_wpuid( $uid );
         if ( !$affiliateId ){
-            $affiliateId = $indeed_db->save_affiliate( $uid );
+            $affiliateId = $af_db->save_affiliate( $uid );
         }
 
         // deprecated since 9.2
-        //$indeed_db->doApproveAffiliate( $affiliateId );
-        //$indeed_db->setDefaultRoleForUser( $uid );
+        //$af_db->doApproveAffiliate( $affiliateId );
+        //$af_db->setDefaultRoleForUser( $uid );
         // end of deprecated since 9.2
         $this->approveUserAsAffiliate( $affiliateId, $uid );
 
 
         /// mlm
-        $MlmParent = get_user_meta( $uid, 'uap_mlm_parrent_id_pending', true );
+        $MlmParent = get_user_meta( $uid, 'af_mlm_parrent_id_pending', true );
         if ( !$MlmParent || !$affiliateId ){
             return;
         }
-        $indeed_db->set_mlm_relation_on_new_affiliate( $affiliateId, $MlmParent );
+        $af_db->set_mlm_relation_on_new_affiliate( $affiliateId, $MlmParent );
     }
 
     public function displayBecomeAffiliateBttn( $show=true )
     {
-        global $current_user, $indeed_db;
+        global $current_user, $af_db;
         $uid = isset($current_user->ID) ? $current_user->ID : 0;
         if ( !$uid ){
             $show = false;
         }
-        if ( !$indeed_db->canUserBecomeAffiliateUmpWooCheck( $uid ) ){
+        if ( !$af_db->canUserBecomeAffiliateUmpWooCheck( $uid ) ){
             $show = false;
         }
         self::$showBttn = $show;
@@ -119,18 +119,18 @@ class PayToBecomeAffiliate
     public function returnWarningMessage( $message='' )
     {
         if ( !self::$showBttn ){
-            $message = esc_html__('You are not allowed to become affiliate for the moment!', 'uap');
+            $message = esc_html__('You are not allowed to become affiliate for the moment!', 'openaffiliates');
         }
         return $message;
     }
 
     public function saveAsAffiliateFilter( $save=true )
     {
-        $allProducts = get_option( 'uap_pay_to_become_affiliate_target_all_products' );
+        $allProducts = get_option( 'af_pay_to_become_affiliate_target_all_products' );
         if ( $allProducts ){
             return false;
         }
-        $someProducts = get_option( 'uap_pay_to_become_affiliate_target_products' );
+        $someProducts = get_option( 'af_pay_to_become_affiliate_target_products' );
         if ( $someProducts ){
             return false;
         }
@@ -144,16 +144,16 @@ class PayToBecomeAffiliate
      */
     public function approveUserAsAffiliate( $affiliateId=0, $uid=0 )
     {
-        global $indeed_db;
+        global $af_db;
 
-        $userRoles = $indeed_db->get_user_roles( $uid );
+        $userRoles = $af_db->get_user_roles( $uid );
         if ( empty( $userRoles ) ){
-            return $indeed_db->doApproveAffiliate( $affiliateId );
+            return $af_db->doApproveAffiliate( $affiliateId );
         } else if ( count( $userRoles ) === 1 && isset( $userRoles['pending_user'] ) && $userRoles['pending_user'] === 1 ){
-            return $indeed_db->doApproveAffiliate( $affiliateId );
+            return $af_db->doApproveAffiliate( $affiliateId );
         }
 
-        return uap_send_user_notifications($uid, 'affiliate_account_approve');
+        return af_send_user_notifications($uid, 'affiliate_account_approve');
     }
 
 

@@ -1,21 +1,21 @@
 /* Open Affiliates - MLM tree (pure CSS, no external libraries) */
-#uap_mlm_chart { overflow-x: auto; padding: 20px 0; }
-.uap-mlm-tree { text-align: center; }
-.uap-mlm-tree ul { display: flex; justify-content: center; margin: 0; padding: 20px 0 0; list-style: none; position: relative; }
-.uap-mlm-tree li { position: relative; padding: 20px 8px 0; list-style: none; text-align: center; }
-.uap-mlm-tree li::before, .uap-mlm-tree li::after { content: ''; position: absolute; top: 0; right: 50%; width: 50%; height: 20px; border-top: 1px solid #ccc; }
-.uap-mlm-tree li::after { right: auto; left: 50%; border-left: 1px solid #ccc; }
-.uap-mlm-tree li:only-child::before, .uap-mlm-tree li:only-child::after { display: none; }
-.uap-mlm-tree li:only-child { padding-top: 0; }
-.uap-mlm-tree li:first-child::before, .uap-mlm-tree li:last-child::after { border-top: 0; }
-.uap-mlm-tree li:last-child::before { border-right: 1px solid #ccc; border-radius: 0 5px 0 0; }
-.uap-mlm-tree li:first-child::after { border-radius: 5px 0 0 0; }
-.uap-mlm-tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; height: 20px; border-left: 1px solid #ccc; }
-.uap-mlm-tree-node { display: inline-block; vertical-align: top; cursor: default; }
-.uap-mlm-tree-has-children > .uap-mlm-tree-node { cursor: pointer; }
-.uap-mlm-tree-collapsed > ul { display: none; }
-.uap-mlm-tree-avatar-child img { width: 70px; height: 70px; vertical-align: middle; border-radius: 50%; border: 5px solid #f9f9f9; background: #fff; }
-.uap-mlm-tree-avatar-parent .uap-mlm-tree-avatar-child img { border-color: #2a81ae; }
-.uap-mlm-tree-avatar-main .uap-mlm-tree-avatar-child img { border-color: #f25a68; }
-.uap-mlm-tree-node:hover .uap-mlm-tree-avatar-child img { border-color: #777; }
-.uap-mlm-tree-name-child { width: 125px; margin: 0 auto; font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; word-wrap: break-word; }
+#af_mlm_chart { overflow-x: auto; padding: 20px 0; }
+.af-mlm-tree { text-align: center; }
+.af-mlm-tree ul { display: flex; justify-content: center; margin: 0; padding: 20px 0 0; list-style: none; position: relative; }
+.af-mlm-tree li { position: relative; padding: 20px 8px 0; list-style: none; text-align: center; }
+.af-mlm-tree li::before, .af-mlm-tree li::after { content: ''; position: absolute; top: 0; right: 50%; width: 50%; height: 20px; border-top: 1px solid #ccc; }
+.af-mlm-tree li::after { right: auto; left: 50%; border-left: 1px solid #ccc; }
+.af-mlm-tree li:only-child::before, .af-mlm-tree li:only-child::after { display: none; }
+.af-mlm-tree li:only-child { padding-top: 0; }
+.af-mlm-tree li:first-child::before, .af-mlm-tree li:last-child::after { border-top: 0; }
+.af-mlm-tree li:last-child::before { border-right: 1px solid #ccc; border-radius: 0 5px 0 0; }
+.af-mlm-tree li:first-child::after { border-radius: 5px 0 0 0; }
+.af-mlm-tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; height: 20px; border-left: 1px solid #ccc; }
+.af-mlm-tree-node { display: inline-block; vertical-align: top; cursor: default; }
+.af-mlm-tree-has-children > .af-mlm-tree-node { cursor: pointer; }
+.af-mlm-tree-collapsed > ul { display: none; }
+.af-mlm-tree-avatar-child img { width: 70px; height: 70px; vertical-align: middle; border-radius: 50%; border: 5px solid #f9f9f9; background: #fff; }
+.af-mlm-tree-avatar-parent .af-mlm-tree-avatar-child img { border-color: #2a81ae; }
+.af-mlm-tree-avatar-main .af-mlm-tree-avatar-child img { border-color: #f25a68; }
+.af-mlm-tree-node:hover .af-mlm-tree-avatar-child img { border-color: #777; }
+.af-mlm-tree-name-child { width: 125px; margin: 0 auto; font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; word-wrap: break-word; }

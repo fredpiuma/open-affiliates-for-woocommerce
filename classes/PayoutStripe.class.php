@@ -9,9 +9,9 @@ class PayoutStripe{
 		 * @param none
 		 * @return none
 		 */
-		 global $indeed_db;
-		 $this->settings = $indeed_db->return_settings_from_wp_option('stripe');
-		 require_once UAP_PATH  . 'classes/services/stripe/vendor/autoload.php';
+		 global $af_db;
+		 $this->settings = $af_db->return_settings_from_wp_option('stripe');
+		 require_once AF_PATH  . 'classes/services/stripe/vendor/autoload.php';
 	}
 
 	public function do_payout($uid=0, $affiliate_id=0, $amount=0, $currency='usd'){
@@ -19,27 +19,27 @@ class PayoutStripe{
 		 * @param int, int, float, string
 		 * @return string
 		 */
-		 global $indeed_db;
+		 global $af_db;
 		 $amount = $amount * 100;
 
-		 if (empty($this->settings) || empty($this->settings['uap_stripe_enable'])){
+		 if (empty($this->settings) || empty($this->settings['af_stripe_enable'])){
 		  	return '';
 		 }
 
-		 if ($this->settings['uap_stripe_sandbox']){
-		 	$key = $this->settings['uap_stripe_sandbox_secret_key'];
+		 if ($this->settings['af_stripe_sandbox']){
+		 	$key = $this->settings['af_stripe_sandbox_secret_key'];
 		 } else {
-		 	$key = $this->settings['uap_stripe_secret_key'];
+		 	$key = $this->settings['af_stripe_secret_key'];
 		 }
 
 		\Stripe\Stripe::setApiKey($key);
 
-		$metas = $indeed_db->get_affiliate_payment_settings($uid, $affiliate_id, FALSE);
-		$user_email = $indeed_db->get_email_by_affiliate_id($affiliate_id);
+		$metas = $af_db->get_affiliate_payment_settings($uid, $affiliate_id, FALSE);
+		$user_email = $af_db->get_email_by_affiliate_id($affiliate_id);
 
-		if (empty($metas['uap_affiliate_stripe_name']) || empty($metas['uap_affiliate_stripe_card_number'])
-			|| empty($metas['uap_affiliate_stripe_expiration_month'])
-			|| empty($metas['uap_affiliate_stripe_expiration_year']) || empty($metas['uap_affiliate_stripe_card_type']) //|| empty($metas['uap_affiliate_stripe_cvc'])
+		if (empty($metas['af_affiliate_stripe_name']) || empty($metas['af_affiliate_stripe_card_number'])
+			|| empty($metas['af_affiliate_stripe_expiration_month'])
+			|| empty($metas['af_affiliate_stripe_expiration_year']) || empty($metas['af_affiliate_stripe_card_type']) //|| empty($metas['af_affiliate_stripe_cvc'])
 		) return '';
 
 		/// card info
@@ -47,9 +47,9 @@ class PayoutStripe{
 			$token = \Stripe\Token::create(
 	            array(
 		            	"card" => array(
-			                "number" => $metas['uap_affiliate_stripe_card_number'],
-			                "exp_month" => $metas['uap_affiliate_stripe_expiration_month'],
-			                "exp_year" => $metas['uap_affiliate_stripe_expiration_year'],
+			                "number" => $metas['af_affiliate_stripe_card_number'],
+			                "exp_month" => $metas['af_affiliate_stripe_expiration_month'],
+			                "exp_year" => $metas['af_affiliate_stripe_expiration_year'],
 	            		)
 				)
 	        );
@@ -59,8 +59,8 @@ class PayoutStripe{
 			try {
 				$recipient = \Stripe\Recipient::create(
 					 array(
-						  "name" => $metas['uap_affiliate_stripe_name'],
-						  "type" => $metas['uap_affiliate_stripe_card_type'],
+						  "name" => $metas['af_affiliate_stripe_name'],
+						  "type" => $metas['af_affiliate_stripe_card_type'],
 						  "card" => $token->id,
 						  "email" => $user_email
 					  )
@@ -98,8 +98,8 @@ class PayoutStripe{
 			if (!empty($data['data']['object']['reversed'])){
 				$status = 'reversed';
 			}
-			global $indeed_db;
-			$indeed_db->update_transaction_stripe_status($tr_id, $status);
+			global $af_db;
+			$af_db->update_transaction_stripe_status($tr_id, $status);
 		}
 	}
 

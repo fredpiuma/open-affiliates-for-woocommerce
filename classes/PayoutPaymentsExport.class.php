@@ -83,24 +83,24 @@ class PayoutPaymentsExport{
 
 			/// remove old files
 			try {
-				$this->remove_folter_content(UAP_PATH . 'temp_files', 'index.php');
+				$this->remove_folter_content(AF_PATH . 'temp_files', 'index.php');
 			} catch (exception $e){}
 
-			$file_name = 'temporary/uap_transactions_' . date('Y_m_d') . '.csv';
-			$file_path = UAP_PATH . $file_name;
-			$file_link = UAP_URL . $file_name;
+			$file_name = 'temporary/af_transactions_' . date('Y_m_d') . '.csv';
+			$file_path = AF_PATH . $file_name;
+			$file_link = AF_URL . $file_name;
 			if (file_exists($file_path)){
 				unlink($file_path);
 			}
 			$file_resource = fopen($file_path, 'w');
 
 			/// WRITE TOP
-			$write[] = esc_html__('Name', 'uap');
-			$write[] = esc_html__('E-mail', 'uap');
-			$write[] = esc_html__('Amount', 'uap');
-			$write[] = esc_html__('Currency', 'uap');
-			$write[] = esc_html__('Payment Type', 'uap');
-			$write[] = esc_html__('Payment Details', 'uap');
+			$write[] = esc_html__('Name', 'openaffiliates');
+			$write[] = esc_html__('E-mail', 'openaffiliates');
+			$write[] = esc_html__('Amount', 'openaffiliates');
+			$write[] = esc_html__('Currency', 'openaffiliates');
+			$write[] = esc_html__('Payment Type', 'openaffiliates');
+			$write[] = esc_html__('Payment Details', 'openaffiliates');
 			fputcsv($file_resource, $write, ",");
 			unset($write);
 
@@ -137,16 +137,16 @@ class PayoutPaymentsExport{
 	  * @return array
 	  */
 	 private function get_payments(){
-	 	global $wpdb, $indeed_db;
+	 	global $wpdb, $af_db;
 		$payment_types = array(
 								'paypal' => 'Paypal',
 								'stripe' => 'Stripe',
 								'stripe_v2' => 'Stripe Managed Accounts',
 								'stripe_v3' => 'Stripe Managed Accounts',
-								'bank_transfer' => esc_html__('Direct Deposit', 'uap'),
+								'bank_transfer' => esc_html__('Direct Deposit', 'openaffiliates'),
 		);
 		$return_data = array();
-		$table = $wpdb->prefix . 'uap_payments';
+		$table = $wpdb->prefix . 'af_payments';
 		$q = "SELECT id, payment_type, affiliate_id, amount, currency, payment_details FROM $table WHERE ";
 		$q .= " (status=0 OR status=1) ";
 		if ($this->min_date!=''){
@@ -166,8 +166,8 @@ class PayoutPaymentsExport{
 				$temp = (array)$object;
 				$temp['payment_details'] = $this->edit_payment_details($temp['payment_details']);
 				$temp['payment_type'] = $payment_types[$temp['payment_type']];
-				$temp['email'] = $indeed_db->get_email_by_affiliate_id($object->affiliate_id);
-				$temp['name'] = $indeed_db->get_wp_full_name(0, $object->affiliate_id);
+				$temp['email'] = $af_db->get_email_by_affiliate_id($object->affiliate_id);
+				$temp['name'] = $af_db->get_wp_full_name(0, $object->affiliate_id);
 				$return_data[] = $temp;
 				unset($temp);
 			}
@@ -205,15 +205,15 @@ class PayoutPaymentsExport{
 	   */
 	   private function set_status_at_complete(){
 	   		if ($this->ids){
-		   		global $wpdb, $indeed_db;
+		   		global $wpdb, $af_db;
 					/*
-					$table = $wpdb->prefix . 'uap_payments';
+					$table = $wpdb->prefix . 'af_payments';
 					$the_id_list = implode(',', $this->ids);
 					$query = "UPDATE $table SET status=2 WHERE id IN ($the_id_list);";
 					$wpdb->query( $query );
 					*/
 					foreach ( $this->ids as $transactionId ){
-							$indeed_db->change_transaction_status( $transactionId, 2 );
+							$af_db->change_transaction_status( $transactionId, 2 );
 					}
 
 	   		}
@@ -226,8 +226,8 @@ class PayoutPaymentsExport{
 	    */
 	    private function set_payment_special_status(){
 	   		if ($this->ids){
-		   		global $wpdb, $indeed_db;
-				$table = $wpdb->prefix . 'uap_payments';
+		   		global $wpdb, $af_db;
+				$table = $wpdb->prefix . 'af_payments';
 				$the_id_list = implode(',', $this->ids);
 				$query = "UPDATE $table SET payment_special_status='exported' WHERE id IN ($the_id_list);";
 				$wpdb->query( $query );

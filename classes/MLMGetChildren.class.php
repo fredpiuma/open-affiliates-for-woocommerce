@@ -17,13 +17,13 @@ if (!class_exists('MLMGetChildren')):
 			 * @return none
 			 */
 			if ($affiliate_id){
-				global $indeed_db;
-				$this->max_depth = get_option('uap_mlm_matrix_depth');	///getting max depth
-				$children = $indeed_db->mlm_get_children($affiliate_id); ///getting first line of children
-				$currency = get_option('uap_currency');
+				global $af_db;
+				$this->max_depth = get_option('af_mlm_matrix_depth');	///getting max depth
+				$children = $af_db->mlm_get_children($affiliate_id); ///getting first line of children
+				$currency = get_option('af_currency');
 
 				///AMOUNT PER RANK
-				$temp_data = $indeed_db->get_mlm_amount_value_for_rank_by_aff_id($affiliate_id);
+				$temp_data = $af_db->get_mlm_amount_value_for_rank_by_aff_id($affiliate_id);
 				if ($temp_data && isset($temp_data['types']) && isset($temp_data['values'])){
 					$this->amount_per_rank_type = $temp_data['types'];
 					$this->amount_per_rank_value = $temp_data['values'];
@@ -52,9 +52,9 @@ if (!class_exists('MLMGetChildren')):
 				}
 
 				/// GENERAL AMOUNT VALUE & AMOUNT TYPE
-				$general_settings = $indeed_db->return_settings_from_wp_option('mlm');
-				$this->general_amount_value = $general_settings['uap_mlm_default_amount_value'];
-				$this->general_amount_type = $general_settings['uap_mlm_default_amount_type'];
+				$general_settings = $af_db->return_settings_from_wp_option('mlm');
+				$this->general_amount_value = $general_settings['af_mlm_default_amount_value'];
+				$this->general_amount_type = $general_settings['af_mlm_default_amount_type'];
 				if ($this->general_amount_type=='flat'){
 					$this->general_amount_type = $currency;
 				} else {
@@ -67,20 +67,20 @@ if (!class_exists('MLMGetChildren')):
 					$current_depth = 2;
 					foreach ($children as $child_id){
 						$level = 1;
-						$temp['parent']= $indeed_db->get_wp_username_by_affiliate_id($affiliate_id);
+						$temp['parent']= $af_db->get_wp_username_by_affiliate_id($affiliate_id);
 
 						$temp['parent_id']= $affiliate_id;
 
 						$temp['level'] = $level;
-						$temp['username'] = $indeed_db->get_wp_username_by_affiliate_id($child_id);
-						$temp['email'] = $indeed_db->get_email_by_affiliate_id($child_id);
+						$temp['username'] = $af_db->get_wp_username_by_affiliate_id($child_id);
+						$temp['email'] = $af_db->get_email_by_affiliate_id($child_id);
 
-						$temp['full_name'] = $indeed_db->get_full_name_of_user($child_id);
+						$temp['full_name'] = $af_db->get_full_name_of_user($child_id);
 						if($temp['full_name'] == ''){
 							 $temp['full_name'] = $temp['username'];
 						}
-						$childuid = $indeed_db->get_uid_by_affiliate_id($child_id);
-						$temp['avatar'] = uap_get_avatar_for_uid($childuid);
+						$childuid = $af_db->get_uid_by_affiliate_id($child_id);
+						$temp['avatar'] = af_get_avatar_for_uid($childuid);
 						$temp['id'] = $child_id;
 
 						$temp['amount_value'] = '';
@@ -135,24 +135,24 @@ if (!class_exists('MLMGetChildren')):
 			 */
 			if ($parent_id && $current_depth<=$this->max_depth){
 				$current_depth++;
-				global $indeed_db;
-				$children = $indeed_db->mlm_get_children($parent_id);
+				global $af_db;
+				$children = $af_db->mlm_get_children($parent_id);
 				foreach ($children as $child_id){
 					$level = $current_depth - 1;
-					$temp['parent']= $indeed_db->get_wp_username_by_affiliate_id($parent_id);
+					$temp['parent']= $af_db->get_wp_username_by_affiliate_id($parent_id);
 
 					$temp['parent_id']= $parent_id;
 
 					$temp['level'] = $level;
-					$temp['username'] = $indeed_db->get_wp_username_by_affiliate_id($child_id);
-					$temp['email'] = $indeed_db->get_email_by_affiliate_id($child_id);
+					$temp['username'] = $af_db->get_wp_username_by_affiliate_id($child_id);
+					$temp['email'] = $af_db->get_email_by_affiliate_id($child_id);
 
-					$temp['full_name'] = $indeed_db->get_full_name_of_user($child_id);
+					$temp['full_name'] = $af_db->get_full_name_of_user($child_id);
 					if($temp['full_name'] == ''){
 						 $temp['full_name'] = $temp['username'];
 					}
-					$childuid = $indeed_db->get_uid_by_affiliate_id($child_id);
-					$temp['avatar'] = uap_get_avatar_for_uid($childuid);
+					$childuid = $af_db->get_uid_by_affiliate_id($child_id);
+					$temp['avatar'] = af_get_avatar_for_uid($childuid);
 					$temp['id'] = $child_id;
 
 					$temp['amount_value'] = '';

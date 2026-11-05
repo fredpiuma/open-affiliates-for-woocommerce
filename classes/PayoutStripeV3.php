@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class PayoutStripeV3
 {
@@ -18,18 +18,18 @@ class PayoutStripeV3
         if ( empty( $current_user->ID ) ){
             return false;
         }
-        require_once UAP_PATH  . 'classes/services/stripe-php-master/vendor/autoload.php';
-        $sandbox = get_option( 'uap_stripe_v3_sandbox' );
+        require_once AF_PATH  . 'classes/services/stripe-php-master/vendor/autoload.php';
+        $sandbox = get_option( 'af_stripe_v3_sandbox' );
         if ( $sandbox ){
-            $secret = get_option( 'uap_stripe_v3_sandbox_secret_key' );
+            $secret = get_option( 'af_stripe_v3_sandbox_secret_key' );
         } else {
-            $secret = get_option( 'uap_stripe_v3_secret_key' );
+            $secret = get_option( 'af_stripe_v3_secret_key' );
         }
         if ( $secret == '' ){
             return false;
         }
 
-				$accountId = get_user_meta( $current_user->ID, 'uap_stripe_v3_user_account_id-pending', true );
+				$accountId = get_user_meta( $current_user->ID, 'af_stripe_v3_user_account_id-pending', true );
         if ( $accountId === false || $accountId === null || $accountId === '' ){
             return false;
         }
@@ -39,9 +39,9 @@ class PayoutStripeV3
             // save user account id
             return false;
         }
-        update_user_meta( $current_user->ID, 'uap_stripe_v3_user_account_id', $accountId );
-        update_user_meta( $current_user->ID, 'uap_affiliate_payment_type', 'stripe_v3' );
-        delete_user_meta( $current_user->ID, 'uap_stripe_v3_user_account_id-pending' );
+        update_user_meta( $current_user->ID, 'af_stripe_v3_user_account_id', $accountId );
+        update_user_meta( $current_user->ID, 'af_affiliate_payment_type', 'stripe_v3' );
+        delete_user_meta( $current_user->ID, 'af_stripe_v3_user_account_id-pending' );
 
         /*
         // deprecated since version 8.4
@@ -50,7 +50,7 @@ class PayoutStripeV3
             return false;
         }
         $state = isset( $_GET['state'] ) ? $_GET['state'] : '';
-        if ( $state == '' || !wp_verify_nonce( $state, 'uap_stripe_v3_auth_user' ) ){
+        if ( $state == '' || !wp_verify_nonce( $state, 'af_stripe_v3_auth_user' ) ){
             return false;
         }
         \Stripe\Stripe::setApiKey( $secret );
@@ -62,7 +62,7 @@ class PayoutStripeV3
         if ( $userAccountId == '' ){
             return false;
         }
-        return update_user_meta( $current_user->ID, 'uap_stripe_v3_user_account_id', $userAccountId );
+        return update_user_meta( $current_user->ID, 'af_stripe_v3_user_account_id', $userAccountId );
         */
     }
 
@@ -72,24 +72,24 @@ class PayoutStripeV3
      */
     public function generateAuthLink( $uid=0 )
     {
-        global $indeed_db;
+        global $af_db;
         if ( !$uid ){
             return '';
         }
         $firstName = get_user_meta( $uid, 'first_name', true );
 				$lastName = get_user_meta( $uid, 'last_name', true );
-        $email = $indeed_db->get_email_by_uid( $uid );
-        $sandbox = get_option( 'uap_stripe_v3_sandbox' );
+        $email = $af_db->get_email_by_uid( $uid );
+        $sandbox = get_option( 'af_stripe_v3_sandbox' );
         if ( $sandbox ){
-            $clientId = get_option( 'uap_stripe_v3_sandbox_client_id' );
+            $clientId = get_option( 'af_stripe_v3_sandbox_client_id' );
         } else {
-            $clientId = get_option( 'uap_stripe_v3_client_id' );
+            $clientId = get_option( 'af_stripe_v3_client_id' );
         }
         if ( $clientId == '' ){
             return false;
         }
 
-        $nonce = wp_create_nonce( 'uap_stripe_v3_auth_user' );
+        $nonce = wp_create_nonce( 'af_stripe_v3_auth_user' );
         // old version :
         $link = 'https://connect.stripe.com/express/oauth/authorize?client_id=' . $clientId . '&state=' . $nonce . '&stripe_user[email]=' . $email;
 
@@ -104,34 +104,34 @@ class PayoutStripeV3
      */
     public function do_payout( $uid=0, $affiliateId=0, $amount=0, $currency='usd' )
     {
-        global $indeed_db;
+        global $af_db;
         if ( $amount == 0 ){
             return ;
         }
         if ( empty( $uid ) ){
-            $uid = $indeed_db->get_uid_by_affiliate_id( $affiliateId );
+            $uid = $af_db->get_uid_by_affiliate_id( $affiliateId );
         }
         if ( empty( $uid ) ){
             return ;
         }
-        $accountId = get_user_meta( $uid, 'uap_stripe_v3_user_account_id', true );
+        $accountId = get_user_meta( $uid, 'af_stripe_v3_user_account_id', true );
 
         if ( $accountId == '' || $accountId === false ){
             return ;
         }
-        require_once UAP_PATH  . 'classes/services/stripe-php-master/vendor/autoload.php';
+        require_once AF_PATH  . 'classes/services/stripe-php-master/vendor/autoload.php';
 
-        $sandbox = get_option( 'uap_stripe_v3_sandbox' );
+        $sandbox = get_option( 'af_stripe_v3_sandbox' );
         if ( $sandbox ){
-            $secret = get_option( 'uap_stripe_v3_sandbox_secret_key' );
+            $secret = get_option( 'af_stripe_v3_sandbox_secret_key' );
         } else {
-            $secret = get_option( 'uap_stripe_v3_secret_key' );
+            $secret = get_option( 'af_stripe_v3_secret_key' );
         }
         if ( $secret == '' ){
             return ;
         }
         $siteName = get_option( 'blogname' );
-        $username = $indeed_db->get_username_by_wpuid( $uid );
+        $username = $af_db->get_username_by_wpuid( $uid );
         $amount = $amount * 100;
 
         \Stripe\Stripe::setApiKey( $secret );
@@ -140,15 +140,15 @@ class PayoutStripeV3
               	"amount" 			=> $amount,
               	"currency"		=> $currency,
               	"destination" => $accountId,
-                "source_type" => get_option( 'uap_stripe_v3_source_type', 'card' ),//'bank_account',
-              	"description" => esc_html__("From ", 'uap') . $siteName . esc_html__(" to ", 'uap') . $username . '.',
+                "source_type" => get_option( 'af_stripe_v3_source_type', 'card' ),//'bank_account',
+              	"description" => esc_html__("From ", 'openaffiliates') . $siteName . esc_html__(" to ", 'openaffiliates') . $username . '.',
                 'metadata'    => []
           ));
         } catch ( \Exception $e ){
             // since version 8.4
             $requestBodyError = $e->getHttpBody();
             $requestBodyError = json_decode( $requestBodyError, true );
-            $this->errorMessage = isset( $requestBodyError['error']['message'] ) ? $requestBodyError['error']['message'] : esc_html__( 'Error', 'uap' );
+            $this->errorMessage = isset( $requestBodyError['error']['message'] ) ? $requestBodyError['error']['message'] : esc_html__( 'Error', 'openaffiliates' );
             // end of since version 8.4
             return '';
         }
@@ -172,7 +172,7 @@ class PayoutStripeV3
      */
     public function webhook()
     {
-        global $indeed_db;
+        global $af_db;
         $body = @file_get_contents('php://input');
         if(isset($body)){
           $data = json_decode( $body, true );
@@ -195,20 +195,20 @@ class PayoutStripeV3
         }
         $amount = $amount / 100;
 
-        $uid = $indeed_db->getUidByStripeV3AcctId( $accountId );
+        $uid = $af_db->getUidByStripeV3AcctId( $accountId );
 
         if ( !$uid ){
             exit;
         }
 
-        $affiliateId = $indeed_db->get_affiliate_id_by_wpuid( $uid );
+        $affiliateId = $af_db->get_affiliate_id_by_wpuid( $uid );
 
-        $transactionId = $indeed_db->uapPaymentsGetTransactionIdByAffiliateIdAndAmount( $affiliateId, $amount );
+        $transactionId = $af_db->afPaymentsGetTransactionIdByAffiliateIdAndAmount( $affiliateId, $amount );
 
         if ( $transactionId == '' ){
             exit;
         }
-        $indeed_db->update_transaction_stripe_status( $transactionId, 'paid' );
+        $af_db->update_transaction_stripe_status( $transactionId, 'paid' );
         http_response_code(200);
         exit;
     }

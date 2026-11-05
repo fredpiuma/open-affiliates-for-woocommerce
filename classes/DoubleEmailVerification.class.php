@@ -13,7 +13,7 @@ class DoubleEmailVerification
 		public function __construct($uid=0, $input_code='')
 		{
 				if (!empty($uid) && !empty($input_code)){
-						$time_before_expire = get_option('uap_double_email_expire_time');
+						$time_before_expire = get_option('af_double_email_expire_time');
 						$user_data = get_userdata($uid);
 						$error = FALSE;
 
@@ -34,18 +34,18 @@ class DoubleEmailVerification
 
 						//activate if it's case
 						if (!$error){
-							$hash = get_user_meta($uid, 'uap_activation_code', TRUE);
+							$hash = get_user_meta($uid, 'af_activation_code', TRUE);
 							if ($input_code==$hash){
 								//success
-								delete_user_option($uid, 'uap_activation_code');//remove code
-								update_user_meta($uid, 'uap_verification_status', 1);
+								delete_user_option($uid, 'af_activation_code');//remove code
+								update_user_meta($uid, 'af_verification_status', 1);
 								//opt in
 								if (!empty($user_data->data->user_email)){
 										$this->doOptIn( $uid, $user_data->data->user_email );
 								}
 								//send notification
 
-								uap_send_user_notifications($uid, 'email_check_success');
+								af_send_user_notifications($uid, 'email_check_success');
 							} else {
 								$error = TRUE;
 							}
@@ -54,10 +54,10 @@ class DoubleEmailVerification
 						//redirect
 						if ($error){
 							//error redirect
-							$redirect = get_option('uap_double_email_redirect_error');
+							$redirect = get_option('af_double_email_redirect_error');
 						} else {
 							//success redirect
-							$redirect = get_option('uap_double_email_redirect_success');
+							$redirect = get_option('af_double_email_redirect_success');
 						}
 				}
 
@@ -81,16 +81,16 @@ class DoubleEmailVerification
 		 */
 		private function doOptIn( $uid=0, $emailAddr='' )
 		{
-				global $indeed_db;
+				global $af_db;
 				$doOptin = 1;
-				$registerFields = $indeed_db->register_get_custom_fields( true );
-				if ( isset( $registerFields['uap_optin_accept'] ) ){
-						$doOptin = get_user_meta( $uid, 'uap_optin_accept', true );
+				$registerFields = $af_db->register_get_custom_fields( true );
+				if ( isset( $registerFields['af_optin_accept'] ) ){
+						$doOptin = get_user_meta( $uid, 'af_optin_accept', true );
 				}
 				if ( !$doOptin ){
 						return ;
 				}
-				return uap_do_opt_in( $emailAddr );
+				return af_do_opt_in( $emailAddr );
 		}
 
 }

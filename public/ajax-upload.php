@@ -12,16 +12,16 @@ if ( !isset( $_GET['publicn'] ) || !wp_verify_nonce( $_GET['publicn'], 'publicn'
 
 
 // security layer
-global $indeed_db;
-$uid = indeed_get_uid();
+global $af_db;
+$uid = af_get_uid();
 $access = true;
 if ( !$uid ){
-		$hash = isset( $_COOKIE['uapMedia'] ) ? $_COOKIE['uapMedia'] : '';
+		$hash = isset( $_COOKIE['afMedia'] ) ? $_COOKIE['afMedia'] : '';
 		if ( empty($hash) ){
 				$access = false;
 		}
 		$hash = sanitize_textarea_field( $hash );
-		$exists = $indeed_db->doesMediaHashExists( $hash );
+		$exists = $af_db->doesMediaHashExists( $hash );
 		if ( !$exists ){
 				$access = false;
 		}
@@ -44,18 +44,18 @@ if ( $access ){
 				echo esc_html('');
 			}
 		}
-	} else if (isset($_FILES['uap_file'])){
+	} else if (isset($_FILES['af_file'])){
 		//============= handle upload file
 			require_once ABSPATH . 'wp-admin/includes/image.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
-		$arr['id'] = media_handle_upload('uap_file',0);
+		$arr['id'] = media_handle_upload('af_file',0);
 		if ($arr['id']){
 			$arr['url'] =  wp_get_attachment_url( $arr['id'] );
 			$arr['secret'] = md5($arr['url']);
 		}
-		$arr['name'] = $_FILES['uap_file']['name'];
-		if (in_array($_FILES['uap_file']['type'], array('image/gif','image/jpg','image/jpeg','image/png'))){
+		$arr['name'] = $_FILES['af_file']['name'];
+		if (in_array($_FILES['af_file']['type'], array('image/gif','image/jpg','image/jpeg','image/png'))){
 			$arr['type'] = 'image';
 		} else {
 			$arr['type'] = 'other';
@@ -64,18 +64,18 @@ if ( $access ){
 	}
 	else if (isset($_FILES['img'])){
 			//// upload account page banner
-			$cropImage = new Indeed\Uap\CropImage();
-			echo esc_uap_content( $cropImage->saveImage($_FILES)->getResponse() );
+			$cropImage = new OpenAffiliates\CropImage();
+			echo esc_af_content( $cropImage->saveImage($_FILES)->getResponse() );
 	}
 
 	else if (isset($_POST['imgUrl'])){
-			$cropImage = new Indeed\Uap\CropImage();
+			$cropImage = new OpenAffiliates\CropImage();
 			$_POST['imgUrl'] = sanitize_text_field( $_POST['imgUrl'] );
 			$_POST['customIdentificator'] = sanitize_text_field( $_POST['customIdentificator'] );
 			if ( isset($_POST['customIdentificator']) && $_POST['customIdentificator']=='image' ){
 					$cropImage->setSaveUserMeta( false );
 			}
-			echo esc_uap_content($cropImage->cropImage($_POST)
+			echo esc_af_content($cropImage->cropImage($_POST)
 										 ->getResponse());
 	}
 }

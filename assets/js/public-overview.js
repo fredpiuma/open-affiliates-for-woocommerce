@@ -1,17 +1,17 @@
 /*
- *Ultimate Affiliate Pro - Front-end Overview Data
+ *Open Affiliates - Front-end Overview Data
  */
 "use strict";
 window.addEventListener( 'DOMContentLoaded', function(){
-  var uapDates = [];
-  var uapAmounts = [];
-  var uapLabels = [];
-  var uapAmountsBaseValues = [];
-  jQuery( '.uap-js-overview-stats-last-30' ).each(function( e, html ){
-      uapDates.push( jQuery(html).attr( 'data-date' ) );
-      uapAmounts.push( jQuery(html).attr( 'data-amount' ) );
-      uapLabels.push( jQuery(html).attr( 'data-label' ) );
-      uapAmountsBaseValues.push( jQuery(html).attr( 'data-base_amount' ) );
+  var afDates = [];
+  var afAmounts = [];
+  var afLabels = [];
+  var afAmountsBaseValues = [];
+  jQuery( '.af-js-overview-stats-last-30' ).each(function( e, html ){
+      afDates.push( jQuery(html).attr( 'data-date' ) );
+      afAmounts.push( jQuery(html).attr( 'data-amount' ) );
+      afLabels.push( jQuery(html).attr( 'data-label' ) );
+      afAmountsBaseValues.push( jQuery(html).attr( 'data-base_amount' ) );
   });
 
 var options = {
@@ -48,7 +48,7 @@ var options = {
            },
           scaleLabel: {
             display: true,
-            labelString: jQuery( '.uap-js-overview-earnings-received-label' ).attr('data-value')
+            labelString: jQuery( '.af-js-overview-earnings-received-label' ).attr('data-value')
           }
     }],
     scaleShowVerticalLines: false,
@@ -59,15 +59,15 @@ var options = {
       },
 }; // end of options
 
-  var uapChart = new Chart('chart-1', {
+  var afChart = new Chart('chart-1', {
     type    : 'line',
     data    : {
-      labels    : uapLabels,
+      labels    : afLabels,
       datasets  : [{
           backgroundColor   : 'rgba(201,218,232,0.5)',
           borderColor       : '#c9dae8',
-          data              : uapAmountsBaseValues, //referrals counts
-          label             : jQuery( '.uap-js-overview-earnings-label').attr( 'data-value' ),
+          data              : afAmountsBaseValues, //referrals counts
+          label             : jQuery( '.af-js-overview-earnings-label').attr( 'data-value' ),
           pointRadius				: 3,
           fill							: 'start',
           borderWidth				: 2
@@ -87,7 +87,7 @@ var options = {
                     callbacks: {
                       label: function(tooltipItem, data) {
                           var string = '';
-                          uapAmounts.forEach(function( val, i ){
+                          afAmounts.forEach(function( val, i ){
                               if ( i == tooltipItem.index ){
                                 string = val;
                               }
@@ -96,7 +96,7 @@ var options = {
                       },
                       title: function(tooltipItem, data) {
                         var string = '';
-                        uapDates.forEach(function( val, i ){
+                        afDates.forEach(function( val, i ){
                             if ( i == tooltipItem[0].index ){
                               string = val;
                             }

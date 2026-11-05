@@ -294,7 +294,7 @@ padding: 5px 15px;
     z-index: 5555;
     cursor: pointer;
 }
-.uap-links-section{
+.af-links-section{
 	color:#808E95;
 	border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,.13);     overflow: hidden;
@@ -306,36 +306,36 @@ padding: 5px 15px;
 	font-family: 'Open Sans', sans-serif;
 	position:fixed;
 }
-.uap-links-section .popover_title{
+.af-links-section .popover_title{
 	background-color:#eaeded;
 	font-weight:700;
 	color:#444;
 	font-size:15px;
 }
-.uap-links-section .popover_content{
+.af-links-section .popover_content{
 	padding-bottom:30px;
 	font-size:13px;
 }
-.uap-links-section .uap-special-label{
+.af-links-section .af-special-label{
 	font-family: 'Open Sans', sans-serif !important;
 	font-weight:600;
 }
-.uap-links-section .uap-ap-field{
+.af-links-section .af-ap-field{
 	padding-top:20px;
 }
-.uap-links-section .uap-ap-label{
+.af-links-section .af-ap-label{
 	color:#111;
 	font-weight:700;
 }
-.uap-account-affiliatelinks-tab2 .uap-ap-label{
+.af-account-affiliatelinks-tab2 .af-ap-label{
 	font-size:15px;
 }
-.uap-account-affiliatelinks-tab2 textarea{
+.af-account-affiliatelinks-tab2 textarea{
 	font-size:16px;
 	color:#000;
 }
 
-.uap-banners-section{
+.af-banners-section{
 	color:#808E95;
 	border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,.13);     overflow: hidden;
@@ -347,17 +347,17 @@ padding: 5px 15px;
 	font-family: 'Open Sans', sans-serif;
 	position:fixed;
 }
-.uap-banners-section .popover_title{
+.af-banners-section .popover_title{
 	background-color:#eaeded;
 	font-weight:700;
 	color:#444;
 	font-size:15px;
 }
-.uap-banners-section .popover_content{
+.af-banners-section .popover_content{
 	padding-bottom:30px;
 	font-size:13px;
 }
-.uap-menu-section{
+.af-menu-section{
 	color:#808E95;
 	border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,.13);     overflow: hidden;
@@ -371,16 +371,16 @@ padding: 5px 15px;
 	z-index: 999999;
 	font-size:13px;
 }
-.uap-menu-section .popover_content{
+.af-menu-section .popover_content{
 	padding-bottom:30px;
 }
-.uap-menu-section .popover_title {
+.af-menu-section .popover_title {
     background-color: #eaeded;
     font-weight: 700;
     color: #444;
     font-size: 15px;
 }
-.uap-menu-section ul{
+.af-menu-section ul{
 	line-height: 1;
     overflow: auto;
 	list-style: none;
@@ -388,17 +388,17 @@ padding: 5px 15px;
 	padding:0;
 	padding-bottom:10px;
 }
-.uap-menu-section li{
+.af-menu-section li{
 	list-style: none;
 	padding: 5px 1px 5px 0;
 	color:#41c3f7;
 	border-bottom: 1px solid #f4f4f4;
     padding-bottom: 5px;
 }
-.uap-info-bar-banner-size{
+.af-info-bar-banner-size{
 	padding: 15px 0;
 }
-.uap-info-bar-banner-size .uap-ap-label{
+.af-info-bar-banner-size .af-ap-label{
 	color:#111;
 	font-weight:700;
 	font-family: 'Open Sans', sans-serif !important;

@@ -23,9 +23,9 @@ if (!class_exists('TopAffiliatesList')){
 			if (empty($input)){
 				return;
 			} else {
-				global $indeed_db;
+				global $af_db;
 				$this->args = $input;
-				$this->general_settings = $indeed_db->return_settings_from_wp_option('top_affiliate_list');
+				$this->general_settings = $af_db->return_settings_from_wp_option('top_affiliate_list');
 			}
 		}
 
@@ -38,7 +38,7 @@ if (!class_exists('TopAffiliatesList')){
 				return;
 			}
 
-			$this->currency = get_option('uap_currency');
+			$this->currency = get_option('af_currency');
 			$output = '';
 			$html = '';
 			$js = '';
@@ -99,7 +99,7 @@ if (!class_exists('TopAffiliatesList')){
 			////SET USERS DATA
 			$this->set_users_data($user_ids);
 
-			$this->single_item_template = UAP_PATH .'public/listing_users/themes/' . $this->args['theme'] . "/index.php";
+			$this->single_item_template = AF_PATH .'public/listing_users/themes/' . $this->args['theme'] . "/index.php";
 
 			///SET FIELDS LABEL
 			$this->set_fields_label();
@@ -156,8 +156,8 @@ if (!class_exists('TopAffiliatesList')){
 			 */
 			 if ($uid){
 			 	 global $wpdb;
-				 $a = $wpdb->prefix . 'uap_affiliates';
-			 	 $r = $wpdb->prefix . 'uap_referrals';
+				 $a = $wpdb->prefix . 'af_affiliates';
+			 	 $r = $wpdb->prefix . 'af_referrals';
 				 $q = $wpdb->prepare( "SELECT SUM(r.amount) as amount
 							FROM
 							$r r
@@ -181,8 +181,8 @@ if (!class_exists('TopAffiliatesList')){
 			 */
 			 if ($uid){
 			 	 global $wpdb;
-				 $a = $wpdb->prefix . 'uap_affiliates';
-			 	 $v = $wpdb->prefix . 'uap_visits';
+				 $a = $wpdb->prefix . 'af_affiliates';
+			 	 $v = $wpdb->prefix . 'af_visits';
 				 $q = $wpdb->prepare("SELECT COUNT(v.id) as visits
 							FROM
 							$v v
@@ -206,8 +206,8 @@ if (!class_exists('TopAffiliatesList')){
 			 */
 			 if ($uid){
 			 	 global $wpdb;
-				 $a = $wpdb->prefix . 'uap_affiliates';
-			 	 $r = $wpdb->prefix . 'uap_referrals';
+				 $a = $wpdb->prefix . 'af_affiliates';
+			 	 $r = $wpdb->prefix . 'af_referrals';
 				 $q = $wpdb->prepare("SELECT COUNT(r.id) as referrals
 							FROM
 							$r r
@@ -229,10 +229,10 @@ if (!class_exists('TopAffiliatesList')){
 			 * @param none
 			 * @return none
 			 */
-			global $indeed_db;
-			$fields_data = $indeed_db->register_get_custom_fields();
+			global $af_db;
+			$fields_data = $af_db->register_get_custom_fields();
 			foreach ($this->user_fields as $field){
-				$key = uap_array_value_exists($fields_data, $field, 'name');
+				$key = af_array_value_exists($fields_data, $field, 'name');
 				if ($key!==FALSE && !empty($fields_data[$key]) && !empty($fields_data[$key]['label'])){
 					$this->fields_label[$field] = $fields_data[$key]['label'];
 				}
@@ -247,7 +247,7 @@ if (!class_exists('TopAffiliatesList')){
 			 */
 			global $wpdb;
 			$ranks_str = (empty($ranks)) ? '' : implode(',', $ranks);
-			$a = $wpdb->prefix . 'uap_affiliates';
+			$a = $wpdb->prefix . 'af_affiliates';
 			$u = $wpdb->base_prefix . 'users';
 			$q = "SELECT COUNT(a.id) as v FROM
 					$a a
@@ -270,9 +270,9 @@ if (!class_exists('TopAffiliatesList')){
 			 * @return array
 			 */
 			 global $wpdb;
-			 $a = $wpdb->prefix . 'uap_affiliates';
-			 $v = $wpdb->prefix . 'uap_visits';
-			 $r = $wpdb->prefix . 'uap_referrals';
+			 $a = $wpdb->prefix . 'af_affiliates';
+			 $v = $wpdb->prefix . 'af_visits';
+			 $r = $wpdb->prefix . 'af_referrals';
 			 $u = $wpdb->base_prefix . 'users';
 			 $um = $wpdb->base_prefix . 'usermeta';
 			 $ranks = (empty($ranks_str)) ? '' : implode(',', $ranks_str);
@@ -408,7 +408,7 @@ if (!class_exists('TopAffiliatesList')){
 					$slide_pagination_speed = $this->args['pagination_speed'];
 
 					$str .= "
-										<span class='uap-js-owl-settings-data'
+										<span class='af-js-owl-settings-data'
 												data-selector='#" . $this->div_parent_id . "'
 												data-autoHeight='$autoheight'
 												data-animateOut='$animation_out'
@@ -440,30 +440,30 @@ if (!class_exists('TopAffiliatesList')){
 			$str = '';
 			$custom_css = '';
 
-			if (!empty($this->args['slider_set']) && !defined('UAP_SLIDER_LOAD_CSS')){
+			if (!empty($this->args['slider_set']) && !defined('AF_SLIDER_LOAD_CSS')){
 				///// SLIDER CSS
-				$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . 'public/listing_users/assets/css/owl.carousel.css">';
-				$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . 'public/listing_users/assets/css/owl.theme.css">';
-				$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . 'public/listing_users/assets/css/owl.transitions.css">';
-				define('UAP_SLIDER_LOAD_CSS', TRUE);
+				$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . 'public/listing_users/assets/css/owl.carousel.css">';
+				$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . 'public/listing_users/assets/css/owl.theme.css">';
+				$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . 'public/listing_users/assets/css/owl.transitions.css">';
+				define('AF_SLIDER_LOAD_CSS', TRUE);
 			}
 			if (!empty($this->args['theme'])){
 				///// THEME
-				$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . 'public/listing_users/themes/' . $this->args['theme'] . '/style.css">';
+				$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . 'public/listing_users/themes/' . $this->args['theme'] . '/style.css">';
 			}
-			if (!defined('UAP_COLOR_CSS_FILE')){
+			if (!defined('AF_COLOR_CSS_FILE')){
 				////// COLOR EXTERNAL CSS
-				$str .= '<link rel="stylesheet" type="text/css" href="' . UAP_URL . 'public/listing_users/assets/css/layouts.css">';
-				define('UAP_COLOR_CSS_FILE', TRUE);
+				$str .= '<link rel="stylesheet" type="text/css" href="' . AF_URL . 'public/listing_users/assets/css/layouts.css">';
+				define('AF_COLOR_CSS_FILE', TRUE);
 			}
 
 			///// SLIDER COLORS
 			if (!empty($this->args['color_scheme']) && !empty($this->args['slider_set'])){
 				$custom_css .= '
-							.style_'.$this->args['color_scheme'].' .owl-uap-theme .owl-uap-dots .owl-uap-dot.active span, .style_'.$this->args['color_scheme'].'  .owl-uap-theme .owl-uap-dots .owl-uap-dot:hover span { background: #'.$this->args['color_scheme'].' !important; }
-							.style_'.$this->args['color_scheme'].' .pag-theme1 .owl-uap-theme .owl-uap-nav [class*="owl-uap-"]:hover{ background-color: #'.$this->args['color_scheme'].'; }
-							.style_'.$this->args['color_scheme'].' .pag-theme2 .owl-uap-theme .owl-uap-nav [class*="owl-uap-"]:hover{ color: #'.$this->args['color_scheme'].'; }
-							.style_'.$this->args['color_scheme'].' .pag-theme3 .owl-uap-theme .owl-uap-nav [class*="owl-uap-"]:hover{ background-color: #'.$this->args['color_scheme'].';}
+							.style_'.$this->args['color_scheme'].' .owl-af-theme .owl-af-dots .owl-af-dot.active span, .style_'.$this->args['color_scheme'].'  .owl-af-theme .owl-af-dots .owl-af-dot:hover span { background: #'.$this->args['color_scheme'].' !important; }
+							.style_'.$this->args['color_scheme'].' .pag-theme1 .owl-af-theme .owl-af-nav [class*="owl-af-"]:hover{ background-color: #'.$this->args['color_scheme'].'; }
+							.style_'.$this->args['color_scheme'].' .pag-theme2 .owl-af-theme .owl-af-nav [class*="owl-af-"]:hover{ color: #'.$this->args['color_scheme'].'; }
+							.style_'.$this->args['color_scheme'].' .pag-theme3 .owl-af-theme .owl-af-nav [class*="owl-af-"]:hover{ background-color: #'.$this->args['color_scheme'].';}
 						';
 			}
 			////// ALIGN CENTER
@@ -471,12 +471,12 @@ if (!class_exists('TopAffiliatesList')){
 				$custom_css .= '#'.$this->div_parent_id.' ul{text-align: center;}';
 			}
 			///// CUSTOM CSS
-			if (!empty($this->general_settings['uap_listing_users_custom_css'])){
-				$custom_css .= stripslashes($this->general_settings['uap_listing_users_custom_css']);
+			if (!empty($this->general_settings['af_listing_users_custom_css'])){
+				$custom_css .= stripslashes($this->general_settings['af_listing_users_custom_css']);
 			}
 			//// RESPONSIVE
-			if (!empty($this->general_settings['uap_listing_users_responsive_small'])){
-				$width = 100 / $this->general_settings['uap_listing_users_responsive_small'];
+			if (!empty($this->general_settings['af_listing_users_responsive_small'])){
+				$width = 100 / $this->general_settings['af_listing_users_responsive_small'];
 				$custom_css .= '
 						@media only screen and (max-width: 479px){
 							#' . $this->div_parent_id . ' ul li{
@@ -485,8 +485,8 @@ if (!class_exists('TopAffiliatesList')){
 						}
 				';
 			}
-			if (!empty($this->general_settings['uap_listing_users_responsive_medium'])){
-				$width = 100 / $this->general_settings['uap_listing_users_responsive_medium'];
+			if (!empty($this->general_settings['af_listing_users_responsive_medium'])){
+				$width = 100 / $this->general_settings['af_listing_users_responsive_medium'];
 				$custom_css .= '
 						@media only screen and (min-width: 480px) and (max-width: 767px){
 							#' . $this->div_parent_id . ' ul li{
@@ -495,8 +495,8 @@ if (!class_exists('TopAffiliatesList')){
 						}
 				';
 			}
-			if (!empty($this->general_settings['uap_listing_users_responsive_large'])){
-				$width = 100 / $this->general_settings['uap_listing_users_responsive_large'];
+			if (!empty($this->general_settings['af_listing_users_responsive_large'])){
+				$width = 100 / $this->general_settings['af_listing_users_responsive_large'];
 				$custom_css .= '
 						@media only screen and (min-width: 768px) and (max-width: 959px){
 							#' . $this->div_parent_id . ' ul li{
@@ -520,9 +520,9 @@ if (!class_exists('TopAffiliatesList')){
 			 * @return string
 			 */
 			$str = '';
-			if (!empty($this->args['slider_set']) && !defined('UAP_SLIDER_LOAD_JS')){
-				wp_enqueue_script( 'uap-owl-carousel', UAP_URL . 'public/listing_users/assets/js/owl.carousel.js', ['jquery'], '9.4' );
-				define('UAP_SLIDER_LOAD_JS', TRUE);
+			if (!empty($this->args['slider_set']) && !defined('AF_SLIDER_LOAD_JS')){
+				wp_enqueue_script( 'af-owl-carousel', AF_URL . 'public/listing_users/assets/js/owl.carousel.js', ['jquery'], '9.4' );
+				define('AF_SLIDER_LOAD_JS', TRUE);
 			}
 			return $str;
 		}
@@ -535,7 +535,7 @@ if (!class_exists('TopAffiliatesList')){
 			$str = '';
 			$current_page = (empty($this->args['current_page'])) ? 1 : $this->args['current_page'];
 			$this->total_pages = ceil($this->total_users/$this->args['entries_per_page']);
-			$url = UAP_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$str = '';
 
 			if ($this->total_pages<=5){
@@ -550,13 +550,13 @@ if (!class_exists('TopAffiliatesList')){
 
 			for ($i=1; $i<=$this->total_pages; $i++){
 				if (in_array($i, $show_links)){
-					$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('uapUserList_p', $i, $url);
+					$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('afUserList_p', $i, $url);
 					$selected = ($current_page==$i) ? '-selected' : '';
-					$str .= "<a href='$href' class='uap-user-list-pagination-item" . $selected . "'>" . $i . '</a>';
+					$str .= "<a href='$href' class='af-user-list-pagination-item" . $selected . "'>" . $i . '</a>';
 					$dots_on = TRUE;
 				} else {
 					if (!empty($dots_on)){
-						$str .= '<span class="uap-user-list-pagination-item-break">...</span>';
+						$str .= '<span class="af-user-list-pagination-item-break">...</span>';
 						$dots_on = FALSE;
 					}
 				}
@@ -564,18 +564,18 @@ if (!class_exists('TopAffiliatesList')){
 			/// Back link
 			if ($current_page>1){
 				$prev_page = $current_page - 1;
-				$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('uapUserList_p', $prev_page, $url);
-				$str = "<a href='" . $href . "' class='uap-user-list-pagination-item'> < </a>" . $str;
+				$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('afUserList_p', $prev_page, $url);
+				$str = "<a href='" . $href . "' class='af-user-list-pagination-item'> < </a>" . $str;
 			}
 			///Forward link
 			if ($current_page<$this->total_pages){
 				$next_page = $current_page + 1;
-				$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('uapUserList_p', $next_page, $url);
-				$str = $str . "<a href='" . $href . "' class='uap-user-list-pagination-item'> > </a>";
+				$href = (defined('IS_PREVIEW')) ? '#' : add_query_arg('afUserList_p', $next_page, $url);
+				$str = $str . "<a href='" . $href . "' class='af-user-list-pagination-item'> > </a>";
 			}
 
 			//Wrappers
-			$str = "<div class='uap-user-list-pagination'>" . $str . "</div><div class='uap-clear'></div>";
+			$str = "<div class='af-user-list-pagination'>" . $str . "</div><div class='af-clear'></div>";
 			return $str;
 		}
 
@@ -599,18 +599,18 @@ if (!class_exists('TopAffiliatesList')){
 			$breaker_div = 1;
 			$new_div = 1;
 			$color_class = (empty($this->args['color_scheme'])) ? 'style_0a9fd8' : 'style_' . $this->args['color_scheme'];
-			$parent_class = (empty($this->args['slider_set'])) ? 'uap-content-user-list' : 'uap-carousel-view';//carousel_view
+			$parent_class = (empty($this->args['slider_set'])) ? 'af-content-user-list' : 'af-carousel-view';//carousel_view
 			$num = rand(1, 10000);
-			$this->div_parent_id = 'indeed_carousel_view_widget_' . $num;
+			$this->div_parent_id = 'af_carousel_view_widget_' . $num;
 			$arrow_wrapp_id = 'wrapp_arrows_widget_' . $num;
-			$ul_id = 'uap_list_users_ul_' . rand(1, 10000);
+			$ul_id = 'af_list_users_ul_' . rand(1, 10000);
 
 			///// WRAPPERS
 			$extra_class = (empty($this->args['pagination_theme'])) ? '' : $this->args['pagination_theme'];
-			$str .= "<div  id='uap_public_list_users_" . rand(1, 10000) . "'>";
+			$str .= "<div  id='af_public_list_users_" . rand(1, 10000) . "'>";
 			$str .= "<div class='$color_class'>";
 			$str .= "<div class='" . $this->args['theme'] . " " . $extra_class . "'>";
-			$str .= "<div class='uap-wrapp-list-users'>";
+			$str .= "<div class='af-wrapp-list-users'>";
 			$str .= "<div class='$parent_class' id='$this->div_parent_id' >";
 
 			////// ITEMS
@@ -625,7 +625,7 @@ if (!class_exists('TopAffiliatesList')){
 				if ($i % $items_per_slide==0 || $i==$total_items){
 					$breaker_div++;
 					$new_div = 1;
-					$str .= "<div class='uap-clear'></div></ul>";
+					$str .= "<div class='af-clear'></div></ul>";
 				} else {
 					$new_div = 0;
 				}
@@ -634,10 +634,10 @@ if (!class_exists('TopAffiliatesList')){
 
 			///// CLOSE WRAPPERS
 			$str .= '</div>'; /// end of $parent_class
-			$str .= '</div>'; /// end of uap-wrapp-list-users
+			$str .= '</div>'; /// end of af-wrapp-list-users
 			$str .= '</div>'; /// end of $args['theme'] . " " . $args['pagination_theme']
 			$str .= '</div>'; /// end of $color_class
-			$str .= '</div>'; //// end of uap_public_list_users_
+			$str .= '</div>'; //// end of af_public_list_users_
 
 			return $str;
 		}
@@ -654,15 +654,15 @@ if (!class_exists('TopAffiliatesList')){
 			$str .= "<li style = ' width: $this->li_width ' >";
 
 			//AVATAR
-			$this->users[$uid]['uap_avatar'] = uap_get_avatar_for_uid($uid);
+			$this->users[$uid]['af_avatar'] = af_get_avatar_for_uid($uid);
 
 			///STANDARD FIELDS
 			$standard_fields = array(
-										"user_login" => "UAP_USERNAME",
-										"first_name" => "UAP_FIRST_NAME",
-										"last_name" => "UAP_LAST_NAME",
-										"user_email" => "UAP_EMAIL",
-										"uap_avatar" => "UAP_AVATAR",
+										"user_login" => "AF_USERNAME",
+										"first_name" => "AF_FIRST_NAME",
+										"last_name" => "AF_LAST_NAME",
+										"user_email" => "AF_EMAIL",
+										"af_avatar" => "AF_AVATAR",
  			);
 
 			foreach ($standard_fields as $k=>$v){
@@ -681,21 +681,21 @@ if (!class_exists('TopAffiliatesList')){
 			///AFFILIATES SPECIAL DATA EARNINGS, REFERRALS AND VISITS
 			if ($key=array_search('earnings', $fields)){
 				unset($fields[$key]);
-				$html_str = '<div class="uap-top-counts">' .  uap_format_price_and_currency($this->currency, $this->users[$uid]['earnings']) . ' ' .  esc_html__(' Earnings ', 'uap') .'</div>';
+				$html_str = '<div class="af-top-counts">' .  af_format_price_and_currency($this->currency, $this->users[$uid]['earnings']) . ' ' .  esc_html__(' Earnings ', 'openaffiliates') .'</div>';
 				$template = str_replace('EARNINGS', $html_str, $template);
 			} else {
 				$template = str_replace('EARNINGS', '', $template);
 			}
 			if ($key=array_search('referrals', $fields)){
 				unset($fields[$key]);
-				$html_str = '<div class="uap-top-counts">' . $this->users[$uid]['referrals'] . esc_html__(' Referrals', 'uap') . '</div>';
+				$html_str = '<div class="af-top-counts">' . $this->users[$uid]['referrals'] . esc_html__(' Referrals', 'openaffiliates') . '</div>';
 				$template = str_replace('REFERRALS', $html_str, $template);
 			} else {
 				$template = str_replace('REFERRALS', '', $template);
 			}
 			if ($key=array_search('visits', $fields)){
 				unset($fields[$key]);
-				$html_str = '<div class="uap-top-counts">' . $this->users[$uid]['visits'] . esc_html__(' Visits', 'uap') .'</div>';
+				$html_str = '<div class="af-top-counts">' . $this->users[$uid]['visits'] . esc_html__(' Visits', 'openaffiliates') .'</div>';
 				$template = str_replace('VISITS', $html_str, $template);
 			} else {
 				$template = str_replace('VISITS', '', $template);
@@ -710,10 +710,10 @@ if (!class_exists('TopAffiliatesList')){
 					$extra_fields_str = '';
 					if (!empty($this->users[$uid][$value])){
 						if (!empty($this->args['include_fields_label']) && !empty($this->fields_label[$value])){
-							$extra_fields_str .= '<span class="uap-user-list-label">' . $this->fields_label[$value] . ' </span>';
-							$extra_fields_str .= '<span class="uap-user-list-label-result">';
+							$extra_fields_str .= '<span class="af-user-list-label">' . $this->fields_label[$value] . ' </span>';
+							$extra_fields_str .= '<span class="af-user-list-label-result">';
 						}else{
-							$extra_fields_str .= '<span class="uap-user-list-result">';
+							$extra_fields_str .= '<span class="af-user-list-result">';
 						}
 						if (is_array($this->users[$uid][$value])){
 							$extra_fields_str .= implode(',', $this->users[$uid][$value]);
@@ -721,14 +721,14 @@ if (!class_exists('TopAffiliatesList')){
 							$extra_fields_str .= $this->users[$uid][$value];
 						}
 						$extra_fields_str .= '</span>';
-						$extra_fields_str .= '<div class="uap-clear"></div>';
+						$extra_fields_str .= '<div class="af-clear"></div>';
 						if (!empty($extra_fields_str)){
 							$extra_fields .= '<div class="member-extra-single-field">' . $extra_fields_str . '</div>';
 						}
 					}
 				}
 			}
-			$template = str_replace('UAP_EXTRA_FIELDS', $extra_fields, $template);
+			$template = str_replace('AF_EXTRA_FIELDS', $extra_fields, $template);
 
 			$str .= $template;
 			$str .= '</li>';

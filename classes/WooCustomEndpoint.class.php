@@ -2,7 +2,7 @@
 if (!class_exists('WooCustomEndpoint')):
 
 class WooCustomEndpoint{
-	private $name = 'uap';
+	private $name = 'af';
 	private $metas = array();
 	private $is_affiliate = FALSE;
 
@@ -12,10 +12,10 @@ class WooCustomEndpoint{
 		 * @return none
 		 */
 
-		global $indeed_db;
-		$this->metas = $indeed_db->return_settings_from_wp_option('woo_account_page');
+		global $af_db;
+		$this->metas = $af_db->return_settings_from_wp_option('woo_account_page');
 
-		if (!uap_is_woo_active()){
+		if (!af_is_woo_active()){
 			add_action('init',array( $this, 'flush_rules'), 999);
 		}
 
@@ -23,7 +23,7 @@ class WooCustomEndpoint{
 		//add_filter('query_vars', array( $this, 'add_query_vars'), 991, 1);
 		add_filter('the_title', array( $this, 'endpoint_title' ));
 		add_filter('woocommerce_account_menu_items', array($this, 'new_menu_items'));
-		add_action('woocommerce_account_uap_endpoint', array($this, 'content'));
+		add_action('woocommerce_account_af_endpoint', array($this, 'content'));
 	}
 
 	public function add_endpoints(){
@@ -59,7 +59,7 @@ class WooCustomEndpoint{
 		global $wp_query;
 		if (isset($wp_query->query_vars[$this->name]) && !is_admin() && is_main_query() && in_the_loop() && is_account_page()){
 
-				$title = get_option('uap_woo_account_page_name');
+				$title = get_option('af_woo_account_page_name');
 		}
 		return $title;
 	}
@@ -69,10 +69,10 @@ class WooCustomEndpoint{
 		 * @param array
 		 * @return array
 		 */
-		 if ($this->name && isset($this->metas['uap_woo_account_page_name']) && $this->check_if_do_print() ){
-		 	 $position = $this->metas['uap_woo_account_page_menu_position'];
+		 if ($this->name && isset($this->metas['af_woo_account_page_name']) && $this->check_if_do_print() ){
+		 	 $position = $this->metas['af_woo_account_page_menu_position'];
 	
-			 $reorder[$position] = array( $this->name, get_option( 'uap_woo_account_page_name' ) );
+			 $reorder[$position] = array( $this->name, get_option( 'af_woo_account_page_name' ) );
 
 			 $i = 1;
 			 foreach ($items as $key=>$value){
@@ -101,11 +101,11 @@ class WooCustomEndpoint{
 		 */
 		 if ($this->is_affiliate){
 			 	/// content for affiliates
-			 	echo do_shortcode('[uap-account-page]');
+			 	echo do_shortcode('[af-account-page]');
 		 } else {
 		 		/// non affiliates
-		 		// echo stripslashes($this->metas['uap_woo_account_page_non_affiliate_content']);
-				echo stripslashes( do_shortcode(get_option('uap_woo_account_page_non_affiliate_content')) );
+		 		// echo stripslashes($this->metas['af_woo_account_page_non_affiliate_content']);
+				echo stripslashes( do_shortcode(get_option('af_woo_account_page_non_affiliate_content')) );
 		 }
 	}
 
@@ -114,12 +114,12 @@ class WooCustomEndpoint{
 		 * @param none
 		 * @return none
 		 */
-		global $indeed_db;
+		global $af_db;
 		global $current_user;
 		if (!empty($current_user) && !empty($current_user->ID)){
-			$this->is_affiliate = $indeed_db->is_user_affiliate_by_uid($current_user->ID);
+			$this->is_affiliate = $af_db->is_user_affiliate_by_uid($current_user->ID);
 		}
-		if (!$this->is_affiliate && !$this->metas['uap_woo_account_page_show_to_everyone']){
+		if (!$this->is_affiliate && !$this->metas['af_woo_account_page_show_to_everyone']){
 			return FALSE;
 		}
 		return TRUE;

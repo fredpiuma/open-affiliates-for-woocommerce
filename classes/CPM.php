@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class CPM
 {
@@ -8,8 +8,8 @@ class CPM
 
     public function __construct($affiliateId=0)
     {
-        global $indeed_db;
-        if (!$indeed_db->is_magic_feat_enable('cpm_commission')){
+        global $af_db;
+        if (!$af_db->is_magic_feat_enable('cpm_commission')){
             return;
         }
         $this->affiliateId = $affiliateId;
@@ -18,7 +18,7 @@ class CPM
 
     private function trackTheVisit()
     {
-        $db = new \Indeed\Uap\Db\CPM($this->affiliateId);
+        $db = new \OpenAffiliates\Db\CPM($this->affiliateId);
         $theCount = $db->save();
         if (!$theCount){
             return false;
@@ -31,11 +31,11 @@ class CPM
 
     private function saveReferral()
     {
-        global $indeed_db;
-        $affiliateRank = $indeed_db->get_affiliate_rank($this->affiliateId);
-        $amountValue = $indeed_db->getCPMValueForRank($affiliateRank);
-        $currency = get_option('uap_currency');
-        $referralStatus = get_option('uap_pay_per_click_default_referral_sts');
+        global $af_db;
+        $affiliateRank = $af_db->get_affiliate_rank($this->affiliateId);
+        $amountValue = $af_db->getCPMValueForRank($affiliateRank);
+        $currency = get_option('af_currency');
+        $referralStatus = get_option('af_pay_per_click_default_referral_sts');
 
         $args = [
             'refferal_wp_uid' => 0,
@@ -54,7 +54,7 @@ class CPM
             'parent_referral_id' => '',
             'child_referral_id' => '',
         ];
-        return $indeed_db->save_referral($args);
+        return $af_db->save_referral($args);
     }
 
 

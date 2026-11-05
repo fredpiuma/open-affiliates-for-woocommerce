@@ -1,9 +1,9 @@
 /*
- * Ultimate Affiliate Pro - Table functionality
+ * Open Affiliates - Table functionality
  */
 "use strict";
-var UapDataTable = {
-    tableId               : '#uap-dashboard-table',
+var AfDataTable = {
+    tableId               : '#af-dashboard-table',
     translatedLabels      : null,
     tableButtons          : null,
     tableObject           : null,
@@ -12,12 +12,12 @@ var UapDataTable = {
     // start init
     init                        : function(){
         var object = this;
-        var labels = JSON.parse( window.uap_datatable_labels );
-        object.columns = JSON.parse( window.uap_datatable_cols );
+        var labels = JSON.parse( window.af_datatable_labels );
+        object.columns = JSON.parse( window.af_datatable_cols );
 
         // default settings for datatable
         object.translatedLabels = {
-                      processing    : "<div class='uap-table-custom-loading'></div>",
+                      processing    : "<div class='af-table-custom-loading'></div>",
                       search				: '',
                       lengthMenu		: labels.lengthMenu,
                       info					: labels.info,
@@ -48,7 +48,7 @@ var UapDataTable = {
             {
                 extend      : 'colvis',// show/hide columns button
                 text        : labels.show_hide_cols_label,// action buttons
-                className   : 'uap-show-hide-cols uap-dashboard-table-show-hide-cols',
+                className   : 'af-show-hide-cols af-dashboard-table-show-hide-cols',
                 columnText: function ( dt, idx, title ) {
                     if ( title === '' ){
                         return labels.checkbox_label;
@@ -59,57 +59,57 @@ var UapDataTable = {
         ];
 
         // select items checkbox
-        jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+        jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
             object.selectUnselectAll( object );
         });
 
         // create the table
-        if ( typeof window.uap_datatable_type == 'undefined' || window.uap_datatable_type === '' ){
+        if ( typeof window.af_datatable_type == 'undefined' || window.af_datatable_type === '' ){
             return;
         }
 
         // multiselect - status
-        if ( jQuery('.uap-js-datatable-items-status-types').length ){
-            jQuery('.uap-js-datatable-items-status-types').multiselect({
+        if ( jQuery('.af-js-datatable-items-status-types').length ){
+            jQuery('.af-js-datatable-items-status-types').multiselect({
                 selectAll: true,
-                placeholder: jQuery('.uap-js-datatable-items-status-types').attr( 'data-placeholder' ),
+                placeholder: jQuery('.af-js-datatable-items-status-types').attr( 'data-placeholder' ),
             });
         }
 
         // multiselect - target ( for notifications )
-        if ( jQuery('.uap-js-datatable-items-target-types').length ){
-            jQuery('.uap-js-datatable-items-target-types').multiselect({
+        if ( jQuery('.af-js-datatable-items-target-types').length ){
+            jQuery('.af-js-datatable-items-target-types').multiselect({
                 selectAll: true,
-                placeholder: jQuery('.uap-js-datatable-items-target-types').attr( 'data-placeholder' ),
+                placeholder: jQuery('.af-js-datatable-items-target-types').attr( 'data-placeholder' ),
             });
         }
 
         // multiselect - ranks ( affiliates page )
-        if ( jQuery( '.uap-js-datatable-filter-ranks' ).length ){
-            jQuery( '.uap-js-datatable-filter-ranks' ).multiselect({
+        if ( jQuery( '.af-js-datatable-filter-ranks' ).length ){
+            jQuery( '.af-js-datatable-filter-ranks' ).multiselect({
                 selectAll: true,
-                placeholder: jQuery('.uap-js-datatable-filter-ranks').attr( 'data-placeholder' ),
+                placeholder: jQuery('.af-js-datatable-filter-ranks').attr( 'data-placeholder' ),
             });
         }
 
         // multiselect - sources
-        if ( jQuery( '.uap-js-datatable-items-source-types-referrals' ).length ){
-            jQuery( '.uap-js-datatable-items-source-types-referrals' ).multiselect({
+        if ( jQuery( '.af-js-datatable-items-source-types-referrals' ).length ){
+            jQuery( '.af-js-datatable-items-source-types-referrals' ).multiselect({
                 selectAll: true,
-                placeholder: jQuery('.uap-js-datatable-items-source-types-referrals').attr( 'data-placeholder' ),
+                placeholder: jQuery('.af-js-datatable-items-source-types-referrals').attr( 'data-placeholder' ),
             });
         }
 
-        switch ( window.uap_datatable_type ){
+        switch ( window.af_datatable_type ){
             case 'ranks':
               object.loadTableForRanks( object );
               /// event on custom filter - do reload
-              jQuery( '.uap-js-datatable-items-status-types' ).on('change', function () {
+              jQuery( '.af-js-datatable-items-status-types' ).on('change', function () {
                    object.tableObject.destroy();
                    object.loadTableForRanks( object );
               });
               // event on custom search - do reload
-              jQuery( '.uap-js-search-phrase' ).on('keyup', function () {
+              jQuery( '.af-js-search-phrase' ).on('keyup', function () {
                    object.tableObject.destroy();
                    object.loadTableForRanks( object );
               });
@@ -117,12 +117,12 @@ var UapDataTable = {
             case 'offers':
               object.loadTableForOffers( object );
               /// event on custom filter - do reload
-              jQuery( '.uap-js-datatable-items-status-types' ).on('change', function () {
+              jQuery( '.af-js-datatable-items-status-types' ).on('change', function () {
                    object.tableObject.destroy();
                    object.loadTableForOffers( object );
               });
               // event on custom search - do reload
-              jQuery( '.uap-js-search-phrase' ).on('keyup', function () {
+              jQuery( '.af-js-search-phrase' ).on('keyup', function () {
                    object.tableObject.destroy();
                    object.loadTableForOffers( object );
               });
@@ -130,12 +130,12 @@ var UapDataTable = {
             case 'landing_commissions':
               object.loadTableForLandingCommissions( object );
               /// event on custom filter - do reload
-              jQuery( '.uap-js-datatable-items-status-types' ).on('change', function () {
+              jQuery( '.af-js-datatable-items-status-types' ).on('change', function () {
                    object.tableObject.destroy();
                    object.loadTableForLandingCommissions( object );
               });
               // event on custom search - do reload
-              jQuery( '.uap-js-search-phrase' ).on('keyup', function () {
+              jQuery( '.af-js-search-phrase' ).on('keyup', function () {
                    object.tableObject.destroy();
                    object.loadTableForLandingCommissions( object );
               });
@@ -143,7 +143,7 @@ var UapDataTable = {
             case 'banners':
                 object.loadTableForBanners( object );
                 // event on custom search - do reload
-                jQuery( '.uap-js-search-phrase' ).on('keyup', function () {
+                jQuery( '.af-js-search-phrase' ).on('keyup', function () {
                      object.tableObject.destroy();
                      object.loadTableForBanners( object );
                 });
@@ -151,7 +151,7 @@ var UapDataTable = {
             case 'notifications':
                 // filter and search bar with button
                 object.loadTableForNotifications( object );
-                jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+                jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                     object.tableObject.destroy();
                     object.loadTableForNotifications( object );
                 });
@@ -159,7 +159,7 @@ var UapDataTable = {
             case 'affiliates':
                 // filter and search bar with button
                 object.loadTableForAffiliates( object );
-                jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+                jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                     object.tableObject.destroy();
                     object.loadTableForAffiliates( object );
                 });
@@ -167,7 +167,7 @@ var UapDataTable = {
             case 'visits':
                 // filter and search bar with button
                 object.loadTableForVisits( object );
-                jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+                jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                     object.tableObject.destroy();
                     object.loadTableForVisits( object );
                 });
@@ -175,7 +175,7 @@ var UapDataTable = {
             case 'referrals':
                 // filter and search bar with button
                 object.loadTableForReferrals( object );
-                jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+                jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                     object.tableObject.destroy();
                     object.loadTableForReferrals( object );
                 });
@@ -186,7 +186,7 @@ var UapDataTable = {
             case 'payouts':
                 // filter and search bar with button
                 object.loadTableForPayouts( object );
-                jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+                jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                     object.tableObject.destroy();
                     object.loadTableForPayouts( object );
                 });
@@ -194,7 +194,7 @@ var UapDataTable = {
             case 'payments':
               // filter and search bar with button
               object.loadTableForPayments( object );
-              jQuery( '.uap-datatable-filter-bttn' ).on( 'click', function(){
+              jQuery( '.af-datatable-filter-bttn' ).on( 'click', function(){
                   object.tableObject.destroy();
                   object.loadTableForPayments( object );
               });
@@ -216,33 +216,33 @@ var UapDataTable = {
                     type      : "post",
                     url       : decodeURI(ajax_url),
                     data      : {
-                               action             : "uap_ajax_get_ranks", // ajax method
-                               search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                               status             : jQuery('.uap-js-datatable-items-status-types').val(),
+                               action             : "af_ajax_get_ranks", // ajax method
+                               search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                               status             : jQuery('.af-js-datatable-items-status-types').val(),
                     },
                     dataSrc   : 'data'
             },
             //retrieve       : true,
             serverSide     : true,
-            dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             drawCallback   : function(){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                  jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                  jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                  jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                  jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                   // select items checkbox
-                  jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                  jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                       object.selectUnselectAll( object );
                   });
 
                   // remove one rank
-                  jQuery( '.uap-js-remove-one-rank' ).on( 'click', function(){
+                  jQuery( '.af-js-remove-one-rank' ).on( 'click', function(){
                       var rankId = jQuery( this ).attr( 'data-id' );
-                      uapSwal({
-                        title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_rank' ),
+                      afSwal({
+                        title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_rank' ),
                         text: "",
                         type: "warning",
                         showCancelButton: true,
@@ -255,8 +255,8 @@ var UapDataTable = {
                               type : 'post',
                               url : decodeURI(ajax_url),
                               data : {
-                                         action                 : 'uap_admin_remove_one_rank',
-          															 uap_admin_forms_nonce	:	jQuery( '.uap-js-ranks-listing-delete-nonce' ).attr( 'data-value'),
+                                         action                 : 'af_admin_remove_one_rank',
+          															 af_admin_forms_nonce	:	jQuery( '.af-js-ranks-listing-delete-nonce' ).attr( 'data-value'),
                                          id                     :	rankId,
                                      },
                               success: function (response) {
@@ -269,19 +269,19 @@ var UapDataTable = {
                   // end of remove one rank
 
                   // remove many ranks
-                  if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                    jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                  if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                    jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                           evt.preventDefault();
-                          var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                          var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                               return this.value;
                           }).get();
                           if ( checkedVals.length === 0 ){
                               return;
                           }
 
-                          if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                              uapSwal({
-                                title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_ranks'),
+                          if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                              afSwal({
+                                title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_ranks'),
                                 text: "",
                                 type: "warning",
                                 showCancelButton: true,
@@ -290,7 +290,7 @@ var UapDataTable = {
                                 closeOnConfirm: true
                               },
                               function(){
-                                  var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                  var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                       return this.value;
                                   }).get();
                                   var valsToSend = checkedVals.join(",");
@@ -298,8 +298,8 @@ var UapDataTable = {
                                           type 			: 'post',
                                           url 			: decodeURI(ajax_url),
                                           data 			: {
-                                                     action		              : 'uap_admin_remove_many_rank',
-                      															 uap_admin_forms_nonce	:	jQuery( '.uap-js-ranks-listing-delete-nonce' ).attr( 'data-value' ),
+                                                     action		              : 'af_admin_remove_many_rank',
+                      															 af_admin_forms_nonce	:	jQuery( '.af-js-ranks-listing-delete-nonce' ).attr( 'data-value' ),
                                                      ids			              : valsToSend,
                                           },
                                           success		: function (response) {
@@ -324,8 +324,8 @@ var UapDataTable = {
             order          : [],//[ 1, "asc" ]
             scrollToTop    : true,
             createdRow: function( row, data, dataIndex ) {
-                jQuery( row ).attr( 'onmouseover', "uapDhSelector('#rank_"+ data.id +"', 1);" );
-                jQuery( row ).attr( 'onmouseout', "uapDhSelector('#rank_"+ data.id +"', 0);" );
+                jQuery( row ).attr( 'onmouseover', "afDhSelector('#rank_"+ data.id +"', 1);" );
+                jQuery( row ).attr( 'onmouseout', "afDhSelector('#rank_"+ data.id +"', 0);" );
             },
             stateSave      : true,
             stateSaveCallback: function( settings, data ) {
@@ -333,9 +333,9 @@ var UapDataTable = {
                       type 			: 'post',
                       url 			: decodeURI(ajax_url),
                       data 			: {
-                            action     : "uap_ajax_datatable_save_state", // ajax method
+                            action     : "af_ajax_datatable_save_state", // ajax method
                             state      : JSON.stringify(data),
-                            type       : 'uap_datatable_state_for-ranks',
+                            type       : 'af_datatable_state_for-ranks',
                       },
                       success		: function (response) {
                           return;
@@ -343,8 +343,8 @@ var UapDataTable = {
               });
             },
             stateLoadCallback: function(settings) {
-                if ( jQuery( '.uap-js-datatable-state' ).length ){
-                    return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+                if ( jQuery( '.af-js-datatable-state' ).length ){
+                    return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
                 }
                 return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
             },
@@ -359,33 +359,33 @@ var UapDataTable = {
                     type      : "post",
                     url       : decodeURI(ajax_url),
                     data      : {
-                               action             : "uap_ajax_get_offers", // ajax method
-                               search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                               status             : jQuery('.uap-js-datatable-items-status-types').val(),
+                               action             : "af_ajax_get_offers", // ajax method
+                               search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                               status             : jQuery('.af-js-datatable-items-status-types').val(),
                     },
                     dataSrc   : 'data'
             },
             //retrieve       : true,
             serverSide     : true,
-            dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             drawCallback   : function(){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                  jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                  jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                  jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                  jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                   // select items checkbox
-                  jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                  jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                       object.selectUnselectAll( object );
                   });
 
                   // remove one item
-                  jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                  jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                       var itemId = jQuery( this ).attr( 'data-id' );
-                      uapSwal({
-                        title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                      afSwal({
+                        title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                         text: "",
                         type: "warning",
                         showCancelButton: true,
@@ -398,8 +398,8 @@ var UapDataTable = {
                               type : 'post',
                               url : decodeURI(ajax_url),
                               data : {
-                                         action                 : 'uap_ajax_remove_one_offer',// custom
-                                         uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                         action                 : 'af_ajax_remove_one_offer',// custom
+                                         af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                          id                     :	itemId,
                                      },
                               success: function (response) {
@@ -412,18 +412,18 @@ var UapDataTable = {
                   // end of remove one item
 
                   // remove many items
-                  if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                    jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                  if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                    jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                           evt.preventDefault();
-                          var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                          var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                               return this.value;
                           }).get();
                           if ( checkedVals.length === 0 ){
                               return;
                           }
-                          if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                              uapSwal({
-                                title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                          if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                              afSwal({
+                                title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                                 text: "",
                                 type: "warning",
                                 showCancelButton: true,
@@ -432,7 +432,7 @@ var UapDataTable = {
                                 closeOnConfirm: true
                               },
                               function(){
-                                  var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                  var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                       return this.value;
                                   }).get();
                                   var valsToSend = checkedVals.join(",");
@@ -440,8 +440,8 @@ var UapDataTable = {
                                           type 			: 'post',
                                           url 			: decodeURI(ajax_url),
                                           data 			: {
-                                                     action		              : 'uap_ajax_remove_many_offers',// custom
-                                                     uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                     action		              : 'af_ajax_remove_many_offers',// custom
+                                                     af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                      ids			              : valsToSend,
                                           },
                                           success		: function (response) {
@@ -466,8 +466,8 @@ var UapDataTable = {
             order          : [],//[ 1, "asc" ]
             scrollToTop    : true,
             createdRow: function( row, data, dataIndex ) {
-                jQuery( row ).attr( 'onmouseover', "uapDhSelector('#offer_"+ data.id +"', 1);" );// custom
-                jQuery( row ).attr( 'onmouseout', "uapDhSelector('#offer_"+ data.id +"', 0);" );// custom
+                jQuery( row ).attr( 'onmouseover', "afDhSelector('#offer_"+ data.id +"', 1);" );// custom
+                jQuery( row ).attr( 'onmouseout', "afDhSelector('#offer_"+ data.id +"', 0);" );// custom
             },
             stateSave      : true,
             stateSaveCallback: function( settings, data ) {
@@ -475,9 +475,9 @@ var UapDataTable = {
                       type 			: 'post',
                       url 			: decodeURI(ajax_url),
                       data 			: {
-                            action     : "uap_ajax_datatable_save_state", // ajax method
+                            action     : "af_ajax_datatable_save_state", // ajax method
                             state      : JSON.stringify(data),
-                            type       : 'uap_datatable_state_for-offers',
+                            type       : 'af_datatable_state_for-offers',
                       },
                       success		: function (response) {
                           return;
@@ -485,8 +485,8 @@ var UapDataTable = {
               });
             },
             stateLoadCallback: function(settings) {
-                if ( jQuery( '.uap-js-datatable-state' ).length ){
-                    return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+                if ( jQuery( '.af-js-datatable-state' ).length ){
+                    return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
                 }
                 return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
             },
@@ -501,33 +501,33 @@ var UapDataTable = {
                     type      : "post",
                     url       : decodeURI(ajax_url),
                     data      : {
-                               action             : "uap_ajax_get_landing_commissions", // ajax method
-                               search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                               status             : jQuery('.uap-js-datatable-items-status-types').val(),
+                               action             : "af_ajax_get_landing_commissions", // ajax method
+                               search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                               status             : jQuery('.af-js-datatable-items-status-types').val(),
                     },
                     dataSrc   : 'data'
             },
             //retrieve       : true,
             serverSide     : true,
-            dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             drawCallback   : function(){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                  jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                  jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                  jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                  jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                   // select items checkbox
-                  jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                  jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                       object.selectUnselectAll( object );
                   });
 
                   // remove one item
-                  jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                  jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                       var itemId = jQuery( this ).attr( 'data-id' );
-                      uapSwal({
-                        title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                      afSwal({
+                        title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                         text: "",
                         type: "warning",
                         showCancelButton: true,
@@ -540,8 +540,8 @@ var UapDataTable = {
                               type : 'post',
                               url : decodeURI(ajax_url),
                               data : {
-                                         action                 : 'uap_ajax_remove_one_landing_commission',// custom
-                                         uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                         action                 : 'af_ajax_remove_one_landing_commission',// custom
+                                         af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                          id                     :	itemId,
                                      },
                               success: function (response) {
@@ -554,18 +554,18 @@ var UapDataTable = {
                   // end of remove one item
 
                   // remove many items
-                  if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                    jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                  if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                    jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                           evt.preventDefault();
-                          var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                          var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                               return this.value;
                           }).get();
                           if ( checkedVals.length === 0 ){
                               return;
                           }
-                          if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                              uapSwal({
-                                title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                          if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                              afSwal({
+                                title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                                 text: "",
                                 type: "warning",
                                 showCancelButton: true,
@@ -574,7 +574,7 @@ var UapDataTable = {
                                 closeOnConfirm: true
                               },
                               function(){
-                                  var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                  var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                       return this.value;
                                   }).get();
                                   var valsToSend = checkedVals.join(",");
@@ -582,8 +582,8 @@ var UapDataTable = {
                                           type 			: 'post',
                                           url 			: decodeURI(ajax_url),
                                           data 			: {
-                                                     action		              : 'uap_ajax_remove_many_landing_commissions',// custom
-                                                     uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                     action		              : 'af_ajax_remove_many_landing_commissions',// custom
+                                                     af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                      ids			              : valsToSend,
                                           },
                                           success		: function (response) {
@@ -608,8 +608,8 @@ var UapDataTable = {
             order          : [],//[ 1, "asc" ]
             scrollToTop    : true,
             createdRow: function( row, data, dataIndex ) {
-                jQuery( row ).attr( 'onmouseover', "uapDhSelector('#landing_commission_"+ data.id +"', 1);" );// custom
-                jQuery( row ).attr( 'onmouseout', "uapDhSelector('#landing_commission_"+ data.id +"', 0);" );// custom
+                jQuery( row ).attr( 'onmouseover', "afDhSelector('#landing_commission_"+ data.id +"', 1);" );// custom
+                jQuery( row ).attr( 'onmouseout', "afDhSelector('#landing_commission_"+ data.id +"', 0);" );// custom
             },
             stateSave      : true,
             stateSaveCallback: function( settings, data ) {
@@ -617,9 +617,9 @@ var UapDataTable = {
                       type 			: 'post',
                       url 			: decodeURI(ajax_url),
                       data 			: {
-                            action     : "uap_ajax_datatable_save_state", // ajax method
+                            action     : "af_ajax_datatable_save_state", // ajax method
                             state      : JSON.stringify(data),
-                            type       : 'uap_datatable_state_for-landing_commissions',
+                            type       : 'af_datatable_state_for-landing_commissions',
                       },
                       success		: function (response) {
                           return;
@@ -627,8 +627,8 @@ var UapDataTable = {
               });
             },
             stateLoadCallback: function(settings) {
-                if ( jQuery( '.uap-js-datatable-state' ).length ){
-                    return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+                if ( jQuery( '.af-js-datatable-state' ).length ){
+                    return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
                 }
                 return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
             },
@@ -643,32 +643,32 @@ var UapDataTable = {
                   type      : "post",
                   url       : decodeURI(ajax_url),
                   data      : {
-                             action             : "uap_ajax_get_banners", // ajax method
-                             search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
+                             action             : "af_ajax_get_banners", // ajax method
+                             search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
                   },
                   dataSrc   : 'data'
           },
           //retrieve       : true,
           serverSide     : true,
-          dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+          dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
           lengthChange   : true,
           pageLength     : 25,
           drawCallback   : function(){
                 jQuery("body").removeClass("loading"); // remove loading
-                jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                 // select items checkbox
-                jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                     object.selectUnselectAll( object );
                 });
 
                 // remove one item
-                jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                     var itemId = jQuery( this ).attr( 'data-id' );
-                    uapSwal({
-                      title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                    afSwal({
+                      title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                       text: "",
                       type: "warning",
                       showCancelButton: true,
@@ -681,8 +681,8 @@ var UapDataTable = {
                             type : 'post',
                             url : decodeURI(ajax_url),
                             data : {
-                                       action                 : 'uap_ajax_remove_one_banners',// custom
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                       action                 : 'af_ajax_remove_one_banners',// custom
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                        id                     :	itemId,
                                    },
                             success: function (response) {
@@ -695,18 +695,18 @@ var UapDataTable = {
                 // end of remove one item
 
                 // remove many items
-                if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                  jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                  jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                         evt.preventDefault();
-                        var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                             return this.value;
                         }).get();
                         if ( checkedVals.length === 0 ){
                             return;
                         }
-                        if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                            uapSwal({
-                              title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                        if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                            afSwal({
+                              title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                               text: "",
                               type: "warning",
                               showCancelButton: true,
@@ -715,7 +715,7 @@ var UapDataTable = {
                               closeOnConfirm: true
                             },
                             function(){
-                                var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                     return this.value;
                                 }).get();
                                 var valsToSend = checkedVals.join(",");
@@ -723,8 +723,8 @@ var UapDataTable = {
                                         type 			: 'post',
                                         url 			: decodeURI(ajax_url),
                                         data 			: {
-                                                   action		              : 'uap_ajax_remove_many_banners',// custom
-                                                   uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                   action		              : 'af_ajax_remove_many_banners',// custom
+                                                   af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                    ids			              : valsToSend,
                                         },
                                         success		: function (response) {
@@ -749,8 +749,8 @@ var UapDataTable = {
           order          : [],//[ 1, "asc" ]
           scrollToTop    : true,
           createdRow: function( row, data, dataIndex ) {
-              jQuery( row ).attr( 'onmouseover', "uapDhSelector('#banner_"+ data.id +"', 1);" );// custom
-              jQuery( row ).attr( 'onmouseout', "uapDhSelector('#banner_"+ data.id +"', 0);" );// custom
+              jQuery( row ).attr( 'onmouseover', "afDhSelector('#banner_"+ data.id +"', 1);" );// custom
+              jQuery( row ).attr( 'onmouseout', "afDhSelector('#banner_"+ data.id +"', 0);" );// custom
           },
           stateSave      : true,
           stateSaveCallback: function( settings, data ) {
@@ -758,9 +758,9 @@ var UapDataTable = {
                     type 			: 'post',
                     url 			: decodeURI(ajax_url),
                     data 			: {
-                          action     : "uap_ajax_datatable_save_state", // ajax method
+                          action     : "af_ajax_datatable_save_state", // ajax method
                           state      : JSON.stringify(data),
-                          type       : 'uap_datatable_state_for-banners',
+                          type       : 'af_datatable_state_for-banners',
                     },
                     success		: function (response) {
                         return;
@@ -768,8 +768,8 @@ var UapDataTable = {
             });
           },
           stateLoadCallback: function(settings) {
-              if ( jQuery( '.uap-js-datatable-state' ).length ){
-                  return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+              if ( jQuery( '.af-js-datatable-state' ).length ){
+                  return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
               }
               return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
           },
@@ -784,33 +784,33 @@ var UapDataTable = {
                   type      : "post",
                   url       : decodeURI(ajax_url),
                   data      : {
-                             action             : "uap_ajax_get_notifications", // ajax method
-                             search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                             target_types       : jQuery( '.uap-js-datatable-items-target-types' ).val(),
+                             action             : "af_ajax_get_notifications", // ajax method
+                             search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                             target_types       : jQuery( '.af-js-datatable-items-target-types' ).val(),
                   },
                   dataSrc   : 'data'
           },
           //retrieve       : true,
           serverSide     : true,
-          dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+          dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
           lengthChange   : true,
           pageLength     : 25,
           drawCallback   : function(){
                 jQuery("body").removeClass("loading"); // remove loading
-                jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                 // select items checkbox
-                jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                     object.selectUnselectAll( object );
                 });
 
                 // remove one item
-                jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                     var itemId = jQuery( this ).attr( 'data-id' );
-                    uapSwal({
-                      title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                    afSwal({
+                      title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                       text: "",
                       type: "warning",
                       showCancelButton: true,
@@ -823,8 +823,8 @@ var UapDataTable = {
                             type : 'post',
                             url : decodeURI(ajax_url),
                             data : {
-                                       action                 : 'uap_ajax_remove_one_notifications',// custom
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                       action                 : 'af_ajax_remove_one_notifications',// custom
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                        id                     :	itemId,
                                    },
                             success: function (response) {
@@ -837,19 +837,19 @@ var UapDataTable = {
                 // end of remove one item
 
                 // remove many items
-                if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                  jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                  jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                         evt.preventDefault();
-                        var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                             return this.value;
                         }).get();
                         if ( checkedVals.length === 0 ){
                             return;
                         }
 
-                        if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                            uapSwal({
-                              title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                        if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                            afSwal({
+                              title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                               text: "",
                               type: "warning",
                               showCancelButton: true,
@@ -858,7 +858,7 @@ var UapDataTable = {
                               closeOnConfirm: true
                             },
                             function(){
-                                var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                     return this.value;
                                 }).get();
                                 var valsToSend = checkedVals.join(",");
@@ -866,8 +866,8 @@ var UapDataTable = {
                                         type 			: 'post',
                                         url 			: decodeURI(ajax_url),
                                         data 			: {
-                                                   action		              : 'uap_ajax_remove_many_notifications',// custom
-                                                   uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                   action		              : 'af_ajax_remove_many_notifications',// custom
+                                                   af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                    ids			              : valsToSend,
                                         },
                                         success		: function (response) {
@@ -883,15 +883,15 @@ var UapDataTable = {
               // end of remove many items
 
               // send test notification
-              if ( jQuery( '.uap-js-notifications-fire-notification-test' ).length > 0 ){
-                  jQuery( '.uap-js-notifications-fire-notification-test' ).on( 'click', function(){
+              if ( jQuery( '.af-js-notifications-fire-notification-test' ).length > 0 ){
+                  jQuery( '.af-js-notifications-fire-notification-test' ).on( 'click', function(){
                       var notificationId = jQuery( this ).attr( 'data-notification_id' );
                       jQuery.ajax({
                           type 			: 'post',
-                          url 			: decodeURI( window.uap_url )+'/wp-admin/admin-ajax.php',
+                          url 			: decodeURI( window.af_url )+'/wp-admin/admin-ajax.php',
                           data 			: {
-                                     action : 'uap_ajax_notification_send_test_email',
-                                     uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                     action : 'af_ajax_notification_send_test_email',
+                                     af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                      id			: notificationId
                           },
                           success		: function (data) {
@@ -903,16 +903,16 @@ var UapDataTable = {
               //end of send test notifications
 
               // modify status
-              if ( jQuery( '.uap-js-admin-notification-list-on-off' ).length > 0 ){
-                  jQuery( '.uap-js-admin-notification-list-on-off' ).on( 'change', function(){
+              if ( jQuery( '.af-js-admin-notification-list-on-off' ).length > 0 ){
+                  jQuery( '.af-js-admin-notification-list-on-off' ).on( 'change', function(){
                         var notificationId = jQuery( this ).attr( 'data-id' );
                         jQuery.ajax({
                             type 			: 'post',
-                            url 			: decodeURI( window.uap_url )+'/wp-admin/admin-ajax.php',
+                            url 			: decodeURI( window.af_url )+'/wp-admin/admin-ajax.php',
                             data 			: {
-                                       action : 'uap_ajax_notification_modify_status',
+                                       action : 'af_ajax_notification_modify_status',
                                        id			: notificationId,
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                        status : jQuery( this ).is(':checked') ? 1 : 0,
                             },
                             success		: function (data) {
@@ -935,8 +935,8 @@ var UapDataTable = {
           order          : [],//[ 1, "asc" ]
           scrollToTop    : true,
           createdRow: function( row, data, dataIndex ) {
-              jQuery( row ).attr( 'onmouseover', "uapDhSelector('#notification_"+ data.id +"', 1);" );// custom
-              jQuery( row ).attr( 'onmouseout', "uapDhSelector('#notification_"+ data.id +"', 0);" );// custom
+              jQuery( row ).attr( 'onmouseover', "afDhSelector('#notification_"+ data.id +"', 1);" );// custom
+              jQuery( row ).attr( 'onmouseout', "afDhSelector('#notification_"+ data.id +"', 0);" );// custom
           },
           stateSave      : true,
           stateSaveCallback: function( settings, data ) {
@@ -944,9 +944,9 @@ var UapDataTable = {
                     type 			: 'post',
                     url 			: decodeURI(ajax_url),
                     data 			: {
-                          action     : "uap_ajax_datatable_save_state", // ajax method
+                          action     : "af_ajax_datatable_save_state", // ajax method
                           state      : JSON.stringify(data),
-                          type       : 'uap_datatable_state_for-notifications',
+                          type       : 'af_datatable_state_for-notifications',
                     },
                     success		: function (response) {
                         return;
@@ -954,8 +954,8 @@ var UapDataTable = {
             });
           },
           stateLoadCallback: function(settings) {
-              if ( jQuery( '.uap-js-datatable-state' ).length ){
-                  return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+              if ( jQuery( '.af-js-datatable-state' ).length ){
+                  return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
               }
               return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
           },
@@ -970,37 +970,37 @@ var UapDataTable = {
                   type      : "post",
                   url       : decodeURI(ajax_url),
                   data      : {
-                             action             : "uap_ajax_get_affiliates", // ajax method
-                             search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                             ranks              : jQuery( '.uap-js-datatable-filter-ranks' ).val(),
+                             action             : "af_ajax_get_affiliates", // ajax method
+                             search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                             ranks              : jQuery( '.af-js-datatable-filter-ranks' ).val(),
                   },
                   dataSrc   : 'data'
           },
           //retrieve       : true,
           serverSide     : true,
-          dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+          dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
           lengthChange   : true,
           pageLength     : 25,
           drawCallback   : function( response ){
                 // ready for export
-                jQuery( '.js-uap-export-csv' ).attr( 'data-filters', response.json.params );
+                jQuery( '.js-af-export-csv' ).attr( 'data-filters', response.json.params );
 
                 jQuery("body").removeClass("loading"); // remove loading
-                jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                 // select items checkbox
-                jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                     object.selectUnselectAll( object );
                 });
 
                 // copy to clipboard
-                if ( jQuery( '.uap-js-admin-affiliate-table-copy-clipboard' ).length > 0 ){
-                    jQuery( '.uap-js-admin-affiliate-table-copy-clipboard' ).on('click', function(){
+                if ( jQuery( '.af-js-admin-affiliate-table-copy-clipboard' ).length > 0 ){
+                    jQuery( '.af-js-admin-affiliate-table-copy-clipboard' ).on('click', function(){
                         var cpTxt = jQuery( this ).attr('data-link');
                         navigator.clipboard.writeText(cpTxt);
-                        uapSwal({
+                        afSwal({
                           title: jQuery( this ).attr( 'data-message' ),
                           text: "",
                           type: "success",
@@ -1013,10 +1013,10 @@ var UapDataTable = {
                 }
 
                 // remove one item
-                jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                     var itemId = jQuery( this ).attr( 'data-id' );
-                    uapSwal({
-                      title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                    afSwal({
+                      title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                       text: "",
                       type: "warning",
                       showCancelButton: true,
@@ -1029,8 +1029,8 @@ var UapDataTable = {
                             type : 'post',
                             url : decodeURI(ajax_url),
                             data : {
-                                       action                 : 'uap_ajax_remove_one_affiliate',// custom
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                       action                 : 'af_ajax_remove_one_affiliate',// custom
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                        id                     :	itemId,
                                    },
                             success: function (response) {
@@ -1043,19 +1043,19 @@ var UapDataTable = {
                 // end of remove one item
 
                 // remove many items
-                if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                  jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                  jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                         evt.preventDefault();
-                        var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                             return this.value;
                         }).get();
                         if ( checkedVals.length === 0 ){
                             return;
                         }
 
-                        if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                            uapSwal({
-                              title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                        if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                            afSwal({
+                              title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                               text: "",
                               type: "warning",
                               showCancelButton: true,
@@ -1064,7 +1064,7 @@ var UapDataTable = {
                               closeOnConfirm: true
                             },
                             function(){
-                                var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                     return this.value;
                                 }).get();
                                 var valsToSend = checkedVals.join(",");
@@ -1072,8 +1072,8 @@ var UapDataTable = {
                                         type 			: 'post',
                                         url 			: decodeURI(ajax_url),
                                         data 			: {
-                                                   action		              : 'uap_ajax_remove_many_affiliates',// custom
-                                                   uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                   action		              : 'af_ajax_remove_many_affiliates',// custom
+                                                   af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                    ids			              : valsToSend,
                                         },
                                         success		: function (response) {
@@ -1082,8 +1082,8 @@ var UapDataTable = {
                                         }
                                 });
                            });
-                        } else if ( jQuery('.uap-js-bulk-action-select').val() === 'update_rank' ){
-                            var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        } else if ( jQuery('.af-js-bulk-action-select').val() === 'update_rank' ){
+                            var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                 return this.value;
                             }).get();
                             var valsToSend = checkedVals.join(",");
@@ -1091,8 +1091,8 @@ var UapDataTable = {
                                     type 			: 'post',
                                     url 			: decodeURI(ajax_url),
                                     data 			: {
-                                               action		              : 'uap_ajax_update_ranks_for_affiliates',// custom
-                                               uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                               action		              : 'af_ajax_update_ranks_for_affiliates',// custom
+                                               af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                ids			              : valsToSend,
                                     },
                                     success		: function (response) {
@@ -1107,13 +1107,13 @@ var UapDataTable = {
               // end of remove many items
 
               // approve email
-              if ( jQuery('.uap-js-datatable-affiliate-approve-email').length ){
-                  jQuery( '.uap-js-datatable-affiliate-approve-email' ).on( 'click', function(evt){
+              if ( jQuery('.af-js-datatable-affiliate-approve-email').length ){
+                  jQuery( '.af-js-datatable-affiliate-approve-email' ).on( 'click', function(evt){
                         jQuery.ajax({
                               type : 'post',
                               url : decodeURI(ajax_url),
                               data : {
-                                         action: 'uap_approve_user_email',
+                                         action: 'af_approve_user_email',
                                          uid: jQuery(this).attr('data-uid'),
                                      },
                               success: function (response) {
@@ -1126,13 +1126,13 @@ var UapDataTable = {
               // end of approve email
 
               // approve affiliate
-              if ( jQuery('.uap-js-datatable-affiliates-approve-user').length ){
-                  jQuery( '.uap-js-datatable-affiliates-approve-user' ).on( 'click', function(evt){
+              if ( jQuery('.af-js-datatable-affiliates-approve-user').length ){
+                  jQuery( '.af-js-datatable-affiliates-approve-user' ).on( 'click', function(evt){
                       jQuery.ajax({
                           type: 'post',
-                          url: decodeURI(window.uap_url)+'/wp-admin/admin-ajax.php',
+                          url: decodeURI(window.af_url)+'/wp-admin/admin-ajax.php',
                           data: {
-                                 action: 'uap_approve_affiliate',
+                                 action: 'af_approve_affiliate',
                                  uid: jQuery(this).attr('data-uid'),
                           },
                           success: function () {
@@ -1145,24 +1145,24 @@ var UapDataTable = {
                 // end of approve affiliate
 
                 // direct email
-                uapAdminSendEmail.init({
-                    popupAjax		       : 'uap_admin_send_email_popup',
-                  	sendEmailAjax	     : 'uap_admin_do_send_email',
+                afAdminSendEmail.init({
+                    popupAjax		       : 'af_admin_send_email_popup',
+                  	sendEmailAjax	     : 'af_admin_do_send_email',
                   	ajaxPath           : decodeURI(window.ajax_url),
-                    openPopupSelector  : '.uap-admin-do-send-email-via-uap',
-                    sendEmailSelector  : '#indeed_admin_send_mail_submit_bttn',
-                    fromSelector       : '#indeed_admin_send_mail_from',
-                    toSelector         : '#indeed_admin_send_mail_to',
-                    subjectSelector    : '#indeed_admin_send_mail_subject',
-                    messageSelector    : '#indeed_admin_send_mail_content',
-                    closePopupBttn     : '#uap_send_email_via_admin_close_popup_bttn',
-                    popupWrapp         : '#uap_admin_popup_box',
+                    openPopupSelector  : '.af-admin-do-send-email-via-af',
+                    sendEmailSelector  : '#af_admin_send_mail_submit_bttn',
+                    fromSelector       : '#af_admin_send_mail_from',
+                    toSelector         : '#af_admin_send_mail_to',
+                    subjectSelector    : '#af_admin_send_mail_subject',
+                    messageSelector    : '#af_admin_send_mail_content',
+                    closePopupBttn     : '#af_send_email_via_admin_close_popup_bttn',
+                    popupWrapp         : '#af_admin_popup_box',
                 });
                 // end of direct email
 
               // tipso
-              if( jQuery('.uap-js-tipso-item').length ){
-                  jQuery('.uap-js-tipso-item').tipso({
+              if( jQuery('.af-js-tipso-item').length ){
+                  jQuery('.af-js-tipso-item').tipso({
                       position: 'top',
                       background: '#555',
                       color: '#fff',
@@ -1186,9 +1186,9 @@ var UapDataTable = {
                     type 			: 'post',
                     url 			: decodeURI(ajax_url),
                     data 			: {
-                          action     : "uap_ajax_datatable_save_state", // ajax method
+                          action     : "af_ajax_datatable_save_state", // ajax method
                           state      : JSON.stringify(data),
-                          type       : 'uap_datatable_state_for-affiliates',
+                          type       : 'af_datatable_state_for-affiliates',
                     },
                     success		: function (response) {
                         return;
@@ -1196,15 +1196,15 @@ var UapDataTable = {
             });
           },
           stateLoadCallback: function(settings) {
-              if ( jQuery( '.uap-js-datatable-state' ).length ){
-                  return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+              if ( jQuery( '.af-js-datatable-state' ).length ){
+                  return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
               }
               return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
           },
 
           createdRow: function( row, data, dataIndex ) {
-              jQuery( row ).attr( 'onmouseover', "uapDhSelector('#affiliate_"+ data.id.value +"', 1);" );// custom
-              jQuery( row ).attr( 'onmouseout', "uapDhSelector('#affiliate_"+ data.id.value +"', 0);" );// custom
+              jQuery( row ).attr( 'onmouseover', "afDhSelector('#affiliate_"+ data.id.value +"', 1);" );// custom
+              jQuery( row ).attr( 'onmouseout', "afDhSelector('#affiliate_"+ data.id.value +"', 0);" );// custom
           }
       });
     },
@@ -1217,9 +1217,9 @@ var UapDataTable = {
                   type      : "post",
                   url       : decodeURI(ajax_url),
                   data      : {
-                             action             : "uap_ajax_get_visits", // ajax method
-                             search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                             status_in          : jQuery( '.uap-js-datatable-items-status-types' ).val(),
+                             action             : "af_ajax_get_visits", // ajax method
+                             search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                             status_in          : jQuery( '.af-js-datatable-items-status-types' ).val(),
                              start_time         : jQuery('[name=udf]').val(),
                              end_time           : jQuery('[name=udu]').val(),
                   },
@@ -1227,28 +1227,28 @@ var UapDataTable = {
           },
           //retrieve       : true,
           serverSide     : true,
-          dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', //
+          dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', //
           lengthChange   : true,
           pageLength     : 25,
           drawCallback   : function( response ){
                 // ready for export
-                jQuery( '.js-uap-export-csv' ).attr( 'data-filters', response.json.params );
+                jQuery( '.js-af-export-csv' ).attr( 'data-filters', response.json.params );
 
                 jQuery("body").removeClass("loading"); // remove loading
-                jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                 // select items checkbox
-                jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                     object.selectUnselectAll( object );
                 });
 
                 // remove one item
-                jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                     var itemId = jQuery( this ).attr( 'data-id' );
-                    uapSwal({
-                      title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                    afSwal({
+                      title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                       text: "",
                       type: "warning",
                       showCancelButton: true,
@@ -1261,8 +1261,8 @@ var UapDataTable = {
                             type : 'post',
                             url : decodeURI(ajax_url),
                             data : {
-                                       action                 : 'uap_ajax_remove_one_visit',// custom
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                       action                 : 'af_ajax_remove_one_visit',// custom
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                        id                     :	itemId,
                                    },
                             success: function (response) {
@@ -1275,18 +1275,18 @@ var UapDataTable = {
                 // end of remove one item
 
                 // remove many items
-                if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                  jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                  jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                         evt.preventDefault();
-                        var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                             return this.value;
                         }).get();
                         if ( checkedVals.length === 0 ){
                             return;
                         }
-                        if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                            uapSwal({
-                              title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                        if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                            afSwal({
+                              title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                               text: "",
                               type: "warning",
                               showCancelButton: true,
@@ -1295,7 +1295,7 @@ var UapDataTable = {
                               closeOnConfirm: true
                             },
                             function(){
-                                var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                     return this.value;
                                 }).get();
                                 var valsToSend = checkedVals.join(",");
@@ -1303,8 +1303,8 @@ var UapDataTable = {
                                         type 			: 'post',
                                         url 			: decodeURI(ajax_url),
                                         data 			: {
-                                                   action		              : 'uap_ajax_remove_many_visits',// custom
-                                                   uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                   action		              : 'af_ajax_remove_many_visits',// custom
+                                                   af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                    ids			              : valsToSend,
                                         },
                                         success		: function (response) {
@@ -1328,8 +1328,8 @@ var UapDataTable = {
           order          : [],
           scrollToTop    : true,
           createdRow: function( row, data, dataIndex ) {
-              jQuery( row ).attr( 'onmouseover', "uapDhSelector('#visit_"+ data.id +"', 1);" );// custom
-              jQuery( row ).attr( 'onmouseout', "uapDhSelector('#visit_"+ data.id +"', 0);" );// custom
+              jQuery( row ).attr( 'onmouseover', "afDhSelector('#visit_"+ data.id +"', 1);" );// custom
+              jQuery( row ).attr( 'onmouseout', "afDhSelector('#visit_"+ data.id +"', 0);" );// custom
           },
           stateSave      : true,
           stateSaveCallback: function( settings, data ) {
@@ -1337,9 +1337,9 @@ var UapDataTable = {
                     type 			: 'post',
                     url 			: decodeURI(ajax_url),
                     data 			: {
-                          action     : "uap_ajax_datatable_save_state", // ajax method
+                          action     : "af_ajax_datatable_save_state", // ajax method
                           state      : JSON.stringify(data),
-                          type       : 'uap_datatable_state_for-visits',
+                          type       : 'af_datatable_state_for-visits',
                     },
                     success		: function (response) {
                         return;
@@ -1347,8 +1347,8 @@ var UapDataTable = {
             });
           },
           stateLoadCallback: function(settings) {
-              if ( jQuery( '.uap-js-datatable-state' ).length ){
-                  return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+              if ( jQuery( '.af-js-datatable-state' ).length ){
+                  return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
               }
               return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
           },
@@ -1363,10 +1363,10 @@ var UapDataTable = {
                   type      : "post",
                   url       : decodeURI(ajax_url),
                   data      : {
-                             action             : "uap_ajax_get_referrals", // ajax method
-                             search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                             status_in          : jQuery( '.uap-js-datatable-items-status-types' ).val(),
-                             source             : jQuery('.uap-js-datatable-items-source-types-referrals').val(),
+                             action             : "af_ajax_get_referrals", // ajax method
+                             search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                             status_in          : jQuery( '.af-js-datatable-items-status-types' ).val(),
+                             source             : jQuery('.af-js-datatable-items-source-types-referrals').val(),
                              start_time         : jQuery('[name=udf]').val(),
                              end_time           : jQuery('[name=udu]').val(),
                   },
@@ -1374,28 +1374,28 @@ var UapDataTable = {
           },
           //retrieve       : true,
           serverSide     : true,
-          dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', //
+          dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', //
           lengthChange   : true,
           pageLength     : 25,
           drawCallback   : function( response ){
                 // ready for export
-                jQuery( '.js-uap-export-csv' ).attr( 'data-filters', response.json.params );
+                jQuery( '.js-af-export-csv' ).attr( 'data-filters', response.json.params );
 
                 jQuery("body").removeClass("loading"); // remove loading
-                jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                 // select items checkbox
-                jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                     object.selectUnselectAll( object );
                 });
 
                 // remove one item
-                jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                     var itemId = jQuery( this ).attr( 'data-id' );
-                    uapSwal({
-                      title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                    afSwal({
+                      title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                       text: "",
                       type: "warning",
                       showCancelButton: true,
@@ -1408,8 +1408,8 @@ var UapDataTable = {
                             type : 'post',
                             url : decodeURI(ajax_url),
                             data : {
-                                       action                 : 'uap_ajax_remove_one_referral',// custom
-                                       uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                       action                 : 'af_ajax_remove_one_referral',// custom
+                                       af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                        id                     :	itemId,
                                    },
                             success: function (response) {
@@ -1422,18 +1422,18 @@ var UapDataTable = {
                 // end of remove one item
 
                 // remove many items
-                if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                  jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                  jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                         evt.preventDefault();
-                        var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                        var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                             return this.value;
                         }).get();
                         if ( checkedVals.length === 0 ){
                             return;
                         }
-                        if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                            uapSwal({
-                              title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                        if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                            afSwal({
+                              title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                               text: "",
                               type: "warning",
                               showCancelButton: true,
@@ -1442,7 +1442,7 @@ var UapDataTable = {
                               closeOnConfirm: true
                             },
                             function(){
-                                var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                     return this.value;
                                 }).get();
                                 var valsToSend = checkedVals.join(",");
@@ -1450,8 +1450,8 @@ var UapDataTable = {
                                         type 			: 'post',
                                         url 			: decodeURI(ajax_url),
                                         data 			: {
-                                                   action		              : 'uap_ajax_remove_many_referrals',// custom
-                                                   uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                   action		              : 'af_ajax_remove_many_referrals',// custom
+                                                   af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                    ids			              : valsToSend,
                                         },
                                         success		: function (response) {
@@ -1466,15 +1466,15 @@ var UapDataTable = {
               // end of remove many items
 
               // mark as bttns
-              if ( jQuery( '.uap-js-referral-list-change-status' ).length ){
-                  jQuery( '.uap-js-referral-list-change-status' ).on('click', function(){
+              if ( jQuery( '.af-js-referral-list-change-status' ).length ){
+                  jQuery( '.af-js-referral-list-change-status' ).on('click', function(){
                       var newValue = jQuery(this).attr('data-value');
                       jQuery.ajax({
                               type 			: 'post',
                               url 			: decodeURI(ajax_url),
                               data 			: {
-                                         action		              : 'uap_ajax_change_status_referral',// custom
-                                         uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                         action		              : 'af_ajax_change_status_referral',// custom
+                                         af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                          change_status			    : newValue,
                               },
                               success		: function (response) {
@@ -1494,8 +1494,8 @@ var UapDataTable = {
           order          : [],
           scrollToTop    : true,
           createdRow: function( row, data, dataIndex ) {
-              jQuery( row ).attr( 'onmouseover', "uapDhSelector('#referral_"+ data.id.value +"', 1);" );// custom
-              jQuery( row ).attr( 'onmouseout', "uapDhSelector('#referral_"+ data.id.value +"', 0);" );// custom
+              jQuery( row ).attr( 'onmouseover', "afDhSelector('#referral_"+ data.id.value +"', 1);" );// custom
+              jQuery( row ).attr( 'onmouseout', "afDhSelector('#referral_"+ data.id.value +"', 0);" );// custom
           },
           stateSave      : true,
           stateSaveCallback: function( settings, data ) {
@@ -1503,9 +1503,9 @@ var UapDataTable = {
                     type 			: 'post',
                     url 			: decodeURI(ajax_url),
                     data 			: {
-                          action     : "uap_ajax_datatable_save_state", // ajax method
+                          action     : "af_ajax_datatable_save_state", // ajax method
                           state      : JSON.stringify(data),
-                          type       : 'uap_datatable_state_for-referrals',
+                          type       : 'af_datatable_state_for-referrals',
                     },
                     success		: function (response) {
                         return;
@@ -1513,8 +1513,8 @@ var UapDataTable = {
             });
           },
           stateLoadCallback: function(settings) {
-              if ( jQuery( '.uap-js-datatable-state' ).length ){
-                  return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+              if ( jQuery( '.af-js-datatable-state' ).length ){
+                  return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
               }
               return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
           },
@@ -1523,10 +1523,10 @@ var UapDataTable = {
     // end of referrals
 
     loadTableForPayoutSetup         : function( object ){
-        object.tableObject = new DataTable('.uap-js-list-payments-for-payouts', {
+        object.tableObject = new DataTable('.af-js-list-payments-for-payouts', {
             retrieve       : true,
             serverSide     : false,
-            dom            : 'PBfrtipl',//'<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : 'PBfrtipl',//'<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             buttons        : object.tableButtons,
@@ -1538,7 +1538,7 @@ var UapDataTable = {
             scrollToTop    : true,
             drawCallback   : function( response ){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' ).addClass( 'display uap-dashboard-table');
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' ).addClass( 'display af-dashboard-table');
             }
         });
     },
@@ -1549,9 +1549,9 @@ var UapDataTable = {
                    type      : "post",
                    url       : decodeURI(ajax_url),
                    data      : {
-                              action             : "uap_ajax_get_payouts", // ajax method
-                              search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                              status_in          : jQuery( '.uap-js-datatable-items-status-types' ).val(),
+                              action             : "af_ajax_get_payouts", // ajax method
+                              search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                              status_in          : jQuery( '.af-js-datatable-items-status-types' ).val(),
                               start_time         : jQuery('[name=udf]').val(),
                               end_time           : jQuery('[name=udu]').val(),
                    },
@@ -1559,26 +1559,26 @@ var UapDataTable = {
            },
            //retrieve       : true,
            serverSide     : true,
-           dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', //
+           dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', //
            lengthChange   : true,
            pageLength     : 25,
            drawCallback   : function( response ){
 
                  jQuery("body").removeClass("loading"); // remove loading
-                 jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                 jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                 jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                 jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                 jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                 jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                  // select items checkbox
-                 jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                 jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                      object.selectUnselectAll( object );
                  });
 
                  // remove one item
-                 jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                 jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                      var itemId = jQuery( this ).attr( 'data-id' );
-                     uapSwal({
-                       title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                     afSwal({
+                       title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                        text: "",
                        type: "warning",
                        showCancelButton: true,
@@ -1591,8 +1591,8 @@ var UapDataTable = {
                              type : 'post',
                              url : decodeURI(ajax_url),
                              data : {
-                                        action                 : 'uap_ajax_remove_one_payout',// custom
-                                        uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                        action                 : 'af_ajax_remove_one_payout',// custom
+                                        af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                         id                     :	itemId,
                                     },
                              success: function (response) {
@@ -1605,18 +1605,18 @@ var UapDataTable = {
                  // end of remove one item
 
                  // remove many items
-                 if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                   jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                 if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                   jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                          evt.preventDefault();
-                         var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                         var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                              return this.value;
                          }).get();
                          if ( checkedVals.length === 0 ){
                              return;
                          }
-                         if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                             uapSwal({
-                               title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                         if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                             afSwal({
+                               title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                                text: "",
                                type: "warning",
                                showCancelButton: true,
@@ -1625,7 +1625,7 @@ var UapDataTable = {
                                closeOnConfirm: true
                              },
                              function(){
-                                 var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                 var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                      return this.value;
                                  }).get();
                                  var valsToSend = checkedVals.join(",");
@@ -1633,8 +1633,8 @@ var UapDataTable = {
                                          type 			: 'post',
                                          url 			: decodeURI(ajax_url),
                                          data 			: {
-                                                    action		              : 'uap_ajax_remove_many_payouts',// custom
-                                                    uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                    action		              : 'af_ajax_remove_many_payouts',// custom
+                                                    af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                     ids			              : valsToSend,
                                          },
                                          success		: function (response) {
@@ -1649,25 +1649,25 @@ var UapDataTable = {
                // end of remove many items
 
                // generate CSV file
-               if ( jQuery( '.uap-js-payouts-generate-csv-for-payout' ).length ){
+               if ( jQuery( '.af-js-payouts-generate-csv-for-payout' ).length ){
 
-                   jQuery( '.uap-js-payouts-generate-csv-for-payout' ).on('click', function(){
-                       jQuery( '.uap-js-payouts-csv-file').removeClass('uap-display-block').addClass('uap-display-none');
+                   jQuery( '.af-js-payouts-generate-csv-for-payout' ).on('click', function(){
+                       jQuery( '.af-js-payouts-csv-file').removeClass('af-display-block').addClass('af-display-none');
                        var payoutID = jQuery(this).attr('data-id');
                        jQuery.ajax({
                                type 			: 'post',
                                url 			: decodeURI(ajax_url),
                                data 			: {
-                                          action		            : 'uap_ajax_payouts_generate_csv',// custom
-                                          uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                          action		            : 'af_ajax_payouts_generate_csv',// custom
+                                          af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                           payout_id   			    : payoutID,
                                },
                                success		: function (response) {
                                   if ( response == 0 ){
                                       return;
                                   }
-                                  jQuery( '.uap-js-payouts-csv-file-for-payout-' + payoutID).removeClass('uap-display-none').addClass('uap-display-block')
-                                  jQuery( '.uap-js-payouts-csv-file-for-payout-' + payoutID).attr( 'href', response );
+                                  jQuery( '.af-js-payouts-csv-file-for-payout-' + payoutID).removeClass('af-display-none').addClass('af-display-block')
+                                  jQuery( '.af-js-payouts-csv-file-for-payout-' + payoutID).attr( 'href', response );
                                }
                        });
                    });
@@ -1689,9 +1689,9 @@ var UapDataTable = {
                      type 			: 'post',
                      url 			: decodeURI(ajax_url),
                      data 			: {
-                           action     : "uap_ajax_datatable_save_state", // ajax method
+                           action     : "af_ajax_datatable_save_state", // ajax method
                            state      : JSON.stringify(data),
-                           type       : 'uap_datatable_state_for-payouts',
+                           type       : 'af_datatable_state_for-payouts',
                      },
                      success		: function (response) {
                          return;
@@ -1699,8 +1699,8 @@ var UapDataTable = {
              });
            },
            stateLoadCallback: function(settings) {
-               if ( jQuery( '.uap-js-datatable-state' ).length ){
-                   return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+               if ( jQuery( '.af-js-datatable-state' ).length ){
+                   return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
                }
                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
            },
@@ -1713,37 +1713,37 @@ var UapDataTable = {
                    type      : "post",
                    url       : decodeURI(ajax_url),
                    data      : {
-                              action             : "uap_ajax_get_payments", // ajax method
-                              search_phrase      : jQuery('.uap-js-search-phrase' ).val(), // extra param for search
-                              status_in          : jQuery( '.uap-js-datatable-items-status-types' ).val(),
+                              action             : "af_ajax_get_payments", // ajax method
+                              search_phrase      : jQuery('.af-js-search-phrase' ).val(), // extra param for search
+                              status_in          : jQuery( '.af-js-datatable-items-status-types' ).val(),
                               start_time         : jQuery('[name=udf]').val(),
                               end_time           : jQuery('[name=udu]').val(),
-                              payout_id          : jQuery('.uap-js-payout-id').val()
+                              payout_id          : jQuery('.af-js-payout-id').val()
                    },
                    dataSrc   : 'data'
            },
            //retrieve       : true,
            serverSide     : true,
-           dom            : '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', //
+           dom            : '<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', //
            lengthChange   : true,
            pageLength     : 300,
            drawCallback   : function( response ){
 
                  jQuery("body").removeClass("loading"); // remove loading
-                 jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' );
-                 jQuery( '.uap-js-select-all-checkboxes' ).attr( 'checked', false );
-                 jQuery( '.uap-datatable-actions-wrapp' ).html( jQuery('.uap-datatable-actions-wrapp-copy').html() );
+                 jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' );
+                 jQuery( '.af-js-select-all-checkboxes' ).attr( 'checked', false );
+                 jQuery( '.af-datatable-actions-wrapp' ).html( jQuery('.af-datatable-actions-wrapp-copy').html() );
 
                  // select items checkbox
-                 jQuery( '.uap-js-select-all-checkboxes' ).on('click', function(){
+                 jQuery( '.af-js-select-all-checkboxes' ).on('click', function(){
                      object.selectUnselectAll( object );
                  });
 
                  // remove one item
-                 jQuery( '.uap-js-remove-one-item' ).on( 'click', function(){
+                 jQuery( '.af-js-remove-one-item' ).on( 'click', function(){
                      var itemId = jQuery( this ).attr( 'data-id' );
-                     uapSwal({
-                       title: jQuery( '.uap-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
+                     afSwal({
+                       title: jQuery( '.af-js-messages-for-datatable' ).attr( 'data-remove_one_item' ),
                        text: "",
                        type: "warning",
                        showCancelButton: true,
@@ -1756,8 +1756,8 @@ var UapDataTable = {
                              type : 'post',
                              url : decodeURI(ajax_url),
                              data : {
-                                        action                 : 'uap_ajax_remove_one_payment',// custom
-                                        uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
+                                        action                 : 'af_ajax_remove_one_payment',// custom
+                                        af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value'),
                                         id                     :	itemId,
                                     },
                              success: function (response) {
@@ -1770,18 +1770,18 @@ var UapDataTable = {
                  // end of remove one item
 
                  // remove many items
-                 if ( jQuery( '.uap-js-items-apply-bttn' ).length ){
-                   jQuery( '.uap-js-items-apply-bttn' ).on( 'click', function(evt){
+                 if ( jQuery( '.af-js-items-apply-bttn' ).length ){
+                   jQuery( '.af-js-items-apply-bttn' ).on( 'click', function(evt){
                          evt.preventDefault();
-                         var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                         var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                              return this.value;
                          }).get();
                          if ( checkedVals.length === 0 ){
                              return;
                          }
-                         if ( jQuery('.uap-js-bulk-action-select').val() === 'remove' ){
-                             uapSwal({
-                               title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_many_items'),
+                         if ( jQuery('.af-js-bulk-action-select').val() === 'remove' ){
+                             afSwal({
+                               title: jQuery('.af-js-messages-for-datatable').attr('data-remove_many_items'),
                                text: "",
                                type: "warning",
                                showCancelButton: true,
@@ -1790,7 +1790,7 @@ var UapDataTable = {
                                closeOnConfirm: true
                              },
                              function(){
-                                 var checkedVals = jQuery('.uap-js-table-select-item:checkbox:checked').map(function() {
+                                 var checkedVals = jQuery('.af-js-table-select-item:checkbox:checked').map(function() {
                                      return this.value;
                                  }).get();
                                  var valsToSend = checkedVals.join(",");
@@ -1798,8 +1798,8 @@ var UapDataTable = {
                                          type 			: 'post',
                                          url 			: decodeURI(ajax_url),
                                          data 			: {
-                                                    action		              : 'uap_ajax_remove_many_payments',// custom
-                                                    uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                    action		              : 'af_ajax_remove_many_payments',// custom
+                                                    af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                     ids			              : valsToSend,
                                          },
                                          success		: function (response) {
@@ -1829,9 +1829,9 @@ var UapDataTable = {
                      type 			: 'post',
                      url 			: decodeURI(ajax_url),
                      data 			: {
-                           action     : "uap_ajax_datatable_save_state", // ajax method
+                           action     : "af_ajax_datatable_save_state", // ajax method
                            state      : JSON.stringify(data),
-                           type       : 'uap_datatable_state_for-payments',
+                           type       : 'af_datatable_state_for-payments',
                      },
                      success		: function (response) {
                          return;
@@ -1839,8 +1839,8 @@ var UapDataTable = {
              });
            },
            stateLoadCallback: function(settings) {
-               if ( jQuery( '.uap-js-datatable-state' ).length ){
-                   return JSON.parse( jQuery( '.uap-js-datatable-state' ).attr( 'data-value' ) );
+               if ( jQuery( '.af-js-datatable-state' ).length ){
+                   return JSON.parse( jQuery( '.af-js-datatable-state' ).attr( 'data-value' ) );
                }
                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
            },
@@ -1848,10 +1848,10 @@ var UapDataTable = {
     },
 
     loadTableForReferralsForPayment         : function( object ){
-        object.tableObject = new DataTable('.uap-js-list-payments-for-payouts', {
+        object.tableObject = new DataTable('.af-js-list-payments-for-payouts', {
             retrieve       : true,
             serverSide     : false,
-            dom            : 'PBfrtipl',//'<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : 'PBfrtipl',//'<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             buttons        : object.tableButtons,
@@ -1863,16 +1863,16 @@ var UapDataTable = {
             scrollToTop    : true,
             drawCallback   : function( response ){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' ).addClass( 'display uap-dashboard-table');
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' ).addClass( 'display af-dashboard-table');
             }
         });
     },
 
     loadTableForPayoutPayments         : function( object ){
-        object.tableObject = new DataTable('.uap-js-list-payments-for-payouts', {
+        object.tableObject = new DataTable('.af-js-list-payments-for-payouts', {
             retrieve       : true,
             serverSide     : false,
-            dom            : 'PBfrtipl',//'<"uap-datatable-top"<"uap-datatable-actions-wrapp">BP><"uap-datatable-wrapp"rt>ipl', // '<"uap-datatable-top"<"uap-datatable-actions-wrapp">BPf>r<"uap-datatable-wrapp"t>ipl'
+            dom            : 'PBfrtipl',//'<"af-datatable-top"<"af-datatable-actions-wrapp">BP><"af-datatable-wrapp"rt>ipl', // '<"af-datatable-top"<"af-datatable-actions-wrapp">BPf>r<"af-datatable-wrapp"t>ipl'
             lengthChange   : true,
             pageLength     : 25,
             buttons        : object.tableButtons,
@@ -1884,19 +1884,19 @@ var UapDataTable = {
             scrollToTop    : true,
             drawCallback   : function( response ){
                   jQuery("body").removeClass("loading"); // remove loading
-                  jQuery( '#uap-dashboard-table' ).removeClass( 'uap-display-none' ).addClass( 'display uap-dashboard-table');
+                  jQuery( '#af-dashboard-table' ).removeClass( 'af-display-none' ).addClass( 'display af-dashboard-table');
 
                   // change one status
-                  if ( jQuery( '.uap-js-payout-change-status-for-payment').length ){
-                      jQuery( '.uap-js-payout-change-status-for-payment').on( 'click', function(){
+                  if ( jQuery( '.af-js-payout-change-status-for-payment').length ){
+                      jQuery( '.af-js-payout-change-status-for-payment').on( 'click', function(){
                           var status = jQuery( this ).attr('data-status');
                           var paymentId = jQuery( this ).attr('data-id');
                           jQuery.ajax({
                                   type 			: 'post',
                                   url 			: decodeURI(ajax_url),
                                   data 			: {
-                                             action		              : 'uap_ajax_payments_change_status',// custom
-                                             uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                             action		              : 'af_ajax_payments_change_status',// custom
+                                             af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                              id			                : paymentId,
                                              status                 : status
                                   },
@@ -1909,16 +1909,16 @@ var UapDataTable = {
                   // end of change one status
 
                   // change all statuses for payout payments
-                  if ( jQuery( '.uap-js-payout-change-status-all-payments').length ){
-                      jQuery( '.uap-js-payout-change-status-all-payments').on( 'click', function(){
+                  if ( jQuery( '.af-js-payout-change-status-all-payments').length ){
+                      jQuery( '.af-js-payout-change-status-all-payments').on( 'click', function(){
                           var status = jQuery( this ).attr('data-status');
                           var payoutId = jQuery( this ).attr('data-id');
                           jQuery.ajax({
                                   type 			: 'post',
                                   url 			: decodeURI(ajax_url),
                                   data 			: {
-                                             action		              : 'uap_ajax_payout_all_payments_change_status',// custom
-                                             uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                             action		              : 'af_ajax_payout_all_payments_change_status',// custom
+                                             af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                              id			                : payoutId,
                                              status                 : status
                                   },
@@ -1931,10 +1931,10 @@ var UapDataTable = {
                   // end of change all statuses for payout payments
 
                   // delete one payment
-                  if ( jQuery( '.uap-js-payout-delete-payment' ).length ){
-                      jQuery( '.uap-js-payout-delete-payment' ).on( 'click', function(){
-                          uapSwal({
-                            title: jQuery('.uap-js-messages-for-datatable').attr('data-remove_one_item'),
+                  if ( jQuery( '.af-js-payout-delete-payment' ).length ){
+                      jQuery( '.af-js-payout-delete-payment' ).on( 'click', function(){
+                          afSwal({
+                            title: jQuery('.af-js-messages-for-datatable').attr('data-remove_one_item'),
                             text: "",
                             type: "warning",
                             showCancelButton: true,
@@ -1948,8 +1948,8 @@ var UapDataTable = {
                                       type 			: 'post',
                                       url 			: decodeURI(ajax_url),
                                       data 			: {
-                                                 action		              : 'uap_ajax_remove_one_payment',// custom
-                                                 uap_admin_forms_nonce	:	jQuery( '.uap-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
+                                                 action		              : 'af_ajax_remove_one_payment',// custom
+                                                 af_admin_forms_nonce	:	jQuery( '.af-js-datatable-listing-delete-nonce' ).attr( 'data-value' ),
                                                  id			                : paymentId,
                                       },
                                       success		: function (response) {
@@ -1966,13 +1966,13 @@ var UapDataTable = {
     },
 
     selectUnselectAll     : function(){
-        let doSelect = jQuery( '.uap-js-select-all-checkboxes' ).is(':checked');
+        let doSelect = jQuery( '.af-js-select-all-checkboxes' ).is(':checked');
         if ( doSelect ){
-            jQuery( '.uap-js-table-select-item' ).each( function(){
+            jQuery( '.af-js-table-select-item' ).each( function(){
                 jQuery( this ).attr( 'checked', true );
             });
         } else {
-            jQuery( '.uap-js-table-select-item' ).each( function(){
+            jQuery( '.af-js-table-select-item' ).each( function(){
                 jQuery( this ).attr( 'checked', false );
             });
         }
@@ -1981,6 +1981,6 @@ var UapDataTable = {
 
 jQuery( window ).on('load', function(){
 
-    UapDataTable.init([]);
+    AfDataTable.init([]);
 
 });

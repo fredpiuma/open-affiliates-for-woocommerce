@@ -277,12 +277,12 @@
             $p = 0;
 
             echo '<table cellpadding="3" cellspacing="1">
-                    <thead><tr class="uap-qrcode-tr"><td colspan="2" class="uap-text-align-center">BENCHMARK</td></tr></thead>
+                    <thead><tr class="af-qrcode-tr"><td colspan="2" class="af-text-align-center">BENCHMARK</td></tr></thead>
                     <tbody>';
 
             foreach($GLOBALS['qr_time_bench'] as $markerId=>$thisTime) {
                 if ($p > 0) {
-                    echo '<tr><th  class="uap-text-align-right">till '.$markerId.': </th><td>'.number_format($thisTime-$lastTime, 6).'s</td></tr>';
+                    echo '<tr><th  class="af-text-align-right">till '.$markerId.': </th><td>'.number_format($thisTime-$lastTime, 6).'s</td></tr>';
                 } else {
                     $startTime = $thisTime;
                 }
@@ -292,7 +292,7 @@
             }
 
             echo '</tbody><tfoot>
-                <tr class="uap-qrcode-tr"><th class="uap-text-align-right">TOTAL: </th><td>'.number_format($lastTime-$startTime, 6).'s</td></tr>
+                <tr class="af-qrcode-tr"><th class="af-text-align-right">TOTAL: </th><td>'.number_format($lastTime-$startTime, 6).'s</td></tr>
             </tfoot>
             </table>';
         }

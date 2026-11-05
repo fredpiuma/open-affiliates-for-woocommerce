@@ -1,9 +1,9 @@
 /*
- *Ultimate Affiliate Pro - Landing Commission module
+ *Open Affiliates - Landing Commission module
  */
 "use strict";
 window.addEventListener( 'DOMContentLoaded', function(){
-  jQuery( '.uap-js-referral-landing-commisions-data' ).each( function( e, html ){
+  jQuery( '.af-js-referral-landing-commisions-data' ).each( function( e, html ){
       var expire = jQuery( html ).attr('data-expire');
       var shortcodeId = jQuery( html ).attr('data-shortcode_id');
       if (expire) {
@@ -14,6 +14,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
           var date = new Date();
           var e = date.toGMTString();
         }
-        document.cookie = 'uaplandingcommission_' + shortcodeId + '=true; expires=' + e + '; path=/';
+        document.cookie = 'aflandingcommission_' + shortcodeId + '=true; expires=' + e + '; path=/';
   });
 });

@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class AffiliateMarketingBuilder
 {
@@ -31,8 +31,8 @@ class AffiliateMarketingBuilder
 
     public function getBannerForPermalink( $size='thumbnail' )
     {
-        global $indeed_db;
-        $postId = $indeed_db->getPostIdByUrl( $this->currentPermalink );
+        global $af_db;
+        $postId = $af_db->getPostIdByUrl( $this->currentPermalink );
         if ( !$postId ){
             return '';
         }
@@ -41,50 +41,50 @@ class AffiliateMarketingBuilder
             return '';
         }
         $url = $this->getPermalinkForAffiliate();
-        $postName = empty( $postId ) ? '' : $indeed_db->ulp_get_label_by_id( $postId );
+        $postName = empty( $postId ) ? '' : $af_db->ulp_get_label_by_id( $postId );
 
-        return '<a href="' . $url . '" target="_blank"><img src="' . $image . '" alt="' . $postName . '" class="uap-info-affiliate-bar-image"/></a>';
+        return '<a href="' . $url . '" target="_blank"><img src="' . $image . '" alt="' . $postName . '" class="af-info-affiliate-bar-image"/></a>';
 
     }
 
     public function getDefaultBAnnerForPermalink()
     {
-        global $indeed_db;
+        global $af_db;
 		$postName = '';
-        $postId = $indeed_db->getPostIdByUrl( $this->currentPermalink );
+        $postId = $af_db->getPostIdByUrl( $this->currentPermalink );
         if ( $postId ){
-            $postName = empty( $postId ) ? '' : $indeed_db->ulp_get_label_by_id( $postId );
+            $postName = empty( $postId ) ? '' : $af_db->ulp_get_label_by_id( $postId );
         }
-        $image = get_option( 'uap_info_affiliate_bar_banner_default_value' );
+        $image = get_option( 'af_info_affiliate_bar_banner_default_value' );
         if ( !$image ){
             return '';
         }
         $url = $this->getPermalinkForAffiliate();
 
-        return '<a href="' . $url . '" target="_blank"><img src="' . $image . '" alt="' . $postName . '" class="uap-info-affiliate-bar-image"/></a>';
+        return '<a href="' . $url . '" target="_blank"><img src="' . $image . '" alt="' . $postName . '" class="af-info-affiliate-bar-image"/></a>';
     }
 
     public function getPermalinkForAffiliate( $withSlug=false )
     {
-        global $indeed_db;
+        global $af_db;
     		if ( (!$this->uid && !$this->affiliateId) || !$this->currentPermalink ){
     				return '';
     		}
     		if ( !$this->affiliateId ){
-    				$this->affiliateId = $indeed_db->get_affiliate_id_by_wpuid( $this->uid );
+    				$this->affiliateId = $af_db->get_affiliate_id_by_wpuid( $this->uid );
     		} else if ( !$this->uid ){
-    				$this->uid = $indeed_db->get_uid_by_affiliate_id( $this->affiliateId );
+    				$this->uid = $af_db->get_uid_by_affiliate_id( $this->affiliateId );
     		}
     		$value = $this->affiliateId;
-    		$param = get_option( 'uap_referral_variable' );
-    		$format = get_option( 'uap_default_ref_format' );
+    		$param = get_option( 'af_referral_variable' );
+    		$format = get_option( 'af_default_ref_format' );
     		if ( !$param ){
     				$param = 'ref';
     		}
 
-    		$custom_affiliate_slug = $indeed_db->is_magic_feat_enable('custom_affiliate_slug');
+    		$custom_affiliate_slug = $af_db->is_magic_feat_enable('custom_affiliate_slug');
     		if ( $custom_affiliate_slug && $withSlug ){
-    				$theSlug = $indeed_db->get_custom_slug_for_uid( $this->uid );
+    				$theSlug = $af_db->get_custom_slug_for_uid( $this->uid );
     		}
 
     		if ( !empty( $theSlug ) ){
@@ -96,13 +96,13 @@ class AffiliateMarketingBuilder
     				}
     		}
 
-    		return uap_create_affiliate_link( $this->currentPermalink, $param, $value );
+    		return af_create_affiliate_link( $this->currentPermalink, $param, $value );
     }
 
-    public function getSocial( $optionName='uap_info_affiliate_bar_social_shortcode' )
+    public function getSocial( $optionName='af_info_affiliate_bar_social_shortcode' )
     {
         $output = '';
-    		if ( !uap_is_social_share_intalled_and_active() ){ //  || !get_option('uap_social_share_enable')
+    		if ( !af_is_social_share_intalled_and_active() ){ //  || !get_option('af_social_share_enable')
     				return $output;
     		}
     		$shortcode = get_option( $optionName );
@@ -114,7 +114,7 @@ class AffiliateMarketingBuilder
     		$shortcode = stripslashes($shortcode);
     		$shortcode = str_replace(']', '', $shortcode);
     		$shortcode .= " is_affiliates=1"; ///just for safe
-    		$shortcode .= " custom_description='" . get_option('uap_social_share_message') . "'";
+    		$shortcode .= " custom_description='" . get_option('af_social_share_message') . "'";
     		$shortcode .= " custom_url='" . $url ."']";
     		return do_shortcode($shortcode);
     }

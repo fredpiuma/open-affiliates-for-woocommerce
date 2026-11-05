@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 class RegisterElementorWidgets
 {
 
@@ -15,21 +15,21 @@ class RegisterElementorWidgets
 
 	private function include_widgets_files()
   {
-		  require_once UAP_PATH . 'classes/services/Elementor_Integration/Elementor_Uap_Account_Page_Widget.php';
-      require_once UAP_PATH . 'classes/services/Elementor_Integration/Elementor_Uap_Register_Widget.php';
-      require_once UAP_PATH . 'classes/services/Elementor_Integration/Elementor_Uap_Login_Form_Widget.php';
-      require_once UAP_PATH . 'classes/services/Elementor_Integration/Elementor_Uap_Logout_Widget.php';
-      require_once UAP_PATH . 'classes/services/Elementor_Integration/Elementor_Uap_Reset_Password_Widget.php';
+		  require_once AF_PATH . 'classes/services/Elementor_Integration/Elementor_Af_Account_Page_Widget.php';
+      require_once AF_PATH . 'classes/services/Elementor_Integration/Elementor_Af_Register_Widget.php';
+      require_once AF_PATH . 'classes/services/Elementor_Integration/Elementor_Af_Login_Form_Widget.php';
+      require_once AF_PATH . 'classes/services/Elementor_Integration/Elementor_Af_Logout_Widget.php';
+      require_once AF_PATH . 'classes/services/Elementor_Integration/Elementor_Af_Reset_Password_Widget.php';
 	}
 
 	public function register_widgets()
   {
 		  $this->include_widgets_files();
-		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Uap_Account_Page_Widget() );
-		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Uap_Register_Widget() );
-		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Uap_Login_Form_Widget() );
-		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Uap_Logout_Widget() );
-		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Uap_Reset_Password_Widget() );
+		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Af_Account_Page_Widget() );
+		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Af_Register_Widget() );
+		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Af_Login_Form_Widget() );
+		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Af_Logout_Widget() );
+		  \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Elementor_Af_Reset_Password_Widget() );
 	}
 
 	public function __construct()
@@ -40,4 +40,4 @@ class RegisterElementorWidgets
 
 }
 
-\Indeed\Uap\RegisterElementorWidgets::instance();
+\OpenAffiliates\RegisterElementorWidgets::instance();

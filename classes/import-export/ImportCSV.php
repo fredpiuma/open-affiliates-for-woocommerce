@@ -1,11 +1,11 @@
 <?php
-namespace Indeed\Uap\ImportExport;
+namespace OpenAffiliates\ImportExport;
 
 /*
 How to use it:
 // include the file, it has namespaces but its not added into autoload file.
-require_once UAP_PATH . 'classes/import-export/ImportCSV.php';
-$ImportCSV = new \Indeed\Uap\ImportExport\ImportCSV();
+require_once AF_PATH . 'classes/import-export/ImportCSV.php';
+$ImportCSV = new \OpenAffiliates\ImportExport\ImportCSV();
 $response = $ImportCSV->setFile( $fileWithYourData )
                       ->setType( 'affiliates' or 'referrals' )
                       ->proceed();
@@ -51,7 +51,7 @@ class ImportCSV
     {
     		if ( $filename === '' || !file_exists( $filename ) ){
     			   $this->error = true;
-             $this->errorMessage = esc_html__( 'Please upload a CSV file.', 'uap' );
+             $this->errorMessage = esc_html__( 'Please upload a CSV file.', 'openaffiliates' );
     		} else {
             $this->file = $filename;
         }
@@ -66,7 +66,7 @@ class ImportCSV
     {
         if ( $type === '' ){
             $this->error = true;
-            $this->errorMessage = esc_html__( 'Please upload a CSV file.', 'uap' );
+            $this->errorMessage = esc_html__( 'Please upload a CSV file.', 'openaffiliates' );
         }
         $this->type = $type;
         return $this;
@@ -111,21 +111,21 @@ class ImportCSV
   	 */
     protected function importAffiliates()
     {
-        global $indeed_db;
+        global $af_db;
         $response = [
                       'status'          => 0,
-                      'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'uap' ),
+                      'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'openaffiliates' ),
         ];
         $handle = fopen( $this->file, 'r' );
         if ( $handle === false ){
             $response = [
                           'status'          => 0,
-                          'message'         => esc_html__( 'Oops! Looks like there was an issue importing the CSV file. Please double-check the file format and try again.', 'uap' ),
+                          'message'         => esc_html__( 'Oops! Looks like there was an issue importing the CSV file. Please double-check the file format and try again.', 'openaffiliates' ),
             ];
             return $response;
         }
 
-        $defaultRank = get_option('uap_register_new_user_rank');
+        $defaultRank = get_option('af_register_new_user_rank');
         $errors = 0;
         $success = 0;
         $labels = fgetcsv( $handle );
@@ -138,7 +138,7 @@ class ImportCSV
             if ( isset( $ranks[ $rankLabel ] ) ){
                 $rankId = $ranks[ $rankLabel ];
             } else {
-                $rankData = $indeed_db->getRankByLabel( $rankLabel );
+                $rankData = $af_db->getRankByLabel( $rankLabel );
                 $rankId = isset( $rankData['id'] ) ? $rankData['id'] : 0;
                 $ranks[$rankLabel] = $rankId;
             }
@@ -171,10 +171,10 @@ class ImportCSV
             $createTime = date( 'Y-m-d H:i:s', $createTime );
 
             // insert user if its case
-            $uid = $indeed_db->getUidByEmail($email);
+            $uid = $af_db->getUidByEmail($email);
             if ( $uid ){
                 // already exists a user with this email in our db
-                if ( $indeed_db->get_affiliate_id_by_wpuid( $uid ) ){
+                if ( $af_db->get_affiliate_id_by_wpuid( $uid ) ){
                     // already exists an affiliate for this email, so skip
                     continue;
                 }
@@ -194,7 +194,7 @@ class ImportCSV
                 $uid = wp_insert_user( $userdata );
                 if ( $uid ){
                     /// send generated password to user
-                    uap_send_user_notifications( $uid, 'register_lite_send_pass_to_user', false, [ '{NEW_PASSWORD}' => $password ] );
+                    af_send_user_notifications( $uid, 'register_lite_send_pass_to_user', false, [ '{NEW_PASSWORD}' => $password ] );
                 }
             }
             $insertAffiliateData = [
@@ -204,17 +204,17 @@ class ImportCSV
             ];
             ////
             // check if affiliate id its already used
-            if ( $indeed_db->get_wp_username_by_affiliate_id($affiliateId) !== '' ){
+            if ( $af_db->get_wp_username_by_affiliate_id($affiliateId) !== '' ){
                 unset( $insertAffiliateData['affiliate_id'] );
             }
             // save affiliate
-            $jobResponse = $indeed_db->save_affiliate_with_params( $uid, $insertAffiliateData );
+            $jobResponse = $af_db->save_affiliate_with_params( $uid, $insertAffiliateData );
 
             // save rank
             if ( $rankId === 0 ){
                 $rankId = $defaultRank;
             }
-            $indeed_db->update_affiliate_rank_by_uid( $uid, $rankId );
+            $af_db->update_affiliate_rank_by_uid( $uid, $rankId );
 
             if ( $jobResponse === 0 ){
                 $errors++;
@@ -226,19 +226,19 @@ class ImportCSV
         if ( $errors > 0 && $success > 0 ){
             $response = [
                             'status'          => -1,
-                            'message'         => esc_html__( 'There were some issues with your data import, only ', 'uap') . $success . esc_html__(' items were imported.', 'uap' )
+                            'message'         => esc_html__( 'There were some issues with your data import, only ', 'openaffiliates') . $success . esc_html__(' items were imported.', 'openaffiliates' )
             ];
         } else if ( $errors > 0 && $success === 0 ){
             $response = [
                             'status'          => 0,
-                            'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'uap' )
+                            'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'openaffiliates' )
             ];
         }
 
         fclose( $handle ); // close file
         $response = [
                         'status'          => 1,
-                        'message'         => esc_html__( "Your CSV file has been imported successfully. Your data is now updated in the system.", 'uap' )
+                        'message'         => esc_html__( "Your CSV file has been imported successfully. Your data is now updated in the system.", 'openaffiliates' )
         ];
         return $response; // all good
     }
@@ -249,16 +249,16 @@ class ImportCSV
   	 */
     protected function importReferrals()
     {
-        global $indeed_db;
+        global $af_db;
         $response = [
                       'status'          => 0,
-                      'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again', 'uap' ),
+                      'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again', 'openaffiliates' ),
         ];
         $handle = fopen( $this->file, 'r' );
         if ( $handle === false ){
             $response = [
                           'status'          => 0,
-                          'message'         => esc_html__( 'There seems to be a problem with your file. Please check it and try again.', 'uap' ),
+                          'message'         => esc_html__( 'There seems to be a problem with your file. Please check it and try again.', 'openaffiliates' ),
             ];
             return $response;
         }
@@ -266,16 +266,16 @@ class ImportCSV
         $userData = [];
         $i = 0;
         $referralStatusArray = [
-                        esc_html__('Rejected', 'uap')           => 0,
-                        esc_html__('Unverified', 'uap')         => 1,
-                        esc_html__('Pending', 'uap')            => 1,
-                        esc_html__('Verified', 'uap')           => 2,
-                        esc_html__('Approved', 'uap')           => 2,
+                        esc_html__('Rejected', 'openaffiliates')           => 0,
+                        esc_html__('Unverified', 'openaffiliates')         => 1,
+                        esc_html__('Pending', 'openaffiliates')            => 1,
+                        esc_html__('Verified', 'openaffiliates')           => 2,
+                        esc_html__('Approved', 'openaffiliates')           => 2,
         ];
         $paymentStatusArray = [
-                        esc_html__('Unpaid', 'uap')           => 0,
-                        esc_html__('Pending', 'uap')          => 1,
-                        esc_html__('Paid', 'uap')             => 2,
+                        esc_html__('Unpaid', 'openaffiliates')           => 0,
+                        esc_html__('Pending', 'openaffiliates')          => 1,
+                        esc_html__('Paid', 'openaffiliates')             => 2,
         ];
 
         $errors         = 0;
@@ -295,12 +295,12 @@ class ImportCSV
 
             $dataToInsert = [
                                 'id'                      => $data[0],
-                                'refferal_wp_uid'         => $indeed_db->get_uid_by_affiliate_id( $data[1] ),
+                                'refferal_wp_uid'         => $af_db->get_uid_by_affiliate_id( $data[1] ),
                                 'campaign'                => $data[10],
                                 'affiliate_id'            => $data[1],
                                 'visit_id'                => $data[11],
                                 'description'             => $data[5],
-                                'source'                  => uap_service_label_to_service_code($data[3]),// 8.6
+                                'source'                  => af_service_label_to_service_code($data[3]),// 8.6
                                 'reference'               => $data[4],
                                 'reference_details'       => $data[12],
                                 'amount'                  => $amount,
@@ -312,18 +312,18 @@ class ImportCSV
                                 'child_referral_id'       => $data[14],
             ];
 
-            if ( $indeed_db->get_referral_id_by_reference_and_affiliate( $dataToInsert['reference'], $dataToInsert['affiliate_id'] ) !== false ){
+            if ( $af_db->get_referral_id_by_reference_and_affiliate( $dataToInsert['reference'], $dataToInsert['affiliate_id'] ) !== false ){
 
                 // referral already exists -> out
                 $alreadyExists++;
                 continue;
             }
-            $temporaryData = $indeed_db->get_referral( $dataToInsert['id'] );
+            $temporaryData = $af_db->get_referral( $dataToInsert['id'] );
             if ( isset( $temporaryData['id'] ) && $temporaryData['id'] > 0 ){
                 unset( $dataToInsert['id'] );
             }
             // insert referral
-            $jobResponse = $indeed_db->insert_referral_via_import( $dataToInsert );
+            $jobResponse = $af_db->insert_referral_via_import( $dataToInsert );
 
             if ( $jobResponse === 0 ){
                 $errors++;
@@ -336,26 +336,26 @@ class ImportCSV
             // some errors but some items was imported
             $response = [
                             'status'          => -1,
-                            'message'         => esc_html__( 'There were some issues with your data import, so only ', 'uap') . $success . esc_html__(' items were imported.', 'uap' )
+                            'message'         => esc_html__( 'There were some issues with your data import, so only ', 'openaffiliates') . $success . esc_html__(' items were imported.', 'openaffiliates' )
             ];
         } else if ( $errors > 0 && $success === 0 ){
             // only errors
             $response = [
                             'status'          => 0,
-                            'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'uap' )
+                            'message'         => esc_html__( 'We encountered some issues with your data. Please check the details and try again.', 'openaffiliates' )
             ];
         } else if ( $alreadyExists > 0 && $errors === 0 && $success === 0 ){
             // data already exists
             $response = [
                             'status'          => -1,
-                            'message'         => esc_html__( 'We found existing data matching your import.', 'uap' )
+                            'message'         => esc_html__( 'We found existing data matching your import.', 'openaffiliates' )
             ];
         }
 
         fclose( $handle ); // close file
         $response = [
                         'status'          => 1,
-                        'message'         => esc_html__( "All set! We've added your data.", 'uap' )
+                        'message'         => esc_html__( "All set! We've added your data.", 'openaffiliates' )
         ];
         return $response; // all good
     }

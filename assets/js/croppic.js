@@ -50,7 +50,7 @@
 			onAfterRemoveCroppedImg: null,
 			onError: null,
 
-			/// new options added by indeed team
+			/// new options added by af team
 			imgInitW						: 0,
 			imgInitH						: 0,
 			imgW								: 0,
@@ -182,7 +182,7 @@
 
 			// CREATE UPLOAD IMG FORM
 
-      var formHtml = '<form class="' + that.id + '_imgUploadForm uap-visibility-hidden">  <input type="file" name="img" id="' + that.id + '_imgUploadField">  </form>';
+      var formHtml = '<form class="' + that.id + '_imgUploadForm af-visibility-hidden">  <input type="file" name="img" id="' + that.id + '_imgUploadField">  </form>';
 			that.outputDiv.append(formHtml);
 			that.form = that.outputDiv.find('.'+that.id+'_imgUploadForm');
 
@@ -375,7 +375,7 @@
 			var that = this;
 
 			var marginTop = that.windowH/2-that.objH/2;
-			var modalHTML =  '<div id="croppicModal">'+'<div id="croppicModalObj" class="uap-cst-croppic uap-croppicModalObj" style = " width:'+ that.objW +'px; height:'+ that.objH +'px; margin-top:'+ marginTop +'px;"> </div>'+'</div>';
+			var modalHTML =  '<div id="croppicModal">'+'<div id="croppicModalObj" class="af-cst-croppic af-croppicModalObj" style = " width:'+ that.objW +'px; height:'+ that.objH +'px; margin-top:'+ marginTop +'px;"> </div>'+'</div>';
 
 			jQuery('body').append(modalHTML);
 
@@ -396,7 +396,7 @@
 
 			/*SET UP SOME VARS*/
 			that.img = that.obj.find('img');
-			that.img.wrap('<div class="cropImgWrapper uap-cropImgWrapper" style = " width:'+that.objW+'px; height:'+that.objH+'px;"></div>');
+			that.img.wrap('<div class="cropImgWrapper af-cropImgWrapper" style = " width:'+that.objW+'px; height:'+that.objH+'px;"></div>');
 
 			/*INIT DRAGGING*/
 			that.createCropControls();
@@ -458,7 +458,7 @@
 				cropControlRotateRight = '<i class="cropControlRotateRight"></i>';
 			}
 
-			html =  '<div class="cropControls cropControlsCrop">'+ cropControlZoomMuchIn + cropControlZoomIn + cropControlZoomOut + cropControlZoomMuchOut + cropControlRotateLeft + cropControlRotateRight + '<span id="uap-custom-controls">' + cropControlCrop + ' <span class="uap_delimiter">|</span> ' + cropControlReset + '</span></div>';
+			html =  '<div class="cropControls cropControlsCrop">'+ cropControlZoomMuchIn + cropControlZoomIn + cropControlZoomOut + cropControlZoomMuchOut + cropControlRotateLeft + cropControlRotateRight + '<span id="af-custom-controls">' + cropControlCrop + ' <span class="af_delimiter">|</span> ' + cropControlReset + '</span></div>';
 
 			that.obj.append(html);
 
@@ -835,7 +835,7 @@
                                 + '<html><head><title>Uploading File</title></head>'
                                 + '<body>'
                                 + '<form '
-                                + 'class="' + that.id + '_upload_iframe_form uap-display-none" '
+                                + 'class="' + that.id + '_upload_iframe_form af-display-none" '
                                 + 'name="' + that.id + '_upload_iframe_form" '
                                 + 'action="' + that.options.uploadUrl + '" method="post" '
                                 + 'enctype="multipart/form-data" encoding="multipart/form-data">'

@@ -1,16 +1,16 @@
 <?php
-		global $indeed_db;
-		wp_enqueue_script( 'indeed_csv_export', UAP_URL . 'assets/js/csv_export.js', ['jquery'] );
+		global $af_db;
+		wp_enqueue_script( 'af_csv_export', AF_URL . 'assets/js/csv_export.js', ['jquery'] );
  		wp_enqueue_script('jquery-ui-datepicker');
 		$affiliateId = isset( $_GET['affiliate_id'] ) ? sanitize_text_field( $_GET['affiliate_id'] ) : false;
 		if ( $affiliateId !== false ){
-				$searchAffiliate = $indeed_db->get_email_by_affiliate_id( $affiliateId );
+				$searchAffiliate = $af_db->get_email_by_affiliate_id( $affiliateId );
 		}
 ?>
-<div class="uap-wrapper">
-	<div class="uap-page-title"><?php esc_html_e('Manage Clicks', 'uap');?></div>
-	<div class="uap-special-buttons-users">
-		<div class="uap-special-button js-uap-export-csv" data-export_type="visits"><i class="fa-uap fa-export-csv"></i><?php esc_html_e( 'Export CSV', 'uap' );?></div>
+<div class="af-wrapper">
+	<div class="af-page-title"><?php esc_html_e('Manage Clicks', 'openaffiliates');?></div>
+	<div class="af-special-buttons-users">
+		<div class="af-special-button js-af-export-csv" data-export_type="visits"><i class="fa-af fa-export-csv"></i><?php esc_html_e( 'Export CSV', 'openaffiliates' );?></div>
 	</div>
 
 	<!-- Start DataTable -->
@@ -22,16 +22,16 @@
 	$columns = [
 								[
 											'data'				=> 'checkbox',
-											'title'				=> '<input type=checkbox class=uap-js-select-all-checkboxes />',
+											'title'				=> '<input type=checkbox class=af-js-select-all-checkboxes />',
 											'orderable'		=> false,
 											'sortable'		=> false,
 								],
 								[
 											'data' 				=> 'ip',
-											'title'				=> esc_html__('IP', 'uap'),
+											'title'				=> esc_html__('IP', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
-											'className'		=> 'uap-max-width-100',
+											'className'		=> 'af-max-width-100',
 											'render'  		=> [
 																				'display'   => 'display',
 																				'sort'      => 'value',
@@ -39,10 +39,10 @@
 								],
 								[
 											'data' 				=> 'affiliate_id',
-											'title'				=> esc_html__('Affiliate ID', 'uap'),
+											'title'				=> esc_html__('Affiliate ID', 'openaffiliates'),
 											'orderable'   => true,
 											'sortable'		=> true,
-											'className'		=> 'uap-max-width-100',
+											'className'		=> 'af-max-width-100',
 											'render'  		=> [
 																				'display'   => 'display',
 																				'sort'      => 'value',
@@ -50,10 +50,10 @@
 								],
 								[
 											'data' 				=> 'affiliate',
-											'title'				=> esc_html__('Affiliate', 'uap'),
+											'title'				=> esc_html__('Affiliate', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
-											'className'		=> 'uap-max-width-300',
+											'className'		=> 'af-max-width-300',
 											'render'  		=> [
 																				'display'   => 'display',
 																				'sort'      => 'value',
@@ -61,7 +61,7 @@
 								],
 								[
 											'data' 				=> 'referral_id',
-											'title'				=> esc_html__('Referral ID', 'uap'),
+											'title'				=> esc_html__('Referral ID', 'openaffiliates'),
 											'orderable'   => true,
 											'sortable'		=> true,
 											'render'  		=> [
@@ -71,10 +71,10 @@
 								],
 								[
 											'data' 				=> 'landing_page',
-											'title'				=> esc_html__('Landing Page', 'uap'),
+											'title'				=> esc_html__('Landing Page', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
-											'className'		=> 'uap-max-width-200',
+											'className'		=> 'af-max-width-200',
 											'render'  		=> [
 																				'display'   => 'display',
 																				'sort'      => 'value',
@@ -82,10 +82,10 @@
 								],
 								[
 											'data' 				=> 'referring_url',
-											'title'				=> esc_html__('Referring URL', 'uap'),
+											'title'				=> esc_html__('Referring URL', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
-											'className'		=> 'uap-max-width-200',
+											'className'		=> 'af-max-width-200',
 											'render'  		=> [
 																				'display'   => 'display',
 																				'sort'      => 'value',
@@ -93,7 +93,7 @@
 								],
 								[
 											'data'				=> 'browser',
-											'title'				=> esc_html__('Browser', 'uap'),
+											'title'				=> esc_html__('Browser', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
 											'render'  		=> [
@@ -103,7 +103,7 @@
 								],
 								[
 											'data'				=> 'device',
-											'title'				=> esc_html__('Device', 'uap'),
+											'title'				=> esc_html__('Device', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
 											'visible'	  	=> false,
@@ -114,7 +114,7 @@
 								],
 								[
 											'data'				=> 'created_time',
-											'title'				=> esc_html__('Created Time', 'uap'),
+											'title'				=> esc_html__('Created Time', 'openaffiliates'),
 											'orderable'   => true,
 											'sortable'		=> true,
 											'render'  		=> [
@@ -124,7 +124,7 @@
 								],
 								[
 											'data'				=> 'status',
-											'title'				=> esc_html__('Status', 'uap'),
+											'title'				=> esc_html__('Status', 'openaffiliates'),
 											'orderable'   => false,
 											'sortable'		=> false,
 											'render'  		=> [
@@ -137,58 +137,58 @@
 
 
 	// 3. Datatable - Js and CSS for datatable
-	\Indeed\Uap\Admin\DataTable::Scripts( $columns, $tableDataType );
+	\OpenAffiliates\Admin\DataTable::Scripts( $columns, $tableDataType );
 
 	?>
 
 	<!-- 4. Datatable - Js confirm messages -->
-	<div class="uap-js-messages-for-datatable"
-			data-remove_one_item="<?php esc_html_e('Are You sure You want to remove this click?', 'uap');?>"
-			data-remove_many_items="<?php esc_html_e('Are You sure You want to remove selected clicks?', 'uap');?>" ></div>
+	<div class="af-js-messages-for-datatable"
+			data-remove_one_item="<?php esc_html_e('Are You sure You want to remove this click?', 'openaffiliates');?>"
+			data-remove_many_items="<?php esc_html_e('Are You sure You want to remove selected clicks?', 'openaffiliates');?>" ></div>
 	<!-- End of 4. Datatable - Js confirm messages -->
 
 			<!-- 5. Datatable - Custom Search + Filter -->
-			<div class="uap-datatable-filters-wrapper">
-							<input type="text" value="<?php if ( isset( $searchAffiliate ) && $searchAffiliate !== '' ){ echo $searchAffiliate;}?>" placeholder="<?php esc_html_e("Search Clicks", 'uap');?>" class="uap-js-search-phrase uap-max-width-300">
+			<div class="af-datatable-filters-wrapper">
+							<input type="text" value="<?php if ( isset( $searchAffiliate ) && $searchAffiliate !== '' ){ echo $searchAffiliate;}?>" placeholder="<?php esc_html_e("Search Clicks", 'openaffiliates');?>" class="af-js-search-phrase af-max-width-300">
 
-							<!--label class="uap-label"><?php esc_html_e('Start:', 'uap');?></label-->
-							<input type="text" name="udf" value="" class="uap-general-date-filter uap-no-margin-right" placeholder="From - yyyy-mm-dd"/>
-							<!--label class="uap-label"><?php esc_html_e('Until:', 'uap');?></label--><span class="uap-date-line">-</span>
-							<input type="text" name="udu" value="" class="uap-general-date-filter" placeholder="To -yyyy-mm-dd"/>
+							<!--label class="af-label"><?php esc_html_e('Start:', 'openaffiliates');?></label-->
+							<input type="text" name="udf" value="" class="af-general-date-filter af-no-margin-right" placeholder="From - yyyy-mm-dd"/>
+							<!--label class="af-label"><?php esc_html_e('Until:', 'openaffiliates');?></label--><span class="af-date-line">-</span>
+							<input type="text" name="udu" value="" class="af-general-date-filter" placeholder="To -yyyy-mm-dd"/>
 
-							<div class="uap-datatable-multiselect-wrapp">
-								<select name="status_in[]" class="uap-js-datatable-items-status-types" multiple data-placeholder="<?php esc_html_e("Status", 'uap');?>">
-										<option value="0"><?php esc_html_e( 'Just Visit', 'uap' );?></option>
-										<option value="1"><?php esc_html_e( 'Converted', 'uap' );?></option>
+							<div class="af-datatable-multiselect-wrapp">
+								<select name="status_in[]" class="af-js-datatable-items-status-types" multiple data-placeholder="<?php esc_html_e("Status", 'openaffiliates');?>">
+										<option value="0"><?php esc_html_e( 'Just Visit', 'openaffiliates' );?></option>
+										<option value="1"><?php esc_html_e( 'Converted', 'openaffiliates' );?></option>
 								</select>
 							</div>
-							<button class="uap-datatable-filter-bttn"><?php esc_html_e('Filter', 'uap');?></button>
+							<button class="af-datatable-filter-bttn"><?php esc_html_e('Filter', 'openaffiliates');?></button>
 			</div>
 			<!-- End of 5. Datatable - Custom Search + Filter -->
 
 			<!-- 6. Datatable - the table html -->
-			<table id="uap-dashboard-table" class="display uap-dashboard-table" >
+			<table id="af-dashboard-table" class="display af-dashboard-table" >
 			</table>
 			<!-- End of 6. Datatable - the table html -->
 
 			<!-- 7. Datatable - Bulk actions -->
-			<div class="uap-datatable-actions-wrapp-copy uap-display-none">
-					<select name="uap-action" class="uap-datatable-select-field uap-js-bulk-action-select">
-							<option value="" disabled selected ><?php esc_html_e( 'Bulk Actions', 'uap' );?></option>
-							<option value="remove"><?php esc_html_e('Remove', 'uap');?></option>
+			<div class="af-datatable-actions-wrapp-copy af-display-none">
+					<select name="af-action" class="af-datatable-select-field af-js-bulk-action-select">
+							<option value="" disabled selected ><?php esc_html_e( 'Bulk Actions', 'openaffiliates' );?></option>
+							<option value="remove"><?php esc_html_e('Remove', 'openaffiliates');?></option>
 					</select>
-					<input type="submit" name="uap-datatable-submit" value="<?php esc_html_e('Apply', 'uap');?>" class="button button-primary button-small uap-js-items-apply-bttn" />
+					<input type="submit" name="af-datatable-submit" value="<?php esc_html_e('Apply', 'openaffiliates');?>" class="button button-primary button-small af-js-items-apply-bttn" />
 			</div>
 			<!-- End of 7. Datatable - Bulk actions -->
 
 			<!-- 8. Page State -->
-			<?php $pageState = get_option( 'uap_datatable_state_for-visits', false );?>
+			<?php $pageState = get_option( 'af_datatable_state_for-visits', false );?>
 			<?php if ( $pageState !== false && !empty( $pageState )  ):?>
-					<div class="uap-js-datatable-state" data-value='<?php echo stripslashes( $pageState );?>' ></div>
+					<div class="af-js-datatable-state" data-value='<?php echo stripslashes( $pageState );?>' ></div>
 			<?php endif;?>
 			<!-- End of 8. Page State -->
 
-			<div class="uap-js-datatable-listing-delete-nonce" data-value="<?php echo wp_create_nonce( 'uap_admin_forms_nonce' );?>"></div>
+			<div class="af-js-datatable-listing-delete-nonce" data-value="<?php echo wp_create_nonce( 'af_admin_forms_nonce' );?>"></div>
 	<!-- End DataTable -->
 
 </div>

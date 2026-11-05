@@ -27,11 +27,11 @@ class Referral_Main{
 		if ($affiliate_id){
 			self::$affiliate_id = $affiliate_id;
 		}
-		self::$affiliate_id = apply_filters( 'uap_filter_affiliate_id', self::$affiliate_id );
+		self::$affiliate_id = apply_filters( 'af_filter_affiliate_id', self::$affiliate_id );
 
 		self::$source = '';
 		self::$campaign = '';
-		self::$currency = get_option('uap_currency');
+		self::$currency = get_option('af_currency');
 		if (!self::$currency){
 			self::$currency = 'USD';
 		}
@@ -40,7 +40,7 @@ class Referral_Main{
 		add_action( 'user_register', array($this, 'insert_signup_referral'), 99, 1 );
 
 		/// PPC
-		add_action('uap_insert_into_cookie_new_affiliate', [$this, 'ppc'], 1, 2);
+		add_action('af_insert_into_cookie_new_affiliate', [$this, 'ppc'], 1, 2);
 	}
 
 	protected function set_affiliate_id(){
@@ -48,29 +48,29 @@ class Referral_Main{
 		 * @param none
 		 * @return none
 		 */
-		global $indeed_db;
-		$lifetime = get_option('uap_lifetime_commissions_enable');
-		$recurring = get_option('uap_reccuring_referrals_enable');
-		self::$affiliate_id = apply_filters( 'uap_set_affiliate_id_filter', self::$affiliate_id );
+		global $af_db;
+		$lifetime = get_option('af_lifetime_commissions_enable');
+		$recurring = get_option('af_reccuring_referrals_enable');
+		self::$affiliate_id = apply_filters( 'af_set_affiliate_id_filter', self::$affiliate_id );
 
-		if (empty(self::$affiliate_id) && empty($_COOKIE['uap_referral'])){ /// SEARCH INTO DB
+		if (empty(self::$affiliate_id) && empty($_COOKIE['af_referral'])){ /// SEARCH INTO DB
 			if ($lifetime && (!isset( self::$special_payment_type ) || self::$special_payment_type != 'reccuring' ) ){ // adding && (!isset( self::$special_payment_type ) && self::$special_payment_type != 'reccuring' ) - since version 8.6
 			 	/// LIFETIME
-				self::$affiliate_id = $indeed_db->search_affiliate_id_for_current_user(self::$user_id);
+				self::$affiliate_id = $af_db->search_affiliate_id_for_current_user(self::$user_id);
 				if (self::$affiliate_id){
 					self::$special_payment_type = 'lifetime';
 				}
 			} else if ($recurring && self::$special_payment_type=='reccuring'){
 				/// RECCURING
-				self::$affiliate_id = $indeed_db->search_affiliate_id_for_current_user(self::$user_id);
+				self::$affiliate_id = $af_db->search_affiliate_id_for_current_user(self::$user_id);
 			}
 
-		} else if (empty(self::$affiliate_id) && !empty($_COOKIE['uap_referral'])){ /// SEARCH INTO COOKIE
+		} else if (empty(self::$affiliate_id) && !empty($_COOKIE['af_referral'])){ /// SEARCH INTO COOKIE
 			/// get affiliate id from cookie
-			$cookie_data = json_decode( stripslashes($_COOKIE['uap_referral']), true );// since version 9.1
+			$cookie_data = json_decode( stripslashes($_COOKIE['af_referral']), true );// since version 9.1
 			if (!empty($cookie_data['affiliate_id'])){
-				if ( get_option( 'uap_default_ref_format' ) == 'username' ){
-						$temporaryAffiliateId = $indeed_db->get_affiliate_id_by_username( $cookie_data['affiliate_id'] );
+				if ( get_option( 'af_default_ref_format' ) == 'username' ){
+						$temporaryAffiliateId = $af_db->get_affiliate_id_by_username( $cookie_data['affiliate_id'] );
 				}
 				if ( empty( $temporaryAffiliateId ) ){
 						self::$affiliate_id = $cookie_data['affiliate_id'];
@@ -82,15 +82,15 @@ class Referral_Main{
 		}
 
 		if (self::$affiliate_id){
-			$old_affiliate = $indeed_db->search_affiliate_id_for_current_user(self::$user_id);
+			$old_affiliate = $af_db->search_affiliate_id_for_current_user(self::$user_id);
 			if ($old_affiliate){
-				$rewrite_referrals = get_option('uap_rewrite_referrals_enable');
+				$rewrite_referrals = get_option('af_rewrite_referrals_enable');
 				if ($rewrite_referrals){
 					/// update user - affiliate relation, use new affiliate
-					$indeed_db->update_affiliate_referral_user_relation_by_ids($old_affiliate, self::$affiliate_id, self::$user_id);
+					$af_db->update_affiliate_referral_user_relation_by_ids($old_affiliate, self::$affiliate_id, self::$user_id);
 				} else {
 					/// use old affiliate
-					$lifetime = get_option('uap_lifetime_commissions_enable');
+					$lifetime = get_option('af_lifetime_commissions_enable');
 					if ( $lifetime ){
 							self::$affiliate_id = $old_affiliate;
 					}
@@ -98,7 +98,7 @@ class Referral_Main{
 				}
 			} else {
 				/// insert user - affiliate relation
-				$indeed_db->insert_affiliate_referral_user_new_relation(self::$affiliate_id, self::$user_id);
+				$af_db->insert_affiliate_referral_user_new_relation(self::$affiliate_id, self::$user_id);
 			}
 		}
 	}
@@ -108,24 +108,24 @@ class Referral_Main{
 		 * @param none
 		 * @return boolean
 		 */
-		global $indeed_db;
+		global $af_db;
 		/// CHECK FOR OWN REFERRENCE
-		$isValid = apply_filters( 'uap_filter_before_valid_referral', true, self::$affiliate_id, self::$user_id );
+		$isValid = apply_filters( 'af_filter_before_valid_referral', true, self::$affiliate_id, self::$user_id );
 		if ( !$isValid ){
 				return false;
 		}
 
-		if (self::$affiliate_id && self::$user_id && $indeed_db->affiliate_get_id_by_uid(self::$user_id)==self::$affiliate_id){
+		if (self::$affiliate_id && self::$user_id && $af_db->affiliate_get_id_by_uid(self::$user_id)==self::$affiliate_id){
 			$allowOwnRefference = true;
-			if (!get_option('uap_allow_own_referrence_enable')){
+			if (!get_option('af_allow_own_referrence_enable')){
 					$allowOwnRefference = false;//own referrence not allowed
 			}
-			$allowOwnRefference = apply_filters( 'uap_allow_own_referrence_filter', $allowOwnRefference );
+			$allowOwnRefference = apply_filters( 'af_allow_own_referrence_filter', $allowOwnRefference );
 			if ( !$allowOwnRefference ){
 					return false;
 			}
 		}
-		if (self::$affiliate_id && $indeed_db->is_affiliate_active(self::$affiliate_id)){
+		if (self::$affiliate_id && $af_db->is_affiliate_active(self::$affiliate_id)){
 				return TRUE;
 		}
 
@@ -138,7 +138,7 @@ class Referral_Main{
 		 * @param array
 		 * @return boolean
 		 */
-		global $indeed_db;
+		global $af_db;
 		$keys = array(
 						'refferal_wp_uid',
 						'campaign',
@@ -152,7 +152,7 @@ class Referral_Main{
 						'currency',
 		);
 
-		$args = apply_filters( 'uap_public_filter_insert_referral_args', $args );
+		$args = apply_filters( 'af_public_filter_insert_referral_args', $args );
 
 		foreach ($keys as $key){
 			if (!isset($args[$key])){
@@ -166,8 +166,8 @@ class Referral_Main{
 		}
 
 		/// EMPTY REFERRALS
-		$general_settings_data = $indeed_db->return_settings_from_wp_option('general-settings');
-		if (empty($general_settings_data['uap_empty_referrals_enable'])){
+		$general_settings_data = $af_db->return_settings_from_wp_option('general-settings');
+		if (empty($general_settings_data['af_empty_referrals_enable'])){
 			///don't insert referrals with 0$
 			$min = 0.01;
 			if ($args['amount']<$min){
@@ -177,10 +177,10 @@ class Referral_Main{
 		/// EMPTY REFERRALS
 
 		// since version 8.6 - New Customer Commissions
-		if ( ((int)get_option( 'uap_new_customer_commissions', 0 )) === 1 && isset( $args['refferal_wp_uid'] ) && ( (int)$args['refferal_wp_uid'] ) > 0 ){
+		if ( ((int)get_option( 'af_new_customer_commissions', 0 )) === 1 && isset( $args['refferal_wp_uid'] ) && ( (int)$args['refferal_wp_uid'] ) > 0 ){
 				switch ( $args['source'] ){
 						case 'woo':
-							if ( function_exists( 'wc_get_orders') && \Indeed\Uap\Integrations::isWooActive() === 1 ){
+							if ( function_exists( 'wc_get_orders') && \OpenAffiliates\Integrations::isWooActive() === 1 ){
 									$args_order = [
 										'customer_id' => $args['refferal_wp_uid'],
 										'limit'       => -1, // retrieve all orders for this user
@@ -192,7 +192,7 @@ class Referral_Main{
 							}
 							break;
 						case 'edd':
-							if ( function_exists( 'edd_get_payments') && \Indeed\Uap\Integrations::isEddActive() === 1 ){
+							if ( function_exists( 'edd_get_payments') && \OpenAffiliates\Integrations::isEddActive() === 1 ){
 									$orders = edd_get_payments( [ 'user' => $args['refferal_wp_uid'] ] );
 									if ( is_array( $orders ) && count( $orders ) > 1 ){
 											return; // out, we already have orders from this user
@@ -200,7 +200,7 @@ class Referral_Main{
 							}
 							break;
 						case 'ump':
-							if ( class_exists( '\Ihc_Db' ) && \Indeed\Uap\Integrations::isUmpActive() === 1 ){
+							if ( class_exists( '\Ihc_Db' ) && \OpenAffiliates\Integrations::isUmpActive() === 1 ){
 									$orders = new \Indeed\Ihc\Db\Orders();
 									$countOrders = $orders->countWithFilter( $args['refferal_wp_uid'] );
 									if ( (int)$countOrders > 1 ){
@@ -209,7 +209,7 @@ class Referral_Main{
 							}
 							break;
 						case 'ulp':
-							if ( class_exists( '\DbUlp' ) && \Indeed\Uap\Integrations::isUlpActive() === 1 ){
+							if ( class_exists( '\DbUlp' ) && \OpenAffiliates\Integrations::isUlpActive() === 1 ){
 									$orders = \DbUlp::getOrdersByUser( $args['refferal_wp_uid'] );
 									if ( is_array( $orders ) && count( $orders ) > 1 ){
 											return; // out, we already have orders from this user
@@ -217,8 +217,8 @@ class Referral_Main{
 							}
 							break;
 						default:
-							$clientRegisterDate = $indeed_db->getRegisterDate( $args['refferal_wp_uid'] );
-							$currentTime = indeed_get_unixtimestamp_with_timezone();
+							$clientRegisterDate = $af_db->getRegisterDate( $args['refferal_wp_uid'] );
+							$currentTime = af_get_unixtimestamp_with_timezone();
 							$clientRegisterDateAsTimestamp = strtotime( $clientRegisterDate );
 							if ( $clientRegisterDateAsTimestamp + 600 < $currentTime ){ // one hour
 									return;
@@ -233,16 +233,16 @@ class Referral_Main{
 		$args['payment'] = 0;//unpaid
 		$args['parent_referral_id'] = '';// empty for moment, will be updated if it's case
 		$args['child_referral_id'] = '';//always will be empty
-		$referral_id = $indeed_db->save_referral($args);
+		$referral_id = $af_db->save_referral($args);
 		if ($referral_id){
-			$indeed_db->update_visit_referral_id($args['visit_id'], $referral_id);
-			if (get_option('uap_mlm_enable')){
-				$limit = get_option('uap_mlm_matrix_depth');
-				$first_child_username = $indeed_db->get_wp_username_by_affiliate_id($args['affiliate_id']);
+			$af_db->update_visit_referral_id($args['visit_id'], $referral_id);
+			if (get_option('af_mlm_enable')){
+				$limit = get_option('af_mlm_matrix_depth');
+				$first_child_username = $af_db->get_wp_username_by_affiliate_id($args['affiliate_id']);
 
 				$theAmount = $args['amount'];
-				$uap_mlm_use_amount_from = get_option('uap_mlm_use_amount_from');
-				if ($uap_mlm_use_amount_from && $uap_mlm_use_amount_from=='product_price' && isset($args['product_price'])){
+				$af_mlm_use_amount_from = get_option('af_mlm_use_amount_from');
+				if ($af_mlm_use_amount_from && $af_mlm_use_amount_from=='product_price' && isset($args['product_price'])){
 					$theAmount = $args['product_price'];
 				}
 
@@ -260,15 +260,15 @@ class Referral_Main{
 		 */
 		if ($check_if_can_do){
 			/// Don't change the Referral Status to Verified
-			$dont = get_option('uap_workflow_referral_status_dont_automatically_change');
+			$dont = get_option('af_workflow_referral_status_dont_automatically_change');
 			if ($dont){
 				return; /// stop from change status of referral
 			}
 		}
-		global $indeed_db;
-		$referral_id = $indeed_db->get_referral_id_for_reference($reference, $source);
+		global $af_db;
+		$referral_id = $af_db->get_referral_id_for_reference($reference, $source);
 		if ($referral_id){
-			$indeed_db->change_referral_status($referral_id, 2);
+			$af_db->change_referral_status($referral_id, 2);
 		}
 	}
 
@@ -278,14 +278,14 @@ class Referral_Main{
 		 * @param string, string
 		 * @return none
 		 */
-		global $indeed_db;
-		$referral_id = $indeed_db->get_referral_id_for_reference($reference, $source);
+		global $af_db;
+		$referral_id = $af_db->get_referral_id_for_reference($reference, $source);
 		if ($referral_id){
-			$indeed_db->change_referral_status($referral_id, 0);
+			$af_db->change_referral_status($referral_id, 0);
 		}
 		if(isset($source) && ($source == 'woo' || $source == 'ump' || $source == 'edd' || $source == 'ulp')){
-			$new_description = esc_html__(' - Order Refunded', 'uap');
-			$indeed_db->change_referral_description($referral_id, $new_description, TRUE);
+			$new_description = esc_html__(' - Order Refunded', 'openaffiliates');
+			$af_db->change_referral_description($referral_id, $new_description, TRUE);
 		}
 	}
 
@@ -299,11 +299,11 @@ class Referral_Main{
 			return;
 		}
 		if ($child_affiliate_id && $child_referral_id){
-			global $indeed_db;
-			$parent_id = $indeed_db->mlm_get_parent($child_affiliate_id);
-			$description = esc_html__('Generated based on the Main Referral', 'uap');
+			global $af_db;
+			$parent_id = $af_db->mlm_get_parent($child_affiliate_id);
+			$description = esc_html__('Generated based on the Main Referral', 'openaffiliates');
 			if (!empty($first_child_username)){
-				$description = esc_html__('Generated based on the Main Referral from ', 'uap').'<strong>'. $first_child_username.'</strong>';
+				$description = esc_html__('Generated based on the Main Referral from ', 'openaffiliates').'<strong>'. $first_child_username.'</strong>';
 			}
 			$reference = '-';
 			if (!empty($first_child_referrence)){
@@ -328,14 +328,14 @@ class Referral_Main{
 				$args['payment'] = 0;//unpaid
 
 				/// SET AMOUNT
-				$args['amount'] = $indeed_db->mlm_get_amount($parent_id, $amount, $count);
+				$args['amount'] = $af_db->mlm_get_amount($parent_id, $amount, $count);
 				$args['currency'] = self::$currency;
 
 				/// save referral
-				$inserted_referral_id = $indeed_db->save_referral($args);
+				$inserted_referral_id = $af_db->save_referral($args);
 
 				//update the child referral
-				$indeed_db->referral_update_child($child_referral_id, $inserted_referral_id);
+				$af_db->referral_update_child($child_referral_id, $inserted_referral_id);
 
 				/// search for parent
 				$count++;
@@ -349,18 +349,18 @@ class Referral_Main{
 		 * @param int
 		 * @return none
 		 */
-		if (get_option('uap_sign_up_referrals_enable') && $user_id){
+		if (get_option('af_sign_up_referrals_enable') && $user_id){
 			self::$user_id = $user_id;
 			$this->set_affiliate_id();
 			if ($this->valid_referral()){
-				require_once UAP_PATH . 'public/Affiliate_Referral_Amount.class.php';
+				require_once AF_PATH . 'public/Affiliate_Referral_Amount.class.php';
 				$do_math = new Affiliate_Referral_Amount(self::$affiliate_id, '');
 				$user_data = get_userdata( $user_id);
 				$description = '';
 				if(isset($user_data->display_name) && !empty($user_data->display_name)){
-					$description = '<strong>'.$user_data->display_name.'</strong> '.esc_html__('has Signed up', 'uap');
+					$description = '<strong>'.$user_data->display_name.'</strong> '.esc_html__('has Signed up', 'openaffiliates');
 				}else{
-					$description = esc_html__('New Sign up User', 'uap');
+					$description = esc_html__('New Sign up User', 'openaffiliates');
 				}
 				$amount = $do_math->get_signup_amount();
 				$args = array(
@@ -376,7 +376,7 @@ class Referral_Main{
 						'currency' => self::$currency,
 				);
 				$this->save_referral_unverified($args);
-				$default_sts = get_option('uap_sign_up_default_referral_status');
+				$default_sts = get_option('af_sign_up_default_referral_status');
 				if ($default_sts==2){
 					/// MAKE VERIFIED
 					$this->referral_verified('user_id_' . $user_id, '', FALSE);
@@ -390,8 +390,8 @@ class Referral_Main{
 		 * @param double, string
 		 * @return none
 		 */
-		global $indeed_db;
-		$status = get_option('uap_bonus_on_rank_default_referral_sts');
+		global $af_db;
+		$status = get_option('af_bonus_on_rank_default_referral_sts');
 		if ($status===FALSE){
 			$status = 2; /// verified
 		}
@@ -400,7 +400,7 @@ class Referral_Main{
 				'campaign' => '',
 				'affiliate_id' => self::$affiliate_id,
 				'visit_id' => '',
-				'description' => esc_html__('Bonus for reaching rank: ', 'uap') .'<strong>'. $rank_name.'</strong>',
+				'description' => esc_html__('Bonus for reaching rank: ', 'openaffiliates') .'<strong>'. $rank_name.'</strong>',
 				'source' => 'bonus',
 				'reference' => 0,
 				'reference_details' => 'Bonus',
@@ -412,22 +412,22 @@ class Referral_Main{
 				'parent_referral_id' => '',
 				'child_referral_id' => '',
 		);
-		$indeed_db->save_referral($args);
+		$af_db->save_referral($args);
 	}
 
 	public function ppc($affiliateId=0, $visitId=0)
 	{
-			global $indeed_db;
+			global $af_db;
 			if (empty($affiliateId)){
 					return;
 			}
-			$isOn = get_option('uap_pay_per_click_enabled');
+			$isOn = get_option('af_pay_per_click_enabled');
 			if (empty($isOn)){
 					return;
 			}
-			$referralStatus = get_option('uap_pay_per_click_default_referral_sts');
+			$referralStatus = get_option('af_pay_per_click_default_referral_sts');
 
-			self::$user_id = $indeed_db->get_uid_by_affiliate_id($affiliateId);
+			self::$user_id = $af_db->get_uid_by_affiliate_id($affiliateId);
 			self::$affiliate_id = $affiliateId;
 
 			self::$visit_id = '';
@@ -435,8 +435,8 @@ class Referral_Main{
 				self::$visit_id = $visitId;
 			}
 
-			$affiliateRank = $indeed_db->get_affiliate_rank(self::$affiliate_id);
-			$amountValue = $indeed_db->getPPCValueForRank($affiliateRank);
+			$affiliateRank = $af_db->get_affiliate_rank(self::$affiliate_id);
+			$amountValue = $af_db->getPPCValueForRank($affiliateRank);
 
 			$args = array(
 					'refferal_wp_uid' => 0,
@@ -455,11 +455,11 @@ class Referral_Main{
 					'parent_referral_id' => '',
 					'child_referral_id' => '',
 			);
-			$referralId = $indeed_db->save_referral($args);
+			$referralId = $af_db->save_referral($args);
 
 			// since version 8.4
 			if ( $referralStatus == 2 && (int)$referralId > 0 && self::$visit_id > 0 ){ // make visits complete
-					$indeed_db->updateVisitReferralId( self::$visit_id, $referralId );
+					$af_db->updateVisitReferralId( self::$visit_id, $referralId );
 			}
 	}
 

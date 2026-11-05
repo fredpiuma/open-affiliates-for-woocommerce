@@ -1,8 +1,8 @@
 /*
- *Ultimate Affiliate Pro - password strength
+ *Open Affiliates - password strength
  */
 "use strict";
-var UapPasswordStrength = {
+var AfPasswordStrength = {
   colors: ['#F00', '#F90', '#FF0', '#9F0', '#0F0'],
   labels: [],
 
@@ -10,10 +10,10 @@ var UapPasswordStrength = {
     var obj = this;
     obj.setAttributes(obj, args);
 
-    if ( typeof window.uapPasswordStrengthLabels === 'string' ){
-        obj.labels = JSON.parse(window.uapPasswordStrengthLabels);
+    if ( typeof window.afPasswordStrengthLabels === 'string' ){
+        obj.labels = JSON.parse(window.afPasswordStrengthLabels);
     } else {
-        obj.labels = window.uapPasswordStrengthLabels;
+        obj.labels = window.afPasswordStrengthLabels;
     }
     window.addEventListener( 'DOMContentLoaded', function(){
         jQuery(document).on('keyup', jQuery('[name=pass1]'), function (evt) {
@@ -50,7 +50,7 @@ var UapPasswordStrength = {
       } else if (strength>30){
           newLabel = obj.labels[3];
       }
-      jQuery(evt.target).parent().find('.uap-strength-label').html(newLabel);
+      jQuery(evt.target).parent().find('.af-strength-label').html(newLabel);
 
   },
 
@@ -101,4 +101,4 @@ var UapPasswordStrength = {
   }
 
 }
-UapPasswordStrength.init({});
+AfPasswordStrength.init({});

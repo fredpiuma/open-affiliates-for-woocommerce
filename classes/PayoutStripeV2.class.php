@@ -12,14 +12,14 @@ class PayoutStripeV2{
 	 * @return none
 	 */
 	public function __construct(){
-		 global $indeed_db;
-		 $this->settings = $indeed_db->return_settings_from_wp_option('stripe_v2');
-		 if ($this->settings['uap_stripe_v2_sandbox']){
-		 	$this->secret_key = $this->settings['uap_stripe_v2_sandbox_secret_key'];
+		 global $af_db;
+		 $this->settings = $af_db->return_settings_from_wp_option('stripe_v2');
+		 if ($this->settings['af_stripe_v2_sandbox']){
+		 	$this->secret_key = $this->settings['af_stripe_v2_sandbox_secret_key'];
 		 } else {
-		 	$this->secret_key = $this->settings['uap_stripe_v2_secret_key'];
+		 	$this->secret_key = $this->settings['af_stripe_v2_secret_key'];
 		 }
-		 require_once UAP_PATH  . 'classes/services/stripe/vendor/autoload.php';
+		 require_once AF_PATH  . 'classes/services/stripe/vendor/autoload.php';
 	}
 
 
@@ -50,9 +50,9 @@ class PayoutStripeV2{
 
 				unset($the_user_array['managed'] );
 
-				global $indeed_db;
+				global $af_db;
 				$the_user_array['type'] = "standard";
-				$the_user_array['email'] = $indeed_db->get_email_by_uid($uid);
+				$the_user_array['email'] = $af_db->get_email_by_uid($uid);
 
 				try {
 						$acct = \Stripe\Account::create($the_user_array);
@@ -117,14 +117,14 @@ class PayoutStripeV2{
 	 * @return string
 	 */
 	public function do_payout($uid=0, $affiliate_id=0, $amount=0, $currency='usd'){
-		global $indeed_db;
+		global $af_db;
 		$amount = $amount * 100;
-		if (empty($this->settings) || empty($this->settings['uap_stripe_v2_enable'])){
+		if (empty($this->settings) || empty($this->settings['af_stripe_v2_enable'])){
 		  	return '';
 		}
 
 		if (empty($uid)){
-			$uid = $indeed_db->get_uid_by_affiliate_id($affiliate_id);
+			$uid = $af_db->get_uid_by_affiliate_id($affiliate_id);
 			if (empty($uid)){
 				return '';
 			}
@@ -136,16 +136,16 @@ class PayoutStripeV2{
 		}
 
 		if ($user_stripe_id_account){
-			global $indeed_db;
+			global $af_db;
 			$site_name = get_option('blogname');
-			$username = $indeed_db->get_username_by_wpuid($uid);
+			$username = $af_db->get_username_by_wpuid($uid);
 			try {
 				\Stripe\Stripe::setApiKey($this->secret_key);
 				$transfer_details = \Stripe\Transfer::create(array(
 				  "amount" => $amount,
 				  "currency" => $currency,
 				  "destination" => $user_stripe_id_account,
-				  "description" => esc_html__("From ", 'uap') . $site_name . esc_html__(" to ", 'uap') . $username . '.',
+				  "description" => esc_html__("From ", 'openaffiliates') . $site_name . esc_html__(" to ", 'openaffiliates') . $username . '.',
 				));
 			} catch (exception $e){}
 
@@ -165,7 +165,7 @@ class PayoutStripeV2{
 		if (!$this->check_input_from_user($user_data)){
 			return FALSE;
 		}
-		$currency = get_option('uap_currency');
+		$currency = get_option('af_currency');
 		$the_user_array = array(
 			  "managed" => TRUE,
 			  "country" => $user_data['country'],
@@ -383,7 +383,7 @@ class PayoutStripeV2{
 	 * @return string (verified, unverified) || boolean (FALSE)
 	 */
 	private function get_stripe_user_status($uid=''){
-		 if (!empty($this->settings['uap_stripe_v2_enable'])){
+		 if (!empty($this->settings['af_stripe_v2_enable'])){
 			 $user_stripe_id_account = get_user_meta($uid, 'ihc_stripe_connected_account_id', TRUE);
 			 if (!empty($user_stripe_id_account)){
 				 \Stripe\Stripe::setApiKey($this->secret_key);

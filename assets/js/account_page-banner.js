@@ -1,8 +1,8 @@
 /*
- *Ultimate Affiliate Pro - Account Page Banner
+ *Open Affiliates - Account Page Banner
  */
 "use strict";
-var UapAccountPageBanner = {
+var AfAccountPageBanner = {
     triggerId       : '',
     saveImageTarget : '',
     cropImageTarget : '',
@@ -15,7 +15,7 @@ var UapAccountPageBanner = {
               uploadUrl                 : obj.saveImageTarget,
               cropUrl                   : obj.cropImageTarget,
               modal                     : true,
-              fileNameInput             : 'uap_upload_image_top_banner',
+              fileNameInput             : 'af_upload_image_top_banner',
               imgEyecandyOpacity        : 0.4,
               loaderHtml                : '<div class="loader cssload-wrapper"><div id="floatingCirclesG"><div class="f_circleG" id="frotateG_01"></div><div class="f_circleG" id="frotateG_02"></div><div class="f_circleG" id="frotateG_03"></div><div class="f_circleG" id="frotateG_04"></div><div class="f_circleG" id="frotateG_05"></div><div class="f_circleG" id="frotateG_06"></div><div class="f_circleG" id="frotateG_07"></div><div class="f_circleG" id="frotateG_08"></div></div>',
               onBeforeImgUpload         : function(){},
@@ -49,7 +49,7 @@ var UapAccountPageBanner = {
             type : "post",
             url : decodeURI(ajax_url),
             data : {
-                       action: "uap_ap_reset_custom_banner",
+                       action: "af_ap_reset_custom_banner",
                        oldBanner: old,
                    },
             success: function (data) {
@@ -60,12 +60,12 @@ var UapAccountPageBanner = {
 }
 
 window.addEventListener( 'DOMContentLoaded', function(){
-    var uapNonce = jQuery( '.uap-js-account-page-header-details' ).attr( 'data-nonce' );
-    var uapUrl = jQuery( '.uap-js-account-page-header-details' ).attr( 'data-uap_url' );
-		UapAccountPageBanner.init({
-				triggerId					: 'js_uap_edit_top_ap_banner',
-				saveImageTarget		: decodeURI( ajax_url ) + '?action=uap_ajax_public_upload&publicn=' + uapNonce,
-				cropImageTarget   : decodeURI( ajax_url ) + '?action=uap_ajax_public_upload&publicn=' + uapNonce,
-				bannerClass       : 'uap-user-page-top-background'
+    var afNonce = jQuery( '.af-js-account-page-header-details' ).attr( 'data-nonce' );
+    var afUrl = jQuery( '.af-js-account-page-header-details' ).attr( 'data-af_url' );
+		AfAccountPageBanner.init({
+				triggerId					: 'js_af_edit_top_ap_banner',
+				saveImageTarget		: decodeURI( ajax_url ) + '?action=af_ajax_public_upload&publicn=' + afNonce,
+				cropImageTarget   : decodeURI( ajax_url ) + '?action=af_ajax_public_upload&publicn=' + afNonce,
+				bannerClass       : 'af-user-page-top-background'
 		})
 });

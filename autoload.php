@@ -1,17 +1,17 @@
 <?php
-spl_autoload_register('indeedUapAutoloader');
-function indeedUapAutoloader($fullClassName='')
+spl_autoload_register('afAfAutoloader');
+function afAfAutoloader($fullClassName='')
 {
-    if (strpos($fullClassName, "Indeed\Uap\Migration")!==FALSE){
-       $path = UAP_PATH . 'classes/Migration/';
-    } else if (strpos($fullClassName, "Indeed\Uap\Db")!==FALSE){
-       $path = UAP_PATH . 'classes/Db/';
-    } else if (strpos($fullClassName, "Indeed\Uap\Services")!==FALSE){
-       $path = UAP_PATH . 'public/services/';
-    } else if (strpos($fullClassName, "Indeed\Uap\Admin")!==FALSE){
-       $path = UAP_PATH . 'admin/';
-    } else if (strpos($fullClassName, "Indeed\Uap")!==FALSE){
-       $path = UAP_PATH . 'classes/';
+    if (strpos($fullClassName, "OpenAffiliates\Migration")!==FALSE){
+       $path = AF_PATH . 'classes/Migration/';
+    } else if (strpos($fullClassName, "OpenAffiliates\Db")!==FALSE){
+       $path = AF_PATH . 'classes/Db/';
+    } else if (strpos($fullClassName, "OpenAffiliates\Services")!==FALSE){
+       $path = AF_PATH . 'public/services/';
+    } else if (strpos($fullClassName, "OpenAffiliates\Admin")!==FALSE){
+       $path = AF_PATH . 'admin/';
+    } else if (strpos($fullClassName, "OpenAffiliates")!==FALSE){
+       $path = AF_PATH . 'classes/';
     }
     if (empty($path)){
        return;

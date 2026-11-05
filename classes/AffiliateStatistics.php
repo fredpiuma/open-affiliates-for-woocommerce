@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class AffiliateStatistics
 {
@@ -12,7 +12,7 @@ class AffiliateStatistics
         if ( !$permalink ){
             return 0;
         }
-        $query = $wpdb->prepare( "SELECT COUNT(id) FROM {$wpdb->prefix}uap_visits WHERE url=%s;", $permalink );
+        $query = $wpdb->prepare( "SELECT COUNT(id) FROM {$wpdb->prefix}af_visits WHERE url=%s;", $permalink );
         return $wpdb->get_var( $query );
     }
 
@@ -23,8 +23,8 @@ class AffiliateStatistics
             return 0;
         }
         $query = $wpdb->prepare( "SELECT COUNT(b.id) FROM
-                                        {$wpdb->prefix}uap_visits a
-                                        INNER JOIN {$wpdb->prefix}uap_referrals b
+                                        {$wpdb->prefix}af_visits a
+                                        INNER JOIN {$wpdb->prefix}af_referrals b
                                         ON a.id=b.visit_id
                                         WHERE a.url=%s
         ", $permalink);
@@ -37,7 +37,7 @@ class AffiliateStatistics
         if ( !$permalink || !$affiliateId ){
             return 0;
         }
-        $query = $wpdb->prepare( "SELECT COUNT(id) FROM {$wpdb->prefix}uap_visits WHERE url=%s AND affiliate_id=%d;", $permalink, $affiliateId );
+        $query = $wpdb->prepare( "SELECT COUNT(id) FROM {$wpdb->prefix}af_visits WHERE url=%s AND affiliate_id=%d;", $permalink, $affiliateId );
         return $wpdb->get_var( $query );
     }
 
@@ -48,8 +48,8 @@ class AffiliateStatistics
             return 0;
         }
         $query = $wpdb->prepare( "SELECT COUNT(b.id) FROM
-                                        {$wpdb->prefix}uap_visits a
-                                        INNER JOIN {$wpdb->prefix}uap_referrals b
+                                        {$wpdb->prefix}af_visits a
+                                        INNER JOIN {$wpdb->prefix}af_referrals b
                                         ON a.id=b.visit_id
                                         WHERE
                                         a.url=%s

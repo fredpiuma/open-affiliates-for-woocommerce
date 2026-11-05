@@ -26,7 +26,7 @@ class Affiliate_Referral_Amount{
 		}
 		self::$source = (empty($source)) ? '' : $source;
 		self::$special_payment_type = $special_payment_type;
-		self::$rule = get_option('uap_referral_offer_type');
+		self::$rule = get_option('af_referral_offer_type');
 		if (empty(self::$rule)){
 			self::$rule = 'lowest';
 		}
@@ -49,8 +49,8 @@ class Affiliate_Referral_Amount{
 		 * @param none
 		 * @return array
 		 */
-		global $indeed_db;
-		$data = $indeed_db->get_offer_id_by_affiliate_id_and_source(self::$affiliate_id, self::$source);
+		global $af_db;
+		$data = $af_db->get_offer_id_by_affiliate_id_and_source(self::$affiliate_id, self::$source);
 		return $data;
 	}
 	private function set_rank_settings(){
@@ -58,10 +58,10 @@ class Affiliate_Referral_Amount{
 		 * @param none
 		 * @return array
 		 */
-		global $indeed_db;
-		$rank = $indeed_db->get_affiliate_rank(self::$affiliate_id);
+		global $af_db;
+		$rank = $af_db->get_affiliate_rank(self::$affiliate_id);
 		if ($rank){
-			$data = $indeed_db->get_rank($rank);
+			$data = $af_db->get_rank($rank);
 			return $data;
 		}
 		return array();
@@ -112,7 +112,7 @@ class Affiliate_Referral_Amount{
 		}
 		// Custom Value
 		$attr = [ 'variableProductId' => $this->variableProductId ];
-		$customValues = apply_filters( 'uap_filter_referral_amount', [], $input_amount, $product_id, $attr );
+		$customValues = apply_filters( 'af_filter_referral_amount', [], $input_amount, $product_id, $attr );
 		if ( is_array($customValues) && $customValues ){
 				foreach( $customValues as $customValue ){
 						if ( $customValue != $return_value ){
@@ -132,8 +132,8 @@ class Affiliate_Referral_Amount{
 		 * @return none
 		 */
 		 //Extra verification process starting with v.8.7
-		 $lifetime = get_option('uap_lifetime_commissions_enable');
- 		 $recurring = get_option('uap_reccuring_referrals_enable');
+		 $lifetime = get_option('af_lifetime_commissions_enable');
+ 		 $recurring = get_option('af_reccuring_referrals_enable');
 
 		if (self::$rank_settings){
 			if ($lifetime && self::$special_payment_type=='lifetime'){
@@ -219,7 +219,7 @@ class Affiliate_Referral_Amount{
 		 * @return int
 		 */
 		/// DEFAULT AMOUNT
-		$amount = get_option('uap_sign_up_amount_default');
+		$amount = get_option('af_sign_up_amount_default');
 		if ($amount===FALSE){
 			$amount = 0;
 		}
@@ -236,8 +236,8 @@ class Affiliate_Referral_Amount{
 		 * @param none
 		 * @return number
 		 */
-		global $indeed_db;
-		$data = $indeed_db->get_coupon_data(self::$coupon_code);
+		global $af_db;
+		$data = $af_db->get_coupon_data(self::$coupon_code);
 		if ($data){
 			if(isset($data['amount_value']) && !empty($data['amount_value'])){
 				if ($data['amount_type']=='percentage'){

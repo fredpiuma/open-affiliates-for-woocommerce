@@ -1,34 +1,34 @@
-	<div class="uap-stuffbox">
-		<h3 class="uap-h3">
-			<?php esc_html_e('Main ShortCodes', 'uap');?>
+	<div class="af-stuffbox">
+		<h3 class="af-h3">
+			<?php esc_html_e('Main ShortCodes', 'openaffiliates');?>
 		</h3>
 		<div class="inside">
-			<div class="uap-popup-content help-shortcodes uap-text-align-center">
-        	<div class="uap-showcases-wrapper">
-	            <div class="uap-popup-shortcodevalue"><i class="fa-uap fa-user-plus-uap"></i><?php esc_html_e('Register Form', 'uap');?><span>[uap-register]</span></div>
-	            <div class="uap-popup-shortcodevalue"><i class="fa-uap fa-sign-in-uap"></i><?php esc_html_e('Login Form', 'uap');?><span>[uap-login-form]</span></div>
-	            <div class="uap-popup-shortcodevalue"><i class="fa-uap fa-sign-out-uap"></i><?php esc_html_e('Logout Button', 'uap');?><span>[uap-logout]</span></div>
-	            <div class="uap-popup-shortcodevalue"><i class="fa-uap fa-unlock-uap"></i><?php esc_html_e('Password Recovery', 'uap');?><span>[uap-reset-password]</span></div>
-	            <div class="uap-popup-shortcodevalue"><i class="fa-uap fa-user-uap"></i><?php esc_html_e('Affiliate Portal', 'uap');?><span>[uap-account-page]</span></div>
-				<div class="uap-clear"></div>
+			<div class="af-popup-content help-shortcodes af-text-align-center">
+        	<div class="af-showcases-wrapper">
+	            <div class="af-popup-shortcodevalue"><i class="fa-af fa-user-plus-af"></i><?php esc_html_e('Register Form', 'openaffiliates');?><span>[af-register]</span></div>
+	            <div class="af-popup-shortcodevalue"><i class="fa-af fa-sign-in-af"></i><?php esc_html_e('Login Form', 'openaffiliates');?><span>[af-login-form]</span></div>
+	            <div class="af-popup-shortcodevalue"><i class="fa-af fa-sign-out-af"></i><?php esc_html_e('Logout Button', 'openaffiliates');?><span>[af-logout]</span></div>
+	            <div class="af-popup-shortcodevalue"><i class="fa-af fa-unlock-af"></i><?php esc_html_e('Password Recovery', 'openaffiliates');?><span>[af-reset-password]</span></div>
+	            <div class="af-popup-shortcodevalue"><i class="fa-af fa-user-af"></i><?php esc_html_e('Affiliate Portal', 'openaffiliates');?><span>[af-account-page]</span></div>
+				<div class="af-clear"></div>
         	</div>
     	</div>
 			<div class="clear"></div>
 		</div>
 	</div>
 
-	<div class="uap-stuffbox">
-		<h3 class="uap-h3">
-			<?php esc_html_e('Affiliate Data ShortCodes', 'uap');?>
+	<div class="af-stuffbox">
+		<h3 class="af-h3">
+			<?php esc_html_e('Affiliate Data ShortCodes', 'openaffiliates');?>
 		</h3>
 		<div class="inside">
-			<div class="uap-popup-content help-shortcodes">
-				<table class="wp-list-table widefat fixed tags uap-manage-user-expire uap-shortcodes-table">
+			<div class="af-popup-content help-shortcodes">
+				<table class="wp-list-table widefat fixed tags af-manage-user-expire af-shortcodes-table">
 				<thead>
 					<tr>
-						<th><?php esc_html_e('Affiliate Field', 'uap');?></th>
-						<th><?php esc_html_e('Current Logged Affiliate Shortcode', 'uap');?></th>
-						<th><?php esc_html_e('Based on Affiliate Link Shortcode', 'uap');?></th>
+						<th><?php esc_html_e('Affiliate Field', 'openaffiliates');?></th>
+						<th><?php esc_html_e('Current Logged Affiliate Shortcode', 'openaffiliates');?></th>
+						<th><?php esc_html_e('Based on Affiliate Link Shortcode', 'openaffiliates');?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,74 +47,74 @@
 									'rank_id',
 									'rank_name',
 									'user_url,',
-									'uap_avatar',
+									'af_avatar',
 				);
 		       	foreach ($constants as $k=>$v){
 		       		?>
 					<tr>
 						<td><?php echo esc_html($v);?></td>
-						<td>[uap-affiliate field="<?php echo esc_html($v);?>"]</td>
-		       			<td>[uap-public-affiliate-info field="<?php echo esc_html($v);?>"]</td>
+						<td>[af-affiliate field="<?php echo esc_html($v);?>"]</td>
+		       			<td>[af-public-affiliate-info field="<?php echo esc_html($v);?>"]</td>
 					</tr>
 		       		<?php
 		       	}
-		       	$custom_fields = uap_get_custom_constant_fields();
+		       	$custom_fields = af_get_custom_constant_fields();
 		       	foreach ($custom_fields as $k=>$v){
 		       		$k = str_replace('{', '', $k);
 		       		$k = str_replace('}', '', $k);
 		       		?>
 		       			<tr>
 		       				<td><?php echo esc_html($v);?></td>
-		       				<td>[uap-affiliate field="<?php echo esc_html($k);?>"]</td>
-		       				<td>[uap-public-affiliate-info field="<?php echo esc_html($k);?>"]</td>
+		       				<td>[af-affiliate field="<?php echo esc_html($k);?>"]</td>
+		       				<td>[af-public-affiliate-info field="<?php echo esc_html($k);?>"]</td>
 		       			</tr>
 		       		<?php
 		       	}
 		       	?>
 		       	</tbody></table>
 	    	</div>
-			<div class="uap-clear"></div>
+			<div class="af-clear"></div>
 		</div>
 	</div>
 
-	<div class="uap-stuffbox">
-		<h3 class="uap-h3">
-			<?php esc_html_e('Additional ShortCodes', 'uap');?>
+	<div class="af-stuffbox">
+		<h3 class="af-h3">
+			<?php esc_html_e('Additional ShortCodes', 'openaffiliates');?>
 		</h3>
 		<div class="inside">
-			<div class="uap-popup-content help-shortcodes">
-            <table class="wp-list-table widefat fixed tags uap-manage-user-expire uap-shortcodes-table">
+			<div class="af-popup-content help-shortcodes">
+            <table class="wp-list-table widefat fixed tags af-manage-user-expire af-shortcodes-table">
 				<thead>
 					<tr>
-						<th><?php esc_html_e('ShortCode', 'uap');?></th>
-						<th><?php esc_html_e('What it does', 'uap');?></th>
-						<th><?php esc_html_e('Arguments available', 'uap');?></th>
+						<th><?php esc_html_e('ShortCode', 'openaffiliates');?></th>
+						<th><?php esc_html_e('What it does', 'openaffiliates');?></th>
+						<th><?php esc_html_e('Arguments available', 'openaffiliates');?></th>
 					</tr>
 				</thead>
 				<tbody>
                 		<tr>
-		       				<td><strong>[uap-user-become-affiliate]</strong></td>
-		       				<td><?php esc_html_e('User Become Affiliate Button', 'uap');?></td>
+		       				<td><strong>[af-user-become-affiliate]</strong></td>
+		       				<td><?php esc_html_e('User Become Affiliate Button', 'openaffiliates');?></td>
 		       				<td>-</td>
 		       			</tr>
                         <tr>
-		       				<td><strong>[if_affiliate]<i><?php esc_html_e('Your content here!', 'uap');?> </i>[/if_affiliate]</strong></td>
-		       				<td><?php esc_html_e('Show content only for affiliate users.', 'uap');?></td>
+		       				<td><strong>[af-if-affiliate]<i><?php esc_html_e('Your content here!', 'openaffiliates');?> </i>[/af-if-affiliate]</strong></td>
+		       				<td><?php esc_html_e('Show content only for affiliate users.', 'openaffiliates');?></td>
 		       				<td>-</td>
 		       			</tr>
                         <tr>
-		       				<td><strong>[if_not_affiliate]<i><?php esc_html_e('Your content here!', 'uap');?> </i>[/if_not_affiliate]</strong></td>
-		       				<td><?php esc_html_e('Show content only for non-affiliate users.', 'uap');?></td>
+		       				<td><strong>[af-if-not-affiliate]<i><?php esc_html_e('Your content here!', 'openaffiliates');?> </i>[/af-if-not-affiliate]</strong></td>
+		       				<td><?php esc_html_e('Show content only for non-affiliate users.', 'openaffiliates');?></td>
 		       				<td>-</td>
 		       			</tr>
                          <tr>
-		       				<td><strong>[visitor_referred]<i><?php esc_html_e('Your content here!', 'uap');?> </i>[/visitor_referred]</strong></td>
-		       				<td><?php esc_html_e('Show content only for referred users.', 'uap');?></td>
+		       				<td><strong>[af-visitor-referred]<i><?php esc_html_e('Your content here!', 'openaffiliates');?> </i>[/af-visitor-referred]</strong></td>
+		       				<td><?php esc_html_e('Show content only for referred users.', 'openaffiliates');?></td>
 		       				<td>-</td>
 		       			</tr>
                         <tr>
-		       				<td><strong>[visitor_not_referred]<i><?php esc_html_e('Your content here!', 'uap');?> </i>[/visitor_not_referred]</strong></td>
-		       				<td><?php esc_html_e('Show content only for non-referred users.', 'uap');?></td>
+		       				<td><strong>[af-visitor-not-referred]<i><?php esc_html_e('Your content here!', 'openaffiliates');?> </i>[/af-visitor-not-referred]</strong></td>
+		       				<td><?php esc_html_e('Show content only for non-referred users.', 'openaffiliates');?></td>
 		       				<td>-</td>
 		       			</tr>
                 </tbody>

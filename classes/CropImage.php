@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class CropImage
 {
@@ -7,7 +7,7 @@ class CropImage
                 "status"  => 'error',
                 "message" => 'Error'
     );
-    private $userMetaName = 'uap_account_page_personal_header';
+    private $userMetaName = 'af_account_page_personal_header';
     private $userId = 0;
     private $saveUserMeta = true;
 
@@ -75,7 +75,7 @@ class CropImage
 
     public function cropImage($postData=array())
     {
-        global $indeed_db;
+        global $af_db;
         $imgUrl = isset( $postData['imgUrl'] ) ? $postData['imgUrl'] : '';
         // original sizes
         $imgInitW = isset( $postData['imgInitW'] ) ? $postData['imgInitW'] : '';

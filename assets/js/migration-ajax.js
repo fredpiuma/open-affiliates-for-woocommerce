@@ -1,9 +1,9 @@
 /*
- *Ultimate Affiliate Pro - Migration Modules
+ *Open Affiliates - Migration Modules
  */
 "use strict";
 
-var UapMigrate = {
+var AfMigrate = {
     trigger: '',
     rankSelector: '',
     progressBarWrapp: '',
@@ -23,9 +23,9 @@ var UapMigrate = {
         obj.insertProgressBar(obj);
         jQuery.ajax({
               type : 'post',
-              url : window.uap_url + '/wp-admin/admin-ajax.php',
+              url : window.af_url + '/wp-admin/admin-ajax.php',
               data : {
-                         action: 'uap_trigger_migration',
+                         action: 'af_trigger_migration',
                          serviceType: jQuery(obj.trigger).attr('data-type'),
                          assignRank: jQuery(obj.rankSelector).val(),
                },
@@ -37,9 +37,9 @@ var UapMigrate = {
     insertProgressBar: function(obj){
         jQuery.ajax({
               type : 'post',
-              url : window.uap_url + '/wp-admin/admin-ajax.php',
+              url : window.af_url + '/wp-admin/admin-ajax.php',
               data : {
-                         action: 'uap_get_empty_progress_bar',
+                         action: 'af_get_empty_progress_bar',
                },
               success: function (response) {
                   jQuery(obj.progressBarWrapp).html(response);
@@ -51,9 +51,9 @@ var UapMigrate = {
     updateProgressBar: function(obj){
       jQuery.ajax({
             type : 'post',
-            url : window.uap_url + '/wp-admin/admin-ajax.php',
+            url : window.af_url + '/wp-admin/admin-ajax.php',
             data : {
-                       action: 'uap_migrate_get_status',
+                       action: 'af_migrate_get_status',
                        serviceType: jQuery(obj.trigger).attr('data-type'),
             },
             success: function (response) {
@@ -79,9 +79,9 @@ var UapMigrate = {
       jQuery(obj.completeDiv).html(obj.completeMessage);
       jQuery.ajax({
             type : 'post',
-            url : window.uap_url + '/wp-admin/admin-ajax.php',
+            url : window.af_url + '/wp-admin/admin-ajax.php',
             data : {
-                       action: 'uap_migrate_reset_log',
+                       action: 'af_migrate_reset_log',
                        serviceType: jQuery(obj.trigger).attr('data-type'),
             },
             success: function(response){

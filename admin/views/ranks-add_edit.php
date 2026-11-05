@@ -1,104 +1,104 @@
 			<form action="<?php echo esc_url($data['url-manage']);?>" method="post">
-				<input type="hidden" name="uap_admin_forms_nonce" value="<?php echo wp_create_nonce( 'uap_admin_forms_nonce' );?>" />
+				<input type="hidden" name="af_admin_forms_nonce" value="<?php echo wp_create_nonce( 'af_admin_forms_nonce' );?>" />
 
-		<div class="uap-wrapper">
-				<div class="uap-stuffbox">
-					<h3 class="uap-h3"><?php esc_html_e('Manage Rank', 'uap');?><span class="uap-admin-need-help"><i class="fa-uap fa-help-uap"></i><a href="<?php echo esc_url( UAP_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'uap');?></a></span></h3>
+		<div class="af-wrapper">
+				<div class="af-stuffbox">
+					<h3 class="af-h3"><?php esc_html_e('Manage Rank', 'openaffiliates');?><span class="af-admin-need-help"><i class="fa-af fa-help-af"></i><a href="<?php echo esc_url( AF_DOCS_URL );?>" target="_blank"><?php esc_html_e('Need Help?', 'openaffiliates');?></a></span></h3>
 					<div class="inside">
-							<div class="uap-form-line">
+							<div class="af-form-line">
 							<div class="row">
 							<div class="col-xs-6">
-							<h2><?php esc_html_e('Activate/Hold Rank', 'uap');?></h2>
-								<p><?php esc_html_e('The Rank can be turned on or off without having to be removed', 'uap');?></p>
-								<label class="uap_label_shiwtch uap-switch-button-margin">
+							<h2><?php esc_html_e('Activate/Hold Rank', 'openaffiliates');?></h2>
+								<p><?php esc_html_e('The Rank can be turned on or off without having to be removed', 'openaffiliates');?></p>
+								<label class="af_label_shiwtch af-switch-button-margin">
 									<?php $checked = ($data['metas']['status']) ? 'checked' : '';?>
-									<input type="checkbox" class="uap-switch" onClick="uapCheckAndH(this, '#rank_status');" <?php echo esc_attr($checked);?> />
-									<div class="switch uap-display-inline"></div>
+									<input type="checkbox" class="af-switch" onClick="afCheckAndH(this, '#rank_status');" <?php echo esc_attr($checked);?> />
+									<div class="switch af-display-inline"></div>
 								</label>
 								<input type="hidden" name="status" value="<?php echo esc_attr($data['metas']['status']);?>" id="rank_status" />
 							</div>
 						</div>
 					</div>
-						<div class="uap-form-line">
+						<div class="af-form-line">
 							<div class="row">
 						<div class="col-xs-8">
-							<h2><?php esc_html_e('Rank Settings', 'uap');?></h2>
-							<p><?php esc_html_e('The slug must be distinct and limited to lowercase letters.', 'uap');?></p>
+							<h2><?php esc_html_e('Rank Settings', 'openaffiliates');?></h2>
+							<p><?php esc_html_e('The slug must be distinct and limited to lowercase letters.', 'openaffiliates');?></p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon"><?php esc_html_e('Slug', 'uap');?></span>
-								<input type="text" class="form-control" placeholder="<?php esc_html_e('unique rank name', 'uap');?>" value="<?php echo esc_attr($data['metas']['slug']);?>" name="slug" />
+								<span class="input-group-addon"><?php esc_html_e('Slug', 'openaffiliates');?></span>
+								<input type="text" class="form-control" placeholder="<?php esc_html_e('unique rank name', 'openaffiliates');?>" value="<?php echo esc_attr($data['metas']['slug']);?>" name="slug" />
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uap-form-line">
+				<div class="af-form-line">
 					<div class="row">
 						<div class="col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon"><?php esc_html_e('Name', 'uap')?></span>
+								<span class="input-group-addon"><?php esc_html_e('Name', 'openaffiliates')?></span>
 								<input type="text" class="form-control"  value="<?php echo esc_attr($data['metas']['label']);?>" name="label" id="rank_label" />
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uap-form-line">
+				<div class="af-form-line">
 					<div class="row">
 						<div class="col-xs-6">
 							<div class="form-group">
-								<h5><?php esc_html_e('Short Description', 'uap')?></h5>
-								<textarea name="description" class="form-control text-area" cols="30" rows="3" placeholder="<?php esc_html_e('Some details...', 'uap');?>"><?php echo esc_uap_content($data['metas']['description']);?></textarea>
+								<h5><?php esc_html_e('Short Description', 'openaffiliates')?></h5>
+								<textarea name="description" class="form-control text-area" cols="30" rows="3" placeholder="<?php esc_html_e('Some details...', 'openaffiliates');?>"><?php echo esc_af_content($data['metas']['description']);?></textarea>
 							</div>
 						</div>
 					</div>
 				</div>
 
-			<div class="uap-form-line">
+			<div class="af-form-line">
 					<div class="row">
 							<div class="col-xs-12">
-							<h2><?php esc_html_e('Set the Rank as the default for Affiliates', 'uap');?></h2>
-							<p><?php esc_html_e('This ensures that new affiliates are automatically assigned to this default Rank upon registration, streamlining the onboarding process', 'uap');?></p>
-								<label class="uap_label_shiwtch uap-switch-button-margin">
+							<h2><?php esc_html_e('Set the Rank as the default for Affiliates', 'openaffiliates');?></h2>
+							<p><?php esc_html_e('This ensures that new affiliates are automatically assigned to this default Rank upon registration, streamlining the onboarding process', 'openaffiliates');?></p>
+								<label class="af_label_shiwtch af-switch-button-margin">
 									<?php
-									if ( $data['metas']['uap_register_new_user_rank'] && (int)$data['metas']['uap_register_new_user_rank'] === (int)$data['metas']['id'] ){
+									if ( $data['metas']['af_register_new_user_rank'] && (int)$data['metas']['af_register_new_user_rank'] === (int)$data['metas']['id'] ){
 											$checked = 'checked';
 									} else {
 											$checked = '';
 									}
 									?>
-									<input type="checkbox" class="uap-switch" onClick="uapCheckAndH(this, '#set_as_default_rank');" <?php echo esc_attr($checked);?> />
-									<div class="switch uap-display-inline"></div>
+									<input type="checkbox" class="af-switch" onClick="afCheckAndH(this, '#set_as_default_rank');" <?php echo esc_attr($checked);?> />
+									<div class="switch af-display-inline"></div>
 								</label>
 								<input type="hidden" name="set_as_default_rank" value="<?php if ( $checked === 'checked' ){echo 1;}else {echo 0;}?>" id="set_as_default_rank" />
 							</div>
 						</div>
 			</div>
 
-				<div class="uap-form-line">
+				<div class="af-form-line">
 					<div class="row">
 						<div class="col-xs-12">
-							<h2><?php esc_html_e('Rank Position', 'uap');?></h2>
-							<p><?php esc_html_e('Based on rank position, an affiliate may go to the next level if the achievement conditions are met', 'uap');?></p>
-							<div class="uap-rank-graphic"><?php echo esc_uap_content($data['graphic']); ?></div>
+							<h2><?php esc_html_e('Rank Position', 'openaffiliates');?></h2>
+							<p><?php esc_html_e('Based on rank position, an affiliate may go to the next level if the achievement conditions are met', 'openaffiliates');?></p>
+							<div class="af-rank-graphic"><?php echo esc_af_content($data['graphic']); ?></div>
 						</div>
 					</div>
 					<div class="row">
 							<div class="col-xs-3">
 								<div class="input-group">
-									<span class="input-group-addon"><?php esc_html_e('Position', 'uap');?></span>
-									<input type="number" min="1" class="form-control uap-rank-settings-position" onChange="uapRankChangeOrderPreview(<?php echo esc_attr($data['metas']['id']);?>, this.value);" onKeyUp="uapRankChangeOrderPreview(<?php echo esc_attr($data['metas']['id']);?>, this.value);" max="<?php echo esc_attr($data['maximum_ranks']);?>" value="<?php echo esc_attr($data['metas']['rank_order']);?>" name="rank_order" />
+									<span class="input-group-addon"><?php esc_html_e('Position', 'openaffiliates');?></span>
+									<input type="number" min="1" class="form-control af-rank-settings-position" onChange="afRankChangeOrderPreview(<?php echo esc_attr($data['metas']['id']);?>, this.value);" onKeyUp="afRankChangeOrderPreview(<?php echo esc_attr($data['metas']['id']);?>, this.value);" max="<?php echo esc_attr($data['maximum_ranks']);?>" value="<?php echo esc_attr($data['metas']['rank_order']);?>" name="rank_order" />
 								</div>
 							 </div>
 				</div>
 			</div>
-				<div class="uap-form-line">
+				<div class="af-form-line">
 					<div class="row">
 						<div class="col-xs-12">
-							<h2><?php esc_html_e('Rank rate', 'uap');?></h2>
-							<p><?php esc_html_e('Certain Product Rates or other variable settings may take precedence over the default Rank Rate.', 'uap');?></p>
+							<h2><?php esc_html_e('Rank rate', 'openaffiliates');?></h2>
+							<p><?php esc_html_e('Certain Product Rates or other variable settings may take precedence over the default Rank Rate.', 'openaffiliates');?></p>
 						</div>
 					</div>
 					<div class="row">
@@ -118,14 +118,14 @@
 				 </div>
 				 <div class="row">
 					 <div class="col-xs-12">
-						 <p><?php esc_html_e('Choose a referral rate type. Referrals can be based on either a percentage or a flat rate amount.', 'uap');?></p>
+						 <p><?php esc_html_e('Choose a referral rate type. Referrals can be based on either a percentage or a flat rate amount.', 'openaffiliates');?></p>
 					 </div>
 				 </div>
  					<div class="row">
  						<div class="col-xs-4">
 						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><?php esc_html_e('Rate', 'uap');?></span>
-							<input type="number" min="0" step='<?php echo uapInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($data['metas']['amount_value']);?>" name="amount_value" aria-describedby="basic-addon1">
+							<span class="input-group-addon" id="basic-addon1"><?php esc_html_e('Rate', 'openaffiliates');?></span>
+							<input type="number" min="0" step='<?php echo afInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($data['metas']['amount_value']);?>" name="amount_value" aria-describedby="basic-addon1">
 						</div>
 					</div>
 				</div>
@@ -134,13 +134,13 @@
 						<div>
 							<p>
 <?php
-$offerType = get_option( 'uap_referral_offer_type' );
+$offerType = get_option( 'af_referral_offer_type' );
 if ( $offerType == 'biggest' ){
-	$offerType = esc_html__( 'Biggest', 'uap' );
+	$offerType = esc_html__( 'Biggest', 'openaffiliates' );
 } else {
-	$offerType = esc_html__( 'Lowest', 'uap' );
+	$offerType = esc_html__( 'Lowest', 'openaffiliates' );
 }
-echo esc_html__( 'You can choose which rate is used if more than one is set for the same activity (e.g., Ranks, Custom Product Rates, Product or Category rate), the  ', 'uap' ) . '<strong>' . $offerType . '</strong> ' . esc_html__( 'rate being used. You can adjust this from', 'uap' ) . ' <a href="' . admin_url( 'admin.php?page=ultimate_affiliates_pro&tab=settings' ) . '" target="_blank">' . esc_html__( 'here.', 'uap' ) . '</a>';
+echo esc_html__( 'You can choose which rate is used if more than one is set for the same activity (e.g., Ranks, Custom Product Rates, Product or Category rate), the  ', 'openaffiliates' ) . '<strong>' . $offerType . '</strong> ' . esc_html__( 'rate being used. You can adjust this from', 'openaffiliates' ) . ' <a href="' . admin_url( 'admin.php?page=openaffiliates&tab=settings' ) . '" target="_blank">' . esc_html__( 'here.', 'openaffiliates' ) . '</a>';
 ?>
 </p>
 						</div>
@@ -150,11 +150,11 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 			</div>
 
 
-				<div class="uap-form-line">
+				<div class="af-form-line">
 					<div class="row">
 						<div class="col-xs-12">
-							<h2><?php esc_html_e('Achievements Rules', 'uap');?></h2>
-							<p><?php esc_html_e('To jump into current rank, affiliates need to accomplish the required achievements.', 'uap');?></p>
+							<h2><?php esc_html_e('Achievements Rules', 'openaffiliates');?></h2>
+							<p><?php esc_html_e('To jump into current rank, affiliates need to accomplish the required achievements.', 'openaffiliates');?></p>
 
 					</div>
 				</div>
@@ -191,21 +191,21 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 						<div class="row">
 							<div class="col-xs-4">
 								<div class="input-group" id="achieve_value_div">
-									<span class="input-group-addon"><?php esc_html_e('Value', 'uap');?></span>
+									<span class="input-group-addon"><?php esc_html_e('Value', 'openaffiliates');?></span>
 									<input  id="achieve_value" type="number" min="1" class="form-control" aria-describedby="basic-addon1">
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
-								<div id="achieve_relation_div" class="<?php echo ($is_edit) ? 'uap-display-block' : 'uap-display-none';?>">
+								<div id="achieve_relation_div" class="<?php echo ($is_edit) ? 'af-display-block' : 'af-display-none';?>">
 									<select id="achieve_relation" class="form-control m-bot15">
 										<option value="and">AND</option>
 										<option value="or">OR</option>
 									</select>
 								</div>
 
-								<div onClick="uapAddNewAchieveRule();" id="add_new_achieve" class="uap-add-new-like-wp" ><i class="fa-uap fa-add-new-item-uap"></i><?php esc_html_e('Add New Rule', 'uap');?> </div>
+								<div onClick="afAddNewAchieveRule();" id="add_new_achieve" class="af-add-new-like-wp" ><i class="fa-af fa-add-new-item-af"></i><?php esc_html_e('Add New Rule', 'openaffiliates');?> </div>
 
 								<div id="achieve_rules_view"><?php
 										if (!empty($arr) && is_array($arr)){
@@ -218,17 +218,17 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 														<?php
 													}
 													?>
-													<div class="achieve-item" id="achieve_item_<?php echo esc_attr($i);?>"><div class="uap-rank-settings-achievement-label"><?php echo esc_html($data['achieve_types'][$arr['type_' . $i]]);?></div><div>From: <?php echo esc_html($arr['value_' . $i]);?></div></div>
+													<div class="achieve-item" id="achieve_item_<?php echo esc_attr($i);?>"><div class="af-rank-settings-achievement-label"><?php echo esc_html($data['achieve_types'][$arr['type_' . $i]]);?></div><div>From: <?php echo esc_html($arr['value_' . $i]);?></div></div>
 													<?php
 												}
 											} else {
 												?>
-												<div class="achieve-item" id="achieve_item_1"><div class="uap-rank-settings-achievement-label"> <?php echo esc_html($arr['type_1']);?></div><div>From: <?php echo esc_html($arr['value_1']);?></div></div>
+												<div class="achieve-item" id="achieve_item_1"><div class="af-rank-settings-achievement-label"> <?php echo esc_html($arr['type_1']);?></div><div>From: <?php echo esc_html($arr['value_1']);?></div></div>
 												<?php
 											}
 										}
 								?></div>
-								<div id="achieve_reset" onClick="uapAchieveReset();" class="uap-special-button uap-special-button-singular <?php echo ($is_edit) ? 'uap-display-inline' : 'uap-display-none';?>"><i class="fa-uap fa-remove-uap"></i><?php esc_html_e('Reset Achievement Rules', 'uap');?></div>
+								<div id="achieve_reset" onClick="afAchieveReset();" class="af-special-button af-special-button-singular <?php echo ($is_edit) ? 'af-display-inline' : 'af-display-none';?>"><i class="fa-af fa-remove-af"></i><?php esc_html_e('Reset Achievement Rules', 'openaffiliates');?></div>
 							</div>
 						</div>
 							</div>
@@ -237,13 +237,13 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 
 
 			<!--Deprecated starting with v.8.5 -->
-				<!--div class="uap-inside-item">
+				<!--div class="af-inside-item">
 					<div class="row">
-						<div class="uap-form-line">
+						<div class="af-form-line">
 						<div class="col-xs-4">
-							<h2><?php esc_html_e('Rank Color', 'uap');?></h2>
+							<h2><?php esc_html_e('Rank Color', 'openaffiliates');?></h2>
 							<div>
-								<ul id="uap_colors_ul" class="uap-colors-ul">
+								<ul id="af_colors_ul" class="af-colors-ul">
                                 <?php
                                     $color_scheme = array('0a9fd8', '38cbcb', '27bebe', '0bb586', '94c523', '6a3da3', 'f1505b', 'ee3733', 'f36510', 'f8ba01');
                                     $i = 0;
@@ -252,48 +252,48 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
                                  	}
                                     foreach ($color_scheme as $color){
                                         if ($i==5){
-																					 echo esc_uap_content("<li class='uap-clear'></li>");
+																					 echo esc_af_content("<li class='af-clear'></li>");
 																				}
-                                        $class = ($color==$data['metas']['color']) ? 'uap-color-scheme-item-selected' : '';
+                                        $class = ($color==$data['metas']['color']) ? 'af-color-scheme-item-selected' : '';
                                         ?>
-                                            <li class="uap-color-scheme-item <?php echo esc_attr($class);?>  uap-box-background-<?php echo esc_attr($color);?>" onClick="uapChageColor(this, '<?php echo esc_attr($color);?>', '#uap_color');"></li>
+                                            <li class="af-color-scheme-item <?php echo esc_attr($class);?>  af-box-background-<?php echo esc_attr($color);?>" onClick="afChageColor(this, '<?php echo esc_attr($color);?>', '#af_color');"></li>
                                         <?php
                                         $i++;
                                     }
                                 ?>
                             </ul>
-                            <input type="hidden" name="color" id="uap_color" value="<?php echo esc_attr($data['metas']['color']);?>" />
+                            <input type="hidden" name="color" id="af_color" value="<?php echo esc_attr($data['metas']['color']);?>" />
 							</div>
 
 						</div>
 					</div>
 				</div>
 			</div-->
-				<div class="uap-form-line">
+				<div class="af-form-line">
 				<input type="hidden" name="id"	value="<?php echo esc_attr($data['metas']['id']);?>" />
-				<div id="uap_save_changes" class="uap-submit-form">
-							<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+				<div id="af_save_changes" class="af-submit-form">
+							<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 		</div>
 		</div>
 
 
-		<div class="uap-stuffbox uap-magic-stuffbox <?php echo  (empty($data['bonus_enabled'])) ? 'uap-display-none' : 'uap-display-block'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('Bonus', 'uap');?></h3>
+		<div class="af-stuffbox af-magic-stuffbox <?php echo  (empty($data['bonus_enabled'])) ? 'af-display-none' : 'af-display-block'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('Bonus', 'openaffiliates');?></h3>
 			<div class="inside">
-			<div class="uap-form-line">
+			<div class="af-form-line">
 			<div class="row">
 				<div class="col-xs-6">
-					<h2><?php esc_html_e('Achievement Bonus', 'uap');?></h2>
-					<p><?php esc_html_e('Every time an affiliate advances to a higher rank, they will receive a bonus of a fixed amount.', 'uap');?></p>
+					<h2><?php esc_html_e('Achievement Bonus', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Every time an affiliate advances to a higher rank, they will receive a bonus of a fixed amount.', 'openaffiliates');?></p>
 						<div class="input-group">
 							<span class="input-group-addon">Amount</span>
-								 <input type="number" class="form-control" min="0" step='<?php echo uapInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['bonus']);?>" name="bonus" aria-describedby="basic-addon1">
+								 <input type="number" class="form-control" min="0" step='<?php echo afInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['bonus']);?>" name="bonus" aria-describedby="basic-addon1">
 								 <div class="input-group-addon"><?php echo esc_html($data['amount_types']['flat']);?></div>
 						</div>
-						<div id="uap_save_changes" class="uap-submit-form">
-								<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+						<div id="af_save_changes" class="af-submit-form">
+								<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 			</div>
@@ -301,22 +301,22 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 			</div>
 		</div>
 
-		<div class="uap-stuffbox uap-magic-stuffbox <?php echo ($data['display-signup_referrals']) ? 'uap-display-block' : 'uap-display-none'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('SignUp Referrals', 'uap');?></h3>
+		<div class="af-stuffbox af-magic-stuffbox <?php echo ($data['display-signup_referrals']) ? 'af-display-block' : 'af-display-none'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('SignUp Referrals', 'openaffiliates');?></h3>
 			<div class="inside">
-				<div class="uap-form-line">
+				<div class="af-form-line">
 			<div class="row">
 				<div class="col-xs-6">
-					<h2><?php esc_html_e('SignUp Referrals', 'uap');?></h2>
-					<p><?php esc_html_e('Reward affiliates with referrals generated through user sign-ups.', 'uap');?></p>
+					<h2><?php esc_html_e('SignUp Referrals', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Reward affiliates with referrals generated through user sign-ups.', 'openaffiliates');?></p>
 						<div class="input-group">
 							<span class="input-group-addon">Amount</span>
 								<?php $value = ($data['metas']['sign_up_amount_value']>-1) ? $data['metas']['sign_up_amount_value'] : '';?>
-								 <input type="number" class="form-control" min="0" step='<?php echo uapInputNumerStep();?>' value="<?php echo esc_attr($value);?>" name="sign_up_amount_value" aria-describedby="basic-addon1">
+								 <input type="number" class="form-control" min="0" step='<?php echo afInputNumerStep();?>' value="<?php echo esc_attr($value);?>" name="sign_up_amount_value" aria-describedby="basic-addon1">
 								 <div class="input-group-addon"><?php echo esc_html($data['amount_types']['flat']);?></div>
 						</div>
-						<div id="uap_save_changes" class="uap-submit-form">
-								<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+						<div id="af_save_changes" class="af-submit-form">
+								<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 			</div>
@@ -324,14 +324,14 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 			</div>
 		</div>
 
-		<div class="uap-stuffbox uap-magic-stuffbox <?php echo ($data['display-lifetime_commissions']) ? 'uap-display-block' : 'uap-display-none'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('LifeTime', 'uap');?></h3>
+		<div class="af-stuffbox af-magic-stuffbox <?php echo ($data['display-lifetime_commissions']) ? 'af-display-block' : 'af-display-none'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('LifeTime', 'openaffiliates');?></h3>
 			<div class="inside">
-				<div class="uap-form-line">
+				<div class="af-form-line">
 			<div class="row">
 				<div class="col-xs-6">
-					<h2><?php esc_html_e('LifeTime Comission', 'uap');?></h2>
-					<p><?php esc_html_e('Permit your affiliates to get compensated for all lifetime referrals.', 'uap');?></p>
+					<h2><?php esc_html_e('LifeTime Comission', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Permit your affiliates to get compensated for all lifetime referrals.', 'openaffiliates');?></p>
 				</div>
 			</div>
 			<div class="row">
@@ -352,14 +352,14 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 				<div class="row">
 					<div class="col-xs-4">
 								<div class="input-group">
-									<span class="input-group-addon"><?php esc_html_e('Rate', 'uap');?></span>
+									<span class="input-group-addon"><?php esc_html_e('Rate', 'openaffiliates');?></span>
 									<?php $value = ($data['metas']['lifetime_amount_value']>-1) ? $data['metas']['lifetime_amount_value'] : '';?>
-									<input type="number" min="0" step='<?php echo uapInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($value);?>" name="lifetime_amount_value" aria-describedby="basic-addon1">
+									<input type="number" min="0" step='<?php echo afInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($value);?>" name="lifetime_amount_value" aria-describedby="basic-addon1">
 								</div>
 
 
-						<div id="uap_save_changes" class="uap-submit-form">
-								<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+						<div id="af_save_changes" class="af-submit-form">
+								<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 			</div>
@@ -367,14 +367,14 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 			</div>
 		</div>
 
-		<div class="uap-stuffbox uap-magic-stuffbox <?php echo ($data['display-reccuring_referrals']) ? 'uap-display-block' : 'uap-display-none'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('Reccurring Referrals', 'uap');?></h3>
+		<div class="af-stuffbox af-magic-stuffbox <?php echo ($data['display-reccuring_referrals']) ? 'af-display-block' : 'af-display-none'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('Reccurring Referrals', 'openaffiliates');?></h3>
 			<div class="inside">
-				<div class="uap-form-line">
+				<div class="af-form-line">
 			<div class="row">
 				<div class="col-xs-6">
-					<h2><?php esc_html_e('Reccurring Referrals', 'uap');?></h2>
-					<p><?php esc_html_e('Commissions should be given to membership systems for recurrent subscriptions.', 'uap');?></p>
+					<h2><?php esc_html_e('Reccurring Referrals', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Commissions should be given to membership systems for recurrent subscriptions.', 'openaffiliates');?></p>
 				</div>
 			</div>
 
@@ -397,13 +397,13 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 				<div class="row">
 					<div class="col-xs-4">
 								<div class="input-group">
-									<span class="input-group-addon"><?php esc_html_e('Rate', 'uap');?></span>
+									<span class="input-group-addon"><?php esc_html_e('Rate', 'openaffiliates');?></span>
 									<?php $value = ($data['metas']['reccuring_amount_value']>-1) ? $data['metas']['reccuring_amount_value'] : '';?>
-									<input type="number" min="0" step='<?php echo uapInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($value);?>" name="reccuring_amount_value" aria-describedby="basic-addon1">
+									<input type="number" min="0" step='<?php echo afInputNumerStep();?>' class="form-control" value="<?php echo esc_attr($value);?>" name="reccuring_amount_value" aria-describedby="basic-addon1">
 								</div>
 
-					<div id="uap_save_changes" class="uap-submit-form">
-							<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+					<div id="af_save_changes" class="af-submit-form">
+							<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 					</div>
 				</div>
 			</div>
@@ -411,30 +411,30 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 			</div>
 		</div>
 
-		<div class="uap-stuffbox uap-magic-stuffbox <?php echo ($data['display-mlm']) ? 'uap-display-block' : 'uap-display-none'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e("MLM Referrals For Each MLM Level", 'uap')?></h3>
+		<div class="af-stuffbox af-magic-stuffbox <?php echo ($data['display-mlm']) ? 'af-display-block' : 'af-display-none'; ?>">
+			<h3 class="af-h3"><?php esc_html_e("MLM Referrals For Each MLM Level", 'openaffiliates')?></h3>
 			<div class="inside">
 
 			<div class="row">
 				<div class="col-xs-8">
-						<div class="uap-form-line">
-					<h2><?php esc_html_e('MLM Referrals For Each MLM Level', 'uap');?></h2>
-					<p><?php esc_html_e('Set a multi-level marketing system for your affiliates.', 'uap');?></p>
+						<div class="af-form-line">
+					<h2><?php esc_html_e('MLM Referrals For Each MLM Level', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Set a multi-level marketing system for your affiliates.', 'openaffiliates');?></p>
 					</div>
-					<table class="uap-dashboard-inside-table uap-rank-mlm-table" id="mlm-amount-for-each-level">
+					<table class="af-dashboard-inside-table af-rank-mlm-table" id="mlm-amount-for-each-level">
 								<thead>
 									<tr>
-									<th class="uap-mlm-levels-table-header-col"><?php esc_html_e('MLM Depth (Level)', 'uap');?></th>
-									<th><?php esc_html_e('Rate', 'uap');?></th>
+									<th class="af-mlm-levels-table-header-col"><?php esc_html_e('MLM Depth (Level)', 'openaffiliates');?></th>
+									<th><?php esc_html_e('Rate', 'openaffiliates');?></th>
 								</tr>
 								</thead>
 								<?php
 									for ($i=1; $i<=$data['mlm_matrix_depth']; $i++):
 										?>
-										<tr data-tr="<?php echo esc_attr($i);?>" id="uap_mlm_level_<?php echo esc_attr( $i);?>">
-											<td><?php echo esc_html__('Level', 'uap') . ' ' . $i;?></td>
+										<tr data-tr="<?php echo esc_attr($i);?>" id="af_mlm_level_<?php echo esc_attr( $i);?>">
+											<td><?php echo esc_html__('Level', 'openaffiliates') . ' ' . $i;?></td>
 											<td>
-												<input type="number" step='<?php echo uapInputNumerStep();?>' min="0" class="uap-input-number" value="<?php echo isset($data['metas']['mlm_amount_value'][$i]) ? $data['metas']['mlm_amount_value'][$i] : '';?>" name="<?php echo esc_attr("mlm_amount_value[$i]");?>" />
+												<input type="number" step='<?php echo afInputNumerStep();?>' min="0" class="af-input-number" value="<?php echo isset($data['metas']['mlm_amount_value'][$i]) ? $data['metas']['mlm_amount_value'][$i] : '';?>" name="<?php echo esc_attr("mlm_amount_value[$i]");?>" />
 												<select name="<?php echo esc_attr("mlm_amount_type[$i]");?>"><?php
 													foreach ($data['amount_types'] as $k=>$v):
 														$selected = (!empty($data['metas']['mlm_amount_type'][$i]) && $data['metas']['mlm_amount_type'][$i]==$k) ? 'selected' : '';
@@ -452,47 +452,47 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 					</div>
 
 				</div>
-				<div id="uap_save_changes" class="uap-submit-form">
-					<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+				<div id="af_save_changes" class="af-submit-form">
+					<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 				</div>
 			</div>
 			</div>
 
-        <div class="uap-stuffbox uap-magic-stuffbox <?php echo  (empty($data['pay_per_click_enabled'])) ? 'uap-display-none' : 'uap-display-block'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('PayPerClick (CPC) Campaign', 'uap');?></h3>
+        <div class="af-stuffbox af-magic-stuffbox <?php echo  (empty($data['pay_per_click_enabled'])) ? 'af-display-none' : 'af-display-block'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('PayPerClick (CPC) Campaign', 'openaffiliates');?></h3>
 			<div class="inside">
-				<div class="uap-form-line">
+				<div class="af-form-line">
 			<div class="row">
 				<div class="col-xs-6">
-					<h2><?php esc_html_e('PPC Amount', 'uap');?></h2>
-					<p><?php esc_html_e('Affiliates will receive a PPC Referral with flat amount each time a new referred user visit your website.', 'uap');?></p>
+					<h2><?php esc_html_e('PPC Amount', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Affiliates will receive a PPC Referral with flat amount each time a new referred user visit your website.', 'openaffiliates');?></p>
 						<div class="input-group">
-							<span class="input-group-addon"><?php esc_html_e('Rate', 'uap');?></span>
-								 <input type="number" class="form-control" min="0" step='<?php echo uapInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['pay_per_click']);?>" name="pay_per_click" aria-describedby="basic-addon1">
+							<span class="input-group-addon"><?php esc_html_e('Rate', 'openaffiliates');?></span>
+								 <input type="number" class="form-control" min="0" step='<?php echo afInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['pay_per_click']);?>" name="pay_per_click" aria-describedby="basic-addon1">
 								 <div class="input-group-addon"><?php echo esc_html($data['amount_types']['flat']);?></div>
 						</div>
-						<div id="uap_save_changes" class="uap-submit-form">
-								<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+						<div id="af_save_changes" class="af-submit-form">
+								<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 			</div>
 		</div>
 			</div>
 		</div>
-        <div class="uap-stuffbox uap-magic-stuffbox <?php echo  (empty($data['cpm_commission_enabled'])) ? 'uap-display-none' : 'uap-display-block'; ?>">
-			<h3 class="uap-h3"><?php esc_html_e('Cost Per Mile (CPM) Campaign', 'uap');?></h3>
+        <div class="af-stuffbox af-magic-stuffbox <?php echo  (empty($data['cpm_commission_enabled'])) ? 'af-display-none' : 'af-display-block'; ?>">
+			<h3 class="af-h3"><?php esc_html_e('Cost Per Mile (CPM) Campaign', 'openaffiliates');?></h3>
 			<div class="inside">
 			<div class="row">
 				<div class="col-xs-4">
-					<h2><?php esc_html_e('CPM Amount', 'uap');?></h2>
-					<p><?php esc_html_e('Affiliates will receive a CPM Referral with flat amount rewarded for 1000 impressions (displaying your banners 1000 times)', 'uap');?></p>
+					<h2><?php esc_html_e('CPM Amount', 'openaffiliates');?></h2>
+					<p><?php esc_html_e('Affiliates will receive a CPM Referral with flat amount rewarded for 1000 impressions (displaying your banners 1000 times)', 'openaffiliates');?></p>
 						<div class="input-group">
-							<span class="input-group-addon"><?php esc_html_e('Rate', 'uap');?></span>
-								 <input type="number" class="form-control" min="0" step='<?php echo uapInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['cpm_commission']);?>" name="cpm_commission" aria-describedby="basic-addon1">
+							<span class="input-group-addon"><?php esc_html_e('Rate', 'openaffiliates');?></span>
+								 <input type="number" class="form-control" min="0" step='<?php echo afInputNumerStep();?>' value="<?php echo esc_attr($data['metas']['cpm_commission']);?>" name="cpm_commission" aria-describedby="basic-addon1">
 								 <div class="input-group-addon"><?php echo esc_html($data['amount_types']['flat']);?></div>
 						</div>
-						<div id="uap_save_changes" class="uap-submit-form">
-								<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />
+						<div id="af_save_changes" class="af-submit-form">
+								<input type="submit" value="<?php esc_html_e('Save Changes', 'openaffiliates');?>" name="save" class="button button-primary button-large" />
 						</div>
 				</div>
 			</div>
@@ -503,6 +503,6 @@ echo esc_html__( 'You can choose which rate is used if more than one is set for 
 
 <?php if ( $data['achieve_types'] ):?>
 		<?php foreach ( $data['achieve_types'] as $value => $label ):?>
-				<span class="uap-js-achieve-types-values" data-value="<?php echo esc_attr($value);?>" data-label="<?php echo esc_attr($label);?>"></span>
+				<span class="af-js-achieve-types-values" data-value="<?php echo esc_attr($value);?>" data-label="<?php echo esc_attr($label);?>"></span>
 		<?php endforeach;?>
 <?php endif;?>

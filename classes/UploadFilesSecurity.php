@@ -1,5 +1,5 @@
 <?php
-namespace Indeed\Uap;
+namespace OpenAffiliates;
 
 class UploadFilesSecurity
 {
@@ -9,35 +9,35 @@ class UploadFilesSecurity
             return;
         }
         add_action( 'init', array( $this, 'process' ), 999 );
-        add_action( 'uap_on_register_action', array( $this, 'removeCookieAndMediaHash'), 999 );
+        add_action( 'af_on_register_action', array( $this, 'removeCookieAndMediaHash'), 999 );
     }
 
     public function process()
     {
-        global $indeed_db;
-        $currentUri = UAP_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        if ( !uapIsRegisterPage($currentUri) ){
+        global $af_db;
+        $currentUri = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if ( !afIsRegisterPage($currentUri) ){
             return;
         }
-        $registerFields = $indeed_db->register_get_custom_fields();
-        $key = uap_array_value_exists( $registerFields, 'file', 'type' );
+        $registerFields = $af_db->register_get_custom_fields();
+        $key = af_array_value_exists( $registerFields, 'file', 'type' );
         do {
-            $hash = uap_random_string( 18 );
-        } while ( $indeed_db->doesMediaHashExists( $hash ) );
-        $indeed_db->saveMediaHash( $hash );
-        setcookie( 'uapMedia', $hash, time() + 3600, COOKIEPATH, COOKIE_DOMAIN, false );
+            $hash = af_random_string( 18 );
+        } while ( $af_db->doesMediaHashExists( $hash ) );
+        $af_db->saveMediaHash( $hash );
+        setcookie( 'afMedia', $hash, time() + 3600, COOKIEPATH, COOKIE_DOMAIN, false );
     }
 
     public function removeCookieAndMediaHash()
     {
-        global $indeed_db;
-        if ( !isset( $_COOKIE['uapMedia'] ) ){
+        global $af_db;
+        if ( !isset( $_COOKIE['afMedia'] ) ){
             return;
         }
-        $hash = $_COOKIE['uapMedia'];
-        if ( $indeed_db->doesMediaHashExists( $hash ) ){
-            $indeed_db->deleteMediaHash( $hash );
+        $hash = $_COOKIE['afMedia'];
+        if ( $af_db->doesMediaHashExists( $hash ) ){
+            $af_db->deleteMediaHash( $hash );
         }
-        unset( $_COOKIE['uapMedia'] );
+        unset( $_COOKIE['afMedia'] );
     }
 }

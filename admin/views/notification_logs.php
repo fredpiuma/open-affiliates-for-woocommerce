@@ -1,14 +1,14 @@
 <?php
-global $indeed_db;
+global $af_db;
 $uid = isset( $_GET['uid'] ) ? sanitize_text_field($_GET['uid']) : 0;
-$notification_arr = $indeed_db->notificationsActions();
+$notification_arr = $af_db->notificationsActions();
 //
 
 
-$totalItems = \Indeed\Uap\Db\NotificationLogs::getCount( $uid );
+$totalItems = \OpenAffiliates\Db\NotificationLogs::getCount( $uid );
 
 
-  $url = admin_url( 'admin.php?page=ultimate_affiliates_pro&tab=notification-logs' );
+  $url = admin_url( 'admin.php?page=openaffiliates&tab=notification-logs' );
   $limit = 25;
   $currentPage = (empty($_GET['p'])) ? 1 : sanitize_text_field($_GET['p']);
   if ($currentPage>1){
@@ -16,8 +16,8 @@ $totalItems = \Indeed\Uap\Db\NotificationLogs::getCount( $uid );
   } else {
     $offset = 0;
   }
-  require_once UAP_PATH . 'classes/UapPagination.class.php';
-  $pagination = new UapPagination(array(
+  require_once AF_PATH . 'classes/AfPagination.class.php';
+  $pagination = new AfPagination(array(
                       'base_url'          => $url,
                       'param_name'        => 'p',
                       'total_items'       => $totalItems,
@@ -29,19 +29,19 @@ $totalItems = \Indeed\Uap\Db\NotificationLogs::getCount( $uid );
   }
   $pagination = $pagination->output();
 
-$data = \Indeed\Uap\Db\NotificationLogs::getMany( $uid, $limit, $offset );
+$data = \OpenAffiliates\Db\NotificationLogs::getMany( $uid, $limit, $offset );
 
 ?>
-<div class="uap-notification-logs-wrapper">
+<div class="af-notification-logs-wrapper">
     <?php if ( $data ){?>
-        <table class="wp-list-table widefat fixed tags uap-admin-tables" id="uap-levels-table">
+        <table class="wp-list-table widefat fixed tags af-admin-tables" id="af-levels-table">
           <thead>
-                <tr class="wp-list-table widefat fixed tags uap-admin-tables uap-noaitications-logs">
-                    <th  class="uap-id-col"><?php esc_html_e('ID','uap');?></th>
-                    <th  class="uap-notification-col"><?php esc_html_e('Notification Type','uap');?></th>
-                    <th  class="uap-sentto-col"><?php esc_html_e('Sent to','uap');?></th>
-                    <th><?php esc_html_e('Email','uap');?></th>
-                    <th class="uap-senton-col"><?php esc_html_e('Sent on:','uap');?></th>
+                <tr class="wp-list-table widefat fixed tags af-admin-tables af-noaitications-logs">
+                    <th  class="af-id-col"><?php esc_html_e('ID','openaffiliates');?></th>
+                    <th  class="af-notification-col"><?php esc_html_e('Notification Type','openaffiliates');?></th>
+                    <th  class="af-sentto-col"><?php esc_html_e('Sent to','openaffiliates');?></th>
+                    <th><?php esc_html_e('Email','openaffiliates');?></th>
+                    <th class="af-senton-col"><?php esc_html_e('Sent on:','openaffiliates');?></th>
                 </tr>
           </thead>
           <tbody>
@@ -60,20 +60,20 @@ $data = \Indeed\Uap\Db\NotificationLogs::getMany( $uid, $limit, $offset );
                     </td>
                     <td>
                       <div><strong><?php echo esc_html($object->subject);?><strong></div>
-                      <div class="uap-notification-logs-message"><?php echo esc_uap_content($object->message);?></div>
+                      <div class="af-notification-logs-message"><?php echo esc_af_content($object->message);?></div>
                     </td>
-                    <td><?php echo esc_html(uap_convert_date_to_us_format($object->create_date));?></td>
+                    <td><?php echo esc_html(af_convert_date_to_us_format($object->create_date));?></td>
                 </tr>
             <?php endforeach;?>
         </tbody>
         </table>
     <?php }else{ ?>
-        <h4><?php esc_html_e('No Notification Logs Recorded','uap');?></h4>
+        <h4><?php esc_html_e('No Notification Logs Recorded','openaffiliates');?></h4>
     <?php }?>
 </div>
 
 <div>
 <?php if ( $pagination ): ?>
-    <?php echo esc_uap_content($pagination);?>
+    <?php echo esc_af_content($pagination);?>
 <?php endif;?>
 </div>
