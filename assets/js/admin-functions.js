@@ -1139,21 +1139,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
 				}
 		});
 
-		jQuery( '.uap-js-close-admin-dashboard-notice' ).on( 'click', function(){
-				var parent = jQuery(this).parent();
-				parent.fadeOut( 1000 );
-				jQuery.ajax({
-						type : 'post',
-						url : decodeURI(window.uap_url)+'/wp-admin/admin-ajax.php',
-						data : {
-											 action: 'uap_close_admin_notice'
-									 },
-						success: function (response) {
-								parent.remove();
-						}
-			 });
-		});
-
 		jQuery( '.uap-js-paypal-sandbox-on-off' ).on( 'click', function(){
 				if ( jQuery('.uap-js-paypal-sandbox-on-off').is(':checked') ){
 						/// sandbox

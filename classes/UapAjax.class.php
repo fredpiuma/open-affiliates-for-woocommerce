@@ -69,8 +69,6 @@ class UapAjax{
 		add_action('wp_ajax_uap_get_empty_progress_bar', array($this, 'uap_get_empty_progress_bar'));
 		add_action('wp_ajax_uap_migrate_get_status', array($this, 'uap_migrate_get_status'));
 		add_action('wp_ajax_uap_migrate_reset_log', array($this, 'uap_migrate_reset_log'));
-		add_action('wp_ajax_uap_close_admin_notice', array($this, 'uap_close_admin_notice'));
-
 		add_action('wp_ajax_uap_admin_send_email_popup', array($this, 'uap_admin_send_email_popup'));
 		add_action('wp_ajax_uap_admin_do_send_email', array($this, 'uap_admin_do_send_email'));
 
@@ -1368,22 +1366,6 @@ class UapAjax{
 				die;
 		}
 
-		/**
-		 * @param none
-		 * @return string
-		 */
-		public function uap_close_admin_notice()
-		{
-				if ( !indeedIsAdmin() ){
-					  die;
-				}
-				if ( !uapAdminVerifyNonce() ){
-					  die;
-				}
-				update_option( 'uap'.'_'.'hi'.'de'.'_'.'admin'.'_'.'li'.'cen'.'se'.'_'.'no'.'ti'.'ce', 1 );
-				echo 1;
-				die;
-		}
 
 		/**
 		 * @param none
