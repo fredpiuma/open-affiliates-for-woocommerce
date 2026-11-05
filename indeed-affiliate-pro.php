@@ -144,12 +144,6 @@ class UAP_Main{
 
 		$UapGDPR = new Indeed\Uap\UapGDPR();
 
-		$modals = new \Indeed\Uap\Admin\Modals();
-
-
-
-
-
 		require_once UAP_PATH . 'classes/UapAjax.class.php';
 
 		$uap_ajax = new UapAjax();
@@ -157,10 +151,6 @@ class UAP_Main{
 
 
 		//since version 8.5
-
-		// tracking
-
-		$uapTracking = new \Indeed\Uap\Tracking();
 
 		// wizard
 
@@ -327,14 +317,6 @@ class UAP_Main{
 			$crons = new \UapCronJobs();
 
 			$crons->registerCrons();
-
-			$installTime = get_option( 'uap_install_time', false );
-
-			if ( $installTime === false ){
-
-					update_option( 'uap_install_time', time() );
-
-			}
 
 			// since 8.5 - wizard
 

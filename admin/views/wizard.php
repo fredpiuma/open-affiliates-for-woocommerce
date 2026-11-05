@@ -204,17 +204,6 @@
             <?php esc_html_e('All new Users become Affiliates', 'uap');?>
         </div>
 
-          <div class="uap-form-line">
-              <label class="uap_label_shiwtch uap-switch-button-margin">
-                <?php $checked = ($data['uap_allow_tracking']) ? 'checked' : '';?>
-                <input type="checkbox" class="uap-switch" onClick="uapCheckAndH(this, '#uap_allow_tracking');" <?php echo esc_attr($checked);?> />
-                <div class="switch uap-display-inline"></div>
-              </label>
-              <input type="hidden" name="uap_allow_tracking" value="<?php echo esc_attr($data['uap_allow_tracking']);?>" id="uap_allow_tracking" />
-
-              <?php esc_html_e('Enable Anonymous Usage Tracking Data', 'uap');?>
-          </div>
-
         </div>
     </div>
     <!------------------------------------ end of step 2. ---------------------------->

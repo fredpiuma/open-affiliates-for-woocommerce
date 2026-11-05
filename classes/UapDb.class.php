@@ -2383,7 +2383,6 @@ WHERE id=%d
 						'uap_workflow_disable_ip_address' 												=> 0, /// DISABLED OPTION
 						'uap_admin_workflow_dashboard_notifications' 							=> 1,
 						'uap_keep_data_after_delete'															=> 0,
-						'uap_allow_tracking'																			=> 0,
 					);
 					break;
 				case 'general-public_workflow':

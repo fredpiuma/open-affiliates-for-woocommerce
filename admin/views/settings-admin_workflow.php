@@ -112,21 +112,6 @@
 					<p class="uap-form-setting-description"><?php esc_html_e("Keep all saved data for Ultimate Affiliate Pro when the plugin is deleted.", 'uap');?></p>
 				</div>
 			</div>
-			<div class="uap-form-line">
-				<div class="uap-form-setting-wrapper">
-					<label class="uap-form-setting-label"><?php esc_html_e('Enable Tracking', 'uap');?></label>
-					<span class="uap-form-setting-item">
-						<label class="uap_label_shiwtch uap-switch-button-margin">
-							<?php $checked = ($data['metas']['uap_allow_tracking']) ? 'checked' : '';?>
-							<input type="checkbox" class="uap-switch" onClick="uapCheckAndH(this, '#uap_allow_tracking');" <?php echo esc_attr($checked);?> />
-							<div class="switch uap-display-inline"></div>
-						</label>
-						<input type="hidden" name="uap_allow_tracking" value="<?php echo esc_attr($data['metas']['uap_allow_tracking']);?>" id="uap_allow_tracking" />
-					</span>
-					<p class="uap-form-setting-description"><?php esc_html_e('By choosing this option, you give us permission to gather some technical information about your website in order to improve the plugin. A full list of the data to be collected can be found ', 'uap');?>
-					<a href="https://ultimateaffiliate.pro/usage-tracking/" target="_blank"><?php esc_html_e( 'here', 'uap' );?></a></p>
-				</div>
-			</div>
 
 			<div id="uap_save_changes" class="uap-submit-form">
 				<input type="submit" value="<?php esc_html_e('Save Changes', 'uap');?>" name="save" class="button button-primary button-large" />

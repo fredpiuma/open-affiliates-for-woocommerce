@@ -419,7 +419,6 @@ class Wizard
                           'uap_default_country'                 => get_option( 'uap_default_country', 'US'),
                           'uap_register_auto_login'             => get_option( 'uap_register_auto_login', 0 ),
                           'uap_all_new_users_become_affiliates' => get_option( 'uap_all_new_users_become_affiliates', 0 ),
-                          'uap_allow_tracking'                  => 1,//get_option( 'uap_allow_tracking', 1 ),
               ];
               break;
             case 3:

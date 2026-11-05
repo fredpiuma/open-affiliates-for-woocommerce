@@ -1082,51 +1082,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
 			var uapCSSEditor = wp.codeEditor.initialize( jQuery('#uap_account_page_custom_css') );
 	}
 
-		if ( jQuery( '.uap-js-tracking-modal' ).length ){
-				setTimeout( function(){
-						jQuery( '.uap-js-tracking-modal' ).removeClass( 'uap-display-none' );
-				}, 5000 );
-		}
-
-		// tracking modal
-		if ( jQuery('#uap-admin-bttn-modal-tracking').length ){
-				jQuery('#uap-admin-bttn-modal-tracking').on('click', function(){
-						if ( jQuery( '.uap-js-confirm-tracking-checkbox' ).is(':checked') ){
-								// fire the ajax call to confirm the tracking
-								jQuery.ajax({
-												type 			: 'post',
-												url 			: decodeURI(window.uap_url)+'/wp-admin/admin-ajax.php',
-												data 			: {
-																	 action		: 'uap_admin_confirm_tracking',
-												},
-												success		: function (response) {
-														uapClosePopup();
-												}
-								});
-						} else {
-								// fire the ajax call to refuse the tracking
-								jQuery.ajax({
-												type 			: 'post',
-												url 			: decodeURI(window.uap_url)+'/wp-admin/admin-ajax.php',
-												data 			: {
-																	 action		: 'uap_admin_refuse_tracking',
-												},
-												success		: function (response) {
-														uapClosePopup();
-												}
-								});
-						}
-				});
-				jQuery(document).mouseup(function(e){
-						var container = jQuery( ".uap-the-popup" );
-						if (!container.is(e.target) && container.has(e.target).length === 0){
-									/// close modal
-									uapClosePopup();
-						}
-				});
-		}
-		// end of tracking modal
-
 		var i, j;
 		window.uap_messages = {
 							referrals: jQuery( '.uap-js-general-messages' ).attr( 'data-referrals' ),
