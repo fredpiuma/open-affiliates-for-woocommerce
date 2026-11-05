@@ -199,13 +199,6 @@ if (!class_exists('UapMainPublic')){
 				require $template;
 				$output = ob_get_contents();
 				ob_end_clean();
-				$cl = uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-				$w = new $cl();
-				$clA = 'gd' . 'cp';
-				$clS = 'G'.'LD';
-				if ( $w->$clA() === true || $w->$clA() === '' || $w->$clS() === '1' ){
-						$output .= $this->paragraph();
-				}
 			}
 			return $output;
 		}
@@ -220,29 +213,11 @@ if (!class_exists('UapMainPublic')){
 				return $this->return_admin_info_message('login');
 			} else {
 				$object = new AffiliateLogin();
-				$y = uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-				$r = new $y();
-				$state = 'g'.'dc'.'p';
-				$cntr = 'GL'.'D';
-
-				if ( $r->$state() === true || $r->$state() === '' || $r->$cntr() === '1' ){
-					echo esc_uap_content($this->paragraph());
-				}
 				return $object->print_login_form($args, $this->user_role, $this->affiliate_id);
 			}
 			return '';
 		}
 
-		private function paragraph(){
-			$name = 'tr'.'ial'.'_'.'ver'.'sion'.'_'.'me'.'ssage' . '.php';
-		  $fullPath = UAP_PATH . 'public/views/' . $name;
-			$template = apply_filters('uap_filter_on_load_template', $fullPath, $name );
-			ob_start();
-			require $template;
-			$output = ob_get_contents();
-			ob_end_clean();
-			return $output;
-		}
 
 		public function check_for_form_actions(){
 			/*

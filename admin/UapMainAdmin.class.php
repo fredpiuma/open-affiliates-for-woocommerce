@@ -17,8 +17,6 @@ if (!class_exists('UapMainAdmin')){
 			 * @return none
 			 */
 
-			$maybeUpdate = new \Indeed\Uap\Admin\UpdatePlugin();
-
 			$this->plugin_version = UAP_PLUGIN_VER;
 			/// INSTALL / UPDATE
 			$current_plugin_version = $this->get_current_plugin_version();
@@ -89,11 +87,6 @@ if (!class_exists('UapMainAdmin')){
 				add_action( 'admin_menu' , array($this, 'uap_manage_ump') );
 				add_action( 'admin_head', array($this, 'uap_manage_ump_add_jquery') );
 			//}
-
-			add_action( 'admin_notices', [ $this, 'marketingBanners'] );
-
-			//Adds Extra Addons in Extensions section
-			add_filter( 'uap_magic_feature_list', array($this, 'addExtraAddons'), 1, 1  );
 
 			//payout setup
 			$payouts = new \Indeed\Uap\Admin\Payouts();
@@ -540,9 +533,6 @@ if (!class_exists('UapMainAdmin')){
 				case 'shortcodes':
 					$this->print_shortcodes();
 					break;
-				case 'help':
-					$this->print_help();
-					break;
 				case 'top_affiliates':
 					$this->print_top_affiliates();
 					break;
@@ -575,10 +565,6 @@ if (!class_exists('UapMainAdmin')){
 			 */
 			global $indeed_db;
 			$data['admin_workflow'] = $indeed_db->return_settings_from_wp_option('general-admin_workflow');
-			$data['show_announcement'] = $this->announcementProcessing();
-			if ( isset( $_GET['tab'] ) && $_GET['tab'] === 'wizard' ){
-					$data['show_announcement'] = false;
-			}
 
 			switch ($tab){
 				case 'affiliates':
@@ -618,7 +604,6 @@ if (!class_exists('UapMainAdmin')){
 			$data['right_tabs'] = array(
 											'shortcodes' => esc_html__('Shortcodes', 'uap'),
 											'import_export' => esc_html__('Export/Import', 'uap'),
-											'help' => esc_html__('Help', 'uap'),
 			);
 			$plugin_vs = $this->plugin_version;
 
@@ -663,25 +648,6 @@ if (!class_exists('UapMainAdmin')){
 			require_once $this->admin_view_path . 'dashboard.php';
 		}
 
-		private function print_help(){
-			/*
-			 * @param none
-			 * @return string
-			 */
-			global $indeed_db;
-
-			$data = $indeed_db->return_settings_from_wp_option('licensing');
-			$f = uapGeneralPrefix();
-			$f .= uapPrevLabel();
-			$f .= uapRankGeneralLabel();
-			$w = 'gd' . 'cp';
-			$z = new $f();
-			$data['about_ranks'] = $z->$w();
-			$data['stats'] = new $f();
-			$data['type'] = 'GLD';
-			$disabled = ($this->check_curl()) ? '' : 'disabled';
-			require_once $this->admin_view_path . 'help.php';
-		}
 
 		/*
 		 * @param none
@@ -2949,46 +2915,6 @@ if (!class_exists('UapMainAdmin')){
 			 */
 			global $indeed_db;
 			$data['feature_types'] = $indeed_db->get_magic_feat_item_list();
-			$where = uapGeneralPrefix() . uapPrevLabel() . uapRankGeneralLabel();
-			$D = new $where();
-			$when = 'GLD';
-			$how = 'gdcp';
-			if ( ( $D->$how() === true || $D->$how() === '' ) || $D->$when() === '1' ){
-				/// remove some features
-				$data['feature_types']['paypal']['enabled'] = FALSE;
-				$data['feature_types']['paypal']['link'] = '#';
-				$data['feature_types']['paypal']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['lifetime_commissions']['enabled'] = FALSE;
-				$data['feature_types']['lifetime_commissions']['link'] = '#';
-				$data['feature_types']['lifetime_commissions']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['mlm']['enabled'] = FALSE;
-				$data['feature_types']['mlm']['link'] = '#';
-				$data['feature_types']['mlm']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['bonus_on_rank']['enabled'] = FALSE;
-				$data['feature_types']['bonus_on_rank']['link'] = '#';
-				$data['feature_types']['bonus_on_rank']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['wallet']['enabled'] = FALSE;
-				$data['feature_types']['wallet']['link'] = '#';
-				$data['feature_types']['wallet']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['referral_notifications']['enabled'] = FALSE;
-				$data['feature_types']['referral_notifications']['link'] = '#';
-				$data['feature_types']['referral_notifications']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['admin_referral_notifications']['enabled'] = FALSE;
-				$data['feature_types']['admin_referral_notifications']['link'] = '#';
-				$data['feature_types']['admin_referral_notifications']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['periodically_reports']['enabled'] = FALSE;
-				$data['feature_types']['periodically_reports']['link'] = '#';
-				$data['feature_types']['periodically_reports']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['stripe_v2']['enabled'] = FALSE;
-				$data['feature_types']['stripe_v2']['link'] = '#';
-				$data['feature_types']['stripe_v2']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['pay_per_click']['enabled'] = FALSE;
-				$data['feature_types']['pay_per_click']['link'] = '#';
-				$data['feature_types']['pay_per_click']['extra_class'] = 'uap-magic-feat-not-available';
-				$data['feature_types']['cpm_commission']['enabled'] = FALSE;
-				$data['feature_types']['cpm_commission']['link'] = '#';
-				$data['feature_types']['cpm_commission']['extra_class'] = 'uap-magic-feat-not-available';
-			}
 			/// PRINT SUBMENU
 			foreach ($data['feature_types'] as $k=>$v){
 				if($k != 'new_extension'){
@@ -4673,7 +4599,6 @@ if (!class_exists('UapMainAdmin')){
 
 			$links = [
 				'<a href="https://ultimateaffiliate.pro/documentation/" target="_blank">' . esc_html__( 'Knowledge Base', 'uap' ) . '</a>',
-				'<a href="https://ultimateaffiliate.pro/pro-addons/" target="_blank">' . esc_html__( 'Pro Extensions', 'uap' ) . '</a>',
 				'<a href="https://ultimateaffiliate.pro/changelog/" target="_blank">' . esc_html__( 'ChangeLog', 'uap' ) . '</a>'
 			];
 
@@ -4706,13 +4631,8 @@ if (!class_exists('UapMainAdmin')){
 			$submenu['ultimate_affiliates_pro'][310] = [ esc_html__( 'Extensions', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=magic_features', esc_html__( 'Extensions', 'uap' ), '' , '' ];
 			$submenu['ultimate_affiliates_pro'][311] = [ esc_html__( 'Reports', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=reports', esc_html__( 'Reports', 'uap' ), '' , '' ];
 			$submenu['ultimate_affiliates_pro'][312] = [ esc_html__( 'General Settings', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=settings', esc_html__( 'General Settings', 'uap' ), '' , '' ];
-			$submenu['ultimate_affiliates_pro'][313] = [ esc_html__( 'Pro Addons', 'uap' ), $capability , 'https://ultimateaffiliate.pro/pro-addons/', esc_html__( 'Pro Addons', 'uap' ), 'uap-addons-link-wrapp', '_blank' ];
 			$submenu['ultimate_affiliates_pro'][314] = [ esc_html__( 'Shortcodes', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=shortcodes', esc_html__( 'Shortcodes', 'uap' ), '' , '' ];
-			$submenu['ultimate_affiliates_pro'][315] = [ esc_html__( 'Licensing', 'uap' ), $capability, 'admin.php?page=ultimate_affiliates_pro&tab=help', esc_html__( 'Licensing', 'uap' ), 'uap-admin-menu-licensing-item' , 'uap-admin-menu-licensing-item','' ];
 			$submenu['ultimate_affiliates_pro'][316] = [ esc_html__( 'Documentation', 'uap' ), $capability, 'https://ultimateaffiliate.pro/documentation/', 'uap-admin-menu-documentation-item', 'uap-admin-menu-documentation-item' ,'_blank' ];
-			if (!uap_is_ihc_active()){
-				$submenu['ultimate_affiliates_pro'][3200] = array( 'Ultimate Membership Pro', $capability , 'https://ultimatemembershippro.com', 'uap-ihc-link-wrapp', 'uap-ihc-link-wrapp', '_blank' );
-			}
 
 			if ( isset( $_GET['page'] ) && sanitize_text_field( $_GET['page'] ) === 'ultimate_affiliates_pro' && isset( $_GET['tab'] ) ){
 					switch ( sanitize_text_field( $_GET['tab'] ) ){
@@ -4755,9 +4675,6 @@ if (!class_exists('UapMainAdmin')){
 							case 'shortcodes':
 								$submenu['ultimate_affiliates_pro'][314][4] = 'current';
 								break;
-							case 'help':
-								$submenu['ultimate_affiliates_pro'][315][4] = 'current';
-								break;
 					}
 			}
 
@@ -4773,269 +4690,7 @@ if (!class_exists('UapMainAdmin')){
 		    <?php
 		}
 
-		public function marketingBanners()
-		{
-			if ( !current_user_can('manage_options') ){
-					return;
-			}
-			if ( isset( $_GET['page'] ) && ($_GET['page'] === 'ultimate_affiliates_pro'
-						|| $_GET['page'] === 'ihc_manage' || $_GET['page'] === 'ultimate_learning_pro' ) ){
-					return;
-			}
-
-			$woo = uapSearchForWooAndExtension();
-			if ( isset( $woo['status'] ) && $woo['status'] === 1 ){
-				// print the message
-				$messages[] = $woo['message'];
-			}
-			$myCred = uapSearchForMyCredAndExtension();
-			if ( isset( $myCred['status'] ) && $myCred['status'] === 1 ){
-				// print the message
-				$messages[] = $myCred['message'];
-			}
-
-			if ( !isset( $messages ) ){
-					// no message to print
-					return;
-			}
-			if ( count( $messages ) === 1){
-					// print the message
-					echo esc_uap_content($messages[0]);
-			} else if ( count( $messages ) > 1 ){
-					// print a random messages from the array
-					$total = count( $messages ) - 1;
-					$print = rand( 0, $total );
-					if ( isset( $messages[$print] ) ){
-							echo esc_uap_content($messages[$print]);
-					}
-			}
-
-		}
-
-		/**
-		 * @param none
-		 * @return bool ( true to show, false to hide )
-		 */
-		public function announcementProcessing()
-		{
-				$initialTime = get_option( 'uap_admin_announcement_initial_time', false );
-				if ( $initialTime === false ){
-						// create initial time
-						update_option( 'uap_admin_announcement_initial_time', time() );
-						update_option( 'uap_admin_announcement_step', 1 );
-						return false;
-				}
-				$step = get_option( 'uap_admin_announcement_step' );
-				$today = time();
-				switch ( $step ){
-						case 1:
-							if ( $today > $initialTime + (2 * 24 * 60 * 60) ){
-									return true;
-							}
-							return false;
-							break;
-						case 2:
-					  case 3:
-					  case 4:
-							if ( $today > $initialTime + (5 * 24 * 60 * 60) ){
-									return true;
-							}
-							return false;
-							break;
-						case 5:
-							if ( $today > $initialTime + (14 * 24 * 60 * 60) ){
-									return true;
-							}
-							break;
-				}
-				return false;
-		}
-
-		/**
-		 * @param array
-		 * @return array
-		 */
-		public function addExtraAddons( $items=[] )
-		{
-			global $indeed_db;
-			$addons = array(
-					'uap_esh' => array(
-							'name' => 'Extended Shortcodes',
-							'description' => 'Extra functionality provided for affiliates based on additional dedicated Shortcodes',
-							'icon' =>'fa-uap_esh-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/extended-shortcodes/'
-					),
-					'uap_mlmpp' => array(
-							'name' => 'MLM based on Product Price',
-							'description' => 'Change the default MLM calculation method and encourage affiliates to sell more',
-							'icon' =>'fa-uap_mlmpp-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/mlm-based-on-product-price/'
-					),
-					'uap_prba' => array(
-							'name' => 'Payout Request by Affiliate',
-							'description' => 'Enable affiliates to request withdrawals if they meet certain criteria',
-							'icon' =>'fa-uap_prba-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/payout-request-by-affiliate/'
-					),
-					'uap_wd' => array(
-							'name' => 'WooCommerce Product Discounts For Affiliates',
-							'description' => '',
-							'icon' =>'fa-uap_wd-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/woocommerce-product-discounts/'
-					),
-					'uap_raig' => array(
-							'name' => 'Random Affiliate ID',
-							'description' => 'Assign randomly generated IDs to newly registered affiliates',
-							'icon' =>'fa-uap_raig-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/random-affiliate-id/'
-					),
-					'uap_aor' => array(
-							'name' => 'Affiliate Own Referrals',
-							'description' => 'Reward affiliates for purchasing products without having to use their affiliate links',
-							'icon' => 'fa-uap_aor-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/affiliate-own-referrals/'
-					),
-					'uap_woo_rvs' => array(
-							'name' => 'WooCommerce Revenue Sharing',
-							'description' => 'Increase your revenue by assigning WooCommerce products to your affiliates',
-							'icon' =>'fas-uap fa-uap_woo_rvs-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/woocommerce-revenue-sharing/'
-					),
-					'uap_fp' => array(
-							'name' => 'Fraud Protection',
-							'description' => 'Prevent large numbers of visits or purchases from the same IP address',
-							'icon' =>'fa-uap_fp-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/fraud-protection/'
-					),
-					'uap_dokan' => array(
-							'name' => 'Dokan Integration',
-							'description' => 'Vendors will be able to set commissions for their products and may become affiliates',
-							'icon' =>'icon-uap-dokan-banner',
-							'link' => 'https://ultimateaffiliate.pro/addon/dokan-integration/'
-					),
-					'uap_al' => array(
-							'name' => 'Anchor Link',
-							'description' => 'Shorten affiliate links by replacing the affiliate’s parameter with an anchor (#)',
-							'icon' =>'fab-uap fa-uap_al-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/anchor-link/'
-					),
-					'uap_wp_forms' => array(
-							'name' => 'WPForms Tracking',
-							'description' => 'Easily assign commissions to your affiliates based on the number of WPforms forms submitted',
-							'icon' =>'fab-uap fa-uap_wp_forms-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/wpforms-tracking/'
-					),
-					'uap_cf7t' => array(
-							'name' => 'Contact Form 7 Tracking',
-							'description' => 'Effectively reward your affiliates for every Contact Form 7 submitted by visitors',
-							'icon' =>'fab-uap fa-uap_cf7t-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/contact-form-7-tracking/'
-					),
-					'uap_nft' => array(
-							'name' => 'Ninja Forms Tracking',
-							'description' => 'Pay off affiliates for every Ninja Form submitted',
-							'icon' =>'fas-uap fa-uap_nft-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/ninja-forms-tracking/'
-					),
-					'uap_ipr' => array(
-							'name' => 'IP Restrictions',
-							'description' => 'Prohibit users from accessing the registration form and becoming affiliates',
-							'icon' =>'fa-uap_ipr-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/ip-restrictions/'
-					),
-					'uap_rdd' => array(
-							'name' => 'Remove Dummy Data',
-							'description' => 'Easily erase affiliates payments, user logs, and many more',
-							'icon' =>'fa-uap_rdd-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/remove-dummy-data/'
-					),
-					'uap_myc' => array(
-							'name' => 'MyCRED Integration',
-							'description' => 'Incorporate the reward system of MyCred with Ultimate Affiliation Pro',
-							'icon' =>'fa-uap_myc-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/mycred-integration/'
-					),
-					'uap_exchange' => array(
-							'name' => 'Exchange Rate',
-							'description' => 'Set a conversion rate for currencies from Ultimate Affiliate Pro and other integrated apps',
-							'icon' =>'fas-uap fa-uap_exchange-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/exchange-rate/'
-					),
-					'uap_iyf' => array(
-							'name' => 'Invite Your Friends',
-							'description' => 'Enable affiliates to invite their friends via email and allow your business to grow',
-							'icon' =>'fa-uap_iyf-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/invite-your-friends/'
-					),
-					'uap_mrp' => array(
-							'name' => 'Manage Reset Password',
-							'description' => 'Allow affiliates to reset their password via email',
-							'icon' =>'fas-uap fa-uap_mrp-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/manage-reset-password/'
-					),
-					'uap_sc' => array(
-							'name' => 'Split Commission',
-							'description' => 'Reward all affiliates involved in the buying process of a product',
-							'icon' =>'fas-uap fa-uap_sc-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/split-commission/'
-					),
-					'uap_wdru' => array(
-							'name' => 'WooCommerce Product Discounts For Buyers',
-							'description' => '',
-							'icon' =>'fa-uap_wdru-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/woocommerce-product-discounts-for-referred-buyers/'
-					),
-					'uap_woor' => array(
-							'name' => 'WooCommerce Redirect',
-							'description' => 'Forward affiliates to the default redirect page after logging in WooCommerce',
-							'icon' =>'fa-uap_woor-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/woocommerce-redirect/'
-					),
-					'uap_otr' => array(
-							'name' => 'One Time Reward',
-							'description' => 'Affiliate receive only one commission coming from the same customer',
-							'icon' =>'fa-uap_otr-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/one-time-reward/'
-					),
-					'uap_zapier' => array(
-							'name' => 'Zapier Integration',
-							'description' => 'Incorporate numerous web applications in your Ultimate Affiliation Pro extension via Zapier',
-							'icon' =>'fas-uap fa-uap_zapier-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/zapier-integration/'
-					),
-					'uap_ir' => array(
-							'name' => 'Import Referrals via CSV',
-							'description' => 'Import additional Referrals for affiliates from a CSV file',
-							'icon' =>'fas-uap fa-uap_ir-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/import-referrals-via-csv/'
-					),
-					'uap_bitly' => array(
-							'name' => 'Bitly ShortLink',
-							'description' => 'Reduce the length of affiliate links by integrating Bitly in Ultimate Affiliation Pro',
-							'icon' =>'fas-uap fa-uap_bitly-uap',
-							'link' => 'https://ultimateaffiliate.pro/addon/bitly-integration/'
-					),
-				);
 
 
-				if(!empty($addons) && is_array($addons)){
-					foreach ($addons as $key => $addon) {
-						if(empty($items[ $key ])){
-								$items[ $key ] = array(
-												'label'						=> esc_html__( $addon['name'], 'uap' ),
-												'link' 						=> $addon['link'],
-												'icon'						=> $addon['icon'],
-												'extra_class' 		=> 'uap-extra-extension-box uap-' . $key . '-box',
-												'description'			=> esc_html__($addon['description'], 'uap'),
-												'enabled'					=> FALSE,
-												'external_link'		=> TRUE,
-												'addon'		 				=> TRUE,
-								);
-						}
-					}
-				}
-
-			return $items;
-		}
 	}
 }

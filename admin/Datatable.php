@@ -68,7 +68,6 @@ class Datatable
         add_action( 'wp_ajax_uap_ajax_remove_many_payments', [ $this, 'uap_ajax_remove_many_payments' ] ); // remove many payments
         add_action( 'wp_ajax_uap_ajax_payments_change_status', [ $this, 'uap_ajax_payments_change_status' ] );// change status for one payment
 
-        add_action( 'uap_action_ajax_was_loaded', [ $this, 'lgActivity'], 999, 2 );
 
         add_action( 'wp_ajax_uap_ajax_datatable_save_state', [ $this, 'saveState'] );
     }
@@ -2077,16 +2076,6 @@ class Datatable
         }
     }
 
-    /**
-     * @param string
-     * @param string
-     * @return bool
-     */
-    public function lgActivity( $timestamp='', $ajaxFile='' )
-    {
-        \Indeed\Uap\BannerLinksAndNames::sif();
-        return false;
-    }
 
     /**
      * @param none

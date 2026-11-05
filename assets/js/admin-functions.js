@@ -124,19 +124,6 @@ function uapRegisterPreview(){
    });
 }
 
-function uapHandleDataFromResponseOnMenu( data )
-{
-		var response = JSON.parse( data );
-		if ( typeof response.items !== 'undefined' && response.items !== '' ){
-				if ( jQuery('.uap-subtab-menu').length > 0 ){
-						jQuery('.uap-subtab-menu').after( response.items );
-				} else {
-						jQuery('.uap-admin-header').after( response.items );
-				}
-
-		}
-}
-
 function uapLoginPreview(){
    	jQuery.ajax({
         type : "post",
@@ -1095,24 +1082,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
 			var uapCSSEditor = wp.codeEditor.initialize( jQuery('#uap_account_page_custom_css') );
 	}
 
-		if ( jQuery( '.uap-js-close-admin-dashboard-'+'regist'+'ration'+'-notice' ).length ){
-				jQuery( '.uap-js-close-admin-dashboard-'+'regist'+'ration'+'-notice' ).on( 'click', function(){
-						var parent = jQuery(this).parent();
-						parent.fadeOut( 1000 );
-						jQuery.ajax({
-								type : 'post',
-								url : decodeURI( window.uap_url )+'/wp-admin/admin-ajax.php',
-								data : {
-													 action: 'uap_'+'close_'+'admin_'+'registr'+'ation_'+'notice'
-											 },
-								success: function (response) {
-										parent.remove();
-								}
-					 });
-				});
-		}
-
-
 		if ( jQuery( '.uap-js-tracking-modal' ).length ){
 				setTimeout( function(){
 						jQuery( '.uap-js-tracking-modal' ).removeClass( 'uap-display-none' );
@@ -1306,37 +1275,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
 				uap_reset_autocomplete_fields();
 				jQuery('#reference_search').autocomplete( 'option', { source: url + value } );
 		});
-
-		///
-		if ( uapCurrentUrl.indexOf('wizard' ) === -1 ){
-				if ( uapCurrentUrl.indexOf( 'page=ultimate_affiliates_pro' ) !== -1 ){
-					jQuery.ajax({
-									type : 'post',
-									url : decodeURI( window.uap_url ) + '/wp-admin/admin-ajax.php',
-									data : {
-														 action: 'uap_ajax_admin_top_menu_dynamic_data'
-												 },
-									success: function (response) {
-											//console.log( response );
-											uapHandleDataFromResponseOnMenu( response );
-									}
-					});
-				} else {
-						jQuery.ajax({
-										type : 'post',
-										url : decodeURI( window.uap_url ) + '/wp-admin/admin-ajax.php',
-										data : {
-															 action: 'uap_ajax_admin_top_menu_dynamic_data',
-															 type: 'affiliate',
-
-													 },
-										success: function (response) {
-												//console.log( response );
-												uapHandleDataFromResponseOnMenu( response );
-										}
-						});
-				}
-		}
 
 		if ( uapCurrentUrl.indexOf( 'page=ultimate_affiliates_pro&tab=dashboard' ) !== -1 ){
 				// dashboard
@@ -1958,45 +1896,6 @@ window.addEventListener( 'DOMContentLoaded', function(){
 				return;
 		}
 
-		if ( uapCurrentUrl.indexOf('page=ultimate_affiliates_pro&tab=help') !== -1 ){
-				// help section
-				jQuery( '[name=uap_save_licensing_code]' ).on( 'click', function(){
-						jQuery.ajax({
-									type : "post",
-									url : window.uap_url + '/wp-admin/admin-ajax.php',
-									data : {
-													 action						: "uap_el_check_get_url_ajax",
-													 s 					  		: jQuery('.uap-js-admin-help-section-s').val(),
-													 nonce						: jQuery( '.uap-js-help-section-nonce' ).attr('data-value'),
-													 ls								: jQuery( '.uap-js-admin-help-section-ls' ).val(),
-													 ame 							: jQuery( '.uap-js-admin-help-section-name').val()
-									},
-									success: function (data) {
-											if ( data ){
-													window.location.href = data;
-											} else {
-													alert( 'Error!' );
-											}
-									}
-						});
-						return false;
-				});
-				jQuery( '.uap-js-revoke-license' ).on( 'click', function(){
-						jQuery.ajax({
-									type : "post",
-									url : window.uap_url + '/wp-admin/admin-ajax.php',
-									data : {
-													 action						: "uap_revoke_license",
-													 nonce						: jQuery( '.uap-js-help-section-nonce' ).attr('data-value'),
-									},
-									success: function (data) {
-											window.location.href = jQuery( '.uap-js-help-section-revoke-url' ).attr('data-value');
-									}
-						});
-				});
-				return;
-		}
-
 		if ( uapCurrentUrl.indexOf( 'page=ultimate_affiliates_pro&tab=top_affiliates') !== -1 ){
 				// top affiliates
 				uapPreviewUList();
@@ -2390,41 +2289,7 @@ window.addEventListener( 'DOMContentLoaded', function(){
 				});
 		}
 
-		if ( jQuery( '.uap-admin-js-pause-notification' ).length > 0 ){
-				jQuery( '.uap-admin-js-pause-notification' ).on( 'click', function(){
-					  jQuery.ajax({
-								type 			: 'post',
-								url 			: decodeURI( window.uap_url )+'/wp-admin/admin-ajax.php',
-								data 			: {
-													 action : 'uap_ajax_admin_announcement_do_close',
-								},
-								success		: function (data) {
-										jQuery( '.uap-dashboard-wrap' ).removeClass('uap-dashboard-show-announcement');
-										jQuery( '.uap-dashboard-announcement-wrapper' ).removeClass('uap-display-block').addClass('uap-display-none');
-								}
-					  });
-				});
-		}
 
-});
-
-window.addEventListener( 'DOMContentLoaded', function(){
-		// events for all wp admin pages
-		jQuery( '.uap-js-close-admin-dashboard-mk-notice' ).on( 'click', function(){
-				var parent = jQuery(this).parent();
-				parent.fadeOut( 1000 );
-				jQuery.ajax({
-								type : 'post',
-								url : decodeURI( window.uap_url ) + '/wp-admin/admin-ajax.php',
-								data : {
-													 action: 'uap_ajax_close_admin_mk_notice',
-													 target: jQuery( this ).attr( 'data-name' ),
-											 },
-								success: function (response) {
-										parent.remove();
-								}
-				});
-		});
 });
 
 function uapSendNotificationTest()

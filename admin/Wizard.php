@@ -67,30 +67,10 @@ class Wizard
         if ( (int)get_option( 'uap_wizard_complete', 0 ) === 1 ){
             return;
         }
-        $rankLabel=uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-        $oldLogs = new $rankLabel();
-        $rankLetter = 'gd'.'cp';
-        $w = $oldLogs->$rankLetter();
-        if ( $w === true ){
-            $w = '';
-        }
-
-        $mesageFromwpi = '';
-        $responseNumber = isset($_GET['response']) ? sanitize_text_field($_GET['response']) : false;
-        if ( !empty($_GET['token'] ) && $responseNumber == 1 ){
-            $elc = new \Indeed\Uap\ElCheck();
-            $responseNumber = $elc->responseFromGet();
-        }
-        if ( $responseNumber !== false ){
-            $elc = new \Indeed\Uap\ElCheck();
-            $mesageFromwpi = $elc->responseCodeToMessage( $responseNumber, 'uap-danger-box', 'uap-success-box', 'uap' );
-        }
         $currency = get_option( 'uap_currency', 'usd' );
 
         $data = [
                   'page'                            => 1,
-                  'h'                               => $w,
-                  'wpiuap_message'                  => $mesageFromwpi,
                   'roles'                           => uap_get_wp_roles_list(),
                   'currency_arr'                    => uap_get_currencies_list(),
                   'custom_currencies'               => '',
@@ -193,26 +173,7 @@ class Wizard
 
         switch ( $page ){
             case 1:
-              // Step 1 - L
-              if ( !isset( $formValues['h'] ) || $formValues['h'] === '' ){
-                  $response = [
-                                'status'            => 0,
-                                'field_message'     => esc_html__( "Please"." complete"." '"."L"."ic"."e"."n"."se "."K"."e"."y'"." fie"."ld "."and"." acti"."va"."te "."Ultimate Affiliate pro.", 'uap' ),
-                                'target_field'      => "pv2",
-                  ];
-                  break;
-              }
-              $rankLabel=uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-              $o = new $rankLabel();
-              $one = 'GLD';
-              $two='gdcp';
-              if ( $o->$one() === true || (int)$o->$one() > 0 || $o->$two() === true ){
-                  $response = [
-                                'status'            => 0,
-                                'general_message'   => esc_html__( "The Ultimate Affiliate Pro plugin requires activation to unlock its full features. Please activate the plugin to access all functionalities.", 'uap' ),
-                  ];
-                  break;
-              }
+              // Step 1 - Welcome (sem validação)
               break;
             case 2:
               // general options

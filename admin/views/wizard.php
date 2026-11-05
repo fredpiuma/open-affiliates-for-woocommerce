@@ -20,7 +20,7 @@
         <?php endif; ?>
         </div>
         <div class="uap-wizard-progress-bar-item-label">
-          <?php esc_html_e('License', 'uap');?>
+          <?php esc_html_e('Welcome', 'uap');?>
         </div>
       </div>
       <?php $isActive = $data['page'] === 2 ? 'uap-wizard-progress-bar-item-selected' : '';?>
@@ -120,50 +120,9 @@
     <!------------------------------------ step 1. ------------------------------------>
     <?php $show = $data['page'] === 1 ? 'uap-display-block' : 'uap-display-none';?>
     <div class="uap-js-wizard-step-1 <?php echo esc_attr($show);?>">
-      <h3 class="uap-wizard-wrap-for-content-title"><span>01</span> - <?php esc_html_e('License', 'uap');?></h3>
+      <h3 class="uap-wizard-wrap-for-content-title"><span>01</span> - <?php esc_html_e('Welcome', 'uap');?></h3>
       <div class="uap-wizard-wrap-for-content-description">
-        <?php esc_html_e('Upon plugin activation, make sure to activate your license to access support and enable automatic upgrades. Please note that without license activation, access to advanced modules will not be available', 'uap');?>
-      </div>
-      <div class="uap-wizard-wrap-for-content">
-        <div class="row">
-          <div class="col-xs-10">
-          <div class="lincs-row">
-            <?php $nameC = get_option('uapl_nk_n');?>
-            <h4><?php esc_html_e('Customer Name', 'uap');?></h4>
-              <input name="cn" type="text" value="<?php echo $nameC;?>" class="uap-form-element "/>
-          </div>
-          <div class="lincs-row">
-            <h4><?php esc_html_e('Vendor', 'uap');?><span>*</span></h4>
-            <?php $currentVend = get_option('uap_lnk_v');?>
-            <select name="ls" class="uap-form-select uap-form-element uap-form-select">
-                <?php foreach ( UAP_VEND as $vendName => $vendValue ):?>
-                    <option value="<?php echo $vendName;?>" <?php if ( $vendName === $currentVend ){ echo 'selected'; }?> ><?php echo $vendValue;?></option>
-                <?php endforeach;?>
-            </select>
-          </div>
-          <div>
-              <h4><?php esc_html_e('License Key', 'uap');?><span>*</span></h4>
-            <input name="h" type="text" value="<?php echo esc_attr($data['h']);?>" class="uap-js-wizard-pc uap-form-element uap-js-wizard-required-field"/>
-            <input type="submit" value="<?php esc_html_e('Activate License', 'uap');?>" name="jcode"  class="uap-submit-button uap-js-wizard-submit-c-to-e" />
-
-          </div>
-          <div>
-            <p class="uap-wizard-additional-details"> <a target="_blank" href="https://ultimateaffiliate.pro/find-my-license-code/"><?php esc_html_e('Where can I find my License Key?', 'uap');?></a></p>
-          </div>
-
-          <div id="uap_js_error_message_for_pv2" class="uap-display-none uap-wizard-field-notice"></div>
-
-          <div class="uap-clear"></div>
-          <span class="uap-js-help-page-data"
-                data-nonce="<?php echo wp_create_nonce('uap_license_nonce');?>"
-                data-revoke_url="<?php echo admin_url('admin.php?page=uap_manage&tab=help&revoke=true');?>"
-                data-help="<?php esc_html_e( "Please Enter the License Key", 'uap' );?>"
-          ></span>
-          <?php if ( $data['wpiuap_message'] ):?>
-              <?php echo $data['wpiuap_message'];?>
-          <?php endif;?>
-        </div>
-      </div>
+        <?php esc_html_e('Thanks for choosing Open Affiliates. This short wizard will help you configure your affiliate program. All features are available, no activation required.', 'openaffiliates');?>
       </div>
     </div>
     <!------------------------------------ end of step 1. ------------------------------------>
@@ -265,7 +224,7 @@
     <div class="uap-js-wizard-step-3 <?php echo esc_attr($show);?>">
           <h3 class="uap-wizard-wrap-for-content-title"><span>03</span> - <?php esc_html_e('Affiliate Link Settings', 'uap');?></h3>
           <div class="uap-wizard-wrap-for-content-description">
-            <?php esc_html_e('Upon plugin activation, make sure to activate your license to access support and enable automatic upgrades. Please note that without license activation, access to advanced modules will not be available', 'uap');?>
+            <?php esc_html_e('Choose how affiliate links are generated and tracked.', 'openaffiliates');?>
           </div>
 
           <div class="uap-wizard-wrap-for-content">
@@ -475,8 +434,6 @@
           <div class="uap-wizard-complete-pages">
             <a href="<?php echo admin_url('admin.php?page=ultimate_affiliates_pro&tab=dashboard');?>" class="uap-wizard-complete-page-link"><i class="fa-uap fa-affiliates-uap" aria-hidden="true"></i><?php esc_html_e( 'Go to Dashboard', 'uap' );?></a>
             <a href="https://ultimateaffiliate.pro/docs" target="_blank" class="uap-wizard-complete-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e( 'Check our Documentation', 'uap' );?></a>
-            <a href="https://ultimateaffiliate.pro/videos" target="_blank" class="uap-wizard-complete-page-link"><i class="fa-uap fa-video" aria-hidden="true"></i><?php esc_html_e( 'See our video Tutorials', 'uap' );?></a>
-            <a href="https://ultimateaffiliate.pro/pro-addons/" target="_blank" class="uap-wizard-complete-page-link"><i class="fa-uap fa-cart-plus" aria-hidden="true"></i><?php esc_html_e( 'Explore Pro Addons ', 'uap' );?></a>
           </div>
         </div>
         <div class="uap-display-none">
@@ -505,8 +462,6 @@
     <div class="uap-wizard-general-buttons">
         <?php $show = $data['page']  < 6 ? 'uap-display-inline' : 'uap-display-none';?>
         <span class="uap-wizard-button uap-js-wizard-go-next <?php echo esc_attr($show);?> " id="uap_wizard_go_next_bttn" data-complete_label="<?php esc_html_e( 'Complete', 'uap');?>" data-next="<?php esc_html_e( 'Continue', 'uap');?>"><?php esc_html_e('Continue', 'uap');?></span>
-        <?php $show = ( $data['page'] === 1 ) ? 'uap-display-inline' : 'uap-display-none';?>
-        <span class="uap-wizard-button uap-js-wizard-skip-step-1 uap-cursor-pointer <?php echo esc_attr($show);?>" id="uap_wizard_skip_step_1"><?php esc_html_e('Skip this Step', 'uap');?></span>
         <?php $show = ( $data['page'] > 1 && $data['page'] < 6 ) ? 'uap-display-inline' : 'uap-display-none';?>
         <span class="uap-wizard-button uap-js-wizard-go-back <?php echo esc_attr($show);?> " id="uap_wizard_go_back_bttn" ><?php esc_html_e('Back', 'uap');?></span>
 

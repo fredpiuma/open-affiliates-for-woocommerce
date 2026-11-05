@@ -27,9 +27,6 @@ Domain Path: /languages
 */
 
 
-update_option( substr( md5('uap-deco') . md5('ultimate-affiliate-pro'), 3, 12 ), '********-****-****-****-************' );
-update_option( substr( md5('uap-seop') . md5('ultimate-affiliate-pro'), 3, 12 ), '0' );
-update_option( substr( md5('uap-nil') . md5('ultimate-affiliate-pro'), 3, 12 ), '0' );
 
 
 class UAP_Main{
@@ -107,16 +104,6 @@ class UAP_Main{
 
 
 
-		if ( !defined( 'UAP_VEND' ) ){
-
-				define( 'UAP_VEND', [
-
-																		'evt'			=> 'Envato Marketplace'
-
-				]);
-
-		}
-
 		if (!defined('UAP_DEV')){
 
 			define('UAP_DEV', "WPIndeed");
@@ -179,15 +166,8 @@ class UAP_Main{
 
 		$UapWizard = new \Indeed\Uap\Admin\Wizard();
 
-		$UapWizardElCheck = new \Indeed\Uap\Admin\WizardElCheck();
 
 
-
-		// deprecated shortcodes
-
-		$deprecatedShortcodes = new \Indeed\Uap\DeprecatedShortcodes();
-
-		$bannersLinksAndNames = new \Indeed\Uap\BannerLinksAndNames();
 
 		// end version 8.5
 
@@ -259,7 +239,6 @@ class UAP_Main{
 
 
 
-		$ElCheck = new \Indeed\Uap\ElCheck();
 
 		$WooSpecificReferralRates = new \Indeed\Uap\WooSpecificReferralRates();
 
@@ -652,14 +631,6 @@ class UAP_Main{
 		$wp_admin_bar->add_menu(array('parent'=>'uap_dashboard_menu', 'id'=>'uap_dashboard_menu_shortcodes', 'title'=>esc_html__('Shortcodes', 'uap'), 'href'=>admin_url('admin.php?page=ultimate_affiliates_pro&tab=shortcodes'), 'meta'=>array()));
 
 		$wp_admin_bar->add_menu(array('parent'=>'uap_dashboard_menu', 'id'=>'uap_dashboard_menu_general', 'title'=>esc_html__('General Settings', 'uap'), 'href'=>admin_url('admin.php?page=ultimate_affiliates_pro&tab=settings'), 'meta'=>array()));
-
-		$wp_admin_bar->add_menu(array('parent'=>'uap_dashboard_menu', 'id'=>'uap-pro-addons-link', 'title'=>'Pro AddOns', 'href'=>'https://ultimateaffiliate.pro/pro-addons/', 'meta'=>array('target' => '_blank')));
-
-		if (!uap_is_ihc_active()){
-
-			$wp_admin_bar->add_menu(array('parent'=>'uap_dashboard_menu', 'id'=>'uap-ihc-link', 'title'=>'Ultimate Membership Pro', 'href'=>'https://ultimatemembershippro.com', 'meta'=>array('target' => '_blank')));
-
-		}
 
 
 

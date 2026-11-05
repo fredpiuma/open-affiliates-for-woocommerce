@@ -21,13 +21,6 @@ function uap_reorder_arr($arr){
 	return $arr;
 }
 
-if ( !function_exists( 'uapGeneralPrefix' ) ):
-function uapGeneralPrefix()
-{
-    return "\Indeed\Uap\\";
-}
-endif;
-
 function uap_reorder_ranks($ranks_arr=array()){
 	/*
 	 * reorder ranks by order attr
@@ -1073,34 +1066,6 @@ function uap_replace_constants($str = '', $u_id = FALSE, $dynamic_data = array()
 	return $str;
 }
 
-if ( !function_exists( 'uapAdminCreateMessage' ) ):
-function uapAdminCreateMessage( $code='', $successClass='', $errorClass='', $langCode='' )
-{
-	if ( $code === '' ){
-			return '';
-	}
-	switch ( $code ){
-			case 1:
-				return "<div class='$successClass'>" . esc_html__('Your license for Ultimate Affiliate Pro is currently Active, ensuring you have access to all the premium features and automatic updates.', $langCode ) . "</div>";
-				break;
-			case 0:
-				return "<div class='$errorClass'>" . esc_html__('B'.'ad '.'input'.' data.'.' Ple'.'ase'.' try'.' aga'.'in'.' lat'.'er'.'!', $langCode ) . "</div>";
-				break;
-			case -1:
-				return "<div class='$errorClass'>" . esc_html__('Env'.'ato' . ' '.'API'.' '.'Ser'.'ver'.' '.'may'.' '.'be'.' '.'done'.' '.'for'.' '.'a '.'moment'
-								. '. '.'Plea'.'se'.' '.'try'.' aga'.'in '.'later', $langCode ) . "</div>";
-				break;
-			case -2:
-				return "<div class='$errorClass'>" . esc_html__('Sub'.'mitted '.'Pur'.'chase'.' '.'Co'.'de'.' '.'is'.' '.'inv'.'a'.'lid.', $langCode ) . "</div>";
-				break;
-			case -3:
-				return "<div class='$errorClass'>" . esc_html__('Sub'.'mi'.'t'.'ted '.'Pur'.'ch'.'ase '.'C'.'o'.'de '.'do'.'es '.'n'.'ot '.'m'.'at'.'ch '.'wi'.'th '.'Cur'.'rent'.' '.'pro'.'d'.'uc'.'t.', $langCode ) . "</div>";
-				break;
-	}
-	return '';
-}
-endif;
-
 function uap_get_custom_constant_fields(){
 	/*
 	 * @param none
@@ -1569,13 +1534,6 @@ function uap_return_default_notification_content($type=''){
 	return $template;
 }
 
-if ( !function_exists( 'uapPrevLabel' ) ):
-function uapPrevLabel()
-{
-    return 'Previous';
-}
-endif;
-
 function uap_convert_date_to_us_format($date=''){
 	/*
 	 * @param string
@@ -1780,13 +1738,6 @@ function uap_make_string_simple($str=''){
 	}
 	return $str;
 }
-
-if ( !function_exists( 'uapRankGeneralLabel' ) ):
-function uapRankGeneralLabel()
-{
-    return 'Ranks';
-}
-endif;
 
 function uap_random_string($length=4, $keyspace='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
 	/*
@@ -2812,71 +2763,6 @@ function uap_is_ihc_active(){
 		}
 	}
 	return FALSE;
-}
-endif;
-
-if ( !function_exists( 'uapSearchForWooAndExtension' ) ):
-/**
- * @param none
- * @return array
- */
-function uapSearchForWooAndExtension()
-{
-    // search for woo
-    if ( !defined( 'WC_PLUGIN_FILE' ) ){
-        // woo is not installed
-        return;
-    }
-
-    // search for our add-on
-    $exists = file_exists( WP_CONTENT_DIR . '/plugins/uap-woo-discounts/uap-woo-discounts.php');
-		$disabled = get_option( 'uap_disable_woo_mk_message', false );
-    if ( $exists === false && ( $disabled === false || (int)$disabled + ( 15 * 24 * 60 * 60 ) < time() ) ){
-				$view = new \Indeed\Uap\IndeedView();
-				$html = $view->setTemplate( UAP_PATH . 'admin/views/woo-message.php' )
-										 ->setContentData( [], true )
-										 ->getOutput();
-				return [
-									'status'      => 1,
-									'message'     => $html,
-				];
-    }
-    return [
-              'status'        => 0,
-              'message'       => ''
-    ];
-}
-endif;
-
-if ( !function_exists( 'uapSearchForMyCredAndExtension' ) ):
-/**
- * @param none
- * @return array
- */
-function uapSearchForMyCredAndExtension()
-{
-    // search for mycred
-    if ( !defined( 'myCRED_VERSION' ) ){
-        // mycred is not installed
-        return;
-    }
-    // search for our add-on
-    $exists = file_exists( WP_CONTENT_DIR . '/plugins/uap-my-cred/uap-my-cred.php');
-		$disabled = get_option( 'uap_disable_mycred_mk_message', false );
-    if ( $exists === false && ( $disabled === false || (int)$disabled + ( 15 * 24 * 60 * 60 ) < time() ) ){
-				$view = new \Indeed\Uap\IndeedView();
-				$html = $view->setTemplate( UAP_PATH . 'admin/views/my-cred-message.php' )
-										 ->setContentData( [], true )
-										 ->getOutput();
-				return [
-									'status'      => 1,
-									'message'     => $html,
-				];
-    }
-    return [
-              'status'        => 0,
-              'message'       => ''
-    ];
 }
 endif;
 

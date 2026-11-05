@@ -50,9 +50,6 @@
 							</div>
 						</div>
 						<div class="uap-line-break uap-display-none" ></div>
-						<?php if ( is_plugin_active( 'woocommerce/woocommerce.php') && !file_exists( WP_CONTENT_DIR . '/plugins/uap-mlm-based-on-price-product/uap-mlm-based-on-price-product.php' ) ){ ?>
-							<div class="uap-top-message-new-extension"><?php esc_html_e('Extend  ','uap');?> <strong><?php esc_html_e('MLM functionality','uap');?></strong> <?php esc_html_e(' and workflow for WooCommerce by changing MLM calculation method and encourage affiliates to sell more. Check the external addon ', 'uap');?><a href="https://ultimateaffiliate.pro/addon-link/mlm-based-on-product-price/" target="_blank">here</a></div>
-						<?php }?>
 						<?php
 								global $indeed_db;
 								$isActive = $indeed_db->is_magic_feat_enable( 'uap_mlmpp' ) ? true : false;

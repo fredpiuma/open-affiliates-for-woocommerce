@@ -5,18 +5,7 @@ data-affiliates="<?php esc_html_e('Delete selected Affiliates', 'uap');?>"
 data-email_server_check="<?php esc_html_e('An E-mail was sent to your Admin address. Check your inbox or Spam/Junk Folder!', 'uap');?>"
 ></div>
 
-<?php $includeAnnouncement = $data['show_announcement'] ? 'uap-dashboard-show-announcement' : '';?>
-
-<div class="uap-dashboard-wrap <?php echo $includeAnnouncement;?>" >
-	<?php $announcementClass = $data['show_announcement'] ? 'uap-display-block' : 'uap-display-none';?>
-	<div class="uap-dashboard-announcement-wrapper <?php echo $announcementClass;?>">
-		<div class="uap-dashboard-announcement">
-			<?php esc_html_e('Get the ', 'uap');?><a href="https://ultimateaffiliate.pro/get-bundle-pack" target="_blank"><?php esc_html_e('Add-on Bundle', 'uap');?></a><?php esc_html_e(' Pack to gain access to a such of powerful extensions and to unlock even more features. ', 'uap');?><a href="https://ultimateaffiliate.pro/get-bundle-pack" target="_blank"><?php esc_html_e('Upgrade Now', 'uap');?></a><?php esc_html_e(' and save big!', 'uap');?>
-		</div>
-		<div class="uap-close-button uap-admin-js-pause-notification pointer">
-			X
-		</div>
-	</div>
+<div class="uap-dashboard-wrap">
 	<div class="uap-admin-header">
 		<div class="uap-top-menu-section">
 			<div class="uap-dashboard-logo">
@@ -34,12 +23,6 @@ data-email_server_check="<?php esc_html_e('An E-mail was sent to your Admin addr
 									<?php
 										$dezactivated_class ='';
 										$url = $data['base_url'] . '&tab=' . $k;
-										$statsObject = uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-										$stats = new $statsObject();
-										if ($k=='banners' && ( $stats->gdcp() === true || $stats->gdcp() === '' || $stats->GLD() === '1' ) ):
-											$url = '#';
-											$dezactivated_class = 'uap-inactive-tab';
-										endif;
 										if ($k=='affiliates' && !empty($data['affiliates_notification_count'])){
 											echo esc_uap_content('<div class="uap-dashboard-notification-top">' . esc_html($data['affiliates_notification_count']) . '</div>');
 										} else if ($k=='referrals' && !empty($data['referrals_notification_count'])){

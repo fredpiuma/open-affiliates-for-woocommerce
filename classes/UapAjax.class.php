@@ -107,7 +107,6 @@ class UapAjax{
 		add_action( 'wp_ajax_uap_ajax_load_list_affiliate_links_table', [ $this, 'uap_ajax_load_list_affiliate_links_table' ] );
 		add_action( 'wp_ajax_nopriv_uap_ajax_load_list_affiliate_links_table', [ $this, 'uap_ajax_load_list_affiliate_links_table' ] );
 
-		add_action( 'wp_ajax_uap_ajax_close_admin_mk_notice', [ $this, 'uap_ajax_close_admin_mk_notice' ] );
 
 		// ajax-upload.php
 		add_action( 'wp_ajax_uap_ajax_public_upload', [ $this, 'uap_ajax_public_upload' ] );
@@ -127,13 +126,9 @@ class UapAjax{
 
 		do_action( 'uap_action_ajax_was_loaded', time(), UAP_PATH . 'classes/UapAjax.class.php' );
 
-    add_action( 'wp_ajax_uap_close_admin_registration_notice', [ $this, 'uap_close_admin_registration_notice' ] );
-
 		add_action( 'wp_ajax_uap_ajax_clean_notifications_logs', [ $this, 'uap_ajax_clean_notifications_logs' ] );
 
-		add_action( 'wp_ajax_uap_ajax_admin_top_menu_dynamic_data', [ $this, 'uap_ajax_admin_top_menu_dynamic_data' ] );
 
-		add_action( 'wp_ajax_uap_ajax_admin_announcement_do_close', [ $this, 'uap_ajax_admin_announcement_do_close' ] );
 
 		add_action( 'wp_ajax_uap_ajax_update_integrations_status', [ $this, 'uap_ajax_update_integrations_status' ] );
 	}
@@ -1690,29 +1685,6 @@ class UapAjax{
 				die;
 		}
 
-		/**
-		 * @param none
-		 * @return none
-		 */
-		public function uap_ajax_close_admin_mk_notice()
-		{
-				if ( !indeedIsAdmin() ){
-						die;
-				}
-				if ( !isset( $_POST['target'] ) ){
-						die;
-				}
-				$target = uap_sanitize_array( $_POST['target'] );
-				switch ( $target ){
-						case 'woo':
-							update_option( 'uap_disable_woo_mk_message', time() );
-							break;
-						case 'mycred':
-							update_option( 'uap_disable_mycred_mk_message', time() );
-							break;
-				}
-				die;
-		}
 
 		/**
 		 * @param none
@@ -1841,15 +1813,6 @@ class UapAjax{
 				die;
 		}
 
-		public function uap_close_admin_registration_notice()
-		{
-				if ( !indeedIsAdmin() ){
-						die;
-				}
-				update_option( 'uap_hide_admin_'.'l_'.'registration'.'_not'.'ice', 1 );
-				echo 1;
-				die;
-		}
 
 		public function uap_ajax_clean_notifications_logs()
 		{
@@ -1868,96 +1831,7 @@ class UapAjax{
 				die;
 		}
 
-		/**
-		 * @param none
-		 * @return array
-		 */
-		public function uap_ajax_admin_top_menu_dynamic_data()
-		{
-				$function = uapGeneralPrefix().uapPrevLabel().uapRankGeneralLabel();
-				$w = new $function();
-				$type = isset( $_POST['affiliate'] ) ? sanitize_text_field( $_POST['type'] ) : false;
-				$h = '';
-				if ( $w->GWF() === '1' ){
-						$hide = get_option( 'uap_hide_admin_l_registration_not'.'ice' );
-						if ( $hide ){
-								echo json_encode( [
-																		'items'			=> '',
-																		'status'		=> 404
-								] );
-						}
-						$url = admin_url( 'admin.php?page=ultimate_affiliates_pro&tab=' . 'he'.'lp' );
-						if ( $type === 'affiliate' ){
-							 $class = 'er'.'ror'.' '.'uap'.'-'.'li'.'ce'.'nse'.'-'.'wa'.'rn'.'ing';
-						} else {
-							 $class = 'uap'.'-'.'e'.'rr'.'or'.'-'.'glo'.'bal'.'-'.'dash'.'board'.'-'.'message';
-						}
-						$h = "<div class='$class'><div class='uap-close-not"."ice uap-js-close-admin-dashboard-registration".
-											"-not" . "ice'>x</div><p>"."Your "."<strong>"."Ultimate Affiliate Pro</strong> "."plugin"." lic"."ense ".
-											"is "."not "."act"."iva"."ted"." and"." register"."ed."." Ple"."ase "."add "."yo"."ur "."pur"."chase "."co"
-											."de "."to the"." Lic"."ense "."sect"."ion. "."Check "."you"."r <a href='" . $url . "'>li"."c"."en"."se "."s"."ect"."ion"."</a>.</p></div>";
-				} else if ( ($w->gdcp() === true || $w->gdcp() === '' ) || $w->GLD() === '1' ){
-						$hide = get_option( 'uap_'.'hide'.'_'.'admin'.'_'.'li'.'cen'.'se' . '_notice' );
 
-						$currentPage = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
-						if ( $type === 'affiliate' && $hide ){
-								echo json_encode( [
-																		'items'			=> '',
-																		'status'		=> 404
-								] );
-						}
-
-						$data['err_class'] = ($type === 'affiliate' ) ? 'error' : 'uap'.'-'.'e'.'rr'.'or'.'-'.'global'.'-'.'dashboard'.'-'.'message';
-						$data['url'] = admin_url('admin.php?page=ultimate_affiliates_pro&tab=help');
-						ob_start();
-						$a = 'global';
-						$b = '-';
-						$c = 'e'.'rr'.'ors';
-						require UAP_PATH . 'admin/views/' . $a.$b.$c.'.php';
-						$h = ob_get_contents();
-						ob_end_clean();
-				}
-				echo json_encode( [
-														'items'			=> $h,
-														'status'		=> 200
-				] );
-				die;
-		}
-
-		/**
-		 * @param none
-		 * @return none
-		 */
-		public function uap_ajax_admin_announcement_do_close()
-		{
-				if ( !indeedIsAdmin() ){
-						die;
-				}
-				if ( !uapAdminVerifyNonce() ){
-						die;
-				}
-				update_option( 'uap_admin_announcement_initial_time', time() );
-				$step = get_option( 'uap_admin_announcement_step', false );
-				if ( $step === false ){
-						update_option( 'uap_admin_announcement_step', 1 );
-						die;
-				}
-				switch ( $step ){
-						case 1:
-							update_option( 'uap_admin_announcement_step', 2 );
-							break;
-						case 2:
-							update_option( 'uap_admin_announcement_step', 3 );
-							break;
-						case 3:
-							update_option( 'uap_admin_announcement_step', 4 );
-							break;
-						case 4:
-							update_option( 'uap_admin_announcement_step', 5 );
-							break;
-				}
-				die;
-		}
 
 		/**
 		 * @param none

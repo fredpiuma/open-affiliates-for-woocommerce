@@ -23,37 +23,6 @@ var uapWizard = {
         } );
         // end of previous page button
 
-        // skip page 1 - button
-        jQuery( '.uap-js-wizard-skip-step-1' ).on('click', function(){
-            obj.Loading();
-            obj.NextPage( obj, true );
-        });
-        // end of skip page 1 - button
-
-        // lc
-        jQuery( '.uap-js-wizard-submit-c-to-e' ).on( 'click', function(){
-                jQuery.ajax({
-                    type : "post",
-                    url : decodeURI( window.uap_url ) + '/wp-admin/admin-ajax.php',
-                    data : {
-                               action						: "uap_wizard_el_check_get_url_ajax",
-                               s 								: jQuery( '[name=h]' ).val(),
-                               nonce						: jQuery( '.uap-js-help-page-data' ).attr( 'data-nonce' ),
-    													 ls								: jQuery( '.uap-js-admin-help-section-ls' ).val(),
-    													 ame 							: jQuery( '.uap-js-admin-help-section-name').val()
-                    },
-                    success: function ( response ) {
-                        if ( response ){
-                            window.location.href = response;
-                        } else {
-                            jQuery( '[name=h]' ).parent().append( "<span class='uap-wizard-field-notice'>" + jQuery( '.uap-js-help-page-data' ).attr( 'data-help' ) + "</span>" );
-                        }
-                    }
-                });
-                return false;
-        });
-        // end of lc
-
         // skip button
         jQuery( '.uap-js-skip-wizard' ).on('click', function(){
             jQuery.ajax({

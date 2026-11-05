@@ -15,10 +15,6 @@ if ( !defined('UAP_URL')){
 require_once UAP_PATH . 'autoload.php';
 require_once UAP_PATH . 'utilities.php';
 
-$uapElCheck = new \Indeed\Uap\ElCheck();
-$uapElCheck->dorvk();
-
-
 if ( get_option('uap_keep_data_after_delete') == 1 ){
 		return;
 }

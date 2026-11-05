@@ -1,6 +1,3 @@
-<div class="uap-top-message-new-extension">
-	<?php echo esc_html_e('Extend your ','uap');?> <strong><?php esc_html_e(' Ultimate Affiliate Pro ','uap');?></strong> <?php esc_html_e(' system with extra features and functionality. Check additional available ', 'uap'); ?> <strong><?php esc_html_e('Extensions', 'uap');?></strong> <a href="https://ultimateaffiliate.pro/pro-addons/" target="_blank"><?php esc_html_e('here', 'uap');?></a>
-</div>
 <?php foreach ($data['feature_types'] as $k=>$v):?>
 	<?php if ( !isset( $v['label'] ) )continue;?>
 	<div class="uap-magic-box-wrap <?php echo ($v['enabled']) ? '' : 'uap-disabled-box';?>">

@@ -17,26 +17,7 @@
 	 <h2><?php esc_html_e('What to do', 'uap');?> <strong><?php esc_html_e('Next', 'uap');?></strong>?</h2>
             <a href="<?php echo esc_url($data['base_url'] . '&tab=affiliates');?>"  target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-affiliates-uap" aria-hidden="true"></i><?php esc_html_e('Manage Affiliates', 'uap');?></a>
             <a href="https://ultimateaffiliate.pro/docs" target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-book" aria-hidden="true"></i><?php esc_html_e('Check our Documentation', 'uap');?></a>
-            <a href="https://ultimateaffiliate.pro/videos" target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-video" aria-hidden="true"></i><?php esc_html_e('See our video Tutorials', 'uap');?></a>
-            <a href="https://ultimateaffiliate.pro/pro-addons/" target="_blank" class="uap-dashboard-page-link"><i class="fa-uap fa-cart-plus" aria-hidden="true"></i><?php esc_html_e('Explore Pro Addons', 'uap');?></a>
   </div>
-	<div class="uap-dashboard-bundle-section">
-		<div class="uap-dashboard-bundle-wrapp">
-		<div class="uap-dashboard-bundle-details">
-			<h2>Ultimate Affiliate Pro <span><?php esc_html_e('Pro Add-ons Bundle', 'uap');?></span> <?php esc_html_e('Pack', 'uap');?></h2>
-			<p><?php esc_html_e('Unlock all Ultimate Affiliate Pro add-ons offering access to every extension in a single purchase. Save significantly compared to buying add-ons individually and enhance your Ultimate Affiliate Pro experience', 'uap');?></p>
-			<div class="uap-dashboard-bundle-headline">28+ <span>Premium Addons</span> Included</div>
-				<a class="uap-first-button uap-big-button uap-text-center"  href="https://ultimateaffiliate.pro/get-bundle-pack/"><?php esc_html_e('Get it Now', 'uap');?>
-				<img src="<?php echo esc_url(UAP_URL . 'assets/images/right-arrow-icon.png');?>" alt="Ultimate Affiliate Pro"/></a>
-		</div>
-		<div class="uap-dashboard-bundle-price-details">
-			<div class="uap-price-box">
-				<h2>65%</h2>
-				<p>Discount</p>
-			</div>
-		</div>
-	</div>
-	</div>
 	<div class="uap-dashboard-features-section">
 		<h2><?php esc_html_e('At last, an effortless yet robust', 'uap');?> <strong><?php esc_html_e('WordPress Affiliate Plugin', 'uap');?></strong></h2>
 		<p><?php esc_html_e('Explore the remarkable features that make Ultimate Affiliate Pro the unparalleled choice for powerful and user-friendly affiliate tracking software in the market', 'uap');?></p>
@@ -74,19 +55,6 @@
 			<div class="uap-features-col">
 				<div class="uap-features-icon"><i class="fa-uap fa-source_details-uap"></i></div>
 				<div class="uap-features-title"><?php esc_html_e('Commission Management', 'uap');?></div>
-			</div>
-		</div>
-	</div>
-	<div class="uap-dashboard-rating-section">
-		<div class="uap-dashboard-rating-wrapp">
-			<div class="uap-dashboard-rating-icons">
-				<i class="fa-uap fa-star"></i><i class="fa-uap fa-star"></i><i class="fa-uap fa-star"></i><i class="fa-uap fa-star"></i><i class="fa-uap fa-star"></i>
-			</div>
-			<div class="uap-dashboard-rating-details">
-				<h2><?php esc_html_e('Rate your experience with', 'uap');?> <strong>Ultimate Affiliate Pro</strong></h2>
-				<p><?php esc_html_e('Help other users make the best decision and promote their websites with a premium Affiliate program.', 'uap');?></p>
-				<a class="uap-first-button uap-big-button uap-text-center"  href="https://ultimateaffiliate.pro/rating/" target="_blank"><?php esc_html_e('Rate the Plugin', 'uap');?>
-				<img src="<?php echo esc_url(UAP_URL . 'assets/images/right-arrow-icon.png');?>" alt="Ultimate Affiliate Pro"/></a>
 			</div>
 		</div>
 	</div>

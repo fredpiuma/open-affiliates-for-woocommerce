@@ -630,8 +630,6 @@ CHARACTER SET utf8 COLLATE utf8_general_ci;";
 					}
 				}
 			endforeach;
-			/// set license at 0
-			$this->return_settings_from_wp_option('licensing');
 			/// set the general-settings
 			$this->return_settings_from_wp_option('general-settings');
 		}
@@ -1117,7 +1115,6 @@ $option_groups = array(
 'notifications',
 'account_page',
 'double_email_verification',
-'licensing',
 'listing_users',
 'listing_users_inside_page',
 'sign_up_referrals',
@@ -1132,7 +1129,6 @@ $option_groups = array(
 'allow_own_referrence',
 'mlm',
 'rewrite_referrals',
-'licensing',
 'general-notification',
 );
 */
@@ -8368,18 +8364,16 @@ WHERE a.id=%d
 				'stripe_v2' => esc_html__('Stripe Managed Accounts', 'uap'),
 				'stripe_v3' => esc_html__('Stripe Managed Accounts ', 'uap'),
 			);
-			$rankLabel = uapGeneralPrefix() . uapPrevLabel() . uapRankGeneralLabel();
-			$q = new $rankLabel();
-			if (!$this->is_magic_feat_enable('paypal') || ($q->gdcp() === true || $q->gdcp() === '' || $q->GLD() === '1')) {
+			if (!$this->is_magic_feat_enable('paypal')) {
 				unset($payments['paypal']);
 			}
-			if (!$this->is_magic_feat_enable('stripe') || ($q->gdcp() === true || $q->gdcp() === '' || $q->GLD() === '1')) {
+			if (!$this->is_magic_feat_enable('stripe')) {
 				unset($payments['stripe']);
 			}
-			if (!$this->is_magic_feat_enable('stripe_v2') || ($q->gdcp() === true || $q->gdcp() === '' || $q->GLD() === '1')) {
+			if (!$this->is_magic_feat_enable('stripe_v2')) {
 				unset($payments['stripe_v2']);
 			}
-			if (!$this->is_magic_feat_enable('stripe_v3') || ($q->gdcp() === true || $q->gdcp() === '' || $q->GLD() === '1')) {
+			if (!$this->is_magic_feat_enable('stripe_v3')) {
 				unset($payments['stripe_v3']);
 			}
 			$disable_bt = get_option('uap_disable_bt_payment_system');
@@ -10217,14 +10211,6 @@ WHERE last_sent+(period*24*3600)<UNIX_TIMESTAMP();";
 				],
 			);
 			$list = apply_filters('uap_magic_feature_list', $list);
-			$list['new_extension'] = array(
-				'label'						=> esc_html__('Add new Extensions', 'uap'),
-				'link' 						=> 'https://ultimateaffiliate.pro/pro-addons/',
-				'icon'						=> 'fa-new-extension-uap',
-				'extra_class' 		=> 'uap-new-extension-box',
-				'description'			=> '',
-				'enabled'					=> 1,
-			);
 			return $list;
 		}
 		public function referral_has_source_details($referral_id = 0)
@@ -11229,7 +11215,6 @@ $array['user_login'] = $this->get_username_by_wpuid($customer_meta['id']);
 				'notifications',
 				'account_page',
 				'double_email_verification',
-				'licensing',
 				'sign_up_referrals',
 				'lifetime_commissions',
 				'reccuring_referrals',
