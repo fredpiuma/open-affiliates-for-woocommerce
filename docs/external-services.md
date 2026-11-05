@@ -21,6 +21,10 @@ O AWeber depende de um aplicativo registrado pelo desenvolvedor original (a auto
 
 Alguns textos do painel têm links para documentação de terceiros (Stripe, PayPal, etc.). São links que o usuário clica, não requisições automáticas.
 
+## Nenhuma consulta de rede no painel
+
+O menu do painel não contém itens com URL externa. No WordPress 7, a paleta de comandos valida a URL de cada item de menu com `wp_http_validate_url()`, que faz uma consulta DNS a cada carregamento. Por isso a documentação fica na tela **About & Support** e nos links das telas de configuração, e não como item de submenu.
+
 ## Como verificar
 
 Em um ambiente de teste, ative `WP_HTTP_BLOCK_EXTERNAL` e registre as chamadas com o filtro `pre_http_request`. O plugin também usa `curl` direto em algumas bibliotecas (PayPal, Stripe, e-mail marketing), então vale conferir com `tcpdump` ou um proxy.

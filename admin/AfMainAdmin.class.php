@@ -4644,7 +4644,6 @@ if (!class_exists('AfMainAdmin')){
 			$submenu['openaffiliates'][311] = [ esc_html__( 'Reports', 'openaffiliates' ), $capability, 'admin.php?page=openaffiliates&tab=reports', esc_html__( 'Reports', 'openaffiliates' ), '' , '' ];
 			$submenu['openaffiliates'][312] = [ esc_html__( 'General Settings', 'openaffiliates' ), $capability, 'admin.php?page=openaffiliates&tab=settings', esc_html__( 'General Settings', 'openaffiliates' ), '' , '' ];
 			$submenu['openaffiliates'][314] = [ esc_html__( 'Shortcodes', 'openaffiliates' ), $capability, 'admin.php?page=openaffiliates&tab=shortcodes', esc_html__( 'Shortcodes', 'openaffiliates' ), '' , '' ];
-			$submenu['openaffiliates'][316] = [ esc_html__( 'Documentation', 'openaffiliates' ), $capability, AF_DOCS_URL, 'af-admin-menu-documentation-item', 'af-admin-menu-documentation-item' ,'_blank' ];
 			$submenu['openaffiliates'][317] = [ esc_html__( 'About & Support', 'openaffiliates' ), $capability, 'admin.php?page=openaffiliates&tab=about', esc_html__( 'About & Support', 'openaffiliates' ), '' , '' ];
 
 			if ( isset( $_GET['page'] ) && sanitize_text_field( $_GET['page'] ) === 'openaffiliates' && isset( $_GET['tab'] ) ){

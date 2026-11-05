@@ -2198,7 +2198,6 @@ function afSendNotificationTest()
 jQuery( function() {
     jQuery('.af-addons-link-wrapp a').attr('target','_blank');
 		jQuery('.af-ihc-link-wrapp a').attr('target','_blank');
-		jQuery('.af-admin-menu-documentation-item a').attr('target','_blank');
 });
 
 function afDoCleanUpLogs()
