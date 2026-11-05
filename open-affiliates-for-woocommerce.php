@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Open Affiliates
-Plugin URI: https://github.com/fredericomdecastro/open-affiliates-for-woocommerce
+Plugin URI: https://github.com/fredpiuma/open-affiliates-for-woocommerce
 Description: Open-source affiliate system for WooCommerce and other stores: referral tracking, commissions, ranks, MLM, payouts and affiliate portal.
 Version: 1.0.0
 Requires at least: 6.0
@@ -100,7 +100,7 @@ class AF_Main{
 
 
 		if (!defined('AF_REPO_URL')){
-			define('AF_REPO_URL', 'https://github.com/fredericomdecastro/open-affiliates-for-woocommerce');
+			define('AF_REPO_URL', 'https://github.com/fredpiuma/open-affiliates-for-woocommerce');
 		}
 
 		if (!defined('AF_DOCS_URL')){

@@ -70,7 +70,7 @@ O Open Affiliates **não lê** dados do Ultimate Affiliate Pro (tabelas `uap_*`,
 
 ## Contribuindo
 
-Abra uma *issue* ou um *pull request* em <https://github.com/fredericomdecastro/open-affiliates-for-woocommerce>. Veja também o [CHANGELOG](CHANGELOG.md).
+Abra uma *issue* ou um *pull request* em <https://github.com/fredpiuma/open-affiliates-for-woocommerce>. Veja também o [CHANGELOG](CHANGELOG.md).
 
 ## Baseado em
 

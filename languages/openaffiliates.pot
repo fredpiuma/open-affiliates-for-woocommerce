@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Open Affiliates 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/fredericomdecastro/open-affiliates-for-woocommerce/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/fredpiuma/open-affiliates-for-woocommerce/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: open-affiliates-for-woocommerce.php
-msgid "https://github.com/fredericomdecastro/open-affiliates-for-woocommerce"
+msgid "https://github.com/fredpiuma/open-affiliates-for-woocommerce"
 msgstr ""
 
 #. Description of the plugin
