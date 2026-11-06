@@ -120,7 +120,8 @@
 		</div>
 		</div>
 </form>
-<div class="af-form-line" id="af_danger_zone" style="border:1px solid #d63638; border-radius:4px; padding:15px 20px; margin-top:30px;">
+<div id="af_danger_zone" style="border:1px solid #d63638 !important; border-radius:4px; margin-top:30px; box-sizing:border-box;">
+<div style="padding:20px 25px !important; box-sizing:border-box;">
 	<h3 class="af-h3" style="color:#d63638;"><?php esc_html_e('Danger Zone', 'openaffiliates');?></h3>
 	<p class="af-form-setting-description">
 		<?php esc_html_e('These actions cannot be undone. Export your data first.', 'openaffiliates');?>
@@ -146,6 +147,7 @@
 		</span>
 		<p class="af-form-setting-description"><?php esc_html_e('Deletes ALL Open Affiliates data (affiliates, referrals, payments, clicks, banners, ranks, notifications) and settings, trashes the default pages and starts the setup wizard again. WordPress users and WooCommerce orders are not touched.', 'openaffiliates');?></p>
 	</div>
+</div>
 </div>
 </div>
 

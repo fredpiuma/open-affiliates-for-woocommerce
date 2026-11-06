@@ -2218,17 +2218,20 @@ function afDoCleanUpLogs()
 
 /* Reset de fábrica (Admin Workflow > Danger Zone) */
 jQuery(document).ready(function(){
-    var $input = jQuery('#af_reset_confirm');
-    if ( !$input.length ){
+    if ( !jQuery('#af_reset_confirm').length ){
         return;
     }
+    var $input = jQuery('#af_reset_confirm');
     var $buttons = jQuery('.af-reset-button');
-    $input.on('input keyup change', function(){
-        $buttons.prop('disabled', jQuery(this).val() !== 'RESET');
+    var afResetIsTyped = function(){
+        return jQuery.trim( jQuery('#af_reset_confirm').val() ) === 'RESET';
+    };
+    jQuery(document).on('input keyup change paste', '#af_reset_confirm', function(){
+        setTimeout(function(){ $buttons.prop('disabled', !afResetIsTyped()); }, 0);
     });
-    $buttons.on('click', function(e){
+    jQuery(document).on('click', '.af-reset-button', function(e){
         e.preventDefault();
-        if ( $input.val() !== 'RESET' ){
+        if ( !afResetIsTyped() ){
             return;
         }
         var $button = jQuery(this);
@@ -2242,7 +2245,7 @@ jQuery(document).ready(function(){
             data: {
                 action: 'af_ajax_factory_reset',
                 mode: $button.data('mode'),
-                confirm: $input.val()
+                confirm: 'RESET'
             },
             success: function(response){
                 if ( response && response.success && response.data && response.data.redirect ){
@@ -2251,12 +2254,12 @@ jQuery(document).ready(function(){
                 }
                 alert( ( response && response.data && response.data.message ) ? response.data.message : afI18n.resetError );
                 $button.text(label);
-                $buttons.prop('disabled', $input.val() !== 'RESET');
+                $buttons.prop('disabled', !afResetIsTyped());
             },
             error: function(){
                 alert(afI18n.resetError);
                 $button.text(label);
-                $buttons.prop('disabled', $input.val() !== 'RESET');
+                $buttons.prop('disabled', !afResetIsTyped());
             }
         });
     });

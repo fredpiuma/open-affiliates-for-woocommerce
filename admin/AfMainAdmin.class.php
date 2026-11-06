@@ -4166,7 +4166,7 @@ if (!class_exists('AfMainAdmin')){
 				$is_plugin_page = TRUE;
 			}
 			wp_enqueue_style('af_font_awesome', AF_URL . 'assets/css/font-awesome.css', array(), '9.3' );
-			wp_enqueue_style('af_main_admin_style', AF_URL . 'assets/css/main_admin.css', array(), '9.3' );
+			wp_enqueue_style('af_main_admin_style', AF_URL . 'assets/css/main_admin.css', array(), '9.3-' . AF_PLUGIN_VER . '-' . (int)@filemtime( AF_PATH . 'assets/css/main_admin.css' ) );
 			if ($is_plugin_page){
 				wp_enqueue_style('af_bootstrap_style', AF_URL . 'assets/css/bootstrap.css', array(), '9.3' );
 				wp_enqueue_style('af_bootstrap_theme_style', AF_URL . 'assets/css/bootstrap-theme.css', array(), '9.3' );
@@ -4180,7 +4180,7 @@ if (!class_exists('AfMainAdmin')){
 			wp_enqueue_script('jquery');
 			wp_enqueue_media();
 			//wp_register_script('af_admin_js', AF_URL . 'assets/js/admin-functions.min.js', ['jquery'], '9.3' );
-			wp_register_script('af_admin_js', AF_URL . 'assets/js/admin-functions.js', ['jquery'], '9.3' );
+			wp_register_script('af_admin_js', AF_URL . 'assets/js/admin-functions.js', ['jquery'], '9.3-' . AF_PLUGIN_VER . '-' . (int)@filemtime( AF_PATH . 'assets/js/admin-functions.js' ) );
 
 			if ( version_compare ( $wp_version , '5.7', '>=' ) ){
 					wp_add_inline_script( 'af_admin_js', "var af_url='" . get_site_url() . "';" );

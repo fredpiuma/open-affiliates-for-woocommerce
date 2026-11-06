@@ -11,6 +11,10 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/). 
 - Ação AJAX `af_ajax_factory_reset`, que exige administrador (`manage_options`), token CSRF do painel e a palavra `RESET` no servidor.
 - Métodos `AfDb::get_plugin_table_names()`, `AfDb::reset_settings()` e `AfDb::factory_reset()`; `AfDb::unistall()` passa a usar a mesma lista de tabelas.
 
+### Corrigido
+- Os botões da zona de perigo não habilitavam em instalações atualizadas, porque o navegador reaproveitava o `admin-functions.js` em cache (a versão do arquivo era fixa em `9.3`). O JS e o CSS do painel agora usam a versão do plugin e a data do arquivo para renovar o cache, e os eventos dos botões passaram a ser delegados.
+- Faltava espaçamento interno entre a borda vermelha e o conteúdo da zona de perigo.
+
 ### Observação
 - O reset de fábrica age somente no site atual (`$wpdb->prefix`) e nunca em outros sites de uma rede multisite. Porém os metadados de apelido (slug) de afiliados ficam na tabela `usermeta`, compartilhada pela rede, e também são removidos.
 - As páginas padrão vão para a lixeira (reversível), não são apagadas definitivamente.
