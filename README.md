@@ -3,7 +3,7 @@
 Sistema de afiliados de código aberto para WooCommerce e outras lojas WordPress: rastreamento de indicações, comissões, ranks, MLM, pagamentos e portal do afiliado.
 
 ![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-blue)
-![Versão](https://img.shields.io/badge/vers%C3%A3o-1.0.0-informational)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.1.0-informational)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)
 
@@ -59,6 +59,14 @@ WooCommerce, Easy Digital Downloads, Ultimate Membership Pro e Ultimate Learning
 | `[af-affiliate]` | Dados do afiliado que indicou o visitante |
 | `[af-if-affiliate]` / `[af-if-not-affiliate]` | Conteúdo condicional pelo usuário ser ou não afiliado |
 | `[af-visitor-referred]` / `[af-visitor-not-referred]` | Conteúdo condicional pelo visitante ter ou não vindo por indicação |
+
+## Idiomas
+
+O texto original da interface é em inglês e o plugin acompanha a tradução completa para **português do Brasil** (`pt_BR`) em `languages/`. Ela é carregada automaticamente quando o idioma do site (**Configurações > Geral > Idioma do site**) é Português do Brasil.
+
+Os e-mails padrão, as mensagens padrão de login e cadastro, as páginas padrão, os banners de demonstração e os níveis de demonstração também são criados no idioma do site. Instalações que já tinham esse conteúdo em inglês o mantêm, porque ele fica gravado no banco de dados; para usar a versão traduzida, restaure o padrão de cada modelo de e-mail pelo botão correspondente.
+
+Para contribuir com outro idioma, use o arquivo `languages/openaffiliates.pot` como base.
 
 ## Serviços externos
 

@@ -2,6 +2,24 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/). O projeto segue [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [1.1.0] - 2026-11-06
+
+### Adicionado
+- Tradução completa para português do Brasil (`languages/openaffiliates-pt_BR.po` e `.mo`), com cerca de 2.600 textos.
+- Os e-mails padrão (18 modelos), as opções padrão (mensagens de login e cadastro, textos de ajuda, assuntos e corpos de notificações), as páginas padrão, os banners de demonstração e os níveis de demonstração agora são traduzíveis e seguem o idioma do site no momento em que são criados.
+- Funções auxiliares `af_server_host()`, `af_server_request_uri()` e `af_current_url()`.
+
+### Alterado
+- O idioma do plugin passa a ser carregado em `plugins_loaded` (antes, em `init`), para que o conteúdo padrão já nasça traduzido e sem o aviso de carregamento antecipado do text domain.
+- Alertas do painel (JavaScript) passam a vir do arquivo de tradução.
+- `languages/openaffiliates.pot` regenerado com os novos textos.
+
+### Corrigido
+- Avisos `Undefined array key "HTTP_HOST"` ao executar o plugin por WP-CLI (por exemplo, em `wp plugin install --force`): o plugin deixa de acessar `$_SERVER['HTTP_HOST']` e `$_SERVER['REQUEST_URI']` diretamente.
+
+### Observação
+- Instalações existentes mantêm os textos padrão em inglês já gravados no banco de dados. A tradução vale para o que for criado depois: instalações novas, o botão de restaurar o padrão dos e-mails e páginas ou banners novos.
+
 ## [1.0.0] - 2026-11-05
 
 Primeira versão do Open Affiliates, um fork de Ultimate Affiliate Pro 9.4.1 (WPIndeed Development).
