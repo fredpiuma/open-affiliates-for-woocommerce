@@ -19,7 +19,7 @@ if (!class_exists('AffiliateTracking')){
 			/// SET SETTINGS
 			global $af_db;
 			$this->settings = $af_db->return_settings_from_wp_option('general-settings');
-			$current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$current_url = af_current_url();
 
 
 			/// NO Referral Variable
@@ -202,7 +202,7 @@ if (!class_exists('AffiliateTracking')){
 
 		protected function do_redirect($target_url=''){
 				// check if original url is the with target url in order to prevent infinite loop
-				$originalUrl = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+				$originalUrl = af_current_url();
 				if ( $target_url === $originalUrl ){
 						return;
 				}
@@ -241,7 +241,7 @@ if (!class_exists('AffiliateTracking')){
 			}
 			$path = '/';
 			if ( is_multisite() && isset( $this->settings['af_cookie_sharing'] ) && $this->settings['af_cookie_sharing'] == '0'){
-				 $path = $_SERVER['HTTP_HOST'];
+				 $path = af_server_host();
 			}
 
 			// since version 9.1 json_encode

@@ -12,7 +12,7 @@ if (!class_exists('AfMainPublic')){
 			 * @param none
 			 * @return none
 			 */
-			$this->current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$this->current_url = af_current_url();
 
 			$this->referral_action();
 
@@ -525,7 +525,7 @@ if (!class_exists('AfMainPublic')){
 			if ( current_user_can( 'manage_options' ) ){
 					return;
 			}
-			$url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = af_current_url();
 
 			/// GETTING CURRENT POST ID
 			//$post_id = url_to_postid($url);

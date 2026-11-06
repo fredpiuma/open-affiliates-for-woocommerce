@@ -146,7 +146,7 @@ class BannersMeta
         }
         return [
                       'status'    => 0,
-                      'message'   => 'Something went wrong.',
+                      'message'   => __( 'Something went wrong.', 'openaffiliates' ),
         ];
     }
 
@@ -173,7 +173,7 @@ class BannersMeta
         }
         return [
                       'status'    => 0,
-                      'message'   => 'Something went wrong.',
+                      'message'   => __( 'Something went wrong.', 'openaffiliates' ),
         ];
     }
 

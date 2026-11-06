@@ -15,7 +15,7 @@ class UploadFilesSecurity
     public function process()
     {
         global $af_db;
-        $currentUri = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $currentUri = af_current_url();
         if ( !afIsRegisterPage($currentUri) ){
             return;
         }

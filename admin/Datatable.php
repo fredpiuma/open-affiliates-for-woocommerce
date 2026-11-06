@@ -83,7 +83,7 @@ class Datatable
             'lengthMenu'		=> esc_html__( "Show _MENU_ entries", 'openaffiliates'),
             'info'					=> esc_html__( "Showing _START_ to _END_ of _TOTAL_ entries", 'openaffiliates'),
             'infoEmpty'			=> esc_html__( "No Entries Available", 'openaffiliates'),
-            'infoFiltered'	=> esc_html__( "", 'openaffiliates'),
+            'infoFiltered'	=> '',
             'loadingRecords'=> esc_html__( "Loading", 'openaffiliates'),
             'zeroRecords'		=> esc_html__( "No Results Found", 'openaffiliates'),
             'emptyTable'		=> esc_html__( "No Results Found", 'openaffiliates'),

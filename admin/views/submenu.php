@@ -1,4 +1,4 @@
-<?php $current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];?>
+<?php $current_url = af_current_url();?>
 <div class="af-subtab-menu">
 	<?php
 		foreach ($data['submenu'] as $url=>$name){

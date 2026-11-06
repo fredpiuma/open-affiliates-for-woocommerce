@@ -323,7 +323,7 @@ function afConnectAweber(t){
                 auth_code: jQuery(t).val()
             },
         success: function (data) {
-            alert('Connected');
+            alert( (window.afI18n && afI18n.connected) || 'Connected' );
         }
 	});
 }
@@ -480,7 +480,7 @@ function afMakeUserAffiliate(i){
         },
         success: function (data){
         	if (data==2){
-        		alert('Admin cannot become Affiliate!');
+        		alert( (window.afI18n && afI18n.adminCannotBecomeAffiliate) || 'Admin cannot become Affiliate!' );
         	} else {
    	        	location.reload();
         	}

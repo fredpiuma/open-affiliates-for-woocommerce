@@ -21,7 +21,7 @@ class InfoAffiliateBar
         if ( !empty($_COOKIE['af_info_affiliate_bar_hide']) ){
             return;
         }
-        $this->currentPermalink = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $this->currentPermalink = af_current_url();
         add_action( 'init', [$this, 'run'], 999);
     }
 
@@ -31,9 +31,9 @@ class InfoAffiliateBar
             return false;
         }
         if ( sanitize_text_field($_POST['af_info_affiliate_bar_hide']) ){
-            setcookie( 'af_info_affiliate_bar_hide', 1, time() + 60 * 60 * 24, '/', $_SERVER['HTTP_HOST'] );
+            setcookie( 'af_info_affiliate_bar_hide', 1, time() + 60 * 60 * 24, '/', af_server_host() );
         } else {
-            setcookie( 'af_info_affiliate_bar_hide', 0, time() - 10, '/', $_SERVER['HTTP_HOST'] );
+            setcookie( 'af_info_affiliate_bar_hide', 0, time() - 10, '/', af_server_host() );
         }
     }
 

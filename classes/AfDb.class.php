@@ -866,7 +866,7 @@ CHARACTER SET utf8 COLLATE utf8_general_ci;";
 			$insert_array = array(
 				'af_general_register_default_page' => array(
 					'title' => esc_html__('Become an Affiliate', 'openaffiliates'),
-					'content' => '<p>Join our affiliate program and earn commission on each successful sale you refer or new customer signup. Apply today and start earning!</p><p>[af-register]</p>',
+					'content' => '<p>' . __( 'Join our affiliate program and earn commission on each successful sale you refer or new customer signup. Apply today and start earning!', 'openaffiliates' ) . '</p><p>[af-register]</p>',
 				),
 				'af_general_login_default_page' => array(
 					'title' => esc_html__('Affiliate Login', 'openaffiliates'),
@@ -878,7 +878,7 @@ CHARACTER SET utf8 COLLATE utf8_general_ci;";
 				),
 				'af_general_lost_pass_page' => array(
 					'title' => esc_html__('Affiliate Reset Password', 'openaffiliates'),
-					'content' => '<p>Please enter your username or email address below. You will receive a link to confirm the request via email. A new generated password will be provided which can be changed later from Affiliate Portal.</p><p>[af-reset-password]</p>',
+					'content' => '<p>' . __( 'Please enter your username or email address below. You will receive a link to confirm the request via email. A new generated password will be provided which can be changed later from Affiliate Portal.', 'openaffiliates' ) . '</p><p>[af-reset-password]</p>',
 				),
 				'af_general_tos_page' => array(
 					'title' => esc_html__('Affiliate TOS Page', 'openaffiliates'),
@@ -928,48 +928,48 @@ CHARACTER SET utf8 COLLATE utf8_general_ci;";
 			$array = array(
 				array(
 					'name' => esc_html__('Creative One', 'openaffiliates'),
-					'description' => 'Building Awesome Marketing Tool',
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => $home_url,
 					'image' => AF_URL . 'assets/images/banner_1.jpg',
 					'status' => 1,
 					'content_type' => "image",
-					'alt_text' => "Building Awesome Marketing Tool",
+					'alt_text' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 				),
 				array(
 					'name' => esc_html__('Creative Two', 'openaffiliates'),
-					'description' => 'Building Awesome Marketing Tool',
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => $home_url,
 					'image' => AF_URL . 'assets/images/banner_2.jpg',
 					'status' => 1,
 					'content_type' => "image",
-					'alt_text' => "Building Awesome Marketing Tool",
+					'alt_text' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 				),
 				array(
 					'name' => esc_html__('Creative Three', 'openaffiliates'),
-					'description' => 'Building Awesome Marketing Tool',
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => $home_url,
 					'image' => AF_URL . 'assets/images/banner_3.jpg',
 					'status' => 1,
 					'content_type' => "image",
-					'alt_text' => "Building Awesome Marketing Tool",
+					'alt_text' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 				),
 				array(
 					'name' => esc_html__('Creative Four', 'openaffiliates'),
-					'description' => 'Building Awesome Marketing Tool',
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => $home_url,
 					'image' => AF_URL . 'assets/images/banner_4.jpg',
 					'status' => 1,
 					'content_type' => "image",
-					'alt_text' => "Building Awesome Marketing Tool",
+					'alt_text' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 				),
 				array(
 					'name' => esc_html__('Creative Five', 'openaffiliates'),
-					'description' => 'Building Awesome Marketing Tool',
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => $home_url,
 					'image' => AF_URL . 'assets/images/banner_5.jpg',
 					'status' => 1,
 					'content_type' => "image",
-					'alt_text' => "Building Awesome Marketing Tool",
+					'alt_text' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 				),
 			);
 			$prefixes = $this->get_all_prefixes();
@@ -1289,8 +1289,8 @@ delete_option($key);
 				//get banner meta list
 				return array(
 					'id' => 0,
-					'name' => 'Untitled Banner',
-					'description' => 'Building Awesome Marketing Tool',
+					'name' => __( 'Untitled Banner', 'openaffiliates' ),
+					'description' => __( 'Building Awesome Marketing Tool', 'openaffiliates' ),
 					'url' => get_site_url(),
 					'image'	=> 'http://www.example.com/wp-content/uploads/shooting_stars.jpg',
 					'status' => 1
@@ -2340,13 +2340,13 @@ WHERE id=%d
 					break;
 				case 'login-messages':
 					$arr = array(
-						'af_login_succes' => 'Welcome on our Platform!',
-						'af_login_pending' => 'Your Affiliate account has not been approved yet. Please try again later or contact support for assistance',
-						'af_login_error' => 'Invalid affiliate email address or password entered. Please check your credentials and try again',
-						'af_reset_msg_pass_err' => 'Invalid affiliate email address or username entered. Please check your credentials and try again',
-						'af_reset_msg_pass_ok' => 'An email has been sent to you. Please follow the steps provided in the email to reset your password',
-						'af_login_error_email_pending' => 'Your Affiliate Email address has not been verified yet. Please verify your email address to proceed',
-						'af_login_error_on_captcha' => 'Oops! There was an error with the reCaptcha. Please try again',
+						'af_login_succes' => __( 'Welcome on our Platform!', 'openaffiliates' ),
+						'af_login_pending' => __( 'Your Affiliate account has not been approved yet. Please try again later or contact support for assistance', 'openaffiliates' ),
+						'af_login_error' => __( 'Invalid affiliate email address or password entered. Please check your credentials and try again', 'openaffiliates' ),
+						'af_reset_msg_pass_err' => __( 'Invalid affiliate email address or username entered. Please check your credentials and try again', 'openaffiliates' ),
+						'af_reset_msg_pass_ok' => __( 'An email has been sent to you. Please follow the steps provided in the email to reset your password', 'openaffiliates' ),
+						'af_login_error_email_pending' => __( 'Your Affiliate Email address has not been verified yet. Please verify your email address to proceed', 'openaffiliates' ),
+						'af_login_error_on_captcha' => __( 'Oops! There was an error with the reCaptcha. Please try again', 'openaffiliates' ),
 					);
 					break;
 				case 'general-settings':
@@ -2388,7 +2388,7 @@ WHERE id=%d
 				case 'general-public_workflow':
 					$arr = array(
 						'af_hide_payments_warnings' => 0,
-						'af_payments_warnings_message' => "Please select a payout method. You can complete the setup by providing your preferred payout method",
+						'af_payments_warnings_message' => __( "Please select a payout method. You can complete the setup by providing your preferred payout method", 'openaffiliates' ),
 						'af_default_payment_system' => 'bt',
 						'af_disable_bt_payment_system' => 0,
 						'af_payments_grace_period' => 30,
@@ -2396,13 +2396,13 @@ WHERE id=%d
 						'af_custom_source_name_woo' => 'WooCommerce',
 						'af_custom_source_name_ump' => 'Ultimate Membership Pro',
 						'af_custom_source_name_ulp' => 'Ultimate Learning Pro',
-						'af_custom_source_name_edd' => 'Easy Download Digital',
-						'af_custom_source_name_bonus' => 'Bonus on Rank',
-						'af_custom_source_name_mlm' => 'Multi-Level Marketing',
-						'af_custom_source_name_landing_commissions' => 'Landing commissions',
-						'af_custom_source_name_user_signup' => 'User SignUp',
-						'af_custom_source_name_ppc' => 'Pay per Click',
-						'af_custom_source_name_cpm' => 'CPM Commission',
+						'af_custom_source_name_edd' => __( 'Easy Download Digital', 'openaffiliates' ),
+						'af_custom_source_name_bonus' => __( 'Bonus on Rank', 'openaffiliates' ),
+						'af_custom_source_name_mlm' => __( 'Multi-Level Marketing', 'openaffiliates' ),
+						'af_custom_source_name_landing_commissions' => __( 'Landing commissions', 'openaffiliates' ),
+						'af_custom_source_name_user_signup' => __( 'User SignUp', 'openaffiliates' ),
+						'af_custom_source_name_ppc' => __( 'Pay per Click', 'openaffiliates' ),
+						'af_custom_source_name_cpm' => __( 'CPM Commission', 'openaffiliates' ),
 					);
 					break;
 				case 'general-uploads':
@@ -2448,7 +2448,7 @@ WHERE id=%d
 					break;
 				case 'general-msg':
 					$arr = array(
-						'af_general_update_msg' => 'Your profile information has been successfully updated!',
+						'af_general_update_msg' => __( 'Your profile information has been successfully updated!', 'openaffiliates' ),
 					);
 					break;
 				case 'general-notification':
@@ -2475,21 +2475,21 @@ WHERE id=%d
 				case 'register-msg':
 					$arr = array(
 						//messages
-						'af_register_username_taken_msg' => 'Username is already taken. Please choose a different username',
-						'af_register_error_username_msg' => 'Invalid Username. Please enter a valid username',
-						'af_register_email_is_taken_msg' => 'Email address is already in use. Please use a different email address',
-						'af_register_invalid_email_msg' => 'Please enter a valid email address',
-						'af_register_emails_not_match_msg' => 'Email addresses do not match. Please ensure that both email fields contain the same email address',
-						'af_register_pass_not_match_msg' => 'Password confirmation does not match the entered password. Please try again',
-						'af_register_pass_letter_digits_msg' => 'Password must contain both letters and digits. Please enter a valid password',
-						'af_register_pass_let_dig_up_let_msg' => 'Password must contain a combination of letters, digits, and at least one uppercase letter',
-						'af_register_pass_min_char_msg' => 'Password must contain a minimum of {X} characters',
-						'af_register_pending_user_msg' => 'Your account has not been approved yet. Please try again later!',
-						'af_register_err_req_fields' => 'Please complete all required fields before submitting',
-						'af_register_err_recaptcha' => 'Oops! There was an error with the reCaptcha. Please try again',
-						'af_register_err_tos' => 'Please accept our Terms & Conditions to proceed',
-						'af_register_success_meg' => 'Registration Successful! You can now log in with your credentials',
-						'af_register_update_msg' => 'Update Successful!',
+						'af_register_username_taken_msg' => __( 'Username is already taken. Please choose a different username', 'openaffiliates' ),
+						'af_register_error_username_msg' => __( 'Invalid Username. Please enter a valid username', 'openaffiliates' ),
+						'af_register_email_is_taken_msg' => __( 'Email address is already in use. Please use a different email address', 'openaffiliates' ),
+						'af_register_invalid_email_msg' => __( 'Please enter a valid email address', 'openaffiliates' ),
+						'af_register_emails_not_match_msg' => __( 'Email addresses do not match. Please ensure that both email fields contain the same email address', 'openaffiliates' ),
+						'af_register_pass_not_match_msg' => __( 'Password confirmation does not match the entered password. Please try again', 'openaffiliates' ),
+						'af_register_pass_letter_digits_msg' => __( 'Password must contain both letters and digits. Please enter a valid password', 'openaffiliates' ),
+						'af_register_pass_let_dig_up_let_msg' => __( 'Password must contain a combination of letters, digits, and at least one uppercase letter', 'openaffiliates' ),
+						'af_register_pass_min_char_msg' => __( 'Password must contain a minimum of {X} characters', 'openaffiliates' ),
+						'af_register_pending_user_msg' => __( 'Your account has not been approved yet. Please try again later!', 'openaffiliates' ),
+						'af_register_err_req_fields' => __( 'Please complete all required fields before submitting', 'openaffiliates' ),
+						'af_register_err_recaptcha' => __( 'Oops! There was an error with the reCaptcha. Please try again', 'openaffiliates' ),
+						'af_register_err_tos' => __( 'Please accept our Terms & Conditions to proceed', 'openaffiliates' ),
+						'af_register_success_meg' => __( 'Registration Successful! You can now log in with your credentials', 'openaffiliates' ),
+						'af_register_update_msg' => __( 'Update Successful!', 'openaffiliates' ),
 					);
 					break;
 				case 'register-custom-fields':
@@ -2559,13 +2559,13 @@ WHERE id=%d
 						'af_ap_edit_background_image' => '',
 						'af_ap_edit_show_achievement' => 1,
 						'af_ap_tabs' => 'overview,payments_settings,logout,reports,campaign_reports,referrals,visits,banners,campaigns,affiliate_link,payments,edit_account,change_pass,help,referrals_history',
-						'af_ap_welcome_msg' => '<div class="af-user-page-name"> {last_name} {first_name}</div><div class="af-user-page-mess"><span>{flag}</span>Affiliate since {user_registered}</div>',
+						'af_ap_welcome_msg' => '<div class="af-user-page-name"> {last_name} {first_name}</div><div class="af-user-page-mess"><span>{flag}</span>' . __( 'Affiliate since', 'openaffiliates' ) . ' {user_registered}</div>',
 						'af_ap_footer_msg' => '',
 						'af_account_page_custom_css' => '',
 						/// TABS SETTINGS
 						'af_tab_overview_title' => esc_html__('Dashboard', 'openaffiliates'),
 						'af_tab_overview_menu_label' => esc_html__('Dashboard', 'openaffiliates'),
-						'af_tab_overview_content' => esc_html__('', 'openaffiliates'),
+						'af_tab_overview_content' => '',
 						'af_tab_edit_account_title' => esc_html__('Edit Your Account', 'openaffiliates'),
 						'af_tab_edit_account_menu_label' => esc_html__('Edit Your Account', 'openaffiliates'),
 						'af_tab_edit_account_content' => '',
@@ -2603,11 +2603,11 @@ WHERE id=%d
 						'af_tab_referrals_history_title' => esc_html__('Referrals History', 'openaffiliates'),
 						'af_tab_referrals_history_menu_label' => esc_html__('Referrals History', 'openaffiliates'),
 						'af_tab_referrals_history_content' => '',
-						'af_tab_help_title' => esc_html__('', 'openaffiliates'),
+						'af_tab_help_title' => '',
 						'af_tab_help_menu_label' => esc_html__('Help', 'openaffiliates'),
-						'af_tab_help_content' => '<h4>How does the affiliate program work?</h4>
-<p>The affiliate program handles the affiliate accounts by tracking which affiliates have referred visitors to the website, and rewards them with a specific <strong>commission </strong>based on what the referred visitor did on the website (purchases, sign ups, etc).</p>
-<p>Affiliates use the affiliate referral link/URL to promote current website or products. Specific affiliates are tracked because their IDs or usernames are appended to their URL, therefore the system can track which affiliate link brought a customer to your website. If the customer successfully completes a conversion (i.e. a sale, or a form submission), a referral will be generated and the affiliate will be awarded a commission.</p>',
+						'af_tab_help_content' => '<h4>' . __( 'How does the affiliate program work?', 'openaffiliates' ) . '</h4>' . '
+' . '<p>' . __( 'The affiliate program handles the affiliate accounts by tracking which affiliates have referred visitors to the website, and rewards them with a specific <strong>commission </strong>based on what the referred visitor did on the website (purchases, sign ups, etc).', 'openaffiliates' ) . '</p>' . '
+' . '<p>' . __( 'Affiliates use the affiliate referral link/URL to promote current website or products. Specific affiliates are tracked because their IDs or usernames are appended to their URL, therefore the system can track which affiliate link brought a customer to your website. If the customer successfully completes a conversion (i.e. a sale, or a form submission), a referral will be generated and the affiliate will be awarded a commission.', 'openaffiliates' ) . '</p>',
 						'af_tab_payments_settings_title' => esc_html__('Payout Details', 'openaffiliates'),
 						'af_tab_payments_settings_menu_label' => esc_html__('Payout Details', 'openaffiliates'),
 						'af_tab_payments_settings_content' => '',
@@ -2669,7 +2669,7 @@ WHERE id=%d
 						'af_tab_iab_settings_icon_code'		=> 'f1de',
 						'af_tab_iab_tips_title'						=> esc_html__('Help', 'openaffiliates'),
 						'af_tab_iab_tips_menu_label'				=> esc_html__('Help', 'openaffiliates'),
-						'af_tab_iab_tips_content'					=> '<p>With Affiliate Bar you will easily generates affiliate links with just 2 clicks.</p>',
+						'af_tab_iab_tips_content'					=> '<p>' . __( 'With Affiliate Bar you will easily generates affiliate links with just 2 clicks.', 'openaffiliates' ) . '</p>',
 						'af_tab_iab_tips_icon_code'				=> 'f059',
 					);
 					//// get custom
@@ -2828,44 +2828,44 @@ WHERE id=%d
 				case 'referral_notifications':
 					$arr = array(
 						'af_referral_notifications_enable' => 0,
-						'af_referral_notification_subject' => '{blogname} New Referral ({referral_source})',
+						'af_referral_notification_subject' => __( '{blogname} New Referral ({referral_source})', 'openaffiliates' ),
 						'af_referral_notification_content' => '
-<div>Hi {first_name} {last_name},</div>
-<div></div>
-<div>Congratulations! You\’ve  received a new referral for your account ({username}):</div>
-<div></div>
-<div><strong>Amount :</strong> {referral_amount}</div>
-<div><strong>Based on:</strong> {referral_source} ({referral_reference})</div>
-<div><strong>Details :</strong> {referral_description}</div>
-<div><strong>Status :</strong> {referral_status}</div>
-<div></div>
-<div></div>
-<div>You can follow your referrals in your Affiliate Portal:</div>
-<div><a href="{account_page}">{account_page}</a></div>
+' . '<div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( 'Congratulations! You\’ve  received a new referral for your account ({username}):', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div><strong>' . __( 'Amount :', 'openaffiliates' ) . '</strong> {referral_amount}</div>' . '
+' . '<div><strong>' . __( 'Based on:', 'openaffiliates' ) . '</strong> {referral_source} ({referral_reference})</div>' . '
+' . '<div><strong>' . __( 'Details :', 'openaffiliates' ) . '</strong> {referral_description}</div>' . '
+' . '<div><strong>' . __( 'Status :', 'openaffiliates' ) . '</strong> {referral_status}</div>' . '
+' . '<div></div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( 'You can follow your referrals in your Affiliate Portal:', 'openaffiliates' ) . '</div>' . '
+' . '<div><a href="{account_page}">{account_page}</a></div>' . '
 ',
 					);
 					break;
 				case 'admin_referral_notifications':
 					$arr = array(
 						'af_admin_referral_notifications_enable' => 0,
-						'af_admin_referral_notification_subject' => '{blogname} New Referral ({referral_source})',
+						'af_admin_referral_notification_subject' => __( '{blogname} New Referral ({referral_source})', 'openaffiliates' ),
 						'af_admin_referral_notification_content' => '
-<div>Hi!</div>
-<div></div>
-<div>{first_name} {last_name}, ({username}) got a new referral:</div>
-<div></div>
-<div><strong>Amount :</strong> {referral_amount}</div>
-<div><strong>Based on:</strong> {referral_source} ({referral_reference})</div>
-<div><strong>Details :</strong> {referral_description}</div>
-<div><strong>Status :</strong> {referral_status}</div>
-<div></div>
-<div></div>
-<div>You can follow your referrals in your Affiliate Portal:</div>
-<div>{account_page}</div>
-<div></div>
-<div></div>
-<div>WooCommerce order details:</div>
-<div>{WOOCOMMERCE_ORDER_DETAILS}</div>
+' . '<div>' . __( 'Hi!', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( '{first_name} {last_name}, ({username}) got a new referral:', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div><strong>' . __( 'Amount :', 'openaffiliates' ) . '</strong> {referral_amount}</div>' . '
+' . '<div><strong>' . __( 'Based on:', 'openaffiliates' ) . '</strong> {referral_source} ({referral_reference})</div>' . '
+' . '<div><strong>' . __( 'Details :', 'openaffiliates' ) . '</strong> {referral_description}</div>' . '
+' . '<div><strong>' . __( 'Status :', 'openaffiliates' ) . '</strong> {referral_status}</div>' . '
+' . '<div></div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( 'You can follow your referrals in your Affiliate Portal:', 'openaffiliates' ) . '</div>' . '
+' . '<div>{account_page}</div>' . '
+' . '<div></div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( 'WooCommerce order details:', 'openaffiliates' ) . '</div>' . '
+' . '<div>{WOOCOMMERCE_ORDER_DETAILS}</div>' . '
 ',
 					);
 					break;
@@ -2873,18 +2873,18 @@ WHERE id=%d
 					$arr = array(
 						'af_periodically_reports_enable' => 0,
 						'af_periodically_reports_cron_hour' => 0,
-						'af_periodically_reports_subject' => '{blogname} Periodic Report for {username} Affiliate Account',
+						'af_periodically_reports_subject' => __( '{blogname} Periodic Report for {username} Affiliate Account', 'openaffiliates' ),
 						'af_periodically_reports_content' => '
-<div>Hi {first_name} {last_name},</div>
-<div></div>
-<div>Here\'s a quick overview of your Affiliate Account since your last report:</div>
-<div></div>
-<div><strong>Clicks :</strong> {visits}</div>
-<div><strong>Total Referrals :</strong> {total_referrals}</div>
-<div><strong>Earnings :</strong> {total_earnings}</div>
-<div><strong>Approved Referrals :</strong> {verified_referrals}</div>
-<div><strong>Pending Referrals :</strong> {unverified_referrals}</div>
-<div><strong>Rejected Referrals :</strong> {refuse_referrals}</div>
+' . '<div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div>' . __( 'Here\'s a quick overview of your Affiliate Account since your last report:', 'openaffiliates' ) . '</div>' . '
+' . '<div></div>' . '
+' . '<div><strong>' . __( 'Clicks :', 'openaffiliates' ) . '</strong> {visits}</div>' . '
+' . '<div><strong>' . __( 'Total Referrals :', 'openaffiliates' ) . '</strong> {total_referrals}</div>' . '
+' . '<div><strong>' . __( 'Earnings :', 'openaffiliates' ) . '</strong> {total_earnings}</div>' . '
+' . '<div><strong>' . __( 'Approved Referrals :', 'openaffiliates' ) . '</strong> {verified_referrals}</div>' . '
+' . '<div><strong>' . __( 'Pending Referrals :', 'openaffiliates' ) . '</strong> {unverified_referrals}</div>' . '
+' . '<div><strong>' . __( 'Rejected Referrals :', 'openaffiliates' ) . '</strong> {refuse_referrals}</div>' . '
 ',
 					);
 					break;

@@ -175,31 +175,31 @@
         <div class="af-stuffbox">
 			<h3 class="af-h3"><?php esc_html_e('How it works?', 'openaffiliates');?></h3>
 			<div class="inside">
-            <p>For a better understanding of how the MLM system works and provides rewards to affiliates, a common&nbsp;scenario is listed below:</p>
-			<h5><span id="mlm-settings"><strong>MLM Settings</strong></span></h5>
-			<p><strong>Matrix Depth(Levels)</strong> : <span><strong>3</strong></span></p>
-			<p><strong>Amount For Each Level</strong></p>
+            <p><?php esc_html_e('For a better understanding of how the MLM system works and provides rewards to affiliates, a common scenario is listed below:', 'openaffiliates');?></p>
+			<h5><span id="mlm-settings"><strong><?php esc_html_e('MLM Settings', 'openaffiliates');?></strong></span></h5>
+			<p><strong><?php esc_html_e('Matrix Depth(Levels)', 'openaffiliates');?></strong> : <span><strong>3</strong></span></p>
+			<p><strong><?php esc_html_e('Amount For Each Level', 'openaffiliates');?></strong></p>
 			<ul>
-			<li>Level 1: 20%</li>
-			<li>Level 2: 10%</li>
-			<li>Level 3: 5%</li>
+			<li><?php echo wp_kses_post(sprintf(__('Level %1$d: %2$s', 'openaffiliates'), 1, '20%'));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('Level %1$d: %2$s', 'openaffiliates'), 2, '10%'));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('Level %1$d: %2$s', 'openaffiliates'), 3, '5%'));?></li>
 			</ul>
-			<h5><span id="john-mlm-matrix-sub-affiliates"><span><strong>John</strong></span> MLM Matrix sub-affiliates:</span></h5>
+			<h5><span id="john-mlm-matrix-sub-affiliates"><?php echo wp_kses_post(sprintf(__('%s MLM Matrix sub-affiliates:', 'openaffiliates'), '<span><strong>John</strong></span>'));?></span></h5>
 			<ul>
-			<li><span><strong>Geo</strong></span>&nbsp;– Level 1</li>
-			<li><span><strong>Bob</strong>&nbsp;–&nbsp;</span>Level 2</li>
-			<li><span><strong>Max</strong>&nbsp;–&nbsp;</span>Level 3</li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s – Level %2$d', 'openaffiliates'), '<span><strong>Geo</strong></span>', 1));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s – Level %2$d', 'openaffiliates'), '<span><strong>Bob</strong></span>', 2));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s – Level %2$d', 'openaffiliates'), '<span><strong>Max</strong></span>', 3));?></li>
 			</ul>
-			<h5><span id="actions">Actions:</span></h5>
-			<p><strong>Max</strong> has Rank “Premium” with Amount: <strong>%25</strong><br>
-			<strong>Max</strong> refers a user that purchases a product of: <strong>$400</strong><br>
-			Rank Reward:<br>
-			<strong>Max</strong> gets a referral of: <strong>$100</strong></p>
-			<h5><span id="mlm-rewards">MLM Rewards:</span></h5>
+			<h5><span id="actions"><?php esc_html_e('Actions:', 'openaffiliates');?></span></h5>
+			<p><?php echo wp_kses_post(sprintf(__('%1$s has Rank “Premium” with Amount: %2$s', 'openaffiliates'), '<strong>Max</strong>', '<strong>%25</strong>'));?><br>
+			<?php echo wp_kses_post(sprintf(__('%1$s refers a user that purchases a product of: %2$s', 'openaffiliates'), '<strong>Max</strong>', '<strong>$400</strong>'));?><br>
+			<?php esc_html_e('Rank Reward:', 'openaffiliates');?><br>
+			<?php echo wp_kses_post(sprintf(__('%1$s gets a referral of: %2$s', 'openaffiliates'), '<strong>Max</strong>', '<strong>$100</strong>'));?></p>
+			<h5><span id="mlm-rewards"><?php esc_html_e('MLM Rewards:', 'openaffiliates');?></span></h5>
 			<ul>
-			<li>Bob gets: $20 (20% of $100)</li>
-			<li>Geo gets: $10 (10% of $100)</li>
-			<li>John gets: $5 (5% of $100)</li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s gets: %2$s (%3$s of %4$s)', 'openaffiliates'), 'Bob', '$20', '20%', '$100'));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s gets: %2$s (%3$s of %4$s)', 'openaffiliates'), 'Geo', '$10', '10%', '$100'));?></li>
+			<li><?php echo wp_kses_post(sprintf(__('%1$s gets: %2$s (%3$s of %4$s)', 'openaffiliates'), 'John', '$5', '5%', '$100'));?></li>
 			</ul>
             </div>
        	</div>

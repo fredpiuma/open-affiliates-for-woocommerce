@@ -83,7 +83,7 @@ if (defined('WORDPRESS_SOCIAL_LOGIN_ABS_PATH')){
 				</div>
 
 
-				<h4>Wordpress Social Login - Shortocode:</h4>
+				<h4><?php esc_html_e('WordPress Social Login - Shortcode:', 'openaffiliates');?></h4>
 				<div class="af-user-list-shortcode-wrapp">
 					<div class="content-shortcode af-text-align-center">
 						<span class="the-shortcode">[wordpress_social_login]</span>

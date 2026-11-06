@@ -535,7 +535,7 @@ if (!class_exists('TopAffiliatesList')){
 			$str = '';
 			$current_page = (empty($this->args['current_page'])) ? 1 : $this->args['current_page'];
 			$this->total_pages = ceil($this->total_users/$this->args['entries_per_page']);
-			$url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = af_current_url();
 			$str = '';
 
 			if ($this->total_pages<=5){

@@ -408,13 +408,13 @@ if (!class_exists('AfMainAdmin')){
 			$rank_1 = array(
 								'id' => 1,
 								'slug' => 'rank_1',
-								'label' => 'Basic',
+								'label' => __( 'Basic', 'openaffiliates' ),
 								'amount_type' => 'percentage',
 								'amount_value' => 10,
 								'achieve' => '',
 								'rank_order' => 1,
 								'color' => '0bb586',
-								'description' => 'A Demo Rank',
+								'description' => __( 'A Demo Rank', 'openaffiliates' ),
 								'bonus' => '',
 								'pay_per_click' => '',
 								'cpm_commission' => '',
@@ -430,13 +430,13 @@ if (!class_exists('AfMainAdmin')){
 			$rank_2 = array(
 								'id' => 2,
 								'slug' => 'rank_2',
-								'label' => 'Premium',
+								'label' => __( 'Premium', 'openaffiliates' ),
 								'amount_type' => 'percentage',
 								'amount_value' => 15,
 								'achieve' => '{"i":1,"type_1":"referrals_number","value_1":"100"}',
 								'rank_order' => 2,
 								'color' => 'f8ba01',
-								'description' => 'A Demo Rank',
+								'description' => __( 'A Demo Rank', 'openaffiliates' ),
 								'bonus' => '',
 								'pay_per_click' => '',
 								'cpm_commission' => '',
@@ -707,7 +707,7 @@ if (!class_exists('AfMainAdmin')){
 			$this->print_top_messages();
 			global $af_db;
 			require_once AF_PATH . 'classes/AffiliateAddEdit.class.php';
-			$current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$current_url = af_current_url();
 			$current_url = remove_query_arg('af_list_item', $current_url);
 			$currency = afCurrency();
 
@@ -3610,7 +3610,7 @@ if (!class_exists('AfMainAdmin')){
 			} else {
 				$where = '';
 			}
-			$current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$current_url = af_current_url();
 			$url = admin_url('admin.php?page=openaffiliates&tab=magic_features&subtab=simple_links');
 			$limit = (isset($_GET['af_limit'])) ? sanitize_text_field($_GET['af_limit']) : 25;
 			$current_page = (empty($_GET['af_list_item'])) ? 1 : sanitize_text_field($_GET['af_list_item']);
@@ -4185,7 +4185,11 @@ if (!class_exists('AfMainAdmin')){
 			if ( version_compare ( $wp_version , '5.7', '>=' ) ){
 					wp_add_inline_script( 'af_admin_js', "var af_url='" . get_site_url() . "';" );
 					wp_add_inline_script( 'af_admin_js', "var af_gif_loading='" . AF_URL . 'assets/images/loading.gif' . "';" );
-					wp_add_inline_script( 'af_admin_js', "var afPluginUrl='" . AF_URL . "';" );
+					wp_add_inline_script( 'af_admin_js', "var afPluginUrl='" . AF_URL . "';" );
+					wp_add_inline_script( 'af_admin_js', 'var afI18n=' . wp_json_encode( array(
+						'connected' => __( 'Connected', 'openaffiliates' ),
+						'adminCannotBecomeAffiliate' => __( 'Admin cannot become Affiliate!', 'openaffiliates' ),
+					) ) . ';' );
 					wp_add_inline_script( 'af_admin_js', "var afAdminAjaxNonce='" . wp_create_nonce( 'afAdminAjaxNonce' ) . "';" );
 			} else {
 					wp_localize_script( 'af_admin_js', 'af_url', get_site_url() );

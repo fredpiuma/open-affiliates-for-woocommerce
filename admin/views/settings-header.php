@@ -1,6 +1,6 @@
 <div class="af-settings-box-wrapper">
   <div class="af-settings-tab-wrapper">
-    <?php $current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];?>
+    <?php $current_url = af_current_url();?>
     	<?php
     		foreach ($data['submenu'] as $url=>$name){
     			$selected = ($current_url==$url) ? 'af-subtab-selected' : '';

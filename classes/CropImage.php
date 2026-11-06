@@ -44,7 +44,7 @@ class CropImage
       	if (!in_array($extension, $allowedExts)){
           $this->response = array(
             "status"    => 'error',
-            "message"   => 'Something went wrong. Try again!',
+            "message"   => __( 'Something went wrong. Try again!', 'openaffiliates' ),
           );
           return $this;
       	}
@@ -126,7 +126,7 @@ class CropImage
             default:
               $this->response = array(
                           "status"  => 'error',
-                          "message" => 'Image type not supported'
+                          "message" => __( 'Image type not supported', 'openaffiliates' )
               );
               return $this;
         }

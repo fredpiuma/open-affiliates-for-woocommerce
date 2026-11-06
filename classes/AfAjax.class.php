@@ -1183,7 +1183,7 @@ class AfAjax{
 		 */
 		public function af_info_affiliate_bar_do_hide()
 		{
-				setcookie( 'af_info_affiliate_bar_hide', 1, time() + 60 * 60 * 24, '/', $_SERVER['HTTP_HOST'] );
+				setcookie( 'af_info_affiliate_bar_hide', 1, time() + 60 * 60 * 24, '/', af_server_host() );
 				echo 1;
 				die;
 		}

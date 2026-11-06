@@ -1,4 +1,30 @@
 <?php
+/**
+ * Host da requisição atual. Em contextos sem servidor web (WP-CLI, cron via CLI)
+ * HTTP_HOST não existe; nesse caso usa o host do endereço do site.
+ */
+function af_server_host(){
+	if ( isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] !== '' ){
+		return $_SERVER['HTTP_HOST'];
+	}
+	$host = function_exists( 'home_url' ) ? wp_parse_url( home_url(), PHP_URL_HOST ) : '';
+	return $host ? $host : '';
+}
+
+/**
+ * URI da requisição atual (vazia quando não há requisição web, como no WP-CLI).
+ */
+function af_server_request_uri(){
+	return isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+}
+
+/**
+ * URL completa da requisição atual.
+ */
+function af_current_url(){
+	return AF_PROTOCOL . af_server_host() . af_server_request_uri();
+}
+
 function af_reorder_arr($arr){
 	/*
 	 * @param array
@@ -1226,307 +1252,307 @@ function af_return_default_notification_content($type=''){
 	if ($type){
 		switch ($type){
 				case 'admin_user_register':
-					$template['subject'] = '{blogname}: New Affiliate User registration';
+					$template['subject'] = __( '{blogname}: New Affiliate User registration', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>New Affiliate User registration on: <strong> {blogname} </strong></div>
-					  <div><strong> Username:</strong> {username}</div>
-					  <div><strong> Email:</strong> {user_email}</div>
-					  <div>Have a nice day!</div>
+					  <div>' . __( 'New Affiliate User registration on:', 'openaffiliates' ) . ' <strong> {blogname} </strong></div>
+					  <div><strong> ' . __( 'Username:', 'openaffiliates' ) . '</strong> {username}</div>
+					  <div><strong> ' . __( 'Email:', 'openaffiliates' ) . '</strong> {user_email}</div>
+					  <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to Administrators upon new affiliate registration';
+					$template['description']	= __( 'Notification to Administrators upon new affiliate registration', 'openaffiliates' );
 					break;
 				case 'register':
-					$template['subject'] = '{blogname}: Welcome to {blogname}';
+					$template['subject'] = __( '{blogname}: Welcome to {blogname}', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {username},</div>
-					  <div>Thanks for registering on {blogname}. Your account is now active.</div>
-					  <div>To login please fill out your credentials on:<br/>
+					  <div>' . __( 'Hi {username},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Thanks for registering on {blogname}. Your account is now active.', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'To login please fill out your credentials on:', 'openaffiliates' ) . '<br/>
 					  {login_page}</div>
-					  <div>Your Username: {username}</div>
-					  <div>Have a nice day!</div>
+					  <div>' . __( 'Your Username: {username}', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Empower Affiliates with timely notifications upon the registration of their accounts';
+					$template['description']	= __( 'Empower Affiliates with timely notifications upon the registration of their accounts', 'openaffiliates' );
 					break;
 				case 'reset_password_process':
-					$template['subject'] = '{blogname}: Reset Password request';
+					$template['subject'] = __( '{blogname}: Reset Password request', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {first_name} {last_name},</div>
-					  <div>You or someone else has requested to change password for your account: {username}</div>
-					  <div>To change Your Password click on this URL:<br> {password_reset_link}</div>
-					  <div>If you did not request for a new password, please ignore this Email notification.</div>
+					  <div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'You or someone else has requested to change password for your account: {username}', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'To change Your Password click on this URL:', 'openaffiliates' ) . '<br> {password_reset_link}</div>
+					  <div>' . __( 'If you did not request for a new password, please ignore this Email notification.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'When an affiliate wants to reset his password, this notification is delivered first in order for the affiliate to approve the request. A link for requesting confirmation will be given. This will ensure that the request was made by a current affiliate and not someone else';
+					$template['description']	= __( 'When an affiliate wants to reset his password, this notification is delivered first in order for the affiliate to approve the request. A link for requesting confirmation will be given. This will ensure that the request was made by a current affiliate and not someone else', 'openaffiliates' );
 					break;
 				case 'reset_password':
-					$template['subject'] = '{blogname}: Reset Password';
+					$template['subject'] = __( '{blogname}: Reset Password', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {first_name} {last_name},</div>
-					  <div>You or someone else has requested to change password for your account: {username}</div>
-					  <div>Your new Password is: <strong>{NEW_PASSWORD}</strong></div>
-					  <div>To update your Password once you are logged from your Profile Page:{account_page}</div>
-					  <div>If you did not request for a new password, please ignore this Email notification.</div>
+					  <div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'You or someone else has requested to change password for your account: {username}', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Your new Password is:', 'openaffiliates' ) . ' <strong>{NEW_PASSWORD}</strong></div>
+					  <div>' . __( 'To update your Password once you are logged from your Profile Page:', 'openaffiliates' ) . '{account_page}</div>
+					  <div>' . __( 'If you did not request for a new password, please ignore this Email notification.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'After the affiliate confirms his reset password request a random password will be generated for him and sent via this second Notification';
+					$template['description']	= __( 'After the affiliate confirms his reset password request a random password will be generated for him and sent via this second Notification', 'openaffiliates' );
 					break;
 				case 'change_password':
-					$template['subject'] = '{blogname}: Your Password has been changed';
+					$template['subject'] = __( '{blogname}: Your Password has been changed', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {first_name} {last_name},</div>
-					  <div>Your Password has been changed.</div>
-					  <div>To login please fill out your credentials on:<br>{login_page}</div>
-					  <div>Your Username: {username}</div>
-					  <div>Have a nice day!</div>
+					  <div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Your Password has been changed.', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'To login please fill out your credentials on:', 'openaffiliates' ) . '<br>{login_page}</div>
+					  <div>' . __( 'Your Username: {username}', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'After WordPress user password have been successfully changed this notification will be sent out';
+					$template['description']	= __( 'After WordPress user password have been successfully changed this notification will be sent out', 'openaffiliates' );
 					break;
 				case 'user_update':
-					$template['subject'] = '{blogname}: Your Account has been Updated';
+					$template['subject'] = __( '{blogname}: Your Account has been Updated', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {username},</div>
-					  <div>Your Account has been Updated.</div>
-					  <div>To visit your Profile page follow the next link:<br/>{account_page}</div>
-					  <div>Have a nice day!</div>
+					  <div>' . __( 'Hi {username},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Your Account has been Updated.', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'To visit your Profile page follow the next link:', 'openaffiliates' ) . '<br/>{account_page}</div>
+					  <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to affiliates confirming successful profile updates';
+					$template['description']	= __( 'Notification to affiliates confirming successful profile updates', 'openaffiliates' );
 					break;
 				case 'rank_change':
-					$template['subject'] = '{blogname}: You\'ve got a new Rank! ';
+					$template['subject'] = __( '{blogname}: You\'ve got a new Rank! ', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {username},</div>
-					  <div>You receive a new Rank!</div>
-					  <div>Have a nice day!</div>
+					  <div>' . __( 'Hi {username},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'You receive a new Rank!', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to affiliates upon unlocking a new rank';
+					$template['description']	= __( 'Notification to affiliates upon unlocking a new rank', 'openaffiliates' );
 					break;
 				case 'admin_on_aff_change_rank':
-					$template['subject'] = '{blogname}: New Rank Achieved';
+					$template['subject'] = __( '{blogname}: New Rank Achieved', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>{username} gets the following rank {rank_name}</div>
+					  <div>' . __( '{username} gets the following rank {rank_name}', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Alert to Administrators when a new rank is assigned to an affiliate';
+					$template['description']	= __( 'Alert to Administrators when a new rank is assigned to an affiliate', 'openaffiliates' );
 					break;
 				case 'admin_affiliate_update_profile':
-					$template['subject'] = '{blogname}: Affiliate  Profile Updated';
+					$template['subject'] = __( '{blogname}: Affiliate  Profile Updated', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>{username} has update his \ her profile.</div>
+					  <div>' . __( '{username} has update his \ her profile.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to Administrators when an affiliate updates profile details';
+					$template['description']	= __( 'Notification to Administrators when an affiliate updates profile details', 'openaffiliates' );
 					break;
 				case 'affiliate_account_approve':
-					$template['subject'] = '{blogname}: Your Account has been approved';
+					$template['subject'] = __( '{blogname}: Your Account has been approved', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>{username} has been approved.</div>
+					  <div>' . __( '{username} has been approved.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to affiliates upon approval of their account';
+					$template['description']	= __( 'Notification to affiliates upon approval of their account', 'openaffiliates' );
 					break;
 				case 'affiliate_profile_delete':
-					$template['subject'] = '{blogname}: Your Account has been deleted';
+					$template['subject'] = __( '{blogname}: Your Account has been deleted', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>{username} Your account has been deleted.</div>
+					  <div>' . __( '{username} Your account has been deleted.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Alert to affiliates when their account is deleted';
+					$template['description']	= __( 'Alert to affiliates when their account is deleted', 'openaffiliates' );
 					break;
 				case 'affiliate_payment_fail':
-					$template['subject'] = '{blogname}: Payout has Failed';
+					$template['subject'] = __( '{blogname}: Payout has Failed', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Error on transfering {amount_to_pay} {amount_currency} to You!</div>
-					  <div>Please review Your payment settings or contact the administrator!</div>
+					  <div>' . __( 'Error on transfering {amount_to_pay} {amount_currency} to You!', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Please review Your payment settings or contact the administrator!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notifies affiliates when a payout has encountered an issue and failed to process successfully';
+					$template['description']	= __( 'Notifies affiliates when a payout has encountered an issue and failed to process successfully', 'openaffiliates' );
 					break;
 				case 'affiliate_payment_pending':
-					$template['subject'] = '{blogname}: Payout is on Pending';
+					$template['subject'] = __( '{blogname}: Payout is on Pending', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>{amount_to_pay} {amount_currency} has been sent to You. Payment status is pending.</div>
+					  <div>' . __( '{amount_to_pay} {amount_currency} has been sent to You. Payment status is pending.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Alerts affiliates when their payout is currently in the processing stage';
+					$template['description']	= __( 'Alerts affiliates when their payout is currently in the processing stage', 'openaffiliates' );
 					break;
 				case 'affiliate_payment_complete':
-					$template['subject'] = '{blogname}: Payout Completed';
+					$template['subject'] = __( '{blogname}: Payout Completed', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Your {amount_to_pay} {amount_currency} it\'s now available to You.</div>
+					  <div>' . __( 'Your {amount_to_pay} {amount_currency} it\'s now available to You.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Informs affiliates that their payout has been successfully processed and completed';
+					$template['description']	= __( 'Informs affiliates that their payout has been successfully processed and completed', 'openaffiliates' );
 					break;
 				case 'email_check':
-					$template['subject'] = '{blogname}: Email Verification';
+					$template['subject'] = __( '{blogname}: Email Verification', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {first_name} {last_name},</div>
-					  <div>You must confirm/validate your Email Account before logging in.</div>
-					    <div>Please click on the following link to successfully activate your account:<br/>
-					  	<a href="{verify_email_address_link}">click here</a></div>
-					      <div>Have a nice day!</div>
+					  <div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'You must confirm/validate your Email Account before logging in.', 'openaffiliates' ) . '</div>
+					    <div>' . __( 'Please click on the following link to successfully activate your account:', 'openaffiliates' ) . '<br/>
+					  	<a href="{verify_email_address_link}">' . __( 'click here', 'openaffiliates' ) . '</a></div>
+					      <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'When Double Email Verification setting is turned on, after affiliate registration this first email is sent with a generated confirmation link inside that will allow affiliate to confirm that his email is real.';
+					$template['description']	= __( 'When Double Email Verification setting is turned on, after affiliate registration this first email is sent with a generated confirmation link inside that will allow affiliate to confirm that his email is real.', 'openaffiliates' );
 					break;
 				case 'email_check_success':
-					$template['subject'] = '{blogname}: Email Verification Successfully';
+					$template['subject'] = __( '{blogname}: Email Verification Successfully', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {first_name} {last_name},</div>
-					  <div>Your account is now verified at {blogname}.</div>
-					      <div>Have a nice day!</div>
+					  <div>' . __( 'Hi {first_name} {last_name},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Your account is now verified at {blogname}.', 'openaffiliates' ) . '</div>
+					      <div>' . __( 'Have a nice day!', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'When Double Email Verification setting is turned on, after affiliate confirmed his email address a successful confirmation notification is sent';
+					$template['description']	= __( 'When Double Email Verification setting is turned on, after affiliate confirmed his email address a successful confirmation notification is sent', 'openaffiliates' );
 					break;
 				case 'register_lite_send_pass_to_user':
-					$template['subject'] = '{blogname}: Your Password';
+					$template['subject'] = __( '{blogname}: Your Password', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {username},</div>
-					  <div>Your password for {blogname} is {NEW_PASSWORD}</div>
+					  <div>' . __( 'Hi {username},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'Your password for {blogname} is {NEW_PASSWORD}', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Password notification sent to the customer after affiliate registration when the password field is not provided inside registration form';
+					$template['description']	= __( 'Password notification sent to the customer after affiliate registration when the password field is not provided inside registration form', 'openaffiliates' );
 					break;
 				case 'mlm_new_assignation':
-					$template['subject'] = '{blogname}: New MLM assignation ';
+					$template['subject'] = __( '{blogname}: New MLM assignation ', 'openaffiliates' );
 					$template['content'] = '<div style="max-width: 600px; padding: 20px; border-radius: 5px; margin: 40px auto; font-family: Open Sans,Helvetica,Arial; font-size: 15px; color: #5d5d5d;">
 					  <div style="background:#eaeaea; text-align: left; font-weight: 600; font-size: 26px; padding: 30px 30px 30px 30px; color: #5d5d5d;"">{blogname}</div>
 					<div style="background:#fff;font-size:18px; text-align: left; line-height: 40px; color: #5d5d5d; padding: 30px 25px;">
 					  <div style="padding-top:30px"></div>
-					  <div>Hi {username},</div>
-					  <div>A new user has registered using your Affiliate link.</div>
+					  <div>' . __( 'Hi {username},', 'openaffiliates' ) . '</div>
+					  <div>' . __( 'A new user has registered using your Affiliate link.', 'openaffiliates' ) . '</div>
 					<div style="padding-top:30px"></div>
 					</div>
 					<div style="background: #545454; color: #fff; padding: 20px 30px;">
-					<div>Thank you, The <a style="color: #fff;" href="{blogurl}">{blogname}</a> Team</div>
+					<div>' . sprintf( /* translators: %s: link to the site, shown as the site name */ __( 'Thank you, The %s Team', 'openaffiliates' ), '<a style="color: #fff;" href="{blogurl}">{blogname}</a>' ) . '</div>
 					</div>
 					</div>';
-					$template['description']	= 'Notification to affiliates about their assignment in MLM workflow';
+					$template['description']	= __( 'Notification to affiliates about their assignment in MLM workflow', 'openaffiliates' );
 					break;
 
 			}

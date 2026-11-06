@@ -108,7 +108,10 @@ class AF_Main{
 		}
 		/// LANGUAGES
 
-		add_action('init', array('AF_Main', 'af_load_language'));
+		// Carga antecipada: as opções padrão são criadas ao carregar o plugin, antes de plugins_loaded.
+		self::af_load_language();
+		// Recarga em plugins_loaded, quando o idioma do usuário já é conhecido.
+		add_action('plugins_loaded', array('AF_Main', 'af_load_language'), 1);
 
 		add_filter('send_password_change_email', array('AF_Main', 'af_update_passowrd_filter'), 99, 2);
 
@@ -232,15 +235,20 @@ class AF_Main{
 
 		/// BP CUSTOM MENU ITEM
 
-		$temp = $af_db->return_settings_from_wp_option('bp_account_page');
+		// Em init: ler as opções aqui, na carga do plugin, geraria textos padrão antes de o idioma estar pronto.
+		add_action('init', function() use ($af_db){
 
-		if (!empty($temp['af_bp_account_page_enable']) && is_plugin_active('buddypress/bp-loader.php')){
+			$temp = $af_db->return_settings_from_wp_option('bp_account_page');
 
-			require AF_PATH . 'classes/BuddyPressCustomMenuItem.class.php';
+			if (!empty($temp['af_bp_account_page_enable']) && is_plugin_active('buddypress/bp-loader.php')){
 
-			$bp_menu = new BuddyPressCustomMenuItem();
+				require AF_PATH . 'classes/BuddyPressCustomMenuItem.class.php';
 
-		}
+				$bp_menu = new BuddyPressCustomMenuItem();
+
+			}
+
+		}, 1);
 
 
 

@@ -283,7 +283,7 @@ class Wizard
                         'achieve'                 => '',
                         'rank_order'              => 1,
                         'color'                   => '0bb586',
-                        'description'             => 'A Demo Rank',
+                        'description'             => __( 'A Demo Rank', 'openaffiliates' ),
                         'bonus'                   => '',
                         'pay_per_click'           => '',
                         'cpm_commission'          => '',

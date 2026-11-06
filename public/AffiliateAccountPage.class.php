@@ -22,7 +22,7 @@ if (!class_exists('AffiliateAccountPage')){
 			$this->general_settings = $af_db->return_settings_from_wp_option('general-settings');
 			$this->public_extra_settings = $af_db->return_settings_from_wp_option('general-public_workflow');
 			$this->account_page_settings = $af_db->return_settings_from_wp_option('account_page');
-			$this->current_url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$this->current_url = af_current_url();
 
 			/// CREATE BASE URL
 			$this->account_page_base_url = $this->current_url;

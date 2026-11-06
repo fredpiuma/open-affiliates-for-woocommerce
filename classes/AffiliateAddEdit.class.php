@@ -1434,7 +1434,7 @@ if(!class_exists('AffiliateAddEdit')){
 				$url = get_permalink($redirect);
 			}
 			if (empty($url)){
-				$url = AF_PROTOCOL . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+				$url = af_current_url();
 			}
 
 			$url = add_query_arg(array('af_register'=>$q_arg), $url);
