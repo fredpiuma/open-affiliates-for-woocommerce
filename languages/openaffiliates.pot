@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Open Affiliates 1.0.0\n"
+"Project-Id-Version: Open Affiliates 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/fredpiuma/open-affiliates-for-woocommerce/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-05T22:51:13+00:00\n"
+"POT-Creation-Date: 2026-11-06T04:53:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: openaffiliates\n"
@@ -109,6 +109,20 @@ msgstr ""
 msgid "'allow_url_fopen' directive is disabled. In order for Open Affiliates to work properly this directive has to be set 'on'. Contact your hosting provider for more details."
 msgstr ""
 
+#: admin/AfMainAdmin.class.php:821
+msgid "Basic"
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:833
+#: admin/AfMainAdmin.class.php:877
+#: admin/Wizard.php:286
+msgid "A Demo Rank"
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:865
+msgid "Premium"
+msgstr ""
+
 #: admin/AfMainAdmin.class.php:939
 #: admin/Wizard.php:85
 msgid "Percentage (%)"
@@ -120,7 +134,7 @@ msgid "Flat Rate"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1176
-#: admin/AfMainAdmin.class.php:9245
+#: admin/AfMainAdmin.class.php:9249
 #: admin/views/new-payout.php:187
 #: admin/views/notifications-list.php:199
 #: admin/views/offers-list.php:93
@@ -130,18 +144,18 @@ msgid "Affiliates"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1178
-#: admin/AfMainAdmin.class.php:9247
+#: admin/AfMainAdmin.class.php:9251
 #: admin/views/affiliates-list.php:187
 #: admin/views/import-export.php:95
 #: admin/views/wizard.php:77
 #: admin/views/wizard.php:286
-#: open-affiliates-for-woocommerce.php:599
+#: open-affiliates-for-woocommerce.php:607
 msgid "Ranks"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1180
-#: admin/AfMainAdmin.class.php:9249
-#: open-affiliates-for-woocommerce.php:601
+#: admin/AfMainAdmin.class.php:9253
+#: open-affiliates-for-woocommerce.php:609
 msgid "Product Rates"
 msgstr ""
 
@@ -150,7 +164,7 @@ msgid "Integrations"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1190
-#: admin/AfMainAdmin.class.php:9251
+#: admin/AfMainAdmin.class.php:9255
 #: classes/AfDb.class.php:2582
 #: classes/AfDb.class.php:2583
 #: classes/AfDb.class.php:10947
@@ -158,24 +172,24 @@ msgid "Creatives"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1192
-#: admin/AfMainAdmin.class.php:9253
-#: open-affiliates-for-woocommerce.php:595
+#: admin/AfMainAdmin.class.php:9257
+#: open-affiliates-for-woocommerce.php:603
 msgid "Showcases"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1194
-#: admin/AfMainAdmin.class.php:9261
+#: admin/AfMainAdmin.class.php:9265
 #: admin/views/affiliates-list.php:93
 #: admin/views/referrals-add_edit.php:191
 #: admin/views/user-profile.php:715
 #: classes/ExportDataAsCsv.php:69
-#: open-affiliates-for-woocommerce.php:603
+#: open-affiliates-for-woocommerce.php:611
 #: public/views/account_page-overview.php:203
 msgid "Clicks"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1196
-#: admin/AfMainAdmin.class.php:9263
+#: admin/AfMainAdmin.class.php:9267
 #: admin/views/affiliates-list.php:103
 #: admin/views/manage-payments.php:68
 #: admin/views/new-payout.php:191
@@ -196,27 +210,27 @@ msgid "Referrals"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1198
-#: admin/AfMainAdmin.class.php:9265
+#: admin/AfMainAdmin.class.php:9269
 msgid "Payouts"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1200
-#: admin/AfMainAdmin.class.php:9271
+#: admin/AfMainAdmin.class.php:9275
 #: admin/views/wizard.php:95
 #: admin/views/wizard.php:365
-#: open-affiliates-for-woocommerce.php:605
+#: open-affiliates-for-woocommerce.php:613
 msgid "Email Notifications"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1202
-#: admin/AfMainAdmin.class.php:9273
-#: open-affiliates-for-woocommerce.php:597
+#: admin/AfMainAdmin.class.php:9277
+#: open-affiliates-for-woocommerce.php:605
 msgid "Extensions"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1204
 #: admin/AfMainAdmin.class.php:4533
-#: admin/AfMainAdmin.class.php:9275
+#: admin/AfMainAdmin.class.php:9279
 #: admin/Datatable.php:1280
 #: classes/AfDb.class.php:2597
 #: classes/AfDb.class.php:2598
@@ -231,15 +245,15 @@ msgstr ""
 
 #: admin/AfMainAdmin.class.php:1206
 #: admin/AfMainAdmin.class.php:5033
-#: admin/AfMainAdmin.class.php:9277
+#: admin/AfMainAdmin.class.php:9281
 #: admin/views/settings-general.php:13
-#: open-affiliates-for-woocommerce.php:609
+#: open-affiliates-for-woocommerce.php:617
 msgid "General Settings"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1212
-#: admin/AfMainAdmin.class.php:9279
-#: open-affiliates-for-woocommerce.php:607
+#: admin/AfMainAdmin.class.php:9283
+#: open-affiliates-for-woocommerce.php:615
 msgid "Shortcodes"
 msgstr ""
 
@@ -248,7 +262,7 @@ msgid "Export/Import"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1216
-#: admin/AfMainAdmin.class.php:9282
+#: admin/AfMainAdmin.class.php:9285
 #: admin/views/footer.php:6
 msgid "About & Support"
 msgstr ""
@@ -376,7 +390,7 @@ msgid "Mark as Approved"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:2667
-#: admin/AfMainAdmin.class.php:9269
+#: admin/AfMainAdmin.class.php:9273
 msgid "Mass Payouts"
 msgstr ""
 
@@ -744,76 +758,84 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8437
-#: admin/AfMainAdmin.class.php:8443
+#: admin/AfMainAdmin.class.php:8373
+msgid "Connected"
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:8374
+msgid "Admin cannot become Affiliate!"
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:8441
+#: admin/AfMainAdmin.class.php:8447
 msgid "Process completed!"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8569
+#: admin/AfMainAdmin.class.php:8573
 msgid "Affiliates - Login Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8575
+#: admin/AfMainAdmin.class.php:8579
 msgid "Affiliates - Registration Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8581
+#: admin/AfMainAdmin.class.php:8585
 msgid "Affiliates - Lost Password"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8587
+#: admin/AfMainAdmin.class.php:8591
 msgid "Affiliates - LogOut Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8593
+#: admin/AfMainAdmin.class.php:8597
 msgid "Affiliates - User Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8599
+#: admin/AfMainAdmin.class.php:8603
 msgid "Affiliates - TOS"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8643
+#: admin/AfMainAdmin.class.php:8647
 msgid "Affiliates Pro - Default Pages"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8665
+#: admin/AfMainAdmin.class.php:8669
 msgid "Affiliates Pro - Affiliate Landing Pages"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8687
-#: admin/AfMainAdmin.class.php:8707
+#: admin/AfMainAdmin.class.php:8691
+#: admin/AfMainAdmin.class.php:8711
 msgid "Affiliates Pro - Referral Details"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8817
+#: admin/AfMainAdmin.class.php:8821
 #: classes/AfDb.class.php:872
-#: open-affiliates-for-woocommerce.php:629
+#: open-affiliates-for-woocommerce.php:637
 msgid "Affiliate Login"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8819
-#: open-affiliates-for-woocommerce.php:631
+#: admin/AfMainAdmin.class.php:8823
+#: open-affiliates-for-woocommerce.php:639
 msgid "Affiliate Registration"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8821
+#: admin/AfMainAdmin.class.php:8825
 #: classes/AfDb.class.php:8105
-#: open-affiliates-for-woocommerce.php:633
+#: open-affiliates-for-woocommerce.php:641
 msgid "Lost Password"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8823
+#: admin/AfMainAdmin.class.php:8827
 #: classes/AfDb.class.php:2575
 #: classes/AfDb.class.php:8106
 #: classes/AfDb.class.php:11041
-#: open-affiliates-for-woocommerce.php:635
+#: open-affiliates-for-woocommerce.php:643
 #: public/views/account_page-header.php:861
 msgid "LogOut"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8825
-#: admin/AfMainAdmin.class.php:9259
+#: admin/AfMainAdmin.class.php:8829
+#: admin/AfMainAdmin.class.php:9263
 #: admin/views/account-page.php:63
 #: admin/views/dashboard.php:97
 #: admin/views/popup-shortcodes.php:27
@@ -822,19 +844,19 @@ msgstr ""
 #: admin/views/showcases.php:21
 #: classes/AfDb.class.php:876
 #: classes/AfDb.class.php:8107
-#: open-affiliates-for-woocommerce.php:621
-#: open-affiliates-for-woocommerce.php:637
+#: open-affiliates-for-woocommerce.php:629
+#: open-affiliates-for-woocommerce.php:645
 #: public/AfMainPublic.class.php:947
 msgid "Affiliate Portal"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8827
+#: admin/AfMainAdmin.class.php:8831
 #: classes/AfDb.class.php:8108
-#: open-affiliates-for-woocommerce.php:639
+#: open-affiliates-for-woocommerce.php:647
 msgid "TOS"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9013
+#: admin/AfMainAdmin.class.php:9017
 #: admin/views/affiliate-payment-settings.php:71
 #: admin/views/affiliate-payment-settings.php:75
 #: admin/views/user-profile.php:581
@@ -846,7 +868,7 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9015
+#: admin/AfMainAdmin.class.php:9019
 #: admin/views/affiliate-payment-settings.php:73
 #: admin/views/user-profile.php:589
 #: classes/AfDb.class.php:10544
@@ -856,12 +878,12 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9017
+#: admin/AfMainAdmin.class.php:9021
 #: public/AffiliateAccountPage.class.php:2651
 msgid "Phone"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9019
+#: admin/AfMainAdmin.class.php:9023
 #: admin/views/about.php:8
 #: admin/views/payment-form.php:191
 #: admin/views/payment-form.php:355
@@ -872,56 +894,55 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9021
+#: admin/AfMainAdmin.class.php:9025
 #: public/AffiliateAccountPage.class.php:2655
 msgid "Order Date"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9023
+#: admin/AfMainAdmin.class.php:9027
 #: public/AffiliateAccountPage.class.php:2657
 msgid "Order Amount"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9025
+#: admin/AfMainAdmin.class.php:9029
 #: public/AffiliateAccountPage.class.php:2659
 msgid "Shipping Address"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9027
+#: admin/AfMainAdmin.class.php:9031
 #: public/AffiliateAccountPage.class.php:2661
 msgid "Billing Address"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9029
+#: admin/AfMainAdmin.class.php:9033
 #: public/AffiliateAccountPage.class.php:2663
 msgid "Cart Items"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9089
+#: admin/AfMainAdmin.class.php:9093
 #: classes/WooCategoryReferralRates.php:79
 #: classes/WooCategoryReferralRates.php:156
 #: classes/WooSpecificReferralRates.php:262
 msgid "Flat "
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9091
+#: admin/AfMainAdmin.class.php:9095
 #: classes/WooCategoryReferralRates.php:82
 #: classes/WooCategoryReferralRates.php:159
 #: classes/WooSpecificReferralRates.php:265
 msgid "Percentage "
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9213
-#: admin/AfMainAdmin.class.php:9281
+#: admin/AfMainAdmin.class.php:9217
 #: admin/views/about.php:29
 msgid "Documentation"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9215
+#: admin/AfMainAdmin.class.php:9219
 msgid "ChangeLog"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9243
+#: admin/AfMainAdmin.class.php:9247
 #: classes/AfDb.class.php:2566
 #: classes/AfDb.class.php:2567
 #: classes/AfDb.class.php:10888
@@ -929,27 +950,27 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9255
+#: admin/AfMainAdmin.class.php:9259
 #: admin/views/popup-shortcodes.php:19
 #: admin/views/register-settings.php:21
 #: admin/views/showcases.php:17
-#: open-affiliates-for-woocommerce.php:615
+#: open-affiliates-for-woocommerce.php:623
 msgid "Registration Form"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9257
+#: admin/AfMainAdmin.class.php:9261
 #: admin/views/popup-shortcodes.php:21
 #: admin/views/shortcodes.php:17
 #: admin/views/showcases.php:19
-#: open-affiliates-for-woocommerce.php:617
+#: open-affiliates-for-woocommerce.php:625
 msgid "Login Form"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9265
+#: admin/AfMainAdmin.class.php:9269
 msgid "Payment History"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9267
+#: admin/AfMainAdmin.class.php:9271
 #: admin/views/affiliates-list.php:11
 #: admin/views/manage-payments.php:4
 #: admin/views/manage-payouts.php:4
@@ -3308,7 +3329,7 @@ msgstr ""
 #: admin/views/manage-payouts.php:139
 #: admin/views/referrals-list.php:419
 #: admin/views/visits.php:307
-#: utilities.php:2327
+#: utilities.php:2379
 msgid "Start:"
 msgstr ""
 
@@ -3319,7 +3340,7 @@ msgstr ""
 #: admin/views/manage-payouts.php:141
 #: admin/views/referrals-list.php:423
 #: admin/views/visits.php:311
-#: utilities.php:2331
+#: utilities.php:2383
 msgid "Until:"
 msgstr ""
 
@@ -4071,6 +4092,7 @@ msgid "This module has a high level of complexity and requires proper knowledge 
 msgstr ""
 
 #: admin/views/mlm.php:15
+#: classes/AfDb.class.php:2401
 #: classes/AfDb.class.php:2620
 #: classes/AfDb.class.php:2621
 #: classes/AfDb.class.php:9936
@@ -4100,6 +4122,7 @@ msgid "Children Limit"
 msgstr ""
 
 #: admin/views/mlm.php:93
+#: admin/views/mlm.php:359
 msgid "Matrix Depth(Levels)"
 msgstr ""
 
@@ -4129,6 +4152,7 @@ msgid "Set the default amount that will be used when no special amount is set fo
 msgstr ""
 
 #: admin/views/mlm.php:203
+#: admin/views/mlm.php:361
 msgid "Amount For Each Level"
 msgstr ""
 
@@ -4146,6 +4170,67 @@ msgstr ""
 
 #: admin/views/mlm.php:351
 msgid "How it works?"
+msgstr ""
+
+#: admin/views/mlm.php:355
+msgid "For a better understanding of how the MLM system works and provides rewards to affiliates, a common scenario is listed below:"
+msgstr ""
+
+#: admin/views/mlm.php:357
+msgid "MLM Settings"
+msgstr ""
+
+#: admin/views/mlm.php:365
+#: admin/views/mlm.php:367
+#: admin/views/mlm.php:369
+#, php-format
+msgid "Level %1$d: %2$s"
+msgstr ""
+
+#: admin/views/mlm.php:373
+#, php-format
+msgid "%s MLM Matrix sub-affiliates:"
+msgstr ""
+
+#: admin/views/mlm.php:377
+#: admin/views/mlm.php:379
+#: admin/views/mlm.php:381
+#, php-format
+msgid "%1$s – Level %2$d"
+msgstr ""
+
+#: admin/views/mlm.php:385
+msgid "Actions:"
+msgstr ""
+
+#: admin/views/mlm.php:387
+#, php-format
+msgid "%1$s has Rank “Premium” with Amount: %2$s"
+msgstr ""
+
+#: admin/views/mlm.php:389
+#, php-format
+msgid "%1$s refers a user that purchases a product of: %2$s"
+msgstr ""
+
+#: admin/views/mlm.php:391
+msgid "Rank Reward:"
+msgstr ""
+
+#: admin/views/mlm.php:393
+#, php-format
+msgid "%1$s gets a referral of: %2$s"
+msgstr ""
+
+#: admin/views/mlm.php:395
+msgid "MLM Rewards:"
+msgstr ""
+
+#: admin/views/mlm.php:399
+#: admin/views/mlm.php:401
+#: admin/views/mlm.php:403
+#, php-format
+msgid "%1$s gets: %2$s (%3$s of %4$s)"
 msgstr ""
 
 #: admin/views/new-payout.php:11
@@ -7080,7 +7165,7 @@ msgid "Templates, ShowUp fields, ShowUp Tabs, Predefined Overview"
 msgstr ""
 
 #: admin/views/showcases.php:23
-#: open-affiliates-for-woocommerce.php:619
+#: open-affiliates-for-woocommerce.php:627
 msgid "Top Affiliates"
 msgstr ""
 
@@ -8307,6 +8392,10 @@ msgstr ""
 msgid "Rank assigned to new User"
 msgstr ""
 
+#: admin/views/wp-social-login.php:171
+msgid "WordPress Social Login - Shortcode:"
+msgstr ""
+
 #: admin/views/wp-social-login.php:187
 msgid "Wordpress Social Login - Settings"
 msgstr ""
@@ -8461,8 +8550,16 @@ msgstr ""
 msgid "Become an Affiliate"
 msgstr ""
 
+#: classes/AfDb.class.php:869
+msgid "Join our affiliate program and earn commission on each successful sale you refer or new customer signup. Apply today and start earning!"
+msgstr ""
+
 #: classes/AfDb.class.php:880
 msgid "Affiliate Reset Password"
+msgstr ""
+
+#: classes/AfDb.class.php:881
+msgid "Please enter your username or email address below. You will receive a link to confirm the request via email. A new generated password will be provided which can be changed later from Affiliate Portal."
 msgstr ""
 
 #: classes/AfDb.class.php:884
@@ -8471,6 +8568,20 @@ msgstr ""
 
 #: classes/AfDb.class.php:930
 msgid "Creative One"
+msgstr ""
+
+#: classes/AfDb.class.php:931
+#: classes/AfDb.class.php:936
+#: classes/AfDb.class.php:940
+#: classes/AfDb.class.php:945
+#: classes/AfDb.class.php:949
+#: classes/AfDb.class.php:954
+#: classes/AfDb.class.php:958
+#: classes/AfDb.class.php:963
+#: classes/AfDb.class.php:967
+#: classes/AfDb.class.php:972
+#: classes/AfDb.class.php:1293
+msgid "Building Awesome Marketing Tool"
 msgstr ""
 
 #: classes/AfDb.class.php:939
@@ -8489,8 +8600,134 @@ msgstr ""
 msgid "Creative Five"
 msgstr ""
 
+#: classes/AfDb.class.php:1292
+msgid "Untitled Banner"
+msgstr ""
+
+#: classes/AfDb.class.php:2343
+msgid "Welcome on our Platform!"
+msgstr ""
+
+#: classes/AfDb.class.php:2344
+msgid "Your Affiliate account has not been approved yet. Please try again later or contact support for assistance"
+msgstr ""
+
+#: classes/AfDb.class.php:2345
+msgid "Invalid affiliate email address or password entered. Please check your credentials and try again"
+msgstr ""
+
+#: classes/AfDb.class.php:2346
+msgid "Invalid affiliate email address or username entered. Please check your credentials and try again"
+msgstr ""
+
+#: classes/AfDb.class.php:2347
+msgid "An email has been sent to you. Please follow the steps provided in the email to reset your password"
+msgstr ""
+
+#: classes/AfDb.class.php:2348
+msgid "Your Affiliate Email address has not been verified yet. Please verify your email address to proceed"
+msgstr ""
+
+#: classes/AfDb.class.php:2349
+#: classes/AfDb.class.php:2489
+msgid "Oops! There was an error with the reCaptcha. Please try again"
+msgstr ""
+
+#: classes/AfDb.class.php:2391
+msgid "Please select a payout method. You can complete the setup by providing your preferred payout method"
+msgstr ""
+
+#: classes/AfDb.class.php:2399
+msgid "Easy Download Digital"
+msgstr ""
+
+#: classes/AfDb.class.php:2400
+msgid "Bonus on Rank"
+msgstr ""
+
+#: classes/AfDb.class.php:2402
+msgid "Landing commissions"
+msgstr ""
+
+#: classes/AfDb.class.php:2403
+msgid "User SignUp"
+msgstr ""
+
+#: classes/AfDb.class.php:2404
+msgid "Pay per Click"
+msgstr ""
+
+#: classes/AfDb.class.php:2405
+#: classes/AfDb.class.php:9856
+msgid "CPM Commission"
+msgstr ""
+
+#: classes/AfDb.class.php:2451
+msgid "Your profile information has been successfully updated!"
+msgstr ""
+
 #: classes/AfDb.class.php:2471
 msgid "Accept our Terms&Conditions"
+msgstr ""
+
+#: classes/AfDb.class.php:2478
+msgid "Username is already taken. Please choose a different username"
+msgstr ""
+
+#: classes/AfDb.class.php:2479
+msgid "Invalid Username. Please enter a valid username"
+msgstr ""
+
+#: classes/AfDb.class.php:2480
+msgid "Email address is already in use. Please use a different email address"
+msgstr ""
+
+#: classes/AfDb.class.php:2481
+msgid "Please enter a valid email address"
+msgstr ""
+
+#: classes/AfDb.class.php:2482
+msgid "Email addresses do not match. Please ensure that both email fields contain the same email address"
+msgstr ""
+
+#: classes/AfDb.class.php:2483
+msgid "Password confirmation does not match the entered password. Please try again"
+msgstr ""
+
+#: classes/AfDb.class.php:2484
+msgid "Password must contain both letters and digits. Please enter a valid password"
+msgstr ""
+
+#: classes/AfDb.class.php:2485
+msgid "Password must contain a combination of letters, digits, and at least one uppercase letter"
+msgstr ""
+
+#: classes/AfDb.class.php:2486
+msgid "Password must contain a minimum of {X} characters"
+msgstr ""
+
+#: classes/AfDb.class.php:2487
+msgid "Your account has not been approved yet. Please try again later!"
+msgstr ""
+
+#: classes/AfDb.class.php:2488
+msgid "Please complete all required fields before submitting"
+msgstr ""
+
+#: classes/AfDb.class.php:2490
+msgid "Please accept our Terms & Conditions to proceed"
+msgstr ""
+
+#: classes/AfDb.class.php:2491
+msgid "Registration Successful! You can now log in with your credentials"
+msgstr ""
+
+#: classes/AfDb.class.php:2492
+msgid "Update Successful!"
+msgstr ""
+
+#: classes/AfDb.class.php:2562
+msgid "Affiliate since"
 msgstr ""
 
 #: classes/AfDb.class.php:2569
@@ -8541,6 +8778,18 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: classes/AfDb.class.php:2608
+msgid "How does the affiliate program work?"
+msgstr ""
+
+#: classes/AfDb.class.php:2609
+msgid "The affiliate program handles the affiliate accounts by tracking which affiliates have referred visitors to the website, and rewards them with a specific <strong>commission </strong>based on what the referred visitor did on the website (purchases, sign ups, etc)."
+msgstr ""
+
+#: classes/AfDb.class.php:2610
+msgid "Affiliates use the affiliate referral link/URL to promote current website or products. Specific affiliates are tracked because their IDs or usernames are appended to their URL, therefore the system can track which affiliate link brought a customer to your website. If the customer successfully completes a conversion (i.e. a sale, or a form submission), a referral will be generated and the affiliate will be awarded a commission."
+msgstr ""
+
 #: classes/AfDb.class.php:2614
 #: classes/AfDb.class.php:2615
 #: classes/AfDb.class.php:10957
@@ -8576,9 +8825,101 @@ msgstr ""
 msgid "Landing page"
 msgstr ""
 
+#: classes/AfDb.class.php:2672
+msgid "With Affiliate Bar you will easily generates affiliate links with just 2 clicks."
+msgstr ""
+
 #: classes/AfDb.class.php:2816
 #: classes/AfDb.class.php:2825
 msgid "How about to become our affiliate?"
+msgstr ""
+
+#: classes/AfDb.class.php:2831
+#: classes/AfDb.class.php:2851
+msgid "{blogname} New Referral ({referral_source})"
+msgstr ""
+
+#: classes/AfDb.class.php:2833
+#: classes/AfDb.class.php:2878
+#: utilities.php:2595
+#: utilities.php:2631
+#: utilities.php:2669
+#: utilities.php:2989
+#: utilities.php:3027
+msgid "Hi {first_name} {last_name},"
+msgstr ""
+
+#: classes/AfDb.class.php:2835
+msgid "Congratulations! You\\’ve  received a new referral for your account ({username}):"
+msgstr ""
+
+#: classes/AfDb.class.php:2837
+#: classes/AfDb.class.php:2857
+msgid "Amount :"
+msgstr ""
+
+#: classes/AfDb.class.php:2838
+#: classes/AfDb.class.php:2858
+msgid "Based on:"
+msgstr ""
+
+#: classes/AfDb.class.php:2839
+#: classes/AfDb.class.php:2859
+msgid "Details :"
+msgstr ""
+
+#: classes/AfDb.class.php:2840
+#: classes/AfDb.class.php:2860
+msgid "Status :"
+msgstr ""
+
+#: classes/AfDb.class.php:2843
+#: classes/AfDb.class.php:2863
+msgid "You can follow your referrals in your Affiliate Portal:"
+msgstr ""
+
+#: classes/AfDb.class.php:2853
+msgid "Hi!"
+msgstr ""
+
+#: classes/AfDb.class.php:2855
+msgid "{first_name} {last_name}, ({username}) got a new referral:"
+msgstr ""
+
+#: classes/AfDb.class.php:2867
+msgid "WooCommerce order details:"
+msgstr ""
+
+#: classes/AfDb.class.php:2876
+msgid "{blogname} Periodic Report for {username} Affiliate Account"
+msgstr ""
+
+#: classes/AfDb.class.php:2880
+msgid "Here's a quick overview of your Affiliate Account since your last report:"
+msgstr ""
+
+#: classes/AfDb.class.php:2882
+msgid "Clicks :"
+msgstr ""
+
+#: classes/AfDb.class.php:2883
+msgid "Total Referrals :"
+msgstr ""
+
+#: classes/AfDb.class.php:2884
+msgid "Earnings :"
+msgstr ""
+
+#: classes/AfDb.class.php:2885
+msgid "Approved Referrals :"
+msgstr ""
+
+#: classes/AfDb.class.php:2886
+msgid "Pending Referrals :"
+msgstr ""
+
+#: classes/AfDb.class.php:2887
+msgid "Rejected Referrals :"
 msgstr ""
 
 #: classes/AfDb.class.php:3013
@@ -8663,10 +9004,6 @@ msgstr ""
 
 #: classes/AfDb.class.php:9852
 msgid "PPC Campaign for affiliate users"
-msgstr ""
-
-#: classes/AfDb.class.php:9856
-msgid "CPM Commission"
 msgstr ""
 
 #: classes/AfDb.class.php:9860
@@ -9134,6 +9471,19 @@ msgstr ""
 msgid "Open Affiliates reports"
 msgstr ""
 
+#: classes/CropImage.php:139
+msgid "Something went wrong. Try again!"
+msgstr ""
+
+#: classes/CropImage.php:379
+msgid "Image type not supported"
+msgstr ""
+
+#: classes/Db/BannersMeta.php:149
+#: classes/Db/BannersMeta.php:176
+msgid "Something went wrong."
+msgstr ""
+
 #: classes/ExportDataAsCsv.php:141
 #: classes/ExportDataAsCsv.php:200
 #: classes/ExportDataAsCsv.php:282
@@ -9368,7 +9718,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: open-affiliates-for-woocommerce.php:593
+#: open-affiliates-for-woocommerce.php:601
 msgid "Affiliate Pages"
 msgstr ""
 
@@ -10418,7 +10768,7 @@ msgstr ""
 
 #: public/views/upload_image.php:27
 #: public/views/upload_image.php:69
-#: utilities.php:671
+#: utilities.php:723
 msgid "Upload"
 msgstr ""
 
@@ -10466,1123 +10816,1428 @@ msgstr ""
 msgid "Once you will convert your first Earnings into your Wallet you will find listed here all your credits."
 msgstr ""
 
-#: utilities.php:365
-#: utilities.php:369
+#: utilities.php:417
+#: utilities.php:421
 msgid "Very Weak"
 msgstr ""
 
-#: utilities.php:365
-#: utilities.php:369
+#: utilities.php:417
+#: utilities.php:421
 msgid "Weak"
 msgstr ""
 
-#: utilities.php:365
-#: utilities.php:369
+#: utilities.php:417
+#: utilities.php:421
 msgid "Good"
 msgstr ""
 
-#: utilities.php:365
-#: utilities.php:369
+#: utilities.php:417
+#: utilities.php:421
 msgid "Strong"
 msgstr ""
 
-#: utilities.php:685
+#: utilities.php:737
 msgid "To add a new file please remove the previous one!"
 msgstr ""
 
-#: utilities.php:865
+#: utilities.php:917
 msgid "Select Your Country"
 msgstr ""
 
-#: utilities.php:1337
+#: utilities.php:1389
 msgid "Link:"
 msgstr ""
 
-#: utilities.php:1369
+#: utilities.php:1421
 msgid "Custom Link: "
 msgstr ""
 
-#: utilities.php:2323
+#: utilities.php:2375
 msgid "Affiliate Username or Email Address"
 msgstr ""
 
-#: utilities.php:2391
+#: utilities.php:2443
 msgid "Apply Filter"
 msgstr ""
 
-#: utilities.php:3681
+#: utilities.php:2509
+msgid "{blogname}: New Affiliate User registration"
+msgstr ""
+
+#: utilities.php:2519
+msgid "New Affiliate User registration on:"
+msgstr ""
+
+#: utilities.php:2521
+msgid "Username:"
+msgstr ""
+
+#: utilities.php:2523
+msgid "Email:"
+msgstr ""
+
+#: utilities.php:2525
+#: utilities.php:2565
+#: utilities.php:2677
+#: utilities.php:2713
+#: utilities.php:2747
+#: utilities.php:2997
+#: utilities.php:3031
+msgid "Have a nice day!"
+msgstr ""
+
+#. translators: %s: link to the site, shown as the site name
+#: utilities.php:2533
+#: utilities.php:2573
+#: utilities.php:2609
+#: utilities.php:2647
+#: utilities.php:2685
+#: utilities.php:2721
+#: utilities.php:2755
+#: utilities.php:2785
+#: utilities.php:2815
+#: utilities.php:2845
+#: utilities.php:2875
+#: utilities.php:2907
+#: utilities.php:2937
+#: utilities.php:2967
+#: utilities.php:3005
+#: utilities.php:3039
+#: utilities.php:3071
+#: utilities.php:3103
+#, php-format
+msgid "Thank you, The %s Team"
+msgstr ""
+
+#: utilities.php:2539
+msgid "Notification to Administrators upon new affiliate registration"
+msgstr ""
+
+#: utilities.php:2545
+msgid "{blogname}: Welcome to {blogname}"
+msgstr ""
+
+#: utilities.php:2555
+#: utilities.php:2707
+#: utilities.php:2743
+#: utilities.php:3061
+#: utilities.php:3093
+msgid "Hi {username},"
+msgstr ""
+
+#: utilities.php:2557
+msgid "Thanks for registering on {blogname}. Your account is now active."
+msgstr ""
+
+#: utilities.php:2559
+#: utilities.php:2673
+msgid "To login please fill out your credentials on:"
+msgstr ""
+
+#: utilities.php:2563
+#: utilities.php:2675
+msgid "Your Username: {username}"
+msgstr ""
+
+#: utilities.php:2579
+msgid "Empower Affiliates with timely notifications upon the registration of their accounts"
+msgstr ""
+
+#: utilities.php:2585
+msgid "{blogname}: Reset Password request"
+msgstr ""
+
+#: utilities.php:2597
+#: utilities.php:2633
+msgid "You or someone else has requested to change password for your account: {username}"
+msgstr ""
+
+#: utilities.php:2599
+msgid "To change Your Password click on this URL:"
+msgstr ""
+
+#: utilities.php:2601
+#: utilities.php:2639
+msgid "If you did not request for a new password, please ignore this Email notification."
+msgstr ""
+
+#: utilities.php:2615
+msgid "When an affiliate wants to reset his password, this notification is delivered first in order for the affiliate to approve the request. A link for requesting confirmation will be given. This will ensure that the request was made by a current affiliate and not someone else"
+msgstr ""
+
+#: utilities.php:2621
+msgid "{blogname}: Reset Password"
+msgstr ""
+
+#: utilities.php:2635
+msgid "Your new Password is:"
+msgstr ""
+
+#: utilities.php:2637
+msgid "To update your Password once you are logged from your Profile Page:"
+msgstr ""
+
+#: utilities.php:2653
+msgid "After the affiliate confirms his reset password request a random password will be generated for him and sent via this second Notification"
+msgstr ""
+
+#: utilities.php:2659
+msgid "{blogname}: Your Password has been changed"
+msgstr ""
+
+#: utilities.php:2671
+msgid "Your Password has been changed."
+msgstr ""
+
+#: utilities.php:2691
+msgid "After WordPress user password have been successfully changed this notification will be sent out"
+msgstr ""
+
+#: utilities.php:2697
+msgid "{blogname}: Your Account has been Updated"
+msgstr ""
+
+#: utilities.php:2709
+msgid "Your Account has been Updated."
+msgstr ""
+
+#: utilities.php:2711
+msgid "To visit your Profile page follow the next link:"
+msgstr ""
+
+#: utilities.php:2727
+msgid "Notification to affiliates confirming successful profile updates"
+msgstr ""
+
+#: utilities.php:2733
+msgid "{blogname}: You've got a new Rank! "
+msgstr ""
+
+#: utilities.php:2745
+msgid "You receive a new Rank!"
+msgstr ""
+
+#: utilities.php:2761
+msgid "Notification to affiliates upon unlocking a new rank"
+msgstr ""
+
+#: utilities.php:2767
+msgid "{blogname}: New Rank Achieved"
+msgstr ""
+
+#: utilities.php:2777
+msgid "{username} gets the following rank {rank_name}"
+msgstr ""
+
+#: utilities.php:2791
+msgid "Alert to Administrators when a new rank is assigned to an affiliate"
+msgstr ""
+
+#: utilities.php:2797
+msgid "{blogname}: Affiliate  Profile Updated"
+msgstr ""
+
+#: utilities.php:2807
+msgid "{username} has update his \\ her profile."
+msgstr ""
+
+#: utilities.php:2821
+msgid "Notification to Administrators when an affiliate updates profile details"
+msgstr ""
+
+#: utilities.php:2827
+msgid "{blogname}: Your Account has been approved"
+msgstr ""
+
+#: utilities.php:2837
+msgid "{username} has been approved."
+msgstr ""
+
+#: utilities.php:2851
+msgid "Notification to affiliates upon approval of their account"
+msgstr ""
+
+#: utilities.php:2857
+msgid "{blogname}: Your Account has been deleted"
+msgstr ""
+
+#: utilities.php:2867
+msgid "{username} Your account has been deleted."
+msgstr ""
+
+#: utilities.php:2881
+msgid "Alert to affiliates when their account is deleted"
+msgstr ""
+
+#: utilities.php:2887
+msgid "{blogname}: Payout has Failed"
+msgstr ""
+
+#: utilities.php:2897
+msgid "Error on transfering {amount_to_pay} {amount_currency} to You!"
+msgstr ""
+
+#: utilities.php:2899
+msgid "Please review Your payment settings or contact the administrator!"
+msgstr ""
+
+#: utilities.php:2913
+msgid "Notifies affiliates when a payout has encountered an issue and failed to process successfully"
+msgstr ""
+
+#: utilities.php:2919
+msgid "{blogname}: Payout is on Pending"
+msgstr ""
+
+#: utilities.php:2929
+msgid "{amount_to_pay} {amount_currency} has been sent to You. Payment status is pending."
+msgstr ""
+
+#: utilities.php:2943
+msgid "Alerts affiliates when their payout is currently in the processing stage"
+msgstr ""
+
+#: utilities.php:2949
+msgid "{blogname}: Payout Completed"
+msgstr ""
+
+#: utilities.php:2959
+msgid "Your {amount_to_pay} {amount_currency} it's now available to You."
+msgstr ""
+
+#: utilities.php:2973
+msgid "Informs affiliates that their payout has been successfully processed and completed"
+msgstr ""
+
+#: utilities.php:2979
+msgid "{blogname}: Email Verification"
+msgstr ""
+
+#: utilities.php:2991
+msgid "You must confirm/validate your Email Account before logging in."
+msgstr ""
+
+#: utilities.php:2993
+msgid "Please click on the following link to successfully activate your account:"
+msgstr ""
+
+#: utilities.php:2995
+msgid "click here"
+msgstr ""
+
+#: utilities.php:3011
+msgid "When Double Email Verification setting is turned on, after affiliate registration this first email is sent with a generated confirmation link inside that will allow affiliate to confirm that his email is real."
+msgstr ""
+
+#: utilities.php:3017
+msgid "{blogname}: Email Verification Successfully"
+msgstr ""
+
+#: utilities.php:3029
+msgid "Your account is now verified at {blogname}."
+msgstr ""
+
+#: utilities.php:3045
+msgid "When Double Email Verification setting is turned on, after affiliate confirmed his email address a successful confirmation notification is sent"
+msgstr ""
+
+#: utilities.php:3051
+msgid "{blogname}: Your Password"
+msgstr ""
+
+#: utilities.php:3063
+msgid "Your password for {blogname} is {NEW_PASSWORD}"
+msgstr ""
+
+#: utilities.php:3077
+msgid "Password notification sent to the customer after affiliate registration when the password field is not provided inside registration form"
+msgstr ""
+
+#: utilities.php:3083
+msgid "{blogname}: New MLM assignation "
+msgstr ""
+
+#: utilities.php:3095
+msgid "A new user has registered using your Affiliate link."
+msgstr ""
+
+#: utilities.php:3109
+msgid "Notification to affiliates about their assignment in MLM workflow"
+msgstr ""
+
+#: utilities.php:3733
 msgid "Multi Level Marketing"
 msgstr ""
 
-#: utilities.php:3687
+#: utilities.php:3739
 msgid "Bonus Rank"
 msgstr ""
 
-#: utilities.php:3693
+#: utilities.php:3745
 msgid "SignUp"
 msgstr ""
 
-#: utilities.php:3707
+#: utilities.php:3759
 msgid "Based on Subscription purchases from Ultimate Membership system"
 msgstr ""
 
-#: utilities.php:3713
+#: utilities.php:3765
 msgid "Based on Product purchases from WooCommerce system"
 msgstr ""
 
-#: utilities.php:3719
+#: utilities.php:3771
 msgid "Based on Product purchases from Ultimate Learning Pro system"
 msgstr ""
 
-#: utilities.php:3725
+#: utilities.php:3777
 msgid "Based on Product purchases from Easy Digital Downloads system"
 msgstr ""
 
-#: utilities.php:3731
+#: utilities.php:3783
 msgid "Related on Rewarads provided to Affiliate from your MLM System"
 msgstr ""
 
-#: utilities.php:3737
+#: utilities.php:3789
 msgid "Bonus when a new Rank is achieved"
 msgstr ""
 
-#: utilities.php:3743
+#: utilities.php:3795
 msgid "Referrals from based on new user SignUp Rewards system"
 msgstr ""
 
-#: utilities.php:4203
+#: utilities.php:4255
 msgid "Afghanistan"
 msgstr ""
 
-#: utilities.php:4205
+#: utilities.php:4257
 msgid "&#197;land Islands"
 msgstr ""
 
-#: utilities.php:4207
+#: utilities.php:4259
 msgid "Albania"
 msgstr ""
 
-#: utilities.php:4209
+#: utilities.php:4261
 msgid "Algeria"
 msgstr ""
 
-#: utilities.php:4211
+#: utilities.php:4263
 msgid "American Samoa"
 msgstr ""
 
-#: utilities.php:4213
+#: utilities.php:4265
 msgid "Andorra"
 msgstr ""
 
-#: utilities.php:4215
+#: utilities.php:4267
 msgid "Angola"
 msgstr ""
 
-#: utilities.php:4217
+#: utilities.php:4269
 msgid "Anguilla"
 msgstr ""
 
-#: utilities.php:4219
+#: utilities.php:4271
 msgid "Antarctica"
 msgstr ""
 
-#: utilities.php:4221
+#: utilities.php:4273
 msgid "Antigua and Barbuda"
 msgstr ""
 
-#: utilities.php:4223
+#: utilities.php:4275
 msgid "Argentina"
 msgstr ""
 
-#: utilities.php:4225
+#: utilities.php:4277
 msgid "Armenia"
 msgstr ""
 
-#: utilities.php:4227
+#: utilities.php:4279
 msgid "Aruba"
 msgstr ""
 
-#: utilities.php:4229
+#: utilities.php:4281
 msgid "Australia"
 msgstr ""
 
-#: utilities.php:4231
+#: utilities.php:4283
 msgid "Austria"
 msgstr ""
 
-#: utilities.php:4233
+#: utilities.php:4285
 msgid "Azerbaijan"
 msgstr ""
 
-#: utilities.php:4235
+#: utilities.php:4287
 msgid "Bahamas"
 msgstr ""
 
-#: utilities.php:4237
+#: utilities.php:4289
 msgid "Bahrain"
 msgstr ""
 
-#: utilities.php:4239
+#: utilities.php:4291
 msgid "Bangladesh"
 msgstr ""
 
-#: utilities.php:4241
+#: utilities.php:4293
 msgid "Barbados"
 msgstr ""
 
-#: utilities.php:4243
+#: utilities.php:4295
 msgid "Belarus"
 msgstr ""
 
-#: utilities.php:4245
+#: utilities.php:4297
 msgid "Belgium"
 msgstr ""
 
-#: utilities.php:4247
+#: utilities.php:4299
 msgid "Belau"
 msgstr ""
 
-#: utilities.php:4249
+#: utilities.php:4301
 msgid "Belize"
 msgstr ""
 
-#: utilities.php:4251
+#: utilities.php:4303
 msgid "Benin"
 msgstr ""
 
-#: utilities.php:4253
+#: utilities.php:4305
 msgid "Bermuda"
 msgstr ""
 
-#: utilities.php:4255
+#: utilities.php:4307
 msgid "Bhutan"
 msgstr ""
 
-#: utilities.php:4257
+#: utilities.php:4309
 msgid "Bolivia"
 msgstr ""
 
-#: utilities.php:4259
+#: utilities.php:4311
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr ""
 
-#: utilities.php:4261
+#: utilities.php:4313
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: utilities.php:4263
+#: utilities.php:4315
 msgid "Botswana"
 msgstr ""
 
-#: utilities.php:4265
+#: utilities.php:4317
 msgid "Bouvet Island"
 msgstr ""
 
-#: utilities.php:4267
+#: utilities.php:4319
 msgid "Brazil"
 msgstr ""
 
-#: utilities.php:4269
+#: utilities.php:4321
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: utilities.php:4271
+#: utilities.php:4323
 msgid "British Virgin Islands"
 msgstr ""
 
-#: utilities.php:4273
+#: utilities.php:4325
 msgid "Brunei"
 msgstr ""
 
-#: utilities.php:4275
+#: utilities.php:4327
 msgid "Bulgaria"
 msgstr ""
 
-#: utilities.php:4277
+#: utilities.php:4329
 msgid "Burkina Faso"
 msgstr ""
 
-#: utilities.php:4279
+#: utilities.php:4331
 msgid "Burundi"
 msgstr ""
 
-#: utilities.php:4281
+#: utilities.php:4333
 msgid "Cambodia"
 msgstr ""
 
-#: utilities.php:4283
+#: utilities.php:4335
 msgid "Cameroon"
 msgstr ""
 
-#: utilities.php:4285
+#: utilities.php:4337
 msgid "Canada"
 msgstr ""
 
-#: utilities.php:4287
+#: utilities.php:4339
 msgid "Cape Verde"
 msgstr ""
 
-#: utilities.php:4289
+#: utilities.php:4341
 msgid "Cayman Islands"
 msgstr ""
 
-#: utilities.php:4291
+#: utilities.php:4343
 msgid "Central African Republic"
 msgstr ""
 
-#: utilities.php:4293
+#: utilities.php:4345
 msgid "Chad"
 msgstr ""
 
-#: utilities.php:4295
+#: utilities.php:4347
 msgid "Chile"
 msgstr ""
 
-#: utilities.php:4297
+#: utilities.php:4349
 msgid "China"
 msgstr ""
 
-#: utilities.php:4299
+#: utilities.php:4351
 msgid "Christmas Island"
 msgstr ""
 
-#: utilities.php:4301
+#: utilities.php:4353
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
-#: utilities.php:4303
+#: utilities.php:4355
 msgid "Colombia"
 msgstr ""
 
-#: utilities.php:4305
+#: utilities.php:4357
 msgid "Comoros"
 msgstr ""
 
-#: utilities.php:4307
+#: utilities.php:4359
 msgid "Congo (Brazzaville)"
 msgstr ""
 
-#: utilities.php:4309
+#: utilities.php:4361
 msgid "Congo (Kinshasa)"
 msgstr ""
 
-#: utilities.php:4311
+#: utilities.php:4363
 msgid "Cook Islands"
 msgstr ""
 
-#: utilities.php:4313
+#: utilities.php:4365
 msgid "Costa Rica"
 msgstr ""
 
-#: utilities.php:4315
+#: utilities.php:4367
 msgid "Croatia"
 msgstr ""
 
-#: utilities.php:4317
+#: utilities.php:4369
 msgid "Cuba"
 msgstr ""
 
-#: utilities.php:4319
+#: utilities.php:4371
 msgid "Cura&ccedil;ao"
 msgstr ""
 
-#: utilities.php:4321
+#: utilities.php:4373
 msgid "Cyprus"
 msgstr ""
 
-#: utilities.php:4323
+#: utilities.php:4375
 msgid "Czech Republic"
 msgstr ""
 
-#: utilities.php:4325
+#: utilities.php:4377
 msgid "Denmark"
 msgstr ""
 
-#: utilities.php:4327
+#: utilities.php:4379
 msgid "Djibouti"
 msgstr ""
 
-#: utilities.php:4329
+#: utilities.php:4381
 msgid "Dominica"
 msgstr ""
 
-#: utilities.php:4331
+#: utilities.php:4383
 msgid "Dominican Republic"
 msgstr ""
 
-#: utilities.php:4333
+#: utilities.php:4385
 msgid "Ecuador"
 msgstr ""
 
-#: utilities.php:4335
+#: utilities.php:4387
 msgid "Egypt"
 msgstr ""
 
-#: utilities.php:4337
+#: utilities.php:4389
 msgid "El Salvador"
 msgstr ""
 
-#: utilities.php:4339
+#: utilities.php:4391
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: utilities.php:4341
+#: utilities.php:4393
 msgid "Eritrea"
 msgstr ""
 
-#: utilities.php:4343
+#: utilities.php:4395
 msgid "Estonia"
 msgstr ""
 
-#: utilities.php:4345
+#: utilities.php:4397
 msgid "Ethiopia"
 msgstr ""
 
-#: utilities.php:4347
+#: utilities.php:4399
 msgid "Falkland Islands"
 msgstr ""
 
-#: utilities.php:4349
+#: utilities.php:4401
 msgid "Faroe Islands"
 msgstr ""
 
-#: utilities.php:4351
+#: utilities.php:4403
 msgid "Fiji"
 msgstr ""
 
-#: utilities.php:4353
+#: utilities.php:4405
 msgid "Finland"
 msgstr ""
 
-#: utilities.php:4355
+#: utilities.php:4407
 msgid "France"
 msgstr ""
 
-#: utilities.php:4357
+#: utilities.php:4409
 msgid "French Guiana"
 msgstr ""
 
-#: utilities.php:4359
+#: utilities.php:4411
 msgid "French Polynesia"
 msgstr ""
 
-#: utilities.php:4361
+#: utilities.php:4413
 msgid "French Southern Territories"
 msgstr ""
 
-#: utilities.php:4363
+#: utilities.php:4415
 msgid "Gabon"
 msgstr ""
 
-#: utilities.php:4365
+#: utilities.php:4417
 msgid "Gambia"
 msgstr ""
 
-#: utilities.php:4367
+#: utilities.php:4419
 msgid "Georgia"
 msgstr ""
 
-#: utilities.php:4369
+#: utilities.php:4421
 msgid "Germany"
 msgstr ""
 
-#: utilities.php:4371
+#: utilities.php:4423
 msgid "Ghana"
 msgstr ""
 
-#: utilities.php:4373
+#: utilities.php:4425
 msgid "Gibraltar"
 msgstr ""
 
-#: utilities.php:4375
+#: utilities.php:4427
 msgid "Greece"
 msgstr ""
 
-#: utilities.php:4377
+#: utilities.php:4429
 msgid "Greenland"
 msgstr ""
 
-#: utilities.php:4379
+#: utilities.php:4431
 msgid "Grenada"
 msgstr ""
 
-#: utilities.php:4381
+#: utilities.php:4433
 msgid "Guadeloupe"
 msgstr ""
 
-#: utilities.php:4383
+#: utilities.php:4435
 msgid "Guam"
 msgstr ""
 
-#: utilities.php:4385
+#: utilities.php:4437
 msgid "Guatemala"
 msgstr ""
 
-#: utilities.php:4387
+#: utilities.php:4439
 msgid "Guernsey"
 msgstr ""
 
-#: utilities.php:4389
+#: utilities.php:4441
 msgid "Guinea"
 msgstr ""
 
-#: utilities.php:4391
+#: utilities.php:4443
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: utilities.php:4393
+#: utilities.php:4445
 msgid "Guyana"
 msgstr ""
 
-#: utilities.php:4395
+#: utilities.php:4447
 msgid "Haiti"
 msgstr ""
 
-#: utilities.php:4397
+#: utilities.php:4449
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
-#: utilities.php:4399
+#: utilities.php:4451
 msgid "Honduras"
 msgstr ""
 
-#: utilities.php:4401
+#: utilities.php:4453
 msgid "Hong Kong"
 msgstr ""
 
-#: utilities.php:4403
+#: utilities.php:4455
 msgid "Hungary"
 msgstr ""
 
-#: utilities.php:4405
+#: utilities.php:4457
 msgid "Iceland"
 msgstr ""
 
-#: utilities.php:4407
+#: utilities.php:4459
 msgid "India"
 msgstr ""
 
-#: utilities.php:4409
+#: utilities.php:4461
 msgid "Indonesia"
 msgstr ""
 
-#: utilities.php:4411
+#: utilities.php:4463
 msgid "Iran"
 msgstr ""
 
-#: utilities.php:4413
+#: utilities.php:4465
 msgid "Iraq"
 msgstr ""
 
-#: utilities.php:4415
+#: utilities.php:4467
 msgid "Republic of Ireland"
 msgstr ""
 
-#: utilities.php:4417
+#: utilities.php:4469
 msgid "Isle of Man"
 msgstr ""
 
-#: utilities.php:4419
+#: utilities.php:4471
 msgid "Israel"
 msgstr ""
 
-#: utilities.php:4421
+#: utilities.php:4473
 msgid "Italy"
 msgstr ""
 
-#: utilities.php:4423
+#: utilities.php:4475
 msgid "Ivory Coast"
 msgstr ""
 
-#: utilities.php:4425
+#: utilities.php:4477
 msgid "Jamaica"
 msgstr ""
 
-#: utilities.php:4427
+#: utilities.php:4479
 msgid "Japan"
 msgstr ""
 
-#: utilities.php:4429
+#: utilities.php:4481
 msgid "Jersey"
 msgstr ""
 
-#: utilities.php:4431
+#: utilities.php:4483
 msgid "Jordan"
 msgstr ""
 
-#: utilities.php:4433
+#: utilities.php:4485
 msgid "Kazakhstan"
 msgstr ""
 
-#: utilities.php:4435
+#: utilities.php:4487
 msgid "Kenya"
 msgstr ""
 
-#: utilities.php:4437
+#: utilities.php:4489
 msgid "Kiribati"
 msgstr ""
 
-#: utilities.php:4439
+#: utilities.php:4491
 msgid "Kuwait"
 msgstr ""
 
-#: utilities.php:4441
+#: utilities.php:4493
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: utilities.php:4443
+#: utilities.php:4495
 msgid "Laos"
 msgstr ""
 
-#: utilities.php:4445
+#: utilities.php:4497
 msgid "Latvia"
 msgstr ""
 
-#: utilities.php:4447
+#: utilities.php:4499
 msgid "Lebanon"
 msgstr ""
 
-#: utilities.php:4449
+#: utilities.php:4501
 msgid "Lesotho"
 msgstr ""
 
-#: utilities.php:4451
+#: utilities.php:4503
 msgid "Liberia"
 msgstr ""
 
-#: utilities.php:4453
+#: utilities.php:4505
 msgid "Libya"
 msgstr ""
 
-#: utilities.php:4455
+#: utilities.php:4507
 msgid "Liechtenstein"
 msgstr ""
 
-#: utilities.php:4457
+#: utilities.php:4509
 msgid "Lithuania"
 msgstr ""
 
-#: utilities.php:4459
+#: utilities.php:4511
 msgid "Luxembourg"
 msgstr ""
 
-#: utilities.php:4461
+#: utilities.php:4513
 msgid "Macao S.A.R., China"
 msgstr ""
 
-#: utilities.php:4463
+#: utilities.php:4515
 msgid "Macedonia"
 msgstr ""
 
-#: utilities.php:4465
+#: utilities.php:4517
 msgid "Madagascar"
 msgstr ""
 
-#: utilities.php:4467
+#: utilities.php:4519
 msgid "Malawi"
 msgstr ""
 
-#: utilities.php:4469
+#: utilities.php:4521
 msgid "Malaysia"
 msgstr ""
 
-#: utilities.php:4471
+#: utilities.php:4523
 msgid "Maldives"
 msgstr ""
 
-#: utilities.php:4473
+#: utilities.php:4525
 msgid "Mali"
 msgstr ""
 
-#: utilities.php:4475
+#: utilities.php:4527
 msgid "Malta"
 msgstr ""
 
-#: utilities.php:4477
+#: utilities.php:4529
 msgid "Marshall Islands"
 msgstr ""
 
-#: utilities.php:4479
+#: utilities.php:4531
 msgid "Martinique"
 msgstr ""
 
-#: utilities.php:4481
+#: utilities.php:4533
 msgid "Mauritania"
 msgstr ""
 
-#: utilities.php:4483
+#: utilities.php:4535
 msgid "Mauritius"
 msgstr ""
 
-#: utilities.php:4485
+#: utilities.php:4537
 msgid "Mayotte"
 msgstr ""
 
-#: utilities.php:4487
+#: utilities.php:4539
 msgid "Mexico"
 msgstr ""
 
-#: utilities.php:4489
+#: utilities.php:4541
 msgid "Micronesia"
 msgstr ""
 
-#: utilities.php:4491
+#: utilities.php:4543
 msgid "Moldova"
 msgstr ""
 
-#: utilities.php:4493
+#: utilities.php:4545
 msgid "Monaco"
 msgstr ""
 
-#: utilities.php:4495
+#: utilities.php:4547
 msgid "Mongolia"
 msgstr ""
 
-#: utilities.php:4497
+#: utilities.php:4549
 msgid "Montenegro"
 msgstr ""
 
-#: utilities.php:4499
+#: utilities.php:4551
 msgid "Montserrat"
 msgstr ""
 
-#: utilities.php:4501
+#: utilities.php:4553
 msgid "Morocco"
 msgstr ""
 
-#: utilities.php:4503
+#: utilities.php:4555
 msgid "Mozambique"
 msgstr ""
 
-#: utilities.php:4505
+#: utilities.php:4557
 msgid "Myanmar"
 msgstr ""
 
-#: utilities.php:4507
+#: utilities.php:4559
 msgid "Namibia"
 msgstr ""
 
-#: utilities.php:4509
+#: utilities.php:4561
 msgid "Nauru"
 msgstr ""
 
-#: utilities.php:4511
+#: utilities.php:4563
 msgid "Nepal"
 msgstr ""
 
-#: utilities.php:4513
+#: utilities.php:4565
 msgid "Netherlands"
 msgstr ""
 
-#: utilities.php:4515
+#: utilities.php:4567
 msgid "Netherlands Antilles"
 msgstr ""
 
-#: utilities.php:4517
+#: utilities.php:4569
 msgid "New Caledonia"
 msgstr ""
 
-#: utilities.php:4519
+#: utilities.php:4571
 msgid "New Zealand"
 msgstr ""
 
-#: utilities.php:4521
+#: utilities.php:4573
 msgid "Nicaragua"
 msgstr ""
 
-#: utilities.php:4523
+#: utilities.php:4575
 msgid "Niger"
 msgstr ""
 
-#: utilities.php:4525
+#: utilities.php:4577
 msgid "Nigeria"
 msgstr ""
 
-#: utilities.php:4527
+#: utilities.php:4579
 msgid "Niue"
 msgstr ""
 
-#: utilities.php:4529
+#: utilities.php:4581
 msgid "Norfolk Island"
 msgstr ""
 
-#: utilities.php:4531
+#: utilities.php:4583
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: utilities.php:4533
+#: utilities.php:4585
 msgid "North Korea"
 msgstr ""
 
-#: utilities.php:4535
+#: utilities.php:4587
 msgid "Norway"
 msgstr ""
 
-#: utilities.php:4537
+#: utilities.php:4589
 msgid "Oman"
 msgstr ""
 
-#: utilities.php:4539
+#: utilities.php:4591
 msgid "Pakistan"
 msgstr ""
 
-#: utilities.php:4541
+#: utilities.php:4593
 msgid "Palestinian Territory"
 msgstr ""
 
-#: utilities.php:4543
+#: utilities.php:4595
 msgid "Panama"
 msgstr ""
 
-#: utilities.php:4545
+#: utilities.php:4597
 msgid "Papua New Guinea"
 msgstr ""
 
-#: utilities.php:4547
+#: utilities.php:4599
 msgid "Paraguay"
 msgstr ""
 
-#: utilities.php:4549
+#: utilities.php:4601
 msgid "Peru"
 msgstr ""
 
-#: utilities.php:4551
+#: utilities.php:4603
 msgid "Philippines"
 msgstr ""
 
-#: utilities.php:4553
+#: utilities.php:4605
 msgid "Pitcairn"
 msgstr ""
 
-#: utilities.php:4555
+#: utilities.php:4607
 msgid "Poland"
 msgstr ""
 
-#: utilities.php:4557
+#: utilities.php:4609
 msgid "Portugal"
 msgstr ""
 
-#: utilities.php:4559
+#: utilities.php:4611
 msgid "Puerto Rico"
 msgstr ""
 
-#: utilities.php:4561
+#: utilities.php:4613
 msgid "Qatar"
 msgstr ""
 
-#: utilities.php:4563
+#: utilities.php:4615
 msgid "Reunion"
 msgstr ""
 
-#: utilities.php:4565
+#: utilities.php:4617
 msgid "Romania"
 msgstr ""
 
-#: utilities.php:4567
+#: utilities.php:4619
 msgid "Russia"
 msgstr ""
 
-#: utilities.php:4569
+#: utilities.php:4621
 msgid "Rwanda"
 msgstr ""
 
-#: utilities.php:4571
+#: utilities.php:4623
 msgid "Saint Barth&eacute;lemy"
 msgstr ""
 
-#: utilities.php:4573
+#: utilities.php:4625
 msgid "Saint Helena"
 msgstr ""
 
-#: utilities.php:4575
+#: utilities.php:4627
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: utilities.php:4577
+#: utilities.php:4629
 msgid "Saint Lucia"
 msgstr ""
 
-#: utilities.php:4579
+#: utilities.php:4631
 msgid "Saint Martin (French part)"
 msgstr ""
 
-#: utilities.php:4581
+#: utilities.php:4633
 msgid "Saint Martin (Dutch part)"
 msgstr ""
 
-#: utilities.php:4583
+#: utilities.php:4635
 msgid "Saint Pierre and Miquelon"
 msgstr ""
 
-#: utilities.php:4585
+#: utilities.php:4637
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: utilities.php:4587
+#: utilities.php:4639
 msgid "San Marino"
 msgstr ""
 
-#: utilities.php:4589
+#: utilities.php:4641
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
 msgstr ""
 
-#: utilities.php:4591
+#: utilities.php:4643
 msgid "Saudi Arabia"
 msgstr ""
 
-#: utilities.php:4593
+#: utilities.php:4645
 msgid "Senegal"
 msgstr ""
 
-#: utilities.php:4595
+#: utilities.php:4647
 msgid "Serbia"
 msgstr ""
 
-#: utilities.php:4597
+#: utilities.php:4649
 msgid "Seychelles"
 msgstr ""
 
-#: utilities.php:4599
+#: utilities.php:4651
 msgid "Sierra Leone"
 msgstr ""
 
-#: utilities.php:4601
+#: utilities.php:4653
 msgid "Singapore"
 msgstr ""
 
-#: utilities.php:4603
+#: utilities.php:4655
 msgid "Slovakia"
 msgstr ""
 
-#: utilities.php:4605
+#: utilities.php:4657
 msgid "Slovenia"
 msgstr ""
 
-#: utilities.php:4607
+#: utilities.php:4659
 msgid "Solomon Islands"
 msgstr ""
 
-#: utilities.php:4609
+#: utilities.php:4661
 msgid "Somalia"
 msgstr ""
 
-#: utilities.php:4611
+#: utilities.php:4663
 msgid "South Africa"
 msgstr ""
 
-#: utilities.php:4613
+#: utilities.php:4665
 msgid "South Georgia/Sandwich Islands"
 msgstr ""
 
-#: utilities.php:4615
+#: utilities.php:4667
 msgid "South Korea"
 msgstr ""
 
-#: utilities.php:4617
+#: utilities.php:4669
 msgid "South Sudan"
 msgstr ""
 
-#: utilities.php:4619
+#: utilities.php:4671
 msgid "Spain"
 msgstr ""
 
-#: utilities.php:4621
+#: utilities.php:4673
 msgid "Sri Lanka"
 msgstr ""
 
-#: utilities.php:4623
+#: utilities.php:4675
 msgid "Sudan"
 msgstr ""
 
-#: utilities.php:4625
+#: utilities.php:4677
 msgid "Suriname"
 msgstr ""
 
-#: utilities.php:4627
+#: utilities.php:4679
 msgid "Svalbard and Jan Mayen"
 msgstr ""
 
-#: utilities.php:4629
+#: utilities.php:4681
 msgid "Swaziland"
 msgstr ""
 
-#: utilities.php:4631
+#: utilities.php:4683
 msgid "Sweden"
 msgstr ""
 
-#: utilities.php:4633
+#: utilities.php:4685
 msgid "Switzerland"
 msgstr ""
 
-#: utilities.php:4635
+#: utilities.php:4687
 msgid "Syria"
 msgstr ""
 
-#: utilities.php:4637
+#: utilities.php:4689
 msgid "Taiwan"
 msgstr ""
 
-#: utilities.php:4639
+#: utilities.php:4691
 msgid "Tajikistan"
 msgstr ""
 
-#: utilities.php:4641
+#: utilities.php:4693
 msgid "Tanzania"
 msgstr ""
 
-#: utilities.php:4643
+#: utilities.php:4695
 msgid "Thailand"
 msgstr ""
 
-#: utilities.php:4645
+#: utilities.php:4697
 msgid "Timor-Leste"
 msgstr ""
 
-#: utilities.php:4647
+#: utilities.php:4699
 msgid "Togo"
 msgstr ""
 
-#: utilities.php:4649
+#: utilities.php:4701
 msgid "Tokelau"
 msgstr ""
 
-#: utilities.php:4651
+#: utilities.php:4703
 msgid "Tonga"
 msgstr ""
 
-#: utilities.php:4653
+#: utilities.php:4705
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: utilities.php:4655
+#: utilities.php:4707
 msgid "Tunisia"
 msgstr ""
 
-#: utilities.php:4657
+#: utilities.php:4709
 msgid "Turkey"
 msgstr ""
 
-#: utilities.php:4659
+#: utilities.php:4711
 msgid "Turkmenistan"
 msgstr ""
 
-#: utilities.php:4661
+#: utilities.php:4713
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: utilities.php:4663
+#: utilities.php:4715
 msgid "Tuvalu"
 msgstr ""
 
-#: utilities.php:4665
+#: utilities.php:4717
 msgid "Uganda"
 msgstr ""
 
-#: utilities.php:4667
+#: utilities.php:4719
 msgid "Ukraine"
 msgstr ""
 
-#: utilities.php:4669
+#: utilities.php:4721
 msgid "United Arab Emirates"
 msgstr ""
 
-#: utilities.php:4671
+#: utilities.php:4723
 msgid "United Kingdom (UK)"
 msgstr ""
 
-#: utilities.php:4673
+#: utilities.php:4725
 msgid "United States (US)"
 msgstr ""
 
-#: utilities.php:4675
+#: utilities.php:4727
 msgid "United States (US) Minor Outlying Islands"
 msgstr ""
 
-#: utilities.php:4677
+#: utilities.php:4729
 msgid "United States (US) Virgin Islands"
 msgstr ""
 
-#: utilities.php:4679
+#: utilities.php:4731
 msgid "Uruguay"
 msgstr ""
 
-#: utilities.php:4681
+#: utilities.php:4733
 msgid "Uzbekistan"
 msgstr ""
 
-#: utilities.php:4683
+#: utilities.php:4735
 msgid "Vanuatu"
 msgstr ""
 
-#: utilities.php:4685
+#: utilities.php:4737
 msgid "Vatican"
 msgstr ""
 
-#: utilities.php:4687
+#: utilities.php:4739
 msgid "Venezuela"
 msgstr ""
 
-#: utilities.php:4689
+#: utilities.php:4741
 msgid "Vietnam"
 msgstr ""
 
-#: utilities.php:4691
+#: utilities.php:4743
 msgid "Wallis and Futuna"
 msgstr ""
 
-#: utilities.php:4693
+#: utilities.php:4745
 msgid "Western Sahara"
 msgstr ""
 
-#: utilities.php:4695
+#: utilities.php:4747
 msgid "Samoa"
 msgstr ""
 
-#: utilities.php:4697
+#: utilities.php:4749
 msgid "Yemen"
 msgstr ""
 
-#: utilities.php:4699
+#: utilities.php:4751
 msgid "Zambia"
 msgstr ""
 
-#: utilities.php:4701
+#: utilities.php:4753
 msgid "Zimbabwe"
 msgstr ""
 
-#: utilities.php:5681
+#: utilities.php:5733
 msgid "Monday"
 msgstr ""
 
-#: utilities.php:5683
+#: utilities.php:5735
 msgid "Tuesday"
 msgstr ""
 
-#: utilities.php:5685
+#: utilities.php:5737
 msgid "Wednesday"
 msgstr ""
 
-#: utilities.php:5687
+#: utilities.php:5739
 msgid "Thursday"
 msgstr ""
 
-#: utilities.php:5689
+#: utilities.php:5741
 msgid "Friday"
 msgstr ""
 
-#: utilities.php:5691
+#: utilities.php:5743
 msgid "Saturday"
 msgstr ""
 
-#: utilities.php:5693
+#: utilities.php:5745
 msgid "Sunday"
 msgstr ""
 
-#: utilities.php:6079
+#: utilities.php:6131
 msgid "External service:"
 msgstr ""
 
-#: utilities.php:6081
+#: utilities.php:6133
 #, php-format
 msgid "when this feature is enabled and configured, the plugin sends %1$s to %2$s. Nothing is sent while it is turned off."
 msgstr ""
