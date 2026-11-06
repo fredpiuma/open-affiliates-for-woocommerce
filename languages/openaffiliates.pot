@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-06T04:53:47+00:00\n"
+"POT-Creation-Date: 2026-11-06T05:16:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: openaffiliates\n"
@@ -45,17 +45,17 @@ msgid "(Category)"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:343
-#: classes/AfDb.class.php:2161
+#: classes/AfDb.class.php:2289
 msgid "I would like to subscribe to newsletter list"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:391
-#: classes/AfDb.class.php:2134
+#: classes/AfDb.class.php:2262
 msgid "Payment Email (PayPal)"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:439
-#: classes/AfDb.class.php:2145
+#: classes/AfDb.class.php:2273
 msgid "Direct Deposit (Payout details)"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgid "Flat Rate"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1176
-#: admin/AfMainAdmin.class.php:9249
+#: admin/AfMainAdmin.class.php:9251
 #: admin/views/new-payout.php:187
 #: admin/views/notifications-list.php:199
 #: admin/views/offers-list.php:93
@@ -144,7 +144,7 @@ msgid "Affiliates"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1178
-#: admin/AfMainAdmin.class.php:9251
+#: admin/AfMainAdmin.class.php:9253
 #: admin/views/affiliates-list.php:187
 #: admin/views/import-export.php:95
 #: admin/views/wizard.php:77
@@ -154,7 +154,7 @@ msgid "Ranks"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1180
-#: admin/AfMainAdmin.class.php:9253
+#: admin/AfMainAdmin.class.php:9255
 #: open-affiliates-for-woocommerce.php:609
 msgid "Product Rates"
 msgstr ""
@@ -164,21 +164,21 @@ msgid "Integrations"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1190
-#: admin/AfMainAdmin.class.php:9255
-#: classes/AfDb.class.php:2582
-#: classes/AfDb.class.php:2583
-#: classes/AfDb.class.php:10947
+#: admin/AfMainAdmin.class.php:9257
+#: classes/AfDb.class.php:2710
+#: classes/AfDb.class.php:2711
+#: classes/AfDb.class.php:11075
 msgid "Creatives"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1192
-#: admin/AfMainAdmin.class.php:9257
+#: admin/AfMainAdmin.class.php:9259
 #: open-affiliates-for-woocommerce.php:603
 msgid "Showcases"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1194
-#: admin/AfMainAdmin.class.php:9265
+#: admin/AfMainAdmin.class.php:9267
 #: admin/views/affiliates-list.php:93
 #: admin/views/referrals-add_edit.php:191
 #: admin/views/user-profile.php:715
@@ -189,7 +189,7 @@ msgid "Clicks"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1196
-#: admin/AfMainAdmin.class.php:9267
+#: admin/AfMainAdmin.class.php:9269
 #: admin/views/affiliates-list.php:103
 #: admin/views/manage-payments.php:68
 #: admin/views/new-payout.php:191
@@ -198,10 +198,10 @@ msgstr ""
 #: admin/views/top-affiliates.php:141
 #: admin/views/top-affiliates.php:843
 #: admin/views/user-profile.php:653
-#: classes/AfDb.class.php:2591
-#: classes/AfDb.class.php:2592
-#: classes/AfDb.class.php:3024
-#: classes/AfDb.class.php:10967
+#: classes/AfDb.class.php:2719
+#: classes/AfDb.class.php:2720
+#: classes/AfDb.class.php:3152
+#: classes/AfDb.class.php:11095
 #: classes/ExportDataAsCsv.php:70
 #: public/views/account_page-campaign_reports.php:35
 #: public/views/account_page-header.php:229
@@ -210,12 +210,12 @@ msgid "Referrals"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1198
-#: admin/AfMainAdmin.class.php:9269
+#: admin/AfMainAdmin.class.php:9271
 msgid "Payouts"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1200
-#: admin/AfMainAdmin.class.php:9275
+#: admin/AfMainAdmin.class.php:9277
 #: admin/views/wizard.php:95
 #: admin/views/wizard.php:365
 #: open-affiliates-for-woocommerce.php:613
@@ -223,21 +223,21 @@ msgid "Email Notifications"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1202
-#: admin/AfMainAdmin.class.php:9277
+#: admin/AfMainAdmin.class.php:9279
 #: open-affiliates-for-woocommerce.php:605
 msgid "Extensions"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1204
 #: admin/AfMainAdmin.class.php:4533
-#: admin/AfMainAdmin.class.php:9279
+#: admin/AfMainAdmin.class.php:9281
 #: admin/Datatable.php:1280
-#: classes/AfDb.class.php:2597
-#: classes/AfDb.class.php:2598
-#: classes/AfDb.class.php:10983
-#: classes/AfDb.class.php:10986
-#: classes/AfDb.class.php:10989
+#: classes/AfDb.class.php:2725
+#: classes/AfDb.class.php:2726
 #: classes/AfDb.class.php:11111
+#: classes/AfDb.class.php:11114
+#: classes/AfDb.class.php:11117
+#: classes/AfDb.class.php:11239
 #: public/views/account_page-header.php:685
 #: public/views/account_page-header.php:699
 msgid "Reports"
@@ -245,24 +245,25 @@ msgstr ""
 
 #: admin/AfMainAdmin.class.php:1206
 #: admin/AfMainAdmin.class.php:5033
-#: admin/AfMainAdmin.class.php:9281
+#: admin/AfMainAdmin.class.php:9283
 #: admin/views/settings-general.php:13
 #: open-affiliates-for-woocommerce.php:617
 msgid "General Settings"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1212
-#: admin/AfMainAdmin.class.php:9283
+#: admin/AfMainAdmin.class.php:9285
 #: open-affiliates-for-woocommerce.php:615
 msgid "Shortcodes"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1214
+#: admin/views/settings-admin_workflow.php:253
 msgid "Export/Import"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:1216
-#: admin/AfMainAdmin.class.php:9285
+#: admin/AfMainAdmin.class.php:9287
 #: admin/views/footer.php:6
 msgid "About & Support"
 msgstr ""
@@ -390,7 +391,7 @@ msgid "Mark as Approved"
 msgstr ""
 
 #: admin/AfMainAdmin.class.php:2667
-#: admin/AfMainAdmin.class.php:9273
+#: admin/AfMainAdmin.class.php:9275
 msgid "Mass Payouts"
 msgstr ""
 
@@ -398,9 +399,9 @@ msgstr ""
 #: admin/views/manage-payouts.php:71
 #: admin/views/new-payout.php:195
 #: admin/views/single-payout.php:33
-#: classes/AfDb.class.php:2600
-#: classes/AfDb.class.php:2601
-#: classes/AfDb.class.php:10972
+#: classes/AfDb.class.php:2728
+#: classes/AfDb.class.php:2729
+#: classes/AfDb.class.php:11100
 msgid "Payments"
 msgstr ""
 
@@ -449,8 +450,8 @@ msgstr ""
 #: admin/Payouts.php:317
 #: admin/views/notifications-list.php:395
 #: admin/views/transactions.php:39
-#: classes/AfDb.class.php:3238
-#: classes/AfDb.class.php:5132
+#: classes/AfDb.class.php:3366
+#: classes/AfDb.class.php:5260
 msgid "All"
 msgstr ""
 
@@ -751,9 +752,9 @@ msgstr ""
 
 #: admin/AfMainAdmin.class.php:7381
 #: admin/views/integrations.php:55
-#: classes/AfDb.class.php:2666
-#: classes/AfDb.class.php:2667
-#: classes/AfDb.class.php:11026
+#: classes/AfDb.class.php:2794
+#: classes/AfDb.class.php:2795
+#: classes/AfDb.class.php:11154
 #: public/views/account_page-header.php:797
 msgid "Settings"
 msgstr ""
@@ -766,76 +767,85 @@ msgstr ""
 msgid "Admin cannot become Affiliate!"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8441
-#: admin/AfMainAdmin.class.php:8447
+#: admin/AfMainAdmin.class.php:8375
+msgid "Working..."
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:8376
+#: classes/CropImage.php:139
+msgid "Something went wrong. Try again!"
+msgstr ""
+
+#: admin/AfMainAdmin.class.php:8443
+#: admin/AfMainAdmin.class.php:8449
 msgid "Process completed!"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8573
+#: admin/AfMainAdmin.class.php:8575
 msgid "Affiliates - Login Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8579
+#: admin/AfMainAdmin.class.php:8581
 msgid "Affiliates - Registration Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8585
+#: admin/AfMainAdmin.class.php:8587
 msgid "Affiliates - Lost Password"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8591
+#: admin/AfMainAdmin.class.php:8593
 msgid "Affiliates - LogOut Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8597
+#: admin/AfMainAdmin.class.php:8599
 msgid "Affiliates - User Page"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8603
+#: admin/AfMainAdmin.class.php:8605
 msgid "Affiliates - TOS"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8647
+#: admin/AfMainAdmin.class.php:8649
 msgid "Affiliates Pro - Default Pages"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8669
+#: admin/AfMainAdmin.class.php:8671
 msgid "Affiliates Pro - Affiliate Landing Pages"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8691
-#: admin/AfMainAdmin.class.php:8711
+#: admin/AfMainAdmin.class.php:8693
+#: admin/AfMainAdmin.class.php:8713
 msgid "Affiliates Pro - Referral Details"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8821
+#: admin/AfMainAdmin.class.php:8823
 #: classes/AfDb.class.php:872
 #: open-affiliates-for-woocommerce.php:637
 msgid "Affiliate Login"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8823
+#: admin/AfMainAdmin.class.php:8825
 #: open-affiliates-for-woocommerce.php:639
 msgid "Affiliate Registration"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8825
-#: classes/AfDb.class.php:8105
+#: admin/AfMainAdmin.class.php:8827
+#: classes/AfDb.class.php:8233
 #: open-affiliates-for-woocommerce.php:641
 msgid "Lost Password"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8827
-#: classes/AfDb.class.php:2575
-#: classes/AfDb.class.php:8106
-#: classes/AfDb.class.php:11041
+#: admin/AfMainAdmin.class.php:8829
+#: classes/AfDb.class.php:2703
+#: classes/AfDb.class.php:8234
+#: classes/AfDb.class.php:11169
 #: open-affiliates-for-woocommerce.php:643
 #: public/views/account_page-header.php:861
 msgid "LogOut"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8829
-#: admin/AfMainAdmin.class.php:9263
+#: admin/AfMainAdmin.class.php:8831
+#: admin/AfMainAdmin.class.php:9265
 #: admin/views/account-page.php:63
 #: admin/views/dashboard.php:97
 #: admin/views/popup-shortcodes.php:27
@@ -843,47 +853,47 @@ msgstr ""
 #: admin/views/shortcodes.php:23
 #: admin/views/showcases.php:21
 #: classes/AfDb.class.php:876
-#: classes/AfDb.class.php:8107
+#: classes/AfDb.class.php:8235
 #: open-affiliates-for-woocommerce.php:629
 #: open-affiliates-for-woocommerce.php:645
 #: public/AfMainPublic.class.php:947
 msgid "Affiliate Portal"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:8831
-#: classes/AfDb.class.php:8108
+#: admin/AfMainAdmin.class.php:8833
+#: classes/AfDb.class.php:8236
 #: open-affiliates-for-woocommerce.php:647
 msgid "TOS"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9017
+#: admin/AfMainAdmin.class.php:9019
 #: admin/views/affiliate-payment-settings.php:71
 #: admin/views/affiliate-payment-settings.php:75
 #: admin/views/user-profile.php:581
-#: classes/AfDb.class.php:10543
-#: classes/AfDb.class.php:10545
+#: classes/AfDb.class.php:10671
+#: classes/AfDb.class.php:10673
 #: classes/AffiliateAddEdit.class.php:211
 #: public/AffiliateAccountPage.class.php:2647
 #: public/views/account_page-payment_settings.php:225
 msgid "First Name"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9019
+#: admin/AfMainAdmin.class.php:9021
 #: admin/views/affiliate-payment-settings.php:73
 #: admin/views/user-profile.php:589
-#: classes/AfDb.class.php:10544
+#: classes/AfDb.class.php:10672
 #: classes/AffiliateAddEdit.class.php:209
 #: public/AffiliateAccountPage.class.php:2649
 #: public/views/account_page-payment_settings.php:230
 msgid "Last Name"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9021
+#: admin/AfMainAdmin.class.php:9023
 #: public/AffiliateAccountPage.class.php:2651
 msgid "Phone"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9023
+#: admin/AfMainAdmin.class.php:9025
 #: admin/views/about.php:8
 #: admin/views/payment-form.php:191
 #: admin/views/payment-form.php:355
@@ -894,63 +904,63 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9025
+#: admin/AfMainAdmin.class.php:9027
 #: public/AffiliateAccountPage.class.php:2655
 msgid "Order Date"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9027
+#: admin/AfMainAdmin.class.php:9029
 #: public/AffiliateAccountPage.class.php:2657
 msgid "Order Amount"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9029
+#: admin/AfMainAdmin.class.php:9031
 #: public/AffiliateAccountPage.class.php:2659
 msgid "Shipping Address"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9031
+#: admin/AfMainAdmin.class.php:9033
 #: public/AffiliateAccountPage.class.php:2661
 msgid "Billing Address"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9033
+#: admin/AfMainAdmin.class.php:9035
 #: public/AffiliateAccountPage.class.php:2663
 msgid "Cart Items"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9093
+#: admin/AfMainAdmin.class.php:9095
 #: classes/WooCategoryReferralRates.php:79
 #: classes/WooCategoryReferralRates.php:156
 #: classes/WooSpecificReferralRates.php:262
 msgid "Flat "
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9095
+#: admin/AfMainAdmin.class.php:9097
 #: classes/WooCategoryReferralRates.php:82
 #: classes/WooCategoryReferralRates.php:159
 #: classes/WooSpecificReferralRates.php:265
 msgid "Percentage "
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9217
+#: admin/AfMainAdmin.class.php:9219
 #: admin/views/about.php:29
 msgid "Documentation"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9219
+#: admin/AfMainAdmin.class.php:9221
 msgid "ChangeLog"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9247
-#: classes/AfDb.class.php:2566
-#: classes/AfDb.class.php:2567
-#: classes/AfDb.class.php:10888
+#: admin/AfMainAdmin.class.php:9249
+#: classes/AfDb.class.php:2694
+#: classes/AfDb.class.php:2695
+#: classes/AfDb.class.php:11016
 #: public/views/account_page-header.php:401
 msgid "Dashboard"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9259
+#: admin/AfMainAdmin.class.php:9261
 #: admin/views/popup-shortcodes.php:19
 #: admin/views/register-settings.php:21
 #: admin/views/showcases.php:17
@@ -958,7 +968,7 @@ msgstr ""
 msgid "Registration Form"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9261
+#: admin/AfMainAdmin.class.php:9263
 #: admin/views/popup-shortcodes.php:21
 #: admin/views/shortcodes.php:17
 #: admin/views/showcases.php:19
@@ -966,11 +976,11 @@ msgstr ""
 msgid "Login Form"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9269
+#: admin/AfMainAdmin.class.php:9271
 msgid "Payment History"
 msgstr ""
 
-#: admin/AfMainAdmin.class.php:9271
+#: admin/AfMainAdmin.class.php:9273
 #: admin/views/affiliates-list.php:11
 #: admin/views/manage-payments.php:4
 #: admin/views/manage-payouts.php:4
@@ -1050,10 +1060,10 @@ msgstr ""
 #: admin/views/register-settings.php:163
 #: admin/views/user-profile.php:319
 #: admin/views/wp-social-login.php:143
-#: classes/AfDb.class.php:4115
-#: classes/AfDb.class.php:4122
-#: classes/AfDb.class.php:4149
-#: classes/AfDb.class.php:4154
+#: classes/AfDb.class.php:4243
+#: classes/AfDb.class.php:4250
+#: classes/AfDb.class.php:4277
+#: classes/AfDb.class.php:4282
 #: public/views/account_page-reports.php:165
 #: public/views/account_page-reports.php:167
 msgid "None"
@@ -1128,7 +1138,7 @@ msgid "Active"
 msgstr ""
 
 #: admin/Datatable.php:310
-#: classes/AfAjax.class.php:2981
+#: classes/AfAjax.class.php:2985
 msgid "You cannot have less than one rank."
 msgstr ""
 
@@ -1183,17 +1193,17 @@ msgid "Affiliate get new Rank"
 msgstr ""
 
 #: admin/Datatable.php:921
-#: classes/AfDb.class.php:11966
+#: classes/AfDb.class.php:12094
 msgid "Reset Password - Step 1: Confirmation Request"
 msgstr ""
 
 #: admin/Datatable.php:922
-#: classes/AfDb.class.php:11967
+#: classes/AfDb.class.php:12095
 msgid "Reset Password - Step 2: Send Generated Password"
 msgstr ""
 
 #: admin/Datatable.php:923
-#: classes/AfDb.class.php:11968
+#: classes/AfDb.class.php:12096
 msgid "Reset Password - Step 3: Password Changed Notification"
 msgstr ""
 
@@ -1264,8 +1274,8 @@ msgstr ""
 #: admin/views/transactions.php:367
 #: admin/views/transactions.php:417
 #: admin/views/visits.php:105
-#: classes/AfDb.class.php:2812
-#: classes/AfDb.class.php:2821
+#: classes/AfDb.class.php:2940
+#: classes/AfDb.class.php:2949
 #: public/views/account_page-mlm.php:116
 msgid "Affiliate"
 msgstr ""
@@ -1409,7 +1419,7 @@ msgstr ""
 #: admin/views/payments.php:227
 #: admin/views/transactions.php:41
 #: admin/views/user-profile.php:791
-#: classes/AfDb.class.php:8356
+#: classes/AfDb.class.php:8484
 #: classes/Db/Payouts.php:208
 #: classes/PayoutPaymentsExport.class.php:291
 msgid "Direct Deposit"
@@ -1421,7 +1431,7 @@ msgstr ""
 #: admin/views/payment-form.php:89
 #: admin/views/payments-list-all_unpaid.php:119
 #: admin/views/user-profile.php:797
-#: classes/AfDb.class.php:8357
+#: classes/AfDb.class.php:8485
 msgid "PayPal"
 msgstr ""
 
@@ -1438,7 +1448,7 @@ msgstr ""
 #: admin/views/user-profile.php:803
 #: admin/views/user-profile.php:809
 #: admin/views/user-profile.php:815
-#: classes/AfDb.class.php:8358
+#: classes/AfDb.class.php:8486
 msgid "Stripe"
 msgstr ""
 
@@ -1488,8 +1498,8 @@ msgstr ""
 
 #: admin/Datatable.php:2392
 #: admin/views/wallet.php:7
-#: classes/AfDb.class.php:9992
-#: classes/AfDb.class.php:10977
+#: classes/AfDb.class.php:10120
+#: classes/AfDb.class.php:11105
 #: public/views/account_page-header.php:671
 msgid "Wallet"
 msgstr ""
@@ -1556,11 +1566,11 @@ msgid "All time"
 msgstr ""
 
 #: admin/Payouts.php:374
-#: classes/AfAjax.class.php:3431
-#: classes/AfAjax.class.php:3449
-#: classes/AfAjax.class.php:3481
-#: classes/AfAjax.class.php:3521
-#: classes/AfAjax.class.php:3585
+#: classes/AfAjax.class.php:3435
+#: classes/AfAjax.class.php:3453
+#: classes/AfAjax.class.php:3485
+#: classes/AfAjax.class.php:3525
+#: classes/AfAjax.class.php:3589
 #: classes/PayoutStripeV3.php:301
 #: public/AffiliateLogin.class.php:79
 #: public/AffiliateLogin.class.php:101
@@ -1943,7 +1953,7 @@ msgid "Custom CSS:"
 msgstr ""
 
 #: admin/views/account-page_menu.php:31
-#: classes/AfDb.class.php:10112
+#: classes/AfDb.class.php:10240
 msgid "Affiliate Area Tabs"
 msgstr ""
 
@@ -2076,7 +2086,7 @@ msgid "Affiliate Username:"
 msgstr ""
 
 #: admin/views/admin_referral_notifications.php:7
-#: classes/AfDb.class.php:10032
+#: classes/AfDb.class.php:10160
 msgid "Admin Referral Notifications"
 msgstr ""
 
@@ -2266,98 +2276,98 @@ msgid "PayPal E-mail Address:"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:77
-#: classes/AfDb.class.php:10546
+#: classes/AfDb.class.php:10674
 msgid "Birth day"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:79
-#: classes/AfDb.class.php:10547
+#: classes/AfDb.class.php:10675
 msgid "Month"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:81
-#: classes/AfDb.class.php:10548
+#: classes/AfDb.class.php:10676
 msgid "Year"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:83
-#: classes/AfDb.class.php:10549
+#: classes/AfDb.class.php:10677
 #: public/views/account_page-payment_settings.php:141
 msgid "Country"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:85
-#: classes/AfDb.class.php:10550
+#: classes/AfDb.class.php:10678
 #: public/views/account_page-payment_settings.php:175
 msgid "State"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:87
-#: classes/AfDb.class.php:10551
+#: classes/AfDb.class.php:10679
 #: public/views/account_page-payment_settings.php:180
 msgid "City"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:89
-#: classes/AfDb.class.php:10552
+#: classes/AfDb.class.php:10680
 msgid "Line1"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:91
-#: classes/AfDb.class.php:10553
+#: classes/AfDb.class.php:10681
 #: public/views/account_page-payment_settings.php:240
 msgid "Postal Code"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:93
-#: classes/AfDb.class.php:10554
+#: classes/AfDb.class.php:10682
 msgid "User Type"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:95
-#: classes/AfDb.class.php:10555
+#: classes/AfDb.class.php:10683
 #: public/views/account_page-payment_settings.php:190
 msgid "Routing Number"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:97
-#: classes/AfDb.class.php:10556
+#: classes/AfDb.class.php:10684
 #: public/views/account_page-payment_settings.php:205
 msgid "Account Number"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:99
-#: classes/AfDb.class.php:10557
+#: classes/AfDb.class.php:10685
 msgid "SSN last 4"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:101
-#: classes/AfDb.class.php:10558
+#: classes/AfDb.class.php:10686
 msgid "Personal id number"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:103
-#: classes/AfDb.class.php:10559
+#: classes/AfDb.class.php:10687
 msgid "Business name"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:105
-#: classes/AfDb.class.php:10560
+#: classes/AfDb.class.php:10688
 msgid "Business tax id"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:107
-#: classes/AfDb.class.php:10561
+#: classes/AfDb.class.php:10689
 msgid "Personal Address City"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:109
-#: classes/AfDb.class.php:10562
+#: classes/AfDb.class.php:10690
 msgid "Personal Address Line1"
 msgstr ""
 
 #: admin/views/affiliate-payment-settings.php:111
-#: classes/AfDb.class.php:10563
+#: classes/AfDb.class.php:10691
 #: public/views/account_page-payment_settings.php:275
 msgid "Personal Address Postal Code"
 msgstr ""
@@ -2550,7 +2560,7 @@ msgid "Apply"
 msgstr ""
 
 #: admin/views/allow-own-referrence.php:7
-#: classes/AfDb.class.php:9928
+#: classes/AfDb.class.php:10056
 msgid "Allow Self Referrals"
 msgstr ""
 
@@ -2741,7 +2751,7 @@ msgid "Search Creatives"
 msgstr ""
 
 #: admin/views/bonus-on-rank.php:7
-#: classes/AfDb.class.php:9952
+#: classes/AfDb.class.php:10080
 msgid "Ranks Bonus"
 msgstr ""
 
@@ -2803,7 +2813,7 @@ msgid "Custom Content for Non-Affiliate Users:"
 msgstr ""
 
 #: admin/views/checkout-select-referral.php:7
-#: classes/AfDb.class.php:10000
+#: classes/AfDb.class.php:10128
 msgid "Checkout Referrals"
 msgstr ""
 
@@ -2859,7 +2869,7 @@ msgstr ""
 #: admin/views/payment-form.php:377
 #: admin/views/payment-form.php:399
 #: admin/views/user-profile.php:565
-#: classes/AfAjax.class.php:2715
+#: classes/AfAjax.class.php:2719
 #: classes/ExportDataAsCsv.php:66
 #: classes/InfoAffiliateBar.php:293
 #: public/views/account_page-generate_links.php:403
@@ -2980,7 +2990,7 @@ msgid "Value"
 msgstr ""
 
 #: admin/views/coupons-list.php:15
-#: classes/AfDb.class.php:9968
+#: classes/AfDb.class.php:10096
 msgid "Static Coupons"
 msgstr ""
 
@@ -3033,8 +3043,8 @@ msgid "Set a special CPM amount for each rank. This option will also become avai
 msgstr ""
 
 #: admin/views/custom-affiliate-slug.php:9
-#: classes/AfDb.class.php:2617
-#: classes/AfDb.class.php:9984
+#: classes/AfDb.class.php:2745
+#: classes/AfDb.class.php:10112
 #: public/views/account_page-generate_links.php:415
 #: public/views/account_page-header.php:477
 #: public/views/info_affiliate_bar-links.php:41
@@ -3175,7 +3185,7 @@ msgstr ""
 
 #: admin/views/edit-affiliate-referral-relation.php:5
 #: admin/views/lifetime-commissions.php:7
-#: classes/AfDb.class.php:9864
+#: classes/AfDb.class.php:9992
 msgid "LifeTime Commissions"
 msgstr ""
 
@@ -3196,7 +3206,7 @@ msgid "Convert to Affiliate"
 msgstr ""
 
 #: admin/views/email-verification.php:7
-#: classes/AfDb.class.php:10056
+#: classes/AfDb.class.php:10184
 msgid "Email Verification"
 msgstr ""
 
@@ -3241,7 +3251,7 @@ msgid "Made by"
 msgstr ""
 
 #: admin/views/friendly-links.php:7
-#: classes/AfDb.class.php:9976
+#: classes/AfDb.class.php:10104
 msgid "Pretty Affiliate Links"
 msgstr ""
 
@@ -3678,7 +3688,7 @@ msgid "Search Commissions"
 msgstr ""
 
 #: admin/views/landing-pages.php:9
-#: classes/AfDb.class.php:10152
+#: classes/AfDb.class.php:10280
 msgid "Affiliate Landing Pages"
 msgstr ""
 
@@ -3978,7 +3988,7 @@ msgid "Search Payouts"
 msgstr ""
 
 #: admin/views/max-amount.php:7
-#: classes/AfDb.class.php:10096
+#: classes/AfDb.class.php:10224
 msgid "Maximum Amount Rate"
 msgstr ""
 
@@ -4092,11 +4102,11 @@ msgid "This module has a high level of complexity and requires proper knowledge 
 msgstr ""
 
 #: admin/views/mlm.php:15
-#: classes/AfDb.class.php:2401
-#: classes/AfDb.class.php:2620
-#: classes/AfDb.class.php:2621
-#: classes/AfDb.class.php:9936
-#: classes/AfDb.class.php:11009
+#: classes/AfDb.class.php:2529
+#: classes/AfDb.class.php:2748
+#: classes/AfDb.class.php:2749
+#: classes/AfDb.class.php:10064
+#: classes/AfDb.class.php:11137
 #: public/views/account_page-header.php:763
 msgid "Multi-Level Marketing"
 msgstr ""
@@ -4916,7 +4926,7 @@ msgid "This module has a high level of complexity and requires proper knowledge 
 msgstr ""
 
 #: admin/views/pay-to-become-affiliate.php:15
-#: classes/AfDb.class.php:10176
+#: classes/AfDb.class.php:10304
 msgid "Pay to become Affiliate"
 msgstr ""
 
@@ -5150,7 +5160,7 @@ msgid ". To use this feature You need >= PHP 5.4."
 msgstr ""
 
 #: admin/views/periodically-reports.php:7
-#: classes/AfDb.class.php:10040
+#: classes/AfDb.class.php:10168
 msgid "Periodic Reports"
 msgstr ""
 
@@ -5197,9 +5207,9 @@ msgid "Password Recovery"
 msgstr ""
 
 #: admin/views/product-links.php:9
-#: classes/AfDb.class.php:2585
-#: classes/AfDb.class.php:2586
-#: classes/AfDb.class.php:10192
+#: classes/AfDb.class.php:2713
+#: classes/AfDb.class.php:2714
+#: classes/AfDb.class.php:10320
 #: public/views/account_page-header.php:623
 msgid "Product Links"
 msgstr ""
@@ -5241,11 +5251,11 @@ msgid "Activate/Hold PushOver Referrals Notifications"
 msgstr ""
 
 #: admin/views/pushover.php:7
-#: classes/AfDb.class.php:2623
-#: classes/AfDb.class.php:2624
-#: classes/AfDb.class.php:10088
-#: classes/AfDb.class.php:10160
-#: classes/AfDb.class.php:10920
+#: classes/AfDb.class.php:2751
+#: classes/AfDb.class.php:2752
+#: classes/AfDb.class.php:10216
+#: classes/AfDb.class.php:10288
+#: classes/AfDb.class.php:11048
 #: public/views/account_page-header.php:493
 msgid "Pushover Notifications"
 msgstr ""
@@ -5359,7 +5369,7 @@ msgid "Tug Boat"
 msgstr ""
 
 #: admin/views/qr_code.php:5
-#: classes/AfDb.class.php:10048
+#: classes/AfDb.class.php:10176
 msgid "Affiliate QR Codes"
 msgstr ""
 
@@ -5752,7 +5762,7 @@ msgid "No details available!"
 msgstr ""
 
 #: admin/views/referral-notifications.php:7
-#: classes/AfDb.class.php:10024
+#: classes/AfDb.class.php:10152
 msgid "Referral Notifications"
 msgstr ""
 
@@ -6377,7 +6387,7 @@ msgid "Approved Referrals"
 msgstr ""
 
 #: admin/views/rest-api.php:7
-#: classes/AfDb.class.php:10168
+#: classes/AfDb.class.php:10296
 msgid "REST API"
 msgstr ""
 
@@ -6555,6 +6565,36 @@ msgstr ""
 
 #: admin/views/settings-admin_workflow.php:223
 msgid "Keep all saved data for Open Affiliates when the plugin is deleted."
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:247
+msgid "Danger Zone"
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:251
+msgid "These actions cannot be undone. Export your data first."
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:259
+msgid "Type RESET to enable the buttons"
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:271
+#: admin/views/settings-admin_workflow.php:275
+msgid "Restore default settings"
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:279
+msgid "Resets every Open Affiliates setting to its default. Affiliates, referrals, payments, clicks, banners, ranks and notifications are kept."
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:285
+#: admin/views/settings-admin_workflow.php:289
+msgid "Factory reset"
+msgstr ""
+
+#: admin/views/settings-admin_workflow.php:293
+msgid "Deletes ALL Open Affiliates data (affiliates, referrals, payments, clicks, banners, ranks, notifications) and settings, trashes the default pages and starts the setup wizard again. WordPress users and WooCommerce orders are not touched."
 msgstr ""
 
 #: admin/views/settings-captcha.php:13
@@ -7190,7 +7230,7 @@ msgid "Set a special sign up amount for each rank. This option will also become 
 msgstr ""
 
 #: admin/views/simple-links.php:9
-#: classes/AfDb.class.php:10104
+#: classes/AfDb.class.php:10232
 msgid "Direct Link Tracking"
 msgstr ""
 
@@ -7283,7 +7323,7 @@ msgid "Mark as Paid"
 msgstr ""
 
 #: admin/views/social-share.php:13
-#: classes/AfDb.class.php:9888
+#: classes/AfDb.class.php:10016
 msgid "Social Share"
 msgstr ""
 
@@ -7328,7 +7368,7 @@ msgid "In order for this feature to work properly You need Social Share & Locker
 msgstr ""
 
 #: admin/views/source-details.php:13
-#: classes/AfDb.class.php:10072
+#: classes/AfDb.class.php:10200
 msgid "Source Details for Affiliates"
 msgstr ""
 
@@ -7665,7 +7705,7 @@ msgstr ""
 
 #: admin/views/top-affiliates.php:145
 #: admin/views/top-affiliates.php:845
-#: classes/AfDb.class.php:3023
+#: classes/AfDb.class.php:3151
 #: classes/AffiliateNotificationReports.class.php:91
 msgid "Visits"
 msgstr ""
@@ -8053,9 +8093,9 @@ msgid "Pending Transactions:"
 msgstr ""
 
 #: admin/views/user-profile.php:775
-#: classes/AfDb.class.php:2611
-#: classes/AfDb.class.php:2612
-#: classes/AfDb.class.php:10910
+#: classes/AfDb.class.php:2739
+#: classes/AfDb.class.php:2740
+#: classes/AfDb.class.php:11038
 msgid "Payout Details"
 msgstr ""
 
@@ -8092,9 +8132,9 @@ msgid "Stripe Account:"
 msgstr ""
 
 #: admin/views/user-profile.php:959
-#: classes/AfDb.class.php:2579
-#: classes/AfDb.class.php:2580
-#: classes/AfDb.class.php:10942
+#: classes/AfDb.class.php:2707
+#: classes/AfDb.class.php:2708
+#: classes/AfDb.class.php:11070
 #: public/views/account_page-header.php:559
 msgid "Campaigns"
 msgstr ""
@@ -8126,8 +8166,8 @@ msgid "Add New"
 msgstr ""
 
 #: admin/views/user-profile.php:1041
-#: classes/AfDb.class.php:3012
-#: classes/AfDb.class.php:10937
+#: classes/AfDb.class.php:3140
+#: classes/AfDb.class.php:11065
 #: public/views/account_page-header.php:543
 msgid "Referrer Links"
 msgstr ""
@@ -8191,7 +8231,7 @@ msgstr ""
 
 #: admin/views/weekly_email_summary.php:5
 #: admin/views/weekly_email_summary.php:8
-#: classes/AfDb.class.php:10200
+#: classes/AfDb.class.php:10328
 msgid "Weekly Email Summary"
 msgstr ""
 
@@ -8274,7 +8314,7 @@ msgid "Assign specific Rates and Titles to your affiliates based on their perfor
 msgstr ""
 
 #: admin/views/wizard.php:296
-#: classes/AfDb.class.php:3851
+#: classes/AfDb.class.php:3979
 msgid "Untitled Rank"
 msgstr ""
 
@@ -8368,7 +8408,7 @@ msgid "Off"
 msgstr ""
 
 #: admin/views/wp-social-login.php:19
-#: classes/AfDb.class.php:10080
+#: classes/AfDb.class.php:10208
 msgid "WP Social Login Integration"
 msgstr ""
 
@@ -8449,13 +8489,13 @@ msgid "E-mail Address is not valid."
 msgstr ""
 
 #: admin/Wizard.php:463
-#: classes/AfDb.class.php:11956
-#: classes/AfDb.class.php:11959
+#: classes/AfDb.class.php:12084
+#: classes/AfDb.class.php:12087
 msgid "New Affiliate account Registered"
 msgstr ""
 
 #: admin/Wizard.php:467
-#: classes/AfDb.class.php:11957
+#: classes/AfDb.class.php:12085
 msgid "New Rank Assigned to Affiliate"
 msgstr ""
 
@@ -8467,7 +8507,7 @@ msgstr ""
 msgid "Profile Information Updated"
 msgstr ""
 
-#: classes/AfAjax.class.php:443
+#: classes/AfAjax.class.php:447
 #: public/views/account_page-generate_links.php:67
 #: public/views/account_page-generate_links.php:123
 #: public/views/account_page-generate_links.php:309
@@ -8475,24 +8515,28 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: classes/AfAjax.class.php:1593
+#: classes/AfAjax.class.php:1597
 msgid "Testing Your E-mail Server"
 msgstr ""
 
-#: classes/AfAjax.class.php:1595
+#: classes/AfAjax.class.php:1599
 msgid "Just a simple message to test if Your E-mail Server is working"
 msgstr ""
 
-#: classes/AfAjax.class.php:2925
+#: classes/AfAjax.class.php:2929
 msgid "No entries available for selected options."
 msgstr ""
 
-#: classes/AfAjax.class.php:2939
+#: classes/AfAjax.class.php:2943
 msgid "If your download did not start automatically, click the link to manually initiate the download process:"
 msgstr ""
 
-#: classes/AfAjax.class.php:2939
+#: classes/AfAjax.class.php:2943
 msgid "download CSV file"
+msgstr ""
+
+#: classes/AfAjax.class.php:3635
+msgid "Type RESET to confirm."
 msgstr ""
 
 #: classes/AfCronJobs.class.php:221
@@ -8580,7 +8624,7 @@ msgstr ""
 #: classes/AfDb.class.php:963
 #: classes/AfDb.class.php:967
 #: classes/AfDb.class.php:972
-#: classes/AfDb.class.php:1293
+#: classes/AfDb.class.php:1421
 msgid "Building Awesome Marketing Tool"
 msgstr ""
 
@@ -8600,247 +8644,247 @@ msgstr ""
 msgid "Creative Five"
 msgstr ""
 
-#: classes/AfDb.class.php:1292
+#: classes/AfDb.class.php:1420
 msgid "Untitled Banner"
 msgstr ""
 
-#: classes/AfDb.class.php:2343
+#: classes/AfDb.class.php:2471
 msgid "Welcome on our Platform!"
 msgstr ""
 
-#: classes/AfDb.class.php:2344
+#: classes/AfDb.class.php:2472
 msgid "Your Affiliate account has not been approved yet. Please try again later or contact support for assistance"
 msgstr ""
 
-#: classes/AfDb.class.php:2345
+#: classes/AfDb.class.php:2473
 msgid "Invalid affiliate email address or password entered. Please check your credentials and try again"
 msgstr ""
 
-#: classes/AfDb.class.php:2346
+#: classes/AfDb.class.php:2474
 msgid "Invalid affiliate email address or username entered. Please check your credentials and try again"
 msgstr ""
 
-#: classes/AfDb.class.php:2347
+#: classes/AfDb.class.php:2475
 msgid "An email has been sent to you. Please follow the steps provided in the email to reset your password"
 msgstr ""
 
-#: classes/AfDb.class.php:2348
+#: classes/AfDb.class.php:2476
 msgid "Your Affiliate Email address has not been verified yet. Please verify your email address to proceed"
 msgstr ""
 
-#: classes/AfDb.class.php:2349
-#: classes/AfDb.class.php:2489
+#: classes/AfDb.class.php:2477
+#: classes/AfDb.class.php:2617
 msgid "Oops! There was an error with the reCaptcha. Please try again"
 msgstr ""
 
-#: classes/AfDb.class.php:2391
+#: classes/AfDb.class.php:2519
 msgid "Please select a payout method. You can complete the setup by providing your preferred payout method"
 msgstr ""
 
-#: classes/AfDb.class.php:2399
+#: classes/AfDb.class.php:2527
 msgid "Easy Download Digital"
 msgstr ""
 
-#: classes/AfDb.class.php:2400
+#: classes/AfDb.class.php:2528
 msgid "Bonus on Rank"
 msgstr ""
 
-#: classes/AfDb.class.php:2402
+#: classes/AfDb.class.php:2530
 msgid "Landing commissions"
 msgstr ""
 
-#: classes/AfDb.class.php:2403
+#: classes/AfDb.class.php:2531
 msgid "User SignUp"
 msgstr ""
 
-#: classes/AfDb.class.php:2404
+#: classes/AfDb.class.php:2532
 msgid "Pay per Click"
 msgstr ""
 
-#: classes/AfDb.class.php:2405
-#: classes/AfDb.class.php:9856
+#: classes/AfDb.class.php:2533
+#: classes/AfDb.class.php:9984
 msgid "CPM Commission"
 msgstr ""
 
-#: classes/AfDb.class.php:2451
+#: classes/AfDb.class.php:2579
 msgid "Your profile information has been successfully updated!"
 msgstr ""
 
-#: classes/AfDb.class.php:2471
+#: classes/AfDb.class.php:2599
 msgid "Accept our Terms&Conditions"
 msgstr ""
 
-#: classes/AfDb.class.php:2478
+#: classes/AfDb.class.php:2606
 msgid "Username is already taken. Please choose a different username"
 msgstr ""
 
-#: classes/AfDb.class.php:2479
+#: classes/AfDb.class.php:2607
 msgid "Invalid Username. Please enter a valid username"
 msgstr ""
 
-#: classes/AfDb.class.php:2480
+#: classes/AfDb.class.php:2608
 msgid "Email address is already in use. Please use a different email address"
 msgstr ""
 
-#: classes/AfDb.class.php:2481
+#: classes/AfDb.class.php:2609
 msgid "Please enter a valid email address"
 msgstr ""
 
-#: classes/AfDb.class.php:2482
+#: classes/AfDb.class.php:2610
 msgid "Email addresses do not match. Please ensure that both email fields contain the same email address"
 msgstr ""
 
-#: classes/AfDb.class.php:2483
+#: classes/AfDb.class.php:2611
 msgid "Password confirmation does not match the entered password. Please try again"
 msgstr ""
 
-#: classes/AfDb.class.php:2484
+#: classes/AfDb.class.php:2612
 msgid "Password must contain both letters and digits. Please enter a valid password"
 msgstr ""
 
-#: classes/AfDb.class.php:2485
+#: classes/AfDb.class.php:2613
 msgid "Password must contain a combination of letters, digits, and at least one uppercase letter"
 msgstr ""
 
-#: classes/AfDb.class.php:2486
+#: classes/AfDb.class.php:2614
 msgid "Password must contain a minimum of {X} characters"
 msgstr ""
 
-#: classes/AfDb.class.php:2487
+#: classes/AfDb.class.php:2615
 msgid "Your account has not been approved yet. Please try again later!"
 msgstr ""
 
-#: classes/AfDb.class.php:2488
+#: classes/AfDb.class.php:2616
 msgid "Please complete all required fields before submitting"
 msgstr ""
 
-#: classes/AfDb.class.php:2490
+#: classes/AfDb.class.php:2618
 msgid "Please accept our Terms & Conditions to proceed"
 msgstr ""
 
-#: classes/AfDb.class.php:2491
+#: classes/AfDb.class.php:2619
 msgid "Registration Successful! You can now log in with your credentials"
 msgstr ""
 
-#: classes/AfDb.class.php:2492
+#: classes/AfDb.class.php:2620
 msgid "Update Successful!"
 msgstr ""
 
-#: classes/AfDb.class.php:2562
+#: classes/AfDb.class.php:2690
 msgid "Affiliate since"
 msgstr ""
 
-#: classes/AfDb.class.php:2569
-#: classes/AfDb.class.php:2570
-#: classes/AfDb.class.php:10900
+#: classes/AfDb.class.php:2697
+#: classes/AfDb.class.php:2698
+#: classes/AfDb.class.php:11028
 msgid "Edit Your Account"
 msgstr ""
 
-#: classes/AfDb.class.php:2572
-#: classes/AfDb.class.php:2573
-#: classes/AfDb.class.php:10905
+#: classes/AfDb.class.php:2700
+#: classes/AfDb.class.php:2701
+#: classes/AfDb.class.php:11033
 msgid "Change Your Password"
 msgstr ""
 
-#: classes/AfDb.class.php:2576
-#: classes/AfDb.class.php:2577
-#: classes/AfDb.class.php:10932
+#: classes/AfDb.class.php:2704
+#: classes/AfDb.class.php:2705
+#: classes/AfDb.class.php:11060
 #: public/views/account_page-header.php:527
 msgid "Affiliate Links"
 msgstr ""
 
-#: classes/AfDb.class.php:2588
-#: classes/AfDb.class.php:2589
-#: classes/AfDb.class.php:10994
+#: classes/AfDb.class.php:2716
+#: classes/AfDb.class.php:2717
+#: classes/AfDb.class.php:11122
 #: public/views/account_page-header.php:715
 msgid "Traffic Log"
 msgstr ""
 
-#: classes/AfDb.class.php:2594
-#: classes/AfDb.class.php:2595
-#: classes/AfDb.class.php:10999
+#: classes/AfDb.class.php:2722
+#: classes/AfDb.class.php:2723
+#: classes/AfDb.class.php:11127
 #: public/views/account_page-header.php:731
 msgid "Campaign Reports"
 msgstr ""
 
-#: classes/AfDb.class.php:2603
-#: classes/AfDb.class.php:2604
-#: classes/AfDb.class.php:11004
+#: classes/AfDb.class.php:2731
+#: classes/AfDb.class.php:2732
+#: classes/AfDb.class.php:11132
 #: public/views/account_page-header.php:747
 msgid "Referrals History"
 msgstr ""
 
-#: classes/AfDb.class.php:2607
-#: classes/AfDb.class.php:2670
-#: classes/AfDb.class.php:2671
-#: classes/AfDb.class.php:11036
+#: classes/AfDb.class.php:2735
+#: classes/AfDb.class.php:2798
+#: classes/AfDb.class.php:2799
+#: classes/AfDb.class.php:11164
 #: public/views/account_page-header.php:847
 msgid "Help"
 msgstr ""
 
-#: classes/AfDb.class.php:2608
+#: classes/AfDb.class.php:2736
 msgid "How does the affiliate program work?"
 msgstr ""
 
-#: classes/AfDb.class.php:2609
+#: classes/AfDb.class.php:2737
 msgid "The affiliate program handles the affiliate accounts by tracking which affiliates have referred visitors to the website, and rewards them with a specific <strong>commission </strong>based on what the referred visitor did on the website (purchases, sign ups, etc)."
 msgstr ""
 
-#: classes/AfDb.class.php:2610
+#: classes/AfDb.class.php:2738
 msgid "Affiliates use the affiliate referral link/URL to promote current website or products. Specific affiliates are tracked because their IDs or usernames are appended to their URL, therefore the system can track which affiliate link brought a customer to your website. If the customer successfully completes a conversion (i.e. a sale, or a form submission), a referral will be generated and the affiliate will be awarded a commission."
 msgstr ""
 
-#: classes/AfDb.class.php:2614
-#: classes/AfDb.class.php:2615
-#: classes/AfDb.class.php:10957
+#: classes/AfDb.class.php:2742
+#: classes/AfDb.class.php:2743
+#: classes/AfDb.class.php:11085
 #: public/views/account_page-header.php:607
 msgid "Coupons"
 msgstr ""
 
-#: classes/AfDb.class.php:2618
-#: classes/AfDb.class.php:10915
+#: classes/AfDb.class.php:2746
+#: classes/AfDb.class.php:11043
 msgid "Your Affiliate Slug"
 msgstr ""
 
-#: classes/AfDb.class.php:2626
-#: classes/AfDb.class.php:2627
+#: classes/AfDb.class.php:2754
+#: classes/AfDb.class.php:2755
 #: public/views/wallet.php:83
 msgid "Wallet Credit"
 msgstr ""
 
-#: classes/AfDb.class.php:2629
-#: classes/AfDb.class.php:2630
-#: classes/AfDb.class.php:11014
+#: classes/AfDb.class.php:2757
+#: classes/AfDb.class.php:2758
+#: classes/AfDb.class.php:11142
 #: public/views/account_page-header.php:833
 msgid "Notifications"
 msgstr ""
 
-#: classes/AfDb.class.php:2632
-#: classes/AfDb.class.php:2633
+#: classes/AfDb.class.php:2760
+#: classes/AfDb.class.php:2761
 msgid "Direct Links"
 msgstr ""
 
-#: classes/AfDb.class.php:2635
-#: classes/AfDb.class.php:2636
+#: classes/AfDb.class.php:2763
+#: classes/AfDb.class.php:2764
 msgid "Landing page"
 msgstr ""
 
-#: classes/AfDb.class.php:2672
+#: classes/AfDb.class.php:2800
 msgid "With Affiliate Bar you will easily generates affiliate links with just 2 clicks."
 msgstr ""
 
-#: classes/AfDb.class.php:2816
-#: classes/AfDb.class.php:2825
+#: classes/AfDb.class.php:2944
+#: classes/AfDb.class.php:2953
 msgid "How about to become our affiliate?"
 msgstr ""
 
-#: classes/AfDb.class.php:2831
-#: classes/AfDb.class.php:2851
+#: classes/AfDb.class.php:2959
+#: classes/AfDb.class.php:2979
 msgid "{blogname} New Referral ({referral_source})"
 msgstr ""
 
-#: classes/AfDb.class.php:2833
-#: classes/AfDb.class.php:2878
+#: classes/AfDb.class.php:2961
+#: classes/AfDb.class.php:3006
 #: utilities.php:2595
 #: utilities.php:2631
 #: utilities.php:2669
@@ -8849,126 +8893,126 @@ msgstr ""
 msgid "Hi {first_name} {last_name},"
 msgstr ""
 
-#: classes/AfDb.class.php:2835
+#: classes/AfDb.class.php:2963
 msgid "Congratulations! You\\’ve  received a new referral for your account ({username}):"
 msgstr ""
 
-#: classes/AfDb.class.php:2837
-#: classes/AfDb.class.php:2857
+#: classes/AfDb.class.php:2965
+#: classes/AfDb.class.php:2985
 msgid "Amount :"
 msgstr ""
 
-#: classes/AfDb.class.php:2838
-#: classes/AfDb.class.php:2858
+#: classes/AfDb.class.php:2966
+#: classes/AfDb.class.php:2986
 msgid "Based on:"
 msgstr ""
 
-#: classes/AfDb.class.php:2839
-#: classes/AfDb.class.php:2859
+#: classes/AfDb.class.php:2967
+#: classes/AfDb.class.php:2987
 msgid "Details :"
 msgstr ""
 
-#: classes/AfDb.class.php:2840
-#: classes/AfDb.class.php:2860
+#: classes/AfDb.class.php:2968
+#: classes/AfDb.class.php:2988
 msgid "Status :"
 msgstr ""
 
-#: classes/AfDb.class.php:2843
-#: classes/AfDb.class.php:2863
+#: classes/AfDb.class.php:2971
+#: classes/AfDb.class.php:2991
 msgid "You can follow your referrals in your Affiliate Portal:"
 msgstr ""
 
-#: classes/AfDb.class.php:2853
+#: classes/AfDb.class.php:2981
 msgid "Hi!"
 msgstr ""
 
-#: classes/AfDb.class.php:2855
+#: classes/AfDb.class.php:2983
 msgid "{first_name} {last_name}, ({username}) got a new referral:"
 msgstr ""
 
-#: classes/AfDb.class.php:2867
+#: classes/AfDb.class.php:2995
 msgid "WooCommerce order details:"
 msgstr ""
 
-#: classes/AfDb.class.php:2876
+#: classes/AfDb.class.php:3004
 msgid "{blogname} Periodic Report for {username} Affiliate Account"
 msgstr ""
 
-#: classes/AfDb.class.php:2880
+#: classes/AfDb.class.php:3008
 msgid "Here's a quick overview of your Affiliate Account since your last report:"
 msgstr ""
 
-#: classes/AfDb.class.php:2882
+#: classes/AfDb.class.php:3010
 msgid "Clicks :"
 msgstr ""
 
-#: classes/AfDb.class.php:2883
+#: classes/AfDb.class.php:3011
 msgid "Total Referrals :"
 msgstr ""
 
-#: classes/AfDb.class.php:2884
+#: classes/AfDb.class.php:3012
 msgid "Earnings :"
 msgstr ""
 
-#: classes/AfDb.class.php:2885
+#: classes/AfDb.class.php:3013
 msgid "Approved Referrals :"
 msgstr ""
 
-#: classes/AfDb.class.php:2886
+#: classes/AfDb.class.php:3014
 msgid "Pending Referrals :"
 msgstr ""
 
-#: classes/AfDb.class.php:2887
+#: classes/AfDb.class.php:3015
 msgid "Rejected Referrals :"
 msgstr ""
 
-#: classes/AfDb.class.php:3013
+#: classes/AfDb.class.php:3141
 #: public/views/product_links/single_product.php:51
 msgid "Get Affiliate Link"
 msgstr ""
 
-#: classes/AfDb.class.php:3016
+#: classes/AfDb.class.php:3144
 msgid "Banner Image"
 msgstr ""
 
-#: classes/AfDb.class.php:3019
+#: classes/AfDb.class.php:3147
 msgid "Share on"
 msgstr ""
 
-#: classes/AfDb.class.php:3022
+#: classes/AfDb.class.php:3150
 msgid "Current Page Stats"
 msgstr ""
 
-#: classes/AfDb.class.php:3025
+#: classes/AfDb.class.php:3153
 msgid "Your Insight:"
 msgstr ""
 
-#: classes/AfDb.class.php:3027
+#: classes/AfDb.class.php:3155
 msgid "Settings Menu"
 msgstr ""
 
-#: classes/AfDb.class.php:3028
+#: classes/AfDb.class.php:3156
 msgid " Conversion Rate"
 msgstr ""
 
-#: classes/AfDb.class.php:3029
+#: classes/AfDb.class.php:3157
 msgid "Overall performance:"
 msgstr ""
 
-#: classes/AfDb.class.php:3980
+#: classes/AfDb.class.php:4108
 #: public/Referral_Main.class.php:805
 msgid "Bonus for reaching rank: "
 msgstr ""
 
-#: classes/AfDb.class.php:7112
+#: classes/AfDb.class.php:7240
 msgid "Deleted Affiliate"
 msgstr ""
 
-#: classes/AfDb.class.php:8103
+#: classes/AfDb.class.php:8231
 msgid "Login"
 msgstr ""
 
-#: classes/AfDb.class.php:8104
+#: classes/AfDb.class.php:8232
 #: classes/AffiliateAddEdit.class.php:491
 #: public/views/login_form.php:167
 #: public/views/login_form.php:309
@@ -8982,362 +9026,362 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: classes/AfDb.class.php:8359
+#: classes/AfDb.class.php:8487
 msgid "Stripe Managed Accounts"
 msgstr ""
 
-#: classes/AfDb.class.php:8360
+#: classes/AfDb.class.php:8488
 msgid "Stripe Managed Accounts "
 msgstr ""
 
-#: classes/AfDb.class.php:9840
+#: classes/AfDb.class.php:9968
 msgid "SignUp Referrals (CPL)"
 msgstr ""
 
-#: classes/AfDb.class.php:9843
+#: classes/AfDb.class.php:9971
 msgid "Available for membership system, awarding commission when referred user signs up"
 msgstr ""
 
-#: classes/AfDb.class.php:9848
+#: classes/AfDb.class.php:9976
 msgid "Pay Per Click  (CPC)"
 msgstr ""
 
-#: classes/AfDb.class.php:9852
+#: classes/AfDb.class.php:9980
 msgid "PPC Campaign for affiliate users"
 msgstr ""
 
-#: classes/AfDb.class.php:9860
+#: classes/AfDb.class.php:9988
 msgid "Cost Per Mile (CPM) Campaign for affiliate users"
 msgstr ""
 
-#: classes/AfDb.class.php:9867
+#: classes/AfDb.class.php:9995
 msgid "Empower your affiliates by rewarding them with commissions for all subsequent purchases made by a customer"
 msgstr ""
 
-#: classes/AfDb.class.php:9872
+#: classes/AfDb.class.php:10000
 msgid "Recurring Commissions"
 msgstr ""
 
-#: classes/AfDb.class.php:9875
+#: classes/AfDb.class.php:10003
 msgid "Award commissions for recurring subscriptions into membership systems"
 msgstr ""
 
-#: classes/AfDb.class.php:9880
+#: classes/AfDb.class.php:10008
 msgid "Landing Commissions (CPA)"
 msgstr ""
 
-#: classes/AfDb.class.php:9883
+#: classes/AfDb.class.php:10011
 msgid "Reward affiliates for specific actions taken by referred users, such submitting a custom form."
 msgstr ""
 
-#: classes/AfDb.class.php:9891
+#: classes/AfDb.class.php:10019
 msgid "Simplify the process for your affiliates to promote your products on their social media profiles by incorporating share buttons into their affiliate accounts"
 msgstr ""
 
-#: classes/AfDb.class.php:9896
+#: classes/AfDb.class.php:10024
 msgid "PayPal Payouts"
 msgstr ""
 
-#: classes/AfDb.class.php:9899
+#: classes/AfDb.class.php:10027
 msgid "Pay affiliates in bulk right from your WordPress admin panel using PayPal's Payouts feature"
 msgstr ""
 
-#: classes/AfDb.class.php:9920
+#: classes/AfDb.class.php:10048
 msgid "Stripe Payouts"
 msgstr ""
 
-#: classes/AfDb.class.php:9923
+#: classes/AfDb.class.php:10051
 msgid "Provide Payouts through Stripe payment processor"
 msgstr ""
 
-#: classes/AfDb.class.php:9931
+#: classes/AfDb.class.php:10059
 msgid "Allow for your affiliate to earn commissions from their own purchases"
 msgstr ""
 
-#: classes/AfDb.class.php:9939
+#: classes/AfDb.class.php:10067
 msgid "Enable your affiliates to invite others to join your affiliate program and earn additional commissions for resulting sales"
 msgstr ""
 
-#: classes/AfDb.class.php:9944
+#: classes/AfDb.class.php:10072
 msgid "Credit Last Affiliate"
 msgstr ""
 
-#: classes/AfDb.class.php:9947
+#: classes/AfDb.class.php:10075
 msgid "If multiple Affiliates credit the same customer then the last Affiliate will receive Referrals"
 msgstr ""
 
-#: classes/AfDb.class.php:9955
+#: classes/AfDb.class.php:10083
 msgid "Set bonuses when one of your affiliates reach a specific rank"
 msgstr ""
 
-#: classes/AfDb.class.php:9960
+#: classes/AfDb.class.php:10088
 msgid "Opt-In Integrations"
 msgstr ""
 
-#: classes/AfDb.class.php:9963
+#: classes/AfDb.class.php:10091
 msgid "Send affiliate email addresses to your Opt-In destination"
 msgstr ""
 
-#: classes/AfDb.class.php:9971
+#: classes/AfDb.class.php:10099
 msgid "Correlate an affiliate with a WooCommerce, Easy Digital Download or Ultimate Membership Pro coupon code"
 msgstr ""
 
-#: classes/AfDb.class.php:9979
+#: classes/AfDb.class.php:10107
 msgid "Affiliate URLs receive improved looks and a better structure"
 msgstr ""
 
-#: classes/AfDb.class.php:9987
+#: classes/AfDb.class.php:10115
 msgid "Customize affiliate referral links by setting custom slugs or generating random ones to suit your preferences"
 msgstr ""
 
-#: classes/AfDb.class.php:9995
+#: classes/AfDb.class.php:10123
 msgid "Affiliates will have the option to spend their earnings directly in the website"
 msgstr ""
 
-#: classes/AfDb.class.php:10003
+#: classes/AfDb.class.php:10131
 msgid "Customers decide which affiliate will be rewarded during the checkout process"
 msgstr ""
 
-#: classes/AfDb.class.php:10008
+#: classes/AfDb.class.php:10136
 msgid "WooCommerce Account Page Integration"
 msgstr ""
 
-#: classes/AfDb.class.php:10016
+#: classes/AfDb.class.php:10144
 msgid "BuddyPress Account Page Integration"
 msgstr ""
 
-#: classes/AfDb.class.php:10027
+#: classes/AfDb.class.php:10155
 msgid "Notify the affiliates via email when they get any new referrals"
 msgstr ""
 
-#: classes/AfDb.class.php:10043
+#: classes/AfDb.class.php:10171
 msgid "Affiliates will receive periodic email reports about their stats"
 msgstr ""
 
-#: classes/AfDb.class.php:10051
+#: classes/AfDb.class.php:10179
 msgid "The Affiliate Links can be provided as QR Codes"
 msgstr ""
 
-#: classes/AfDb.class.php:10059
+#: classes/AfDb.class.php:10187
 msgid "Requires the email address of new affiliates to be verified before they can log in"
 msgstr ""
 
-#: classes/AfDb.class.php:10064
+#: classes/AfDb.class.php:10192
 msgid "Custom Currencies"
 msgstr ""
 
-#: classes/AfDb.class.php:10083
+#: classes/AfDb.class.php:10211
 msgid "Integrated for a lite register / login with social accounts"
 msgstr ""
 
-#: classes/AfDb.class.php:10092
+#: classes/AfDb.class.php:10220
 msgid "Users receive notifications on mobile via Pushover"
 msgstr ""
 
-#: classes/AfDb.class.php:10100
+#: classes/AfDb.class.php:10228
 msgid "Set a maximum amount that can not be passed for a referral."
 msgstr ""
 
-#: classes/AfDb.class.php:10108
+#: classes/AfDb.class.php:10236
 msgid "Directly links without any visible affiliate links listed"
 msgstr ""
 
-#: classes/AfDb.class.php:10116
+#: classes/AfDb.class.php:10244
 msgid "Create and reorder account page menu items"
 msgstr ""
 
-#: classes/AfDb.class.php:10120
+#: classes/AfDb.class.php:10248
 msgid "Migrate from AffiliateWP"
 msgstr ""
 
-#: classes/AfDb.class.php:10124
+#: classes/AfDb.class.php:10252
 msgid "Migrate data from AffiliateWP plugin"
 msgstr ""
 
-#: classes/AfDb.class.php:10128
+#: classes/AfDb.class.php:10256
 msgid "Migrate from Affiliates Pro"
 msgstr ""
 
-#: classes/AfDb.class.php:10132
+#: classes/AfDb.class.php:10260
 msgid "Migrate data from Affiliates Pro plugin"
 msgstr ""
 
-#: classes/AfDb.class.php:10136
+#: classes/AfDb.class.php:10264
 msgid "Migrate from WP Affiliate"
 msgstr ""
 
-#: classes/AfDb.class.php:10140
+#: classes/AfDb.class.php:10268
 msgid "Migrate data from WP Affiliate plugin"
 msgstr ""
 
-#: classes/AfDb.class.php:10144
+#: classes/AfDb.class.php:10272
 msgid "Ranks PRO"
 msgstr ""
 
-#: classes/AfDb.class.php:10148
+#: classes/AfDb.class.php:10276
 msgid "Dynamic Ranks Achievements workflow"
 msgstr ""
 
-#: classes/AfDb.class.php:10156
+#: classes/AfDb.class.php:10284
 msgid "Generate exclusive landing pages for your affiliates by linking posts and pages directly to their profiles"
 msgstr ""
 
-#: classes/AfDb.class.php:10164
+#: classes/AfDb.class.php:10292
 msgid "Admin receives notifications on mobile via Pushover when a Referral is created"
 msgstr ""
 
-#: classes/AfDb.class.php:10172
+#: classes/AfDb.class.php:10300
 msgid "CRUD actions for main affiliate system data"
 msgstr ""
 
-#: classes/AfDb.class.php:10180
+#: classes/AfDb.class.php:10308
 msgid "Charge your users that wants to become affiliates."
 msgstr ""
 
-#: classes/AfDb.class.php:10184
-#: classes/AfDb.class.php:11020
-#: classes/AfDb.class.php:11023
+#: classes/AfDb.class.php:10312
+#: classes/AfDb.class.php:11148
+#: classes/AfDb.class.php:11151
 msgid "Affiliate Bar"
 msgstr ""
 
-#: classes/AfDb.class.php:10188
+#: classes/AfDb.class.php:10316
 msgid "The quickest and easiest way to link to any page."
 msgstr ""
 
-#: classes/AfDb.class.php:10196
+#: classes/AfDb.class.php:10324
 msgid "Get fast affiliate link for all product available in your website."
 msgstr ""
 
-#: classes/AfDb.class.php:10204
+#: classes/AfDb.class.php:10332
 msgid "A brief report on a one-week period will be sent to Administrator about number of Referrals, Total Clicks and not only"
 msgstr ""
 
-#: classes/AfDb.class.php:10499
+#: classes/AfDb.class.php:10627
 msgid "PayPal E-mail Address"
 msgstr ""
 
-#: classes/AfDb.class.php:10506
+#: classes/AfDb.class.php:10634
 #: public/views/account_page-payment_settings.php:75
 msgid "Name on Card"
 msgstr ""
 
-#: classes/AfDb.class.php:10510
+#: classes/AfDb.class.php:10638
 #: public/views/account_page-payment_settings.php:79
 msgid "Card Number"
 msgstr ""
 
-#: classes/AfDb.class.php:10520
+#: classes/AfDb.class.php:10648
 msgid "Expiration Month"
 msgstr ""
 
-#: classes/AfDb.class.php:10524
+#: classes/AfDb.class.php:10652
 msgid "Expiration Year"
 msgstr ""
 
-#: classes/AfDb.class.php:10528
+#: classes/AfDb.class.php:10656
 msgid "Card Type"
 msgstr ""
 
-#: classes/AfDb.class.php:10535
+#: classes/AfDb.class.php:10663
 msgid "Direct Deposit Details"
 msgstr ""
 
-#: classes/AfDb.class.php:10894
-#: classes/AfDb.class.php:10897
-#: classes/AfDb.class.php:11101
+#: classes/AfDb.class.php:11022
+#: classes/AfDb.class.php:11025
+#: classes/AfDb.class.php:11229
 #: public/views/account_page-header.php:415
 msgid "Profile"
 msgstr ""
 
-#: classes/AfDb.class.php:10926
-#: classes/AfDb.class.php:10929
-#: classes/AfDb.class.php:11106
+#: classes/AfDb.class.php:11054
+#: classes/AfDb.class.php:11057
+#: classes/AfDb.class.php:11234
 #: public/views/account_page-header.php:513
 msgid "Marketing"
 msgstr ""
 
-#: classes/AfDb.class.php:10952
+#: classes/AfDb.class.php:11080
 msgid "Landing pages"
 msgstr ""
 
-#: classes/AfDb.class.php:10962
+#: classes/AfDb.class.php:11090
 msgid "Products Links"
 msgstr ""
 
-#: classes/AfDb.class.php:11031
+#: classes/AfDb.class.php:11159
 #: public/views/account_page-header.php:813
 msgid "Tips"
 msgstr ""
 
-#: classes/AfDb.class.php:11958
+#: classes/AfDb.class.php:12086
 msgid "Affiliate has Updated his Profile Information"
 msgstr ""
 
-#: classes/AfDb.class.php:11960
+#: classes/AfDb.class.php:12088
 msgid "Send auto-generated Password to Customer"
 msgstr ""
 
-#: classes/AfDb.class.php:11961
+#: classes/AfDb.class.php:12089
 msgid "Affiliate Account Approval Notification"
 msgstr ""
 
-#: classes/AfDb.class.php:11962
+#: classes/AfDb.class.php:12090
 msgid "Profile Information Updated Successfully"
 msgstr ""
 
-#: classes/AfDb.class.php:11963
+#: classes/AfDb.class.php:12091
 msgid "Affiliate Account Deletion Notification"
 msgstr ""
 
-#: classes/AfDb.class.php:11964
+#: classes/AfDb.class.php:12092
 msgid "Rank Achievement Unlocked"
 msgstr ""
 
-#: classes/AfDb.class.php:11965
+#: classes/AfDb.class.php:12093
 msgid "MLM Assignment Notification for Affiliates"
 msgstr ""
 
-#: classes/AfDb.class.php:11969
+#: classes/AfDb.class.php:12097
 msgid "Payment Confirmation - Payout has Failed"
 msgstr ""
 
-#: classes/AfDb.class.php:11970
+#: classes/AfDb.class.php:12098
 msgid "Payment Confirmation - Payout Processing"
 msgstr ""
 
-#: classes/AfDb.class.php:11971
+#: classes/AfDb.class.php:12099
 msgid "Payment Confirmation - Payout Completed"
 msgstr ""
 
-#: classes/AfDb.class.php:11972
+#: classes/AfDb.class.php:12100
 msgid "Double Email Verification Request"
 msgstr ""
 
-#: classes/AfDb.class.php:11973
+#: classes/AfDb.class.php:12101
 msgid "Double Email Verification Completed"
 msgstr ""
 
-#: classes/AfDb.class.php:11974
+#: classes/AfDb.class.php:12102
 msgid "New Referral Notification"
 msgstr ""
 
-#: classes/AfDb.class.php:11975
+#: classes/AfDb.class.php:12103
 msgid "New Referral Notification for Administrator"
 msgstr ""
 
-#: classes/AfDb.class.php:11976
+#: classes/AfDb.class.php:12104
 msgid "Test Notification"
 msgstr ""
 
-#: classes/AfDb.class.php:11977
+#: classes/AfDb.class.php:12105
 msgid "Wrong Custom Username Slug submitted"
 msgstr ""
 
-#: classes/AfDb.class.php:11978
+#: classes/AfDb.class.php:12106
 msgid "Check Email Sever Notification"
 msgstr ""
 
-#: classes/AfDb.class.php:11979
+#: classes/AfDb.class.php:12107
 msgid "Direct Email sent to Affiliate"
 msgstr ""
 
@@ -9469,10 +9513,6 @@ msgstr ""
 #: classes/AfGDPR.php:1249
 #: classes/AfGDPR.php:1330
 msgid "Open Affiliates reports"
-msgstr ""
-
-#: classes/CropImage.php:139
-msgid "Something went wrong. Try again!"
 msgstr ""
 
 #: classes/CropImage.php:379

@@ -129,6 +129,8 @@ class AfAjax{
 
 
 		add_action( 'wp_ajax_af_ajax_update_integrations_status', [ $this, 'af_ajax_update_integrations_status' ] );
+
+		add_action( 'wp_ajax_af_ajax_factory_reset', [ $this, 'af_ajax_factory_reset' ] );
 	}
 
 	/**
@@ -1795,6 +1797,42 @@ class AfAjax{
 				die;
 		}
 
+
+		/**
+		 * Reset de fábrica. mode=settings restaura só as configurações; mode=all apaga também os dados.
+		 * Exige administrador, token do painel e a palavra RESET.
+		 * @param none
+		 * @return none
+		 */
+		public function af_ajax_factory_reset()
+		{
+				if ( !afIsAdmin() || !current_user_can( 'manage_options' ) ){
+						die;
+				}
+				if ( !afAdminVerifyNonce() ){
+						die;
+				}
+				$mode = isset( $_POST['mode'] ) ? sanitize_text_field( wp_unslash( $_POST['mode'] ) ) : '';
+				$confirm = isset( $_POST['confirm'] ) ? sanitize_text_field( wp_unslash( $_POST['confirm'] ) ) : '';
+				if ( $confirm !== 'RESET' || !in_array( $mode, array( 'settings', 'all' ), true ) ){
+						wp_send_json_error( array( 'message' => __( 'Type RESET to confirm.', 'openaffiliates' ) ) );
+				}
+				global $af_db;
+				if ( $mode === 'settings' ){
+						$af_db->reset_settings();
+						$redirect = admin_url( 'admin.php?page=openaffiliates&tab=settings&subtab=admin_workflow' );
+				} else {
+						$af_db->factory_reset();
+						if ( !class_exists( 'AfCronJobs' ) ){
+								require_once AF_PATH . 'classes/AfCronJobs.class.php';
+						}
+						$crons = new \AfCronJobs();
+						$crons->registerCrons();
+						update_option( 'af_wizard_complete', 0 );// fresh install: the setup wizard runs again
+						$redirect = admin_url( 'admin.php?page=openaffiliates' );
+				}
+				wp_send_json_success( array( 'redirect' => $redirect ) );
+		}
 
 		public function af_ajax_clean_notifications_logs()
 		{

@@ -2215,3 +2215,49 @@ function afDoCleanUpLogs()
 					}
 		});
 }
+
+/* Reset de fábrica (Admin Workflow > Danger Zone) */
+jQuery(document).ready(function(){
+    var $input = jQuery('#af_reset_confirm');
+    if ( !$input.length ){
+        return;
+    }
+    var $buttons = jQuery('.af-reset-button');
+    $input.on('input keyup change', function(){
+        $buttons.prop('disabled', jQuery(this).val() !== 'RESET');
+    });
+    $buttons.on('click', function(e){
+        e.preventDefault();
+        if ( $input.val() !== 'RESET' ){
+            return;
+        }
+        var $button = jQuery(this);
+        var label = $button.text();
+        $buttons.prop('disabled', true);
+        $button.text(afI18n.resetWorking);
+        jQuery.ajax({
+            type: 'post',
+            url: ajaxurl,
+            dataType: 'json',
+            data: {
+                action: 'af_ajax_factory_reset',
+                mode: $button.data('mode'),
+                confirm: $input.val()
+            },
+            success: function(response){
+                if ( response && response.success && response.data && response.data.redirect ){
+                    window.location.href = response.data.redirect;
+                    return;
+                }
+                alert( ( response && response.data && response.data.message ) ? response.data.message : afI18n.resetError );
+                $button.text(label);
+                $buttons.prop('disabled', $input.val() !== 'RESET');
+            },
+            error: function(){
+                alert(afI18n.resetError);
+                $button.text(label);
+                $buttons.prop('disabled', $input.val() !== 'RESET');
+            }
+        });
+    });
+});

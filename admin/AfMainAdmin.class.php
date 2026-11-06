@@ -4189,6 +4189,8 @@ if (!class_exists('AfMainAdmin')){
 					wp_add_inline_script( 'af_admin_js', 'var afI18n=' . wp_json_encode( array(
 						'connected' => __( 'Connected', 'openaffiliates' ),
 						'adminCannotBecomeAffiliate' => __( 'Admin cannot become Affiliate!', 'openaffiliates' ),
+						'resetWorking' => __( 'Working...', 'openaffiliates' ),
+						'resetError' => __( 'Something went wrong. Try again!', 'openaffiliates' ),
 					) ) . ';' );
 					wp_add_inline_script( 'af_admin_js', "var afAdminAjaxNonce='" . wp_create_nonce( 'afAdminAjaxNonce' ) . "';" );
 			} else {

@@ -2,6 +2,19 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/). O projeto segue [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Adicionado
+- Zona de perigo em **Configurações > Admin Workflow** com dois botões, ambos liberados só depois de digitar `RESET`:
+  - **Restaurar configurações padrão**: apaga as opções do plugin e os padrões voltam sozinhos; afiliados, indicações, pagamentos, cliques, banners, níveis e notificações são mantidos, assim como as páginas atribuídas.
+  - **Reset de fábrica**: apaga as tabelas, opções e metadados do plugin, limpa os agendamentos, envia as páginas padrão para a lixeira e reabre o assistente de configuração (a reinstalação ocorre no próximo carregamento do painel). Usuários do WordPress e pedidos do WooCommerce não são alterados.
+- Ação AJAX `af_ajax_factory_reset`, que exige administrador (`manage_options`), token CSRF do painel e a palavra `RESET` no servidor.
+- Métodos `AfDb::get_plugin_table_names()`, `AfDb::reset_settings()` e `AfDb::factory_reset()`; `AfDb::unistall()` passa a usar a mesma lista de tabelas.
+
+### Observação
+- O reset de fábrica age somente no site atual (`$wpdb->prefix`) e nunca em outros sites de uma rede multisite. Porém os metadados de apelido (slug) de afiliados ficam na tabela `usermeta`, compartilhada pela rede, e também são removidos.
+- As páginas padrão vão para a lixeira (reversível), não são apagadas definitivamente.
+
 ## [1.1.0] - 2026-11-06
 
 ### Adicionado

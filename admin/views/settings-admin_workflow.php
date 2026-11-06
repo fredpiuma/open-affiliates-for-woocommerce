@@ -120,6 +120,33 @@
 		</div>
 		</div>
 </form>
+<div class="af-form-line" id="af_danger_zone" style="border:1px solid #d63638; border-radius:4px; padding:15px 20px; margin-top:30px;">
+	<h3 class="af-h3" style="color:#d63638;"><?php esc_html_e('Danger Zone', 'openaffiliates');?></h3>
+	<p class="af-form-setting-description">
+		<?php esc_html_e('These actions cannot be undone. Export your data first.', 'openaffiliates');?>
+		<a href="<?php echo esc_url(admin_url('admin.php?page=openaffiliates&tab=import_export'));?>"><?php esc_html_e('Export/Import', 'openaffiliates');?></a>
+	</p>
+	<div class="af-form-setting-wrapper">
+		<label class="af-form-setting-label"><?php esc_html_e('Type RESET to enable the buttons', 'openaffiliates');?></label>
+		<span class="af-form-setting-item">
+			<input type="text" id="af_reset_confirm" value="" autocomplete="off" placeholder="RESET" />
+		</span>
+	</div>
+	<div class="af-form-setting-wrapper">
+		<label class="af-form-setting-label"><?php esc_html_e('Restore default settings', 'openaffiliates');?></label>
+		<span class="af-form-setting-item">
+			<button type="button" class="button af-reset-button" data-mode="settings" disabled><?php esc_html_e('Restore default settings', 'openaffiliates');?></button>
+		</span>
+		<p class="af-form-setting-description"><?php esc_html_e('Resets every Open Affiliates setting to its default. Affiliates, referrals, payments, clicks, banners, ranks and notifications are kept.', 'openaffiliates');?></p>
+	</div>
+	<div class="af-form-setting-wrapper">
+		<label class="af-form-setting-label"><?php esc_html_e('Factory reset', 'openaffiliates');?></label>
+		<span class="af-form-setting-item">
+			<button type="button" class="button button-primary af-reset-button" data-mode="all" disabled><?php esc_html_e('Factory reset', 'openaffiliates');?></button>
+		</span>
+		<p class="af-form-setting-description"><?php esc_html_e('Deletes ALL Open Affiliates data (affiliates, referrals, payments, clicks, banners, ranks, notifications) and settings, trashes the default pages and starts the setup wizard again. WordPress users and WooCommerce orders are not touched.', 'openaffiliates');?></p>
+	</div>
+</div>
 </div>
 
 <?php

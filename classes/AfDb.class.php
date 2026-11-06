@@ -1062,32 +1062,7 @@ CHARACTER SET utf8 COLLATE utf8_general_ci;";
 * @return none
 */
 			global $wpdb;
-			$tables = array(
-				'af_visits',
-				'af_banners',
-				'af_affiliates',
-				'af_notifications',
-				'af_ranks',
-				'af_referrals',
-				'af_offers',
-				'af_offers_affiliates_reference',
-				'af_campaigns',
-				'af_payments',
-				'af_mlm_relations',
-				'af_affiliate_referral_users_relations',
-				'af_ranks_history',
-				'af_landing_commissions',
-				'af_coupons_code_affiliates',
-				'af_reports',
-				'af_ref_links',
-				'af_cpm',
-				'af_dashboard_notifications',
-				'af_generated_affiliate_links',
-				'af_notifications_logs',
-				'af_banners_meta',
-				'af_payments_meta',
-				'af_payouts',
-			);
+			$tables = $this->get_plugin_table_names();
 			$prefixes = $this->get_all_prefixes_for_unistall();
 			foreach ($prefixes as $the_table_prefix) {
 				foreach ($tables as $table) {
@@ -1213,6 +1188,135 @@ delete_option($key);
 			$this->deleteAllTerms();
 			$this->removeAllAffiliatesSlug(); // remove affiliates slugs if its case.
 		}
+		public function get_plugin_table_names()
+		{
+			/*
+			 * Nomes das tabelas do plugin, sem o prefixo do WordPress
+			 * @param none
+			 * @return array
+			 */
+			return array(
+				'af_visits',
+				'af_banners',
+				'af_affiliates',
+				'af_notifications',
+				'af_ranks',
+				'af_referrals',
+				'af_offers',
+				'af_offers_affiliates_reference',
+				'af_campaigns',
+				'af_payments',
+				'af_mlm_relations',
+				'af_affiliate_referral_users_relations',
+				'af_ranks_history',
+				'af_landing_commissions',
+				'af_coupons_code_affiliates',
+				'af_reports',
+				'af_ref_links',
+				'af_cpm',
+				'af_dashboard_notifications',
+				'af_generated_affiliate_links',
+				'af_notifications_logs',
+				'af_banners_meta',
+				'af_payments_meta',
+				'af_payouts',
+			);
+		}
+
+		public function reset_settings()
+		{
+			/*
+			 * Restaura todas as configurações para o padrão (somente o site atual).
+			 * Não mexe nas tabelas de dados, na versão instalada nem no assistente.
+			 * As páginas atribuídas (general-redirects e general-default_pages) são mantidas.
+			 * @param none
+			 * @return none
+			 */
+			$options = $this->get_all_af_wp_options();
+			foreach ($options as $option_name => $option_value) {
+				delete_option($option_name);
+			}
+			delete_option('af_dashboard_allowed_roles');
+			foreach (array('woo', 'ump', 'ulp', 'edd', 'cf7', 'wpforms', 'ninjaforms') as $integration) {
+				delete_option('af-integrations-' . $integration);
+			}
+		}
+
+		public function factory_reset()
+		{
+			/*
+			 * Reset de fábrica (somente o site atual): apaga tabelas, opções e metadados do plugin.
+			 * Diferente de unistall(), nunca toca em outros sites de uma rede multisite.
+			 * Depois deste método a reinstalação acontece no próximo carregamento do painel
+			 * (AfMainAdmin::run_install, porque af_plugin_version deixa de existir).
+			 * @param none
+			 * @return none
+			 */
+			global $wpdb;
+			/// páginas padrão criadas pelo plugin vão para a lixeira (reversível)
+			$page_options = array(
+				'af_general_register_default_page',
+				'af_general_login_default_page',
+				'af_general_user_page',
+				'af_general_lost_pass_page',
+				'af_general_tos_page',
+			);
+			foreach ($page_options as $page_option) {
+				$page_id = (int)get_option($page_option);
+				if (!$page_id) {
+					continue;
+				}
+				$page = get_post($page_id);
+				if (!$page || $page->post_type !== 'page' || $page->post_status === 'trash') {
+					continue;
+				}
+				/// só páginas do próprio plugin: com shortcode [af-...] ou, no caso dos Termos, sem conteúdo
+				$is_plugin_page = (strpos($page->post_content, '[af-') !== false) || ($page_option === 'af_general_tos_page' && trim($page->post_content) === '');
+				if ($is_plugin_page) {
+					wp_trash_post($page_id);
+				}
+			}
+			/// agendamentos
+			foreach (array(
+				'af_cron_job',
+				'af_cron_job_payments',
+				'af_cron_error_notifications',
+				'af_cron_send_reports_to_affiliate',
+				'af_cron_delete_unverified_affiliates',
+				'af_cron_job_admin_weely_reports',
+			) as $cron_hook) {
+				wp_clear_scheduled_hook($cron_hook);
+			}
+			/// opções (lê antes de apagar as tabelas, pois alguns padrões dependem delas)
+			$options = $this->get_all_af_wp_options(false);
+			/// tabelas
+			foreach ($this->get_plugin_table_names() as $table) {
+				$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}{$table};");
+			}
+			foreach ($options as $option_name => $option_value) {
+				delete_option($option_name);
+			}
+			foreach (array(
+				'af_plugin_version',
+				'af_wizard_complete',
+				'af_wizard_rank_id',
+				'af_wizard_current_page',
+				'af_admin_announcement_initial_time',
+				'af_admin_announcement_step',
+				'af_dashboard_allowed_roles',
+				'af_update_ranks_interval',
+				'af_update_payments_status',
+			) as $option_name) {
+				delete_option($option_name);
+			}
+			foreach (array('woo', 'ump', 'ulp', 'edd', 'cf7', 'wpforms', 'ninjaforms') as $integration) {
+				delete_option('af-integrations-' . $integration);
+			}
+			$this->deleteAllTerms();
+			$this->removeAllAffiliatesSlug();
+			wp_cache_flush();
+		}
+
 		public function deleteAllTerms()
 		{
 			$terms = get_terms();
