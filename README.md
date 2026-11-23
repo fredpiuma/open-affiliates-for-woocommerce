@@ -3,7 +3,7 @@
 Sistema de afiliados de código aberto para WooCommerce e outras lojas WordPress: rastreamento de indicações, comissões, ranks, MLM, pagamentos e portal do afiliado.
 
 ![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-blue)
-![Versão](https://img.shields.io/badge/vers%C3%A3o-1.1.0-informational)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.2.0-informational)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)
 
@@ -38,9 +38,24 @@ WooCommerce, Easy Digital Downloads, Ultimate Membership Pro e Ultimate Learning
 
 ## Instalação
 
-1. Copie a pasta `open-affiliates-for-woocommerce` para `wp-content/plugins/`.
-2. Ative **Open Affiliates** em *Plugins*.
-3. Abra o menu **Open Affiliates** no painel e siga o assistente inicial.
+### Instalação manual
+
+1. Baixe a última versão: [open-affiliates-for-woocommerce.zip](https://github.com/fredpiuma/open-affiliates-for-woocommerce/releases/latest/download/open-affiliates-for-woocommerce.zip) (todas as versões estão em [Releases](https://github.com/fredpiuma/open-affiliates-for-woocommerce/releases)).
+2. No painel, vá em **Plugins > Adicionar novo > Enviar plugin**, escolha o arquivo `.zip` e clique em **Instalar agora**. Se preferir, descompacte o arquivo em `wp-content/plugins/`.
+3. Ative **Open Affiliates** em *Plugins*.
+4. Abra o menu **Open Affiliates** no painel e siga o assistente inicial.
+
+### Instalação com WP-CLI
+
+```bash
+wp plugin install https://github.com/fredpiuma/open-affiliates-for-woocommerce/releases/latest/download/open-affiliates-for-woocommerce.zip --activate
+```
+
+Para atualizar para a última versão, rode o mesmo comando com `--force`:
+
+```bash
+wp plugin install https://github.com/fredpiuma/open-affiliates-for-woocommerce/releases/latest/download/open-affiliates-for-woocommerce.zip --force
+```
 
 ## Shortcodes
 

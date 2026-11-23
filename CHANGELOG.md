@@ -4,7 +4,10 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/). 
 
 ## [Não lançado]
 
+## [1.2.0] - 2026-11-23
+
 ### Adicionado
+- README com instruções de instalação manual (link para baixar a última versão) e por WP-CLI.
 - Zona de perigo em **Configurações > Admin Workflow** com dois botões, ambos liberados só depois de digitar `RESET`:
   - **Restaurar configurações padrão**: apaga as opções do plugin e os padrões voltam sozinhos; afiliados, indicações, pagamentos, cliques, banners, níveis e notificações são mantidos, assim como as páginas atribuídas.
   - **Reset de fábrica**: apaga as tabelas, opções e metadados do plugin, limpa os agendamentos, envia as páginas padrão para a lixeira e reabre o assistente de configuração (a reinstalação ocorre no próximo carregamento do painel). Usuários do WordPress e pedidos do WooCommerce não são alterados.
@@ -12,6 +15,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/). 
 - Métodos `AfDb::get_plugin_table_names()`, `AfDb::reset_settings()` e `AfDb::factory_reset()`; `AfDb::unistall()` passa a usar a mesma lista de tabelas.
 
 ### Corrigido
+- O formulário de nova indicação (**Indicações > Adicionar**) agora vem com a moeda padrão configurada no plugin, em vez de sempre `USD`. A edição de indicações existentes continua mostrando a moeda gravada.
 - Os botões da zona de perigo não habilitavam em instalações atualizadas, porque o navegador reaproveitava o `admin-functions.js` em cache (a versão do arquivo era fixa em `9.3`). O JS e o CSS do painel agora usam a versão do plugin e a data do arquivo para renovar o cache, e os eventos dos botões passaram a ser delegados.
 - Faltava espaçamento interno entre a borda vermelha e o conteúdo da zona de perigo.
 
